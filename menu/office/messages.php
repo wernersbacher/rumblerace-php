@@ -1,0 +1,135 @@
+<?php
+
+$output = "";
+
+function sendNewMail($to_user, $subject, $message) {
+    global $l;
+    $user_id = queryExistsUser($to_user);
+    $subject = substr($subject, 0, 13);
+
+    if ($user_id AND strlen($message) > 1 AND strlen($message) < 10000) {
+        if(strlen($subject)<1)
+            $subject = "<i>".put("no_title",$l)."</i>";
+        $status = queryNewMessage($user_id, $_SESSION["user_id"], $subject, $message);
+    } else {
+        $status = "check_mes_input";
+    }
+
+    return $status;
+}
+
+if ($mode == "new") {
+    $to_user = "";
+    $message = "";
+    $subject = "";
+
+    if (isset($post["send"]) AND isset($post["message"]) AND isset($post["to_user"])) {
+        $to_user = $post["to_user"];
+        $message = $post["message"];
+
+        if (isset($post["subject"]) AND strlen($post["subject"]) > 0)
+            $subject = $post["subject"];
+        
+
+        $send = sendNewMail($to_user, $subject, $message);
+
+        $output .= "<span class='dealInfoText $send'>";
+        $output .= put($send, $l);
+        $output .= "</span>";
+
+        if ($send == "message_sent") {
+            $to_user = "";
+            $message = "";
+            $subject = "";
+        }
+    }
+
+    $output .= "<div id='messageBox'>";
+    $output .= backLink("?page=office&sub=messages");
+    $output .= "<div id='messageOutput'><h2>Write a new message</h2>";
+    $output .= "<div class='messageSub'>";
+
+    $output .= "<form method='post' action='?page=office&sub=messages&mode=new'>
+                    <input type='text' maxlength='13' name='to_user' placeholder='Receiver' value='$to_user' required><br/>
+                    <input type='text' maxlength='13' name='subject' placeholder='Subject' value='$subject' /><br/>
+                    <textarea name='message' placeholder='Your message' required>$message</textarea><br/>
+                    <input type='submit' name='send' value='".put("send_mes",$l)."' class='tableTopButton' />
+                </form>";
+
+    $output .= "</div>";
+    $output .= "</div>";
+    $output .= "</div>";
+} else if ($mode == "read" && isset($post["m_id"])) {
+    $output .= outputTut("messages_write_back", $l);
+    $output .= backLink("?page=office&sub=messages");
+    $m_id = $post["m_id"];
+
+    $fxData = queryMessageData($m_id);
+    if ($fxData) {
+        $username = $fxData["username"];
+        $user_id = $fxData["from_id"];
+        $lang = $fxData["lang"];
+        if ($user_id == 0) {
+            $username = "System";
+            $lang = "de";
+        }
+        $output .= "<div id='messageBox'>";
+
+        $output .= "<div id='messageOutput'><h2>" . $fxData["betreff"] . "</h2>
+                        <div class='messageSub'>
+                        " . $fxData["message"] . "
+                        </div>
+                        ".put("from",$l)." " . user($fxData["from_id"], $username) . " <img src='img/".$lang.".png' alt='Language' /> , " . date("d M Y H:i", $fxData["date"]) . "
+                    </div>";
+
+        $output .= "</div>";
+    } else {
+        $output .= "Nachricht wurde gelöscht.";
+    }
+} else {
+
+    $output .= outputTut("messages_info", $l);
+    $output .= "<div id='messageBox'>";
+
+    $output .= "<a href='?page=office&sub=messages&mode=new' class='tableTopButton'>+ ".put("new_mes",$l)."</a>";
+
+    $output .= "<table style='font-size:13px;' class='tableRed messages noclick'>
+                <tr>
+                  <th>".put("absender",$l)."</th>
+                  <th>".put("betreff",$l)."</th>
+                  <th>Status</th>
+                  <th></th>
+                </tr>";
+
+    $messages = queryMessages();
+
+    if ($messages)
+        foreach ($messages as $item) {
+
+            $link = "?page=office&sub=messages&mode=read";
+            if ($item["open"] == 0)
+                $status = "<span class='unread'>".put("unread",$l)."</span>";
+            else
+                $status = put("readit",$l);
+
+            $username = "System";
+            if ($item["from_id"] > 0)
+                $username = $item["username"];
+
+            $output .= "<tr>";
+            $output .= "<td>" . $username . "</td>
+                <td>" . put($item["betreff"], $l) . "</td>
+                <td>$status</td>
+                <td>
+                    <form method='post' action='$link'>
+                        <input type='hidden' name='m_id' value='" . $item["id"] . "'/>
+                        <input type='submit' name='open' value='".put("read",$l)."' />
+                    </form>
+                </td>";
+            $output .= "</tr>";
+        } else {
+        $output .= "<tr><td colspan='4'>" . put("message_empty", $l) . "</td></tr>";
+    }
+
+    $output .= "</table></div>";
+}

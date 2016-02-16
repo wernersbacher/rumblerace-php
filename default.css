@@ -1,0 +1,260 @@
+html, body {
+    margin:0;
+    padding:0;
+    height:100%;
+}
+
+body {
+    font-family: Roboto;
+    font-size:13px;
+}
+form input {
+    margin-bottom:3px;
+    margin-top: 3px;
+}
+
+noscript {
+    font-weight:bold;
+}
+
+.h1 {
+    display:block;
+    width:100%;
+    margin-bottom:5px;
+    padding:5px 0;
+    font-size:23px;
+    font-weight:bold;
+    background:#D2EFE9;
+    text-align:center;
+    border-radius:2px;
+}
+
+h2 {
+    padding:0;
+    margin:0;
+}
+
+.pageInfo {
+    background-color: #E2F6FF;
+    border: 1px solid #CACACA;
+    text-align: justify;
+    text-align-last: center;
+    -moz-text-align-last: center;
+    display: block;
+    padding: 5px;
+    border-radius: 2px;
+    box-shadow: 0px 2px 3px -3px;
+}
+
+.pageInfo:before {
+    content: url(img/info.png);
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    vertical-align: text-top;
+    margin-right: 4px;
+}
+
+#topBar	{
+    width:100%;
+    height:35px;
+    background-color:#232323;
+    color:white;
+    text-align:left;
+    font-size:29px;
+    padding:5px 0;
+}
+
+#topContent {
+    width:800px;
+    margin:auto;
+    background: #484848;
+    padding: 0px 5px;
+    position:relative;
+}
+
+#blackMenu {
+    display:inline-block;
+    position:absolute;
+    right:5px;
+    text-transform: lowercase;
+}
+
+#mainmenu {
+    width:800px;
+    margin:20px auto;
+    font-family: Roboto;
+    font-size:14px;
+}
+
+#mainmenu ul {
+    list-style-type: none;
+    display:flex;
+    justify-content: center;
+    margin:0;
+    padding:0;
+}
+
+#mainmenu ul li {
+    text-align:center;
+    width:60px;
+    //border: 1px solid lightgrey;
+    border-radius:3px;
+    background:#FBFBFB;
+    box-shadow:0px 1px 5px -3px black;
+    padding:2px;
+}
+
+#mainmenu ul li:hover {
+    box-shadow: 0px 1px 5px -2px black;
+}
+
+#mainmenu ul a {
+    text-decoration: none;
+    margin:0px 14px;
+}
+
+#mainmenu ul li img {
+    width:40px;
+    height:40px;
+    margin:auto;
+    display:block;
+    padding-bottom: 3px;
+}
+
+#loginWindow {
+    font-size:20px;
+    width:800px;
+    margin:20px auto 60px auto;// Footer Height +10px
+}
+
+#middle {
+    width:800px;
+    display:flex;
+    justify-content: space-around;
+    min-height:100px;
+    margin:auto;
+    margin-bottom:60px; // Footer Height +10px
+}
+
+#leftMenu {
+    flex:1;
+    min-height:100%;
+    margin-right:10px;
+}
+
+#contentWindow {
+    flex:1;
+    min-width:573px;
+    min-height:100%;
+}
+
+#player-info {
+    width: 200px;
+    background: #ECECEC;
+    padding:10px;
+    position:relative;
+}
+
+.playername {
+    font-weight:bold;
+}
+
+.playerLiga {
+    position:absolute;
+    top:8px;
+    right:8px;
+}
+
+.playerLiga img {
+    width:30px;
+}
+
+#submenu {
+    width:220px;
+    margin:10px 0;
+}
+
+#submenu ul {
+    list-style-type: none;
+    margin:0;
+    padding:0;
+}
+
+#submenu ul a {
+    margin-bottom:5px;
+    display:block;
+}
+
+#submenu ul a:link, #submenu ul a:visited {
+    color:white;
+    text-decoration:none;
+}
+
+#submenu ul li:hover {
+    margin-left:5px;
+    transition:0.2s;
+}
+
+#submenu ul li{
+    background: #E42A94;
+    padding:5px;
+}
+
+.rumblerace {
+    font-weight:bold;
+    font-family:Roboto;
+}
+
+.sub_active {
+    background-color:#800C4E !important;
+    margin-left:5px;
+}
+
+.colored {
+    color:#E42A94;
+}
+
+#footer {
+    width:100%;
+    height:50px;
+    background:lightgrey;
+    position:fixed;
+    bottom:0;
+    border-top: 1px solid #AFAFAF;
+    box-shadow: 0px -2px 13px -7px;
+    z-index:10;
+}
+
+#footerMiddle {
+    width:800px;
+    margin:auto;
+    padding:2px 0;
+    position:relative;
+}
+
+#footer-lang {
+    position:absolute;
+    right:0;
+    top:10px;
+}
+
+.langSubmit {
+    width:16px;
+    height:11px;
+    border:none;
+    cursor:pointer;
+}
+
+.textCenter {
+    text-align: center;
+}
+
+a:link, a:visited {
+    text-decoration:none;
+}
+
+.brightLink:link, .brightLink:visited {
+    color:lightgrey;
+    text-decoration:underline;
+}

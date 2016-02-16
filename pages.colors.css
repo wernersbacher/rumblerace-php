@@ -1,0 +1,17 @@
+.car_bought, .part_built, .car_updated, .part_on_market, .part_bought{
+    background-color: green;
+    color:white;
+    border:0;
+}
+
+.message_sent, .part_back, .race_started {
+    background-color: green;
+    color:white;
+    border:0;
+}
+
+.no_money, .database_error, .too_many_parts, .part_not_found, .sell_check_input, .part_sold, .check_mes_input, .too_many_races {
+    background: darkred;
+    color:white;
+    border:0;
+}
