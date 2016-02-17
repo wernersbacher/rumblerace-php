@@ -72,8 +72,41 @@ if ($mode == "buy" && isset($get["id"])) {
         $output .= "</span>";
     }
 
+    //Filterfunktion
+    $output .= "<form method='get' action='http://localhost/Rumblerace/main.php'>";
+    $output .= "<input type='hidden' name='page' value='market'>";
+    
+    //Filter Teil
+    $filterParts = queryTuningPartsAll();
+    $output .= "<select class='filter' name='filterParts'>";
+    $output .= "<option value='none'>SHOW ALL</option>";
+    
+    foreach($filterParts as $filter) {
+        if(isset($get["filterParts"]) AND $get["filterParts"] == $filter)
+            $output .= "<option value='$filter' selected>".put($filter,$l)."</option>";
+        else    
+            $output .= "<option value='$filter'>".put($filter,$l)."</option>";
+    }
 
-    $output .= "Filter: bla bla";
+    $output .= "</select>";
+    
+    //Filter Liga
+    $output .= "<select class='filter' name='filterLiga'>";
+    $output .= "<option value='none'>SHOW ALL</option>";
+    
+    for($i=1;$i<9;$i++) {
+        if(isset($get["filterLiga"]) AND $get["filterLiga"] == $i)
+            $output .= "<option value='$i' selected>".put("liga",$l)." $i</option>";
+        else
+            $output .= "<option value='$i'>".put("liga",$l)." $i</option>";
+    }
+    $output .= "</select>";
+    
+    
+    $output .= '<input class="sellButton tableTopButton" name="filter" type="submit" value="Refresh">';
+    $output .= "</form>";
+    
+    //Markt ausgeben
     $output .= "<table style='font-size:13px;' class='tableRed selling noclick'>
                 <tr>
                   <th>Verkäufer</th>
@@ -82,14 +115,24 @@ if ($mode == "buy" && isset($get["id"])) {
                   <th>Preis</th>
                 </tr>";
 
+    //Filtereingabe überprüfen
+    if(isset($get["filterParts"]) AND in_array($get["filterParts"], $filterParts)) {
+        $partFilter = $get["filterParts"];
+    } else $partFilter = '%';
+    if(isset($get["filterLiga"]) AND $get["filterLiga"] >0 AND $get["filterLiga"]<9) {
+        $ligaFilter = $get["filterLiga"];
+    } else $ligaFilter = '%';
+           
+           
+    
     //Blätterseite abfragen
-    $menge = ceil(queryMarketParts(0, true));
+    $menge = ceil(queryMarketParts(0, true, $partFilter, $ligaFilter));
     if (isset($get["s"]) AND $get["s"] <= $menge)
         $s = $get["s"];
     else
         $s = 1;
     //Aktuelle Seite auslesen
-    $partMarket = queryMarketParts($s, false);
+    $partMarket = queryMarketParts($s, false, $partFilter, $ligaFilter);
     if ($partMarket)
         foreach ($partMarket as $item) {
 

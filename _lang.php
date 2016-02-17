@@ -34,7 +34,7 @@ $lg["logout"] = ["Logout", "Logout"];
 $lg["options"] = ["Options", "Optionen"];
 
 //Submenü Links
-$lg["s_messages"] = ["Messages", "Nachrichten"];
+$lg["s_messages"] = ["SMS", "SMS"];
 $lg["s_news"] = ["News", "News"];
 $lg["s_cars"] = ["Cars", "Autos"];
 $lg["s_tuner"] = ["Tuner", "Tuner"];
@@ -46,6 +46,7 @@ $lg["s_faq"] = ["FAQs", "FAQs"];
 $lg["s_carmarket"] = ["Car Market", "Automarkt"];
 $lg["s_partmarket"] = ["Part Market", "Teilemarkt"];
 $lg["s_endurance"] = ["Public Races", "Öffentliche Rennen"];
+$lg["s_running"] = ["Running Races", "Laufende Rennen"];
 $lg["s_racing"] = ["Races", "Rennen"];
 $lg["s_mainstats"] = ["Main Statistics", "Hauptstatistiken"];
 $lg["s_settings"] = ["Settings", "Einstellungen"];
@@ -112,6 +113,9 @@ $lg["open_kat"] = ["See all parts", "Alle Teile ansehen"];
 $lg["save_car"] = ["Save configuration", "Konfiguration speichern"];
 $lg["back_overview"] = ["Back to overview", "Zurück zur Übersicht"];
 $lg["time_left"] = ["left", "verbleibend"];
+$lg["game_news"] = ["Get the latest game news!", "Alle neuen Informationen gibts hier!"];
+$lg["coming_soon"] = ["This feature is not available yet. Please come back later!", "Dieses Feature wurde noch nicht eingebaut. Komm später wieder!"];
+$lg["not_done"] = ["This feature is still in developing. Please come back later!", "Dieses Feature befindet sich noch in der Entwicklung. Komm später wieder!"];
 
 //Register and Login Register for free!
 $lg["register_free"] = ["Register for free!", "Registriere dich hier kostenlos!"];
@@ -140,7 +144,7 @@ $lg["market_with"] = ["Be aware that withdrawing the part from the market later 
 $lg["market_sell"] = ["Type in the market price for your selected part.", "Gib an, für wie viel du das Teil verkaufen möchtest"];
 
 //Market
-$lg["part_on_market"] = ["The part is now getting sold on the market. You will get a notice, if someone bought it!", "Das Teil wird nun auf dem Markt angeboten. Sobald es gekauft wird, erhälst du eine Nachricht."];
+$lg["part_on_market"] = ["The part is now getting sold on the market. You will get a SMS, if someone bought it!", "Das Teil wird nun auf dem Markt angeboten. Sobald es gekauft wird, erhälst du eine SMS."];
 $lg["part_not_found"] = ["You can't sell this part.", "Du kannst dieses Teil nicht verkaufen."];
 $lg["sell_check_input"] = ["Check your input.", "Überprüfe deine Angaben."];
 $lg["part_sold"] = ["The part is already sold. Sorry!", "Das Teil wurde schon verkauft. Sorry!"];
@@ -160,32 +164,40 @@ $lg["no"] = ["No", "Nein"];
 $lg["race_info"] = ["Drive races for money and go up a league!", "Fahre Rennen, um Geld zu bekommen und Ligen aufzusteigen!"];
 $lg["pos_one"] = ["Pos 1", "Platz 1"];
 $lg["reward"] = ["Reward", "Preisgeld"];
-$lg["race_started"] = ["Race started. You will get a message when it's done!", "Rennen wurde gestartet. Du bekommst eine Nachricht, wenn es zuende ist!"];
+$lg["race_started"] = ["Race started. You will get a SMS when it's done!", "Rennen wurde gestartet. Du bekommst eine SMS, wenn es zuende ist!"];
 $lg["desc_race"] = ["Drive some tracks to make money.", "Fahre Rennen, um etwas Geld zu verdienen!"];
+$lg["cancel"] = ["Cancel", "Abbrechen"];
+$lg["no_races_running"] = ["Currently no races running!", "Momentan sind keine Rennen am Laufen!"];
+$lg["running_races"] = ["Check the races you are currently driving!", "Hier siehst du alle Rennen, die gerade Laufen!"];
+$lg["race_canc"] = ["Race canceled!", "Rennen abgebrochen!"];
 
 //Fehlerhinweise
 $lg["garage_empty"] = ["Your garage is empty!", "Die Garage is leer!"];
 $lg["page_no_content"] = ["The page you are looking for is currently not available.", "Die gesuchte Seite ist zur Zeit leider nicht verfügbar."];
 $lg["database_error"] = ["Database Error", "Datenbank Fehler"];
-$lg["noscript"] = ["| Please activate Javascript to enjoy this game 100%.", 
-    "| Aktiviere bitte Javascript, um den das Spiel 100% genießen zu können."];
+$lg["noscript"] = ["Please activate Javascript to enjoy this game 100%.", 
+    "Aktiviere bitte Javascript, um den das Spiel 100% genießen zu können."];
 
 //Messages
-$lg["messages_info"] = ["See all your messages.", "Hier siehst du alle deine Nachrichten."];
-$lg["message_empty"] = ["You have no messages.", "Du hast keine Nachrichten."];
-$lg["messages_write_back"] = ["Answer the message for more fun.", "Antworte der Nachricht, um mehr Spaß zu haben."];
+$lg["messages_info"] = ["See all your SMS.", "Hier siehst du alle deine SMS."];
+$lg["message_empty"] = ["You have no SMS.", "Du hast keine SMS."];
+$lg["messages_write_back"] = ["Answer the SMS for more fun.", "Antworte der SMS, um mehr Spaß zu haben."];
 $lg["check_mes_input"] = ["Check your input. Make sure the username does exists!", "Überprüfe bitte deine Angaben. Stell sicher, dass der Username existiert!"];
-$lg["message_sent"] = ["The message was sent succesfully!", "Die Nachricht wurde erfolgreich verschickt!"];
+$lg["message_sent"] = ["The SMS was sent succesfully!", "Die SMS wurde erfolgreich verschickt!"];
 $lg["absender"] = ["Sender", "Absender"];
 $lg["betreff"] = ["Subject", "Betreff"];
-$lg["message"] = ["Message", "Nachricht"];
+$lg["message"] = ["SMS", "SMS"];
 $lg["read"] = ["Read", "Lesen"];
 $lg["readit"] = ["Read", "Gelesen"];
 $lg["unread"] = ["Unread", "Ungelesen"];
-$lg["new_mes"] = ["New Message", "Neue Nachricht"];
-$lg["send_mes"] = ["Send Mail", "Nachricht verschicken"];
+$lg["new_mes"] = ["New SMS", "Neue SMS"];
+$lg["send_mes"] = ["Send SMS", "SMS verschicken"];
 $lg["from"] = ["from", "von"];
 $lg["no_title"] = ["No Subject", "Kein Betreff"];
+$lg["toggle_sys"] = ["Toggle System", "System an/aus"];
+$lg["answer"] = ["Answer", "Antworten"];
+$lg["delSys"] = ["Delete System SMS", "Lösche System SMS"];
+$lg["sms_del"] = ["All system SMS were deleted.", "Alle System Nachrichten wurden gelöscht."];
 
 //Einstellungen
 $lg["opt_info"] = ["Change your profile settings here.", "Ändere hier deine Profilinformationen."];

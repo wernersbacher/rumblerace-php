@@ -1,17 +1,14 @@
 PRE RELEASE Liste
 
-* Formel für Renngewinne einbauen (und EXP) PS und Perf
-* Liga aufgrund von EXP berechnen
-* Liga Fortschritt 
-* Fahrer/Upgrades Tab Rauswerfen, neu machen und mechaniker/upgrades einbauen
 * Content (Rennen und Tuningteile)
 * Beschreibungen
-* Teilefilter für den Markt
-* laufende Rennen anzeigen
-* Übersetzungen Markt
 
 AFTER RELEASE
 
+* coins & sprit
+* mechaniker/upgrades einbauen
+* Liga Fortschritt 
+* Ligas schalten Markt und Upgrades frei
 * Admin Interface für Nachrichten/news
 * SESSION Daten
 * Alle System nachrichten löschen
@@ -26,12 +23,24 @@ AFTER RELEASE
 * achievements
 * autos verkaufen
 * coins und fax einführen, changelog
+* schönere logos
+* Händler und Garage mit jQuery filtern
+* Tuner Übersicht anzeigen, wo gerade gebaut wird
+* Profil
+* Autos bekommen veteranen status (exp werden auch auf autos verdient)
+* teile und autos zum schrotti (10% wert oder so)
+* nachrichten löschen
 
 IRGENDWANN MAL
 
 * Überprüfen beim Einbau der Teile auf Ligastufe /cheat
 * Ausgeben der Hinweise "Auto ist gerade im einsatz" und "auto XY gekauft"
 * Übersetze Nachrichten
+* cancel builds
+
+UPGRADES
+* Mehrere teile auf dem markt verkaufen mit einem klick
+* Mechaniker
 
 SOURCES
 

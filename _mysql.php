@@ -211,7 +211,7 @@ function queryPlayerCars() {
 
 function queryPlayerCarID($id) {
     global $mysqli;
-    $sql = "SELECT gr.id as garage_id, gr.car_id, nc.title, nc.ps, nc.liga
+    $sql = "SELECT gr.id as garage_id, gr.car_id, nc.title, nc.ps, nc.liga, nc.perf
             FROM garage gr
                 INNER JOIN new_cars nc 
                     ON gr.car_id = nc.name 
@@ -256,6 +256,21 @@ function queryTuningKats() {
     if ($entry) {
         while ($row = mysqli_fetch_assoc($entry)) {
             $data[] = $row["kat"];
+        }
+        return array_unique($data);
+    } else {
+        return false;
+    }
+}
+
+function queryTuningPartsAll() {
+    //Gibt nur die Namen zurück.
+    $sql = "SELECT part FROM parts";
+    $entry = querySQL($sql);
+
+    if ($entry) {
+        while ($row = mysqli_fetch_assoc($entry)) {
+            $data[] = $row["part"];
         }
         return array_unique($data);
     } else {
@@ -513,6 +528,7 @@ function queryUserCanRace($race_id, $exp) {
         return false;
 }
 
+//startet neues rennen
 function queryRacing($car_id, $race_id, $dur) {
     global $mysqli;
     $time_end = time() + $dur;
@@ -536,14 +552,40 @@ function queryRacing($car_id, $race_id, $dur) {
     return $out;
 }
 
+function queryRunningRaces() {
+    $sql = "SELECT rc.reward as reward,
+                    rr.time_end as time_end,
+                    rr.car_id as car_id,
+                    rc.name as name,
+                    rc.dur as duration,
+                    rr.id as id
+            FROM races_run rr
+            INNER JOIN races rc
+                ON rr.race_id = rc.id
+            WHERE rr.user_id = '" . $_SESSION["user_id"] . "'";
+    
+    $entry = querySQL($sql);
+    if ($entry) {
+        while ($row = mysqli_fetch_assoc($entry)) {
+            $data[] = $row;
+        }
+    } else
+        return false;
+    if (!isset($data))
+        return false;
+    else return $data;
+}
+
 //checkt, ob rennen fertig ist
 function queryRaceDone() {
-    global $mysqli;
+    global $mysqli, $l;
     $sql = "SELECT rc.ps as ps,
                     rc.reward as reward,
                     rc.exp as exp,
                     rr.id as id,
-                    rr.time_end as time_end
+                    rr.time_end as time_end,
+                    rr.car_id as car_id,
+                    rc.name as name
             FROM races_run rr
             INNER JOIN races rc
                 ON rr.race_id = rc.id
@@ -558,6 +600,7 @@ function queryRaceDone() {
         return;
     if (!isset($data))
         return;
+    
     //geht jedes laufende rennen des users durch
     foreach ($data as $race) {
         $time_to_end = $race["time_end"] - time();
@@ -566,9 +609,10 @@ function queryRaceDone() {
             
             //Rennen ist fertig
             mysqli_autocommit($mysqli, FALSE);
+                        
             $id = $race["id"];
-            $reward = $race["reward"];
-            $exp = $race["exp"];
+            $reward = calcReward($race["reward"], $race["ps"], $race["car_id"]);
+            $exp = calcExpReward($race["exp"], $race["ps"], $race["car_id"]);
 
             $reward_granted = mysqli_query($mysqli, "UPDATE stats 
                 SET money = money + '$reward', exp = exp + '$exp'
@@ -580,7 +624,7 @@ function queryRaceDone() {
             );
             if ($reward_granted && $deleteRace) {
                 mysqli_commit($mysqli);
-                queryNewMessage($_SESSION["user_id"], 0, "Race finished.", "You made ".dollar($reward).".");
+                queryNewMessage($_SESSION["user_id"], 0, put($race["name"], $l)." finished.", "You made ".dollar($reward)." and ".ep($exp)."!");
                 $out = "race_done";
             } else {
                 mysqli_rollback($mysqli);
@@ -590,6 +634,17 @@ function queryRaceDone() {
             
         }
     }
+}
+
+function queryCancelRace($race_id) {
+    global $mysqli;
+    $sql = "DELETE
+                FROM races_run
+                WHERE id = '" . mysqli_real_escape_string($mysqli, $race_id) . "' AND user_id = '" . $_SESSION["user_id"] . "'";
+    $entry = querySQL($sql);
+    if($entry) {
+        return "race_canc";
+    } else return "database_error";
 }
 
 
@@ -635,8 +690,8 @@ function queryPartSell($str_id, $num) {
     }
 }
 
-function queryMarketParts($s, $getAll) {
-
+function queryMarketParts($s, $getAll, $partFilter, $ligaFilter) {
+    global $mysqli;
     $max = 25;
     $start = $s * $max - $max;
 
@@ -647,11 +702,11 @@ function queryMarketParts($s, $getAll) {
 
     $sql = "SELECT DISTINCT sr.id, sr.part_id, sr.part, sr.liga, sr.value, sr.sell, us.username, pa.kat
             FROM storage sr
-            LEFT JOIN user us
+            INNER JOIN user us
                 ON us.id = sr.user_id
-            LEFT JOIN parts pa
+            INNER  JOIN parts pa
                 ON pa.part = sr.part
-            WHERE sr.sell > 0
+            WHERE sr.sell > 0 AND sr.part LIKE '" . mysqli_real_escape_string($mysqli, $partFilter) . "' AND sr.liga LIKE '" . mysqli_real_escape_string($mysqli, $ligaFilter) . "'
             ORDER BY sr.sell_date DESC";
     $entry = querySQL($sql . $limit);
 
@@ -777,6 +832,11 @@ function queryMarketPartBuy($id) {
         return "part_sold";
 }
 
+function queryDeleteSystem() {
+    $sql = "DELETE FROM faxes WHERE from_id = '0' AND to_id = '" . $_SESSION["user_id"] . "'";
+    querySQL($sql);
+}
+
 function areThereMessenges() {
 
     $sql = "SELECT id FROM faxes WHERE to_id = '" . $_SESSION["user_id"] . "' AND open = '0'";
@@ -796,7 +856,8 @@ function queryMessages() {
             LEFT JOIN user us
                 ON us.id = fx.from_id
             WHERE fx.to_id = " . $_SESSION["user_id"] . "
-            ORDER BY fx.date DESC";
+            ORDER BY fx.date DESC
+                LIMIT 100";
     $entry = querySQL($sql);
 
     if ($entry) {
@@ -868,4 +929,5 @@ function queryLigaChange() {
 
 function upgradeLiga($liga) {
     querySQL("UPDATE stats SET liga = $liga WHERE id = '" . $_SESSION["user_id"] . "'");
+    queryNewMessage($_SESSION["user_id"], 0, "New League", "Congratulations, you advanced to league $liga!");
 }

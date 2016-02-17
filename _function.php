@@ -28,6 +28,40 @@ function getValue($min, $max) {
     return rand($min, $max);
 }
 
+function calcReward($reward, $psReward, $car_id) {
+    $gain = 0;
+    //Get car data
+    $car = queryPlayerCarID($car_id);
+    $partPs = calcPS($car_id);
+    $carPs = $car["ps"];
+    $ps = $carPs+$partPs;
+    
+    if($ps >= $psReward) {
+        $gain = $reward;
+    } else {
+        //$reward = (($ps+($psReward-$ps)/2)/100) * $reward;
+        $gain = ($ps/100) * $reward;
+    }
+    
+    return $gain;
+}
+
+function calcExpReward($exp, $psReward, $car_id) {
+    $gain = 0;
+    $car = queryPlayerCarID($car_id);
+    $partPrf = calcPerf($car_id);
+    $per = $car["perf"]+$partPrf;
+    
+    if($per >= $psReward) {
+        $gain = $exp;
+    } else {
+        //$reward = (($ps+($psReward-$ps)/2)/100) * $reward;
+        $gain = ($per/100) * $exp;
+    }
+    
+    return $gain;
+}
+
 function calcPS($id) {
     $carParts = queryPlayerPartsID($id);
     $ps = 0;

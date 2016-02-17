@@ -23,7 +23,7 @@ $m = array();
 $m["office"] = ["news", "messages"];
 $m["garage"] = ["cars", "tuner", "storage", "cardealer"];
 $m["market"] = ["partmarket", "carmarket"];
-$m["race"] = ["racing", "endurance"];
+$m["race"] = ["racing", "endurance", "running"];
 $m["stats"] = ["mainstats"];
 $m["options"] = ["settings"];
 $m["help"] = ["newbie", "faq"];
@@ -33,5 +33,5 @@ $m["special"] = ["upgrades", "achievements"];
 //So wird ein neuer Menüpunkt hinzugefügt:
 // Hier eintragen
 // Datei anlegen
-// in main.php hinzufügen
+// in main.php hinzufügen (Bei übgeordnetem Punkt)
 // Übersetzungen eintragen

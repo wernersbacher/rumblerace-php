@@ -4,7 +4,7 @@
     border:0;
 }
 
-.message_sent, .part_back, .race_started {
+.message_sent, .part_back, .race_started, .race_canc, .sms_del {
     background-color: green;
     color:white;
     border:0;

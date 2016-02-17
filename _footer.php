@@ -1,16 +1,14 @@
 <div id="footer">
     <div id="footerMiddle">
 
-        ALPHA <noscript><?php echo put("noscript", $l) ?></noscript> <br/>
-        &copy; wernersbacher 2015-2016 <br/> 
-        <a href="http://markus.wernersbacher.de/pages/about-this-website/">Impressum</a>
+        <a href="http://markus.wernersbacher.de/pages/about-this-website/">&copy; wernersbacher 2015-2016</a> | ALPHA 0.1 <noscript>| <?php echo put("noscript", $l) ?></noscript> 
 
         <div id="footer-lang">
             
             
             <?php
             
-            echo "Server: ".date("d M Y H:i:s")." ";
+            echo "Server: ".date("d M Y H:i:s")." | ";
             
             if ($l == "en") {
                 $lang = "de";

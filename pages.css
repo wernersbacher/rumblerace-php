@@ -2,6 +2,17 @@
     margin: 10px 0;
 }
 
+
+
+::-webkit-scrollbar {
+      width:1px;
+      color:black;
+      background: white;
+    }
+::-webkit-scrollbar-thumb {
+      background:#800C4E !important;
+}
+    
 input[type="submit"]:disabled{
     background-color:grey;
     cursor:no-drop;
@@ -449,6 +460,7 @@ tr:nth-child(even) {
 }
 
 .tableTopButton {
+    margin-right:10px;
     -moz-box-shadow:inset 0px 1px 0px 0px #9acc85;
     -webkit-box-shadow:inset 0px 1px 0px 0px #9acc85;
     box-shadow:inset 0px 1px 0px 0px #9acc85;
@@ -543,4 +555,21 @@ tr:nth-child(even) {
 .select_car {
     width:200px;
     height: 27px;
+}
+
+.filter {
+    width:inherit;
+    margin-right:10px;
+}
+
+.textBlock {
+    margin:10px 0;
+    padding:10px;
+    background-color:lightgrey;
+    border-radius: 4px;
+    text-align:justify;
+}
+
+.textBlock h2 {
+    
 }

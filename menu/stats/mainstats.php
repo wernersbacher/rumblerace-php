@@ -1,4 +1,3 @@
 <?php
 
-$output = "Hallo";
-
+$output = outputTut("coming_soon", $l);

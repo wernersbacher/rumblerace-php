@@ -1,4 +1,4 @@
 <?php
 
-$output = outputTut("race_info", $l);
+$output = outputTut("coming_soon", $l);
 
