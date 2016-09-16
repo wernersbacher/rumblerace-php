@@ -1,10 +1,10 @@
-.car_bought, .part_built, .car_updated, .part_on_market, .part_bought{
+.car_bought, .part_built, .car_updated, .part_on_market, .part_bought, .driver_fired{
     background-color: green;
     color:white;
     border:0;
 }
 
-.message_sent, .part_back, .race_started, .race_canc, .sms_del {
+.message_sent, .part_back, .race_started, .race_canc, .sms_del, .teil_bought, .driver_added {
     background-color: green;
     color:white;
     border:0;

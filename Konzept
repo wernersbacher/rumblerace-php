@@ -1,0 +1,7 @@
+EP VERTEILUNG
+
+EP eines Rennen werden dem Spieler/Player gutschrieben, sowie das Geld, abhängig von den PS und Fahrerskill
+- calcReward (Geld)
+- calcExpReward 
+
+EP eines Rennen werden dem Fahrer gutgeschrieben, zudem bekommt er einen gewissen Profit vom Gewinn ab.

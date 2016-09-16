@@ -1,5 +1,19 @@
 <?php
-session_start();
+
+include("gen.php");
+include("_checkuser.php");
+
+function saveSession($user_id) {
+    $token = GenerateRandomToken(); // generate a token, should be 128 - 256 bit
+    storeLoginForUser($user_id, $token);
+    $cookie = $user_id . ':' . $token;
+    $mac = hash_hmac('sha256', $cookie, SECRET_KEY);
+    $cookie .= ':' . $mac;
+    setcookie('rememberme', $cookie);   
+}
+
+
+//session_start();
 define('SECURE', true);
 error_reporting(E_ALL);
 
@@ -18,6 +32,7 @@ if (isset($_POST['send'])) {
     $status = queryLogin($user, $pass);
 
     if ($status === "ok_user") {
+        saveSession($_SESSION["user_id"]);
         header('location: main.php');
     }
     $error = $status;
@@ -29,7 +44,7 @@ if (isset($_POST['send'])) {
 
 <html>
     <head>
-        <title>Rumblerace Login</title>
+        <title>RACING INC. | Login</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="src/font.css">
@@ -40,12 +55,15 @@ if (isset($_POST['send'])) {
         <script type="text/javascript" src="backstretch.min.js"></script>
         <script type="text/javascript" src="gui.js"></script>
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300' rel='stylesheet' type='text/css'> 
+        <link rel="shortcut icon" type="image/x-icon" href="img/logo16.ico">
     </head>
     <body>
         
         <div id="topBar">
             <div id="topContent">
-                <span class="rumblerace">RUMBLE <span class="colored">RACE</span></span>
+                <a href='main.php'><span class="rumblerace">RACING  <span class="colored">INC.</span>
+                        <span id="smallHeader">face<span class="gr">the</span>pace<span class="it">.com</span></span>
+                    </span></a>
                 <span id="blackMenu"></span>
             </div>
         </div>
@@ -53,12 +71,12 @@ if (isset($_POST['send'])) {
         <div id="loginWindow">
             
             <?php echo put("please_login", $l) ?><br/>
-            <?php echo $error; ?>
+            <?php echo put($error, $l); ?>
             <form action="login.php" method="post">
                 <input type="text" name="user" required="required" placeholder="Username" maxlength="55" />
                 <input type="password" name="pass" required="required" placeholder="Password" maxlength="50" />
                 <input type="submit" name="send" value="Login" />
-                
+                <div class="sizeNormal"><a href="reset.php"><?php echo put("resetpwd", $l) ?></a></div>
             </form>
             
             <a href="register.php" ><?php echo put("or_register", $l) ?></a>
@@ -72,7 +90,6 @@ if (isset($_POST['send'])) {
             
         </div>
         
-        <?php include("_footer.php") ?>
 
     </body>
 </html>

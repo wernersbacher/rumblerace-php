@@ -22,12 +22,13 @@ $m = array();
 
 $m["office"] = ["news", "messages"];
 $m["garage"] = ["cars", "tuner", "storage", "cardealer"];
+$m["drivers"] = ["paddock","sysDrivers"];
+$m["sprit"] = ["produce", "buy"];
 $m["market"] = ["partmarket", "carmarket"];
 $m["race"] = ["racing", "endurance", "running"];
-$m["stats"] = ["mainstats"];
 $m["options"] = ["settings"];
-$m["help"] = ["newbie", "faq"];
-$m["special"] = ["upgrades", "achievements"];
+$m["help"] = ["faq", "newbie"];
+$m["special"] = ["upgrades", "achievements", "mainstats"];
 //$m["logout"] = [""];
 
 //So wird ein neuer Menüpunkt hinzugefügt:

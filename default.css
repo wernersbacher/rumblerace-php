@@ -79,6 +79,7 @@ h2 {
     position:absolute;
     right:5px;
     text-transform: lowercase;
+    color:white;
 }
 
 #mainmenu {
@@ -112,7 +113,7 @@ h2 {
 
 #mainmenu ul a {
     text-decoration: none;
-    margin:0px 14px;
+    margin:0px 9px;
 }
 
 #mainmenu ul li img {
@@ -203,6 +204,7 @@ h2 {
 }
 
 .rumblerace {
+    color:white;
     font-weight:bold;
     font-family:Roboto;
 }
@@ -258,4 +260,116 @@ a:link, a:visited {
 .brightLink:link, .brightLink:visited {
     color:lightgrey;
     text-decoration:underline;
+}
+
+#always {
+    width:220px;
+    margin:10px 0;
+}
+
+#always ul {
+    list-style-type: none;
+    margin:0;
+    padding:0;
+}
+
+#always ul a {
+    margin-bottom:5px;
+    display:block;
+}
+
+#always ul a:link, #always ul a:visited {
+    color:white;
+    text-decoration:none;
+}
+
+#always ul li:hover {
+    //margin-left:5px;
+    transition:0.5s;
+    box-shadow: inset 1px 1px 4px rgba(0, 0, 0, 0.25);
+
+}
+
+#always ul li{
+    background: rgba(2, 1, 1, 0.14) !important;
+    padding: 5px;
+    color: black;
+    border-radius: 2px;
+    //box-shadow: 0px 2px 5px -2px rgba(0, 0, 0, 0.73);
+    border: 1px solid rgba(128, 128, 128, 0.38);
+}
+
+.stats {
+    vertical-align: middle;
+    font-size: 15px;
+    letter-spacing: -1px;
+}
+
+.stats img {
+    width:13px;
+    height:13px;
+}
+
+.link:active, .link:visited, .link:link {
+    color:white;
+}
+.link:hover {
+    color:lightgrey;
+}
+
+.infoPop {
+    cursor: pointer;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+#faqs {
+    margin-top:15px;
+    padding:3px;
+}
+
+.question {
+    font-size: 18px;
+    font-weight:bold;
+    margin-top:20px;
+}
+
+.absLiga {
+    position:absolute;
+    right:6px;
+    top:6px;
+}
+
+#driverNameChange {
+    cursor:pointer;
+    color:#E42A94;
+}
+
+#driverNameInput input {
+    /* background-color: black; */
+    font-family: Roboto;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+#smallHeader {
+    font-weight: 100;
+    font-size: 25px;
+}
+
+#smallHeader .gr {
+    color:#ea4fa8;
+}
+
+#smallHeader .it {
+    font-style:italic;
+    color: #9a9a9a;
+}
+
+.sizeNormal {
+    font-size:13px;
 }

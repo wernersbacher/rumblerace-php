@@ -1,0 +1,14 @@
+{
+    "name": "werner/rumblerace",
+    "description": "facethepace.com",
+    "type": "prooject",
+    "authors": [
+        {
+            "name": "Markus Wernersbach",
+            "email": "mwernersbach@web.de"
+        }
+    ],
+    "require": {
+        "ircmaxell/random-lib": "^1.2"
+    }
+}

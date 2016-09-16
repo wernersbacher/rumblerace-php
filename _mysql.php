@@ -4,9 +4,9 @@
 // Salt + in DB speichern
 
 $config['sql_hostname'] = 'localhost';    //MySQL-Server
-$config['sql_username'] = 'root';        //Benutzername
-$config['sql_password'] = '';        //Kennwort
-$config['sql_database'] = 'rumblerace';        //Datenbank
+$config['sql_username'] = 'werner';        //Benutzername
+$config['sql_password'] = 't4g23ww';        //Kennwort
+$config['sql_database'] = 'werner_rr';        //Datenbank
 
 /**
  *    Fehlerbehandlung
@@ -64,9 +64,8 @@ function queryLogin($user, $pass) {
 
         if (count($row) >= 1) {
             //Falls User gefunden wurde
-            $_SESSION['user_id'] = $row["id"];
-            $_SESSION['username'] = $row["username"];
-            $_SESSION['lang'] = $row["lang"];
+            
+            login($row["id"], $row["username"], $row["lang"]);
             $status = "ok_user";
         } else {
             $status = 'no_user_found';
@@ -76,6 +75,44 @@ function queryLogin($user, $pass) {
     }
 
     return $status;
+}
+
+function storeLoginForUser($id, $token) {
+    $sql = "INSERT INTO loggedin (user_id, token, created) VALUES ('$id', '$token', '".time()."') ON DUPLICATE KEY UPDATE token = '$token', created = '".time()."';";
+    querySQL($sql);
+}
+
+function delete_session($id) {
+    $sql = "UPDATE loggedin SET token = '' WHERE user_id = '$id'";
+    querySQL($sql);
+}
+
+function getTokenByUserID($id) {
+    global $mysqli;
+    $sql = "SELECT * FROM loggedin WHERE user_id = '" . mysqli_real_escape_string($mysqli, $id) . "'";
+    $entry = querySQL($sql);
+    
+    if ($entry) {
+        $row = mysqli_fetch_assoc($entry);
+        return $row["token"];
+    } else {
+        return false;
+    }
+}
+
+function countEmail($email) {
+    global $mysqli;
+    $sql = "SELECT id FROM user WHERE email = '" . mysqli_real_escape_string($mysqli, $email) . "'";
+    $entry = querySQL($sql);
+    
+    $count = mysqli_num_rows($entry);
+    
+    return $count;
+}
+
+function updateEmail($email) {
+    $sql = "UPDATE user SET email = '$email' WHERE id = '" . $_SESSION["user_id"] . "'";
+    querySQL($sql);
 }
 
 function queryRegister($user, $pass, $email) {
@@ -89,8 +126,10 @@ function queryRegister($user, $pass, $email) {
             . "'" . mysqli_real_escape_string($mysqli, hash5($pass)) . "', "
             . "'" . mysqli_real_escape_string($mysqli, $email) . "', '$lang', '" . time() . "')");
     $user_id = mysqli_insert_id($mysqli);
-    $addStats = mysqli_query($mysqli, "INSERT INTO stats (id, money, liga) VALUES ('" . $user_id . "', 10000, 1)");
-    if ($addUser && $addStats) {
+    $addStats = mysqli_query($mysqli, "INSERT INTO stats (id, money, liga, sprit) VALUES ('" . $user_id . "', 6000, 1, 50)");
+    $addSprit = mysqli_query($mysqli, "INSERT INTO sprit_upt (user_id, updated) VALUES ('" . $user_id . "', '".time()."')");
+    $addCar = mysqli_query($mysqli, "INSERT INTO garage (user_id, car_id) VALUES ('" . $user_id . "', 'beamer_pole')");
+    if ($addUser && $addStats && $addSprit && $addCar) {
         mysqli_commit($mysqli);
         $status = "ok_reg";
         $_SESSION['user_id'] = $user_id;
@@ -121,9 +160,13 @@ function queryLangChange($lang) {
 }
 
 function queryPlayerStats() {
+    return queryPlayerByID($_SESSION["user_id"]);
+}
 
-    $sql = "SELECT money, liga, exp FROM stats WHERE id = '" . $_SESSION["user_id"] . "' LIMIT 1";
+function queryPlayerByID($id) {
 
+    $sql = "SELECT * FROM stats, user WHERE stats.id = user.id AND stats.id = '" . $id . "' LIMIT 1";
+    
     $entry = querySQL($sql);
 
     if ($entry) {
@@ -132,6 +175,45 @@ function queryPlayerStats() {
     } else {
         return false;
     }
+}
+
+function queryPlayerByMail($email) {
+    $sql = "SELECT * FROM stats, user WHERE stats.id = user.id AND email = '$email' LIMIT 1";
+    
+    $entry = querySQL($sql);
+
+    if ($entry) {
+        $row = mysqli_fetch_assoc($entry);
+        return $row;
+    } else {
+        return false;
+    }
+}
+
+function isTokenValid($email, $token) {
+    $sql = "SELECT token_date, token FROM user WHERE email = '$email'";
+    $entry = querySQL($sql);
+    
+    if ($entry) {
+        $row = mysqli_fetch_assoc($entry);
+        //Falls das Datum nicht älter als 24h her ist und der Token richtig ist.
+        if($row["token_date"] + 24*60*60 > time() AND $token == $row["token"]) {
+            return true;
+        } else return false;
+    } else {
+        return false;
+    }
+    
+}
+
+function changePass($pass, $email) {
+    $sql = "UPDATE user SET pass = '" . hash5($pass) . "' WHERE email = '$email'";
+    querySQL($sql);
+    
+}
+
+function queryAddBugreport($text, $id, $time) {
+    querySQL("INSERT INTO bugs (user_id, text, time) values ('$id', '$text', '$time')");
 }
 
 function queryNewCars($liga) {
@@ -247,7 +329,6 @@ function queryPlayerPartsID($id) {
     }
 }
 
-
 function queryTuningKats() {
     //Gibt nur die Namen zurück.
     $sql = "SELECT kat FROM parts";
@@ -323,7 +404,7 @@ function queryPartData($part, $liga) {
 }
 
 function isPartRunning() {
-    $sql = "SELECT pa.part as part
+    $sql = "SELECT pa.part as part, pa.kat as kat
             FROM storage_run sr 
             INNER JOIN parts pa
                 ON pa.id = sr.part_id
@@ -333,7 +414,7 @@ function isPartRunning() {
 
     if ($entry) {
         $row = mysqli_fetch_array($entry, MYSQLI_ASSOC);
-        return $row["part"];
+        return array($row["part"], $row["kat"]);
     } else {
         return false;
     }
@@ -451,6 +532,7 @@ function queryStorage() {
         return false;
     }
 }
+
 //checkt, ob user ein auto mit der $id besitrzt.
 function queryUserHasCarID($id) {
     global $mysqli;
@@ -466,10 +548,9 @@ function queryUserHasCarID($id) {
         return false;
 }
 
-
 function queryRaces($liga) {
     global $mysqli;
-    $sql = "SELECT * FROM races WHERE liga = '" . mysqli_real_escape_string($mysqli, $liga) . "' ORDER BY exp asc";
+    $sql = "SELECT * FROM races WHERE liga = '" . mysqli_real_escape_string($mysqli, $liga) . "' ORDER BY exp_needed asc";
     $entry = querySQL($sql);
     $data = [];
     if ($entry) {
@@ -513,11 +594,11 @@ function queryCarIsNotRacing($id) {
 }
 
 //checkt, ob das angestrebte rennen freigeschaltte ist
-function queryUserCanRace($race_id, $exp) {
+function queryUserCanRace2($race_id, $exp, $sprit) {
     global $mysqli;
 
     $sql = "SELECT rc.id FROM races rc
-            WHERE rc.exp_needed <= '" . mysqli_real_escape_string($mysqli, $exp) . "' AND rc.id = '" . mysqli_real_escape_string($mysqli, $race_id) . "'";
+            WHERE rc.exp_needed <= '" . mysqli_real_escape_string($mysqli, $exp) . "' AND rc.sprit_needed <= '$sprit' AND rc.id = '" . mysqli_real_escape_string($mysqli, $race_id) . "'";
     $entry = querySQL($sql);
 
     $row = mysqli_fetch_array($entry, MYSQLI_ASSOC);
@@ -527,23 +608,45 @@ function queryUserCanRace($race_id, $exp) {
     } else
         return false;
 }
+function queryUserCanRace($race_id, $exp, $sprit) {
+    global $mysqli;
+
+    $sql = "SELECT * FROM races rc
+            WHERE rc.id = '" . mysqli_real_escape_string($mysqli, $race_id) . "' LIMIT 1";
+    $entry = querySQL($sql);
+
+    //var_dump($row);
+    if ($entry) {
+        $row = mysqli_fetch_assoc($entry);
+        if($row["exp_needed"] > $exp)
+            return "exp";
+        else if($row["sprit_needed"] > $sprit) {
+            return "sprit";
+        } else return true;
+        
+    } else {
+        return false;
+    }
+}
 
 //startet neues rennen
-function queryRacing($car_id, $race_id, $dur) {
+function queryRacing($car_id, $race_id, $dur, $sprit, $driver_id) {
     global $mysqli;
     $time_end = time() + $dur;
     mysqli_autocommit($mysqli, FALSE);
 
-    $sql = "INSERT INTO races_run (user_id, car_id, race_id, time_end) 
-            values ('" . $_SESSION["user_id"] . "', " . mysqli_real_escape_string($mysqli, $car_id) . ", '$race_id', '" . $time_end . "')";
+    $sql = "INSERT INTO races_run (user_id, car_id, race_id, time_end, driver_id) 
+            values ('" . $_SESSION["user_id"] . "', " . mysqli_real_escape_string($mysqli, $car_id) . ", '$race_id', '" . $time_end . "', '$driver_id')";
     //echo $sql;
     $start_race = mysqli_query($mysqli, $sql
     );
-    
+
     $spend = true;
     if ($start_race && $spend) {
         mysqli_commit($mysqli);
         $out = "race_started";
+        //
+        removeSprit($sprit);
     } else {
         mysqli_rollback($mysqli);
         $out = "database_error";
@@ -563,7 +666,7 @@ function queryRunningRaces() {
             INNER JOIN races rc
                 ON rr.race_id = rc.id
             WHERE rr.user_id = '" . $_SESSION["user_id"] . "'";
-    
+
     $entry = querySQL($sql);
     if ($entry) {
         while ($row = mysqli_fetch_assoc($entry)) {
@@ -573,10 +676,11 @@ function queryRunningRaces() {
         return false;
     if (!isset($data))
         return false;
-    else return $data;
+    else
+        return $data;
 }
 
-//checkt, ob rennen fertig ist
+//checkt, ob rennen fertig ist HINZUFÜGEN DER EXP ZUM FAHRER
 function queryRaceDone() {
     global $mysqli, $l;
     $sql = "SELECT rc.ps as ps,
@@ -585,7 +689,8 @@ function queryRaceDone() {
                     rr.id as id,
                     rr.time_end as time_end,
                     rr.car_id as car_id,
-                    rc.name as name
+                    rc.name as name,
+                    rr.driver_id
             FROM races_run rr
             INNER JOIN races rc
                 ON rr.race_id = rc.id
@@ -600,40 +705,48 @@ function queryRaceDone() {
         return;
     if (!isset($data))
         return;
-    
+
     //geht jedes laufende rennen des users durch
     foreach ($data as $race) {
         $time_to_end = $race["time_end"] - time();
 
         if ($time_to_end <= 0) {
-            
+
             //Rennen ist fertig
             mysqli_autocommit($mysqli, FALSE);
-                        
+
+            //$driver = getDriverByID($race["driver_id"]);
             $id = $race["id"];
-            $reward = calcReward($race["reward"], $race["ps"], $race["car_id"]);
-            $exp = calcExpReward($race["exp"], $race["ps"], $race["car_id"]);
+            $reward = calcReward($race["reward"], $race["ps"], $race["exp"], $race["car_id"], $race["driver_id"]);
+            $exp = calcExpReward($race["exp"], $race["ps"], $race["exp"], $race["car_id"], $race["driver_id"]);
 
             $reward_granted = mysqli_query($mysqli, "UPDATE stats 
                 SET money = money + '$reward', exp = exp + '$exp'
                 WHERE id = '" . $_SESSION["user_id"] . "'"
             );
+            $sql_deb = "UPDATE fahrer 
+                SET skill = skill + '$exp'
+                WHERE user_id = '" . $_SESSION["user_id"] . "' AND id = '".$race["driver_id"]."'";
+            //var_dump($sql_deb);
+            $driver_reward = mysqli_query($mysqli, $sql_deb
+            );
+            
             $deleteRace = mysqli_query($mysqli, "DELETE
                 FROM races_run
                 WHERE id = '$id'"
             );
-            if ($reward_granted && $deleteRace) {
+            if ($reward_granted && $deleteRace && $driver_reward) {
                 mysqli_commit($mysqli);
-                queryNewMessage($_SESSION["user_id"], 0, put($race["name"], $l)." finished.", "You made ".dollar($reward)." and ".ep($exp)."!");
+                queryNewMessage($_SESSION["user_id"], 0, getRaceName($race["name"]) . " finished.", "You made " . dollar($reward) . " and " . ep($exp) . "!");
                 $out = "race_done";
             } else {
                 mysqli_rollback($mysqli);
                 $out = "database_error";
             }
             mysqli_autocommit($mysqli, TRUE);
-            
         }
     }
+     
 }
 
 function queryCancelRace($race_id) {
@@ -642,11 +755,11 @@ function queryCancelRace($race_id) {
                 FROM races_run
                 WHERE id = '" . mysqli_real_escape_string($mysqli, $race_id) . "' AND user_id = '" . $_SESSION["user_id"] . "'";
     $entry = querySQL($sql);
-    if($entry) {
+    if ($entry) {
         return "race_canc";
-    } else return "database_error";
+    } else
+        return "database_error";
 }
-
 
 function queryTuningTheCar($changeIDs, $garage_id) {
     global $mysqli;
@@ -715,7 +828,6 @@ function queryMarketParts($s, $getAll, $partFilter, $ligaFilter) {
         $menge = mysqli_num_rows($entry);
         $seiten = $menge / $max;
         return $seiten;
-        
     } else {
         //Aktuelle Seite zurückgeben
         if ($entry) {
@@ -837,6 +949,11 @@ function queryDeleteSystem() {
     querySQL($sql);
 }
 
+function queryReadAll() {
+    $sql = "UPDATE faxes SET open ='1' WHERE to_id = '" . $_SESSION["user_id"] . "'";
+    querySQL($sql);
+}
+
 function areThereMessenges() {
 
     $sql = "SELECT id FROM faxes WHERE to_id = '" . $_SESSION["user_id"] . "' AND open = '0'";
@@ -907,8 +1024,8 @@ function queryLigaChange() {
     $liga = getPlayerLiga();
     $exp = getPlayerExp();
     $up = 1;
-    
-    if($exp > 2000000)
+
+    if ($exp > 2000000)
         $up = 8;
     else if ($exp > 800000)
         $up = 7;
@@ -922,12 +1039,307 @@ function queryLigaChange() {
         $up = 3;
     else if ($exp > 350)
         $up = 2;
-    
-    if($up > $liga)
+
+    if ($up > $liga)
         upgradeLiga($up);
 }
 
 function upgradeLiga($liga) {
     querySQL("UPDATE stats SET liga = $liga WHERE id = '" . $_SESSION["user_id"] . "'");
     queryNewMessage($_SESSION["user_id"], 0, "New League", "Congratulations, you advanced to league $liga!");
+}
+
+function queryFabrikTeile() {
+    $sql = "SELECT sp.id, usr.count, sp.title, sp.lit, sp.liga, sp.cost
+            FROM sprit sp
+            LEFT JOIN sprit_usr usr
+            ON sp.id = usr.sprit_id AND usr.user_id = '" . $_SESSION["user_id"] . "' 
+            ORDER BY liga, lit ASC";
+
+    $entry = querySQL($sql);
+
+    if ($entry) {
+        while ($row = mysqli_fetch_assoc($entry)) {
+            $data[] = $row;
+        }
+        if (isset($data))
+            return $data;
+    } else {
+        return false;
+    }
+}
+
+function querySpritPartCost($teil_id) {
+    global $mysqli;
+
+    $sql = "SELECT usr.count, sp.cost
+            FROM sprit sp
+            LEFT JOIN sprit_usr usr
+            ON sp.id = usr.sprit_id AND usr.user_id = '" . $_SESSION["user_id"] . "'
+            WHERE sp.id = '" . mysqli_real_escape_string($mysqli, $teil_id) . "' LIMIT 1";
+
+    $entry = querySQL($sql);
+
+    if ($entry) {
+        $row = mysqli_fetch_assoc($entry);
+        return calcCost($row["cost"],$row["count"]);
+    } else {
+        return false;
+    }
+}
+
+function queryUserHasTeil($teil_id) {
+    global $mysqli;
+
+    $sql = "SELECT id FROM sprit_usr WHERE user_id = '" . $_SESSION["user_id"] . "' AND sprit_id = '" . mysqli_real_escape_string($mysqli, $teil_id) . "'";
+    $entry = querySQL($sql);
+
+    $row = mysqli_fetch_array($entry, MYSQLI_ASSOC);
+
+    if (count($row) >= 1) {
+        return true;
+    } else
+        return false;
+}
+
+function querySpritTeilBuy($teil_id, $cost) {
+    global $mysqli;
+    mysqli_autocommit($mysqli, FALSE);
+
+    if (queryUserHasTeil($teil_id)) { //falls schon einmal besessen
+        $sql = "UPDATE sprit_usr SET count = count+1 WHERE user_id = '" . $_SESSION["user_id"] . "' AND sprit_id = '" . mysqli_real_escape_string($mysqli, $teil_id) . "'";
+    } else { //Falls noch kein teil existiert
+        $sql = "INSERT INTO sprit_usr 
+            SET user_id = '" . $_SESSION["user_id"] . "', sprit_id = '" . mysqli_real_escape_string($mysqli, $teil_id) . "', count = '1'";
+    }
+    $addCar = mysqli_query($mysqli, $sql);
+    $spend = mysqli_query($mysqli, "UPDATE stats
+            SET money = money - $cost
+            WHERE id = '" . $_SESSION["user_id"] . "'"
+    );
+    if ($addCar && $spend) {
+        mysqli_commit($mysqli);
+        $out = "teil_bought";
+    } else {
+        mysqli_rollback($mysqli);
+        $out = "database_error";
+    }
+    mysqli_autocommit($mysqli, TRUE);
+    return $out;
+}
+
+//Liest alle Spritteile des Users aus
+function querySpritUser() {
+    $sql = "SELECT *
+            FROM sprit_usr usr
+            LEFT JOIN sprit sp
+            ON usr.sprit_id = sp.id
+            WHERE usr.user_id = '" . $_SESSION["user_id"] . "'";
+    $entry = querySQL($sql);
+     if ($entry) {
+        while ($row = mysqli_fetch_assoc($entry)) {
+            $data[] = $row;
+        }
+        if (isset($data))
+            return $data;
+    } else {
+        return false;
+    }
+}
+
+//Checkt, wann das letzte Mal Sprit gutgeschrieben wurde
+function getLastSpritUpdate() {
+    $sql = "SELECT updated
+            FROM sprit_upt usr
+            WHERE usr.user_id = '" . $_SESSION["user_id"] . "'";
+    $entry = querySQL($sql);
+    
+    if ($entry) {
+        $row = mysqli_fetch_assoc($entry);
+        return $row["updated"];
+    } else {
+        return false;
+    }
+}
+
+//Addiert den Sprit des Users zum Konto
+function querySpritAdd() {
+    
+    $sprit = calcNewSprit();
+    
+    global $mysqli;
+    mysqli_autocommit($mysqli, FALSE);
+
+    $addCar = mysqli_query($mysqli, "UPDATE stats
+            SET sprit = $sprit
+            WHERE id = '" . $_SESSION["user_id"] . "'");
+    $spend = mysqli_query($mysqli, "UPDATE sprit_upt
+            SET updated = '".time()."'
+            WHERE id = '" . $_SESSION["user_id"] . "'"
+    );
+    if ($addCar && $spend) {
+        mysqli_commit($mysqli);
+        $out = "spit_added";
+    } else {
+        mysqli_rollback($mysqli);
+        $out = "database_error";
+    }
+    mysqli_autocommit($mysqli, TRUE);
+    return $out;
+    
+}
+
+//Gibt Sprit aus
+function removeSprit($sprit) {
+    global $mysqli;
+    mysqli_autocommit($mysqli, FALSE);
+
+    $addCar = mysqli_query($mysqli, "UPDATE stats
+            SET sprit = sprit - $sprit
+            WHERE id = '" . $_SESSION["user_id"] . "'");
+    $spend = mysqli_query($mysqli, "UPDATE sprit_upt
+            SET updated = '".time()."'
+            WHERE id = '" . $_SESSION["user_id"] . "'"
+    );
+    if ($addCar && $spend) {
+        mysqli_commit($mysqli);
+        $out = "spit_rem";
+    } else {
+        mysqli_rollback($mysqli);
+        $out = "database_error";
+    }
+    mysqli_autocommit($mysqli, TRUE);
+    return $out;
+}
+
+//Checkt, ob user diesen Fahrer schon besitzt
+function queryUserHasNotDriverID($driver_id) {
+    global $mysqli;
+
+    $sql = "SELECT id FROM fahrer
+            WHERE user_id = '" . $_SESSION["user_id"] . "' AND driver_id = '" . mysqli_real_escape_string($mysqli, $driver_id) . "'";
+    $entry = querySQL($sql);
+
+    $row = mysqli_fetch_array($entry, MYSQLI_ASSOC);
+
+    if (count($row) >= 1) {
+        return false;
+    } else
+        return true;
+}
+
+function queryNewDriver($driver_id, $name, $skill, $liga, $kosten, $anteil) {
+    global $mysqli;
+    mysqli_autocommit($mysqli, FALSE);
+
+    $sql1 = "INSERT INTO fahrer (driver_id, user_id, name, skill, liga, anteil) 
+            values ('$driver_id', '" . $_SESSION["user_id"] . "', '$name', '$skill', '$liga', '$anteil')";
+    //echo $sql1;
+    
+    $addCar = mysqli_query($mysqli, $sql1);
+    $spend = mysqli_query($mysqli, "UPDATE stats
+            SET money = money - $kosten
+            WHERE id = '" . $_SESSION["user_id"] . "'"
+    );
+    
+    if ($addCar && $spend) {
+        mysqli_commit($mysqli);
+        $out = "driver_added";
+    } else {
+        mysqli_rollback($mysqli);
+        $out = "database_error2";
+    }
+    mysqli_autocommit($mysqli, TRUE);
+    return $out;
+}
+
+function queryDriversIDs() {
+    $sql = "SELECT driver_id
+            FROM fahrer
+            WHERE user_id = '" . $_SESSION["user_id"] . "'";
+    $entry = querySQL($sql);
+     if ($entry) {
+        while ($row = mysqli_fetch_assoc($entry)) {
+            $data[] = $row["driver_id"];
+        }
+        if (isset($data))
+            return $data;
+    } else {
+        return false;
+    }
+}
+
+function queryDrivers() {
+    $sql = "SELECT *
+            FROM fahrer
+            WHERE user_id = '" . $_SESSION["user_id"] . "' ORDER BY liga DESC, skill DESC";
+    $entry = querySQL($sql);
+     if ($entry) {
+        while ($row = mysqli_fetch_assoc($entry)) {
+            $data[] = $row;
+        }
+        if (isset($data))
+            return $data;
+    } else {
+        return false;
+    }
+}
+
+//checkt, ob der fahrer $driver_id dem user gehört und gerade KEIN rennen fährt
+function queryDriverIsNotRacing($id) {
+    global $mysqli;
+
+    $sql = "SELECT fr.id FROM fahrer fr
+            LEFT JOIN races_run rr
+            ON fr.id = rr.driver_id
+            WHERE fr.user_id = '" . $_SESSION["user_id"] . "' AND fr.id = '" . mysqli_real_escape_string($mysqli, $id) . "' AND rr.user_id IS NULL";
+    $entry = querySQL($sql);
+
+    $row = mysqli_fetch_array($entry, MYSQLI_ASSOC);
+
+    if (count($row) >= 1) {
+        return true;
+    } else
+        return false;
+}
+
+function getDriverByID($id) {
+    $sql = "SELECT *
+            FROM fahrer
+            WHERE user_id = '" . $_SESSION["user_id"] . "' AND id = '$id' LIMIT 1";
+    $entry = querySQL($sql);
+     if ($entry) {
+        while ($row = mysqli_fetch_assoc($entry)) {
+            $data[] = $row;
+        }
+        if (isset($data))
+            return $data[0];
+    } else {
+        return false;
+    }
+}
+
+function removeDriverByID($id) {
+    global $mysqli;
+    $sql = "DELETE
+                FROM fahrer
+                WHERE id = '" . mysqli_real_escape_string($mysqli, $id) . "'";
+    $entry = querySQL($sql);
+    
+    if($entry)
+        return "driver_fired";
+    else return "database_error";
+}
+
+function changeDriverName($id, $name) {
+    $sql = "UPDATE fahrer
+            SET name = '$name'
+            WHERE id = '$id'"; #
+
+    querySQL($sql);
+}
+
+function saveToken($email, $now, $token) {
+    $sql = "UPDATE user SET token = '$token', token_date = '$now' WHERE email = '$email'";
+    querySQL($sql);
 }

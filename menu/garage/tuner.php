@@ -6,7 +6,7 @@ $output .= "<div id='tuner'>";
 
 function buildNewPart($part, $liga) {
     $money = getPlayerMoney();
-    $isStillRunning = isPartRunning();
+    $isStillRunning = isPartRunning()[0];
     $data = queryPartData($part, $liga);
     $price = $data["preis"];
     $part_id = $data["id"];
@@ -44,8 +44,8 @@ if ($mode == "parts") { // Wenn eine Kategorie gewählt wurde
     
     $output .= backLink("?page=garage&sub=tuner");
 
-    $isPartRunningNow = isPartRunning();
-
+    $isPartRunningNow = isPartRunning()[0];
+    $counter=1;
 
     $partsData = queryTuningPartsData($kat);
     $partNames = queryTuningParts($kat);
@@ -124,7 +124,7 @@ if ($mode == "parts") { // Wenn eine Kategorie gewählt wurde
                 $width = 0;
             if ($width > 100)
                 $width = 100;
-            $output .= "    <div class='tuneProgress' data-time-duration='$duration' data-time-toend='$time_to_end'>
+            $output .= "    <div id='prog_$counter' class='tuneProgress' data-time-duration='$duration' data-time-toend='$time_to_end'>
                                 <div class='tuneProgressBar' style='width:$width%'></div> 
                                 <div class='tuneProgressText'>" . $time_to_end . "s " . put("time_left", $l) . "</div>
                             </div>";
@@ -140,13 +140,21 @@ if ($mode == "parts") { // Wenn eine Kategorie gewählt wurde
                         </form>
                     </div>                    
                </div>";
-    }
+    
+        $counter++;
+        }
 } else { //Standardübersicht auswählen
     $katNames = queryTuningKats();
-
-//Jede Teileklasse durchgehen
+    
+    $isKatRunning = isPartRunning()[1];
+    
+    
+    //Jede Teileklasse durchgehen
     foreach ($katNames as $kat) {
 
+        if($isKatRunning == $kat)
+            $build = "currently building";
+        else $build = "";
         $output .= "<div class='tuner' id='$kat'>
                     <div class='imgFlex'>
                         <img class='tuningImage' src='img/parts/" . $kat . ".jpg' />
@@ -163,7 +171,8 @@ if ($mode == "parts") { // Wenn eine Kategorie gewählt wurde
                     </div>
                     
                     <div class='tuneFooter'>
-                        <form method='POST' action='?page=garage&sub=tuner&mode=parts&kat=$kat'>
+                        $build
+                        <form method='POST' action='?page=garage&sub=tuner&mode=parts&kat=$kat' style='display:inline-block;'>
                             <input class='tableTopButton' name='open' type='submit' value='" . put("open_kat", $l) . "'>
                         </form>
                     </div>                    

@@ -84,7 +84,7 @@ if ($mode == "new") {
         $output .= "<div id='messageOutput'><h2>" . $fxData["betreff"] . "</h2>
                         " . put("from", $l) . " " . user($fxData["from_id"], $username) . " <img src='img/" . $lang . ".png' alt='Language' /> , " . date("d M Y H:i", $fxData["date"]) . "
                         <div class='messageSub'>
-                        " . $fxData["message"] . "
+                        " . htmlentities($fxData["message"]) . "
                         </div>
                         <a href='?page=office&sub=messages&mode=new&to=$username' class='tableTopButton'>+ " . put("answer", $l) . "</a>
                     </div>";
@@ -95,9 +95,12 @@ if ($mode == "new") {
     }
 } else {
     
-    if(isset($get["delSys"])) {
+    if(isset($post["delSys"])) {
         queryDeleteSystem();
         $del = outputTut("sms_del", $l);
+    } else if(isset($post["readAll"])) {
+        queryReadAll();
+        $del = outputTut("sms_read", $l);
     } else $del = "";
 
     $output .= outputTut("messages_info", $l);
@@ -111,7 +114,10 @@ if ($mode == "new") {
     $output .= "<a href='#' id='toggle_sys' class='tableTopButton'>- " . put("toggle_sys", $l) . "</a>";
     
     //lösche alle system nachrichten
-    $output .= "<form method='POST' style='display:inline-block;' action='?page=office&sub=messages&delSys=true'><input class='tableTopButton dialog' name='delSys' type='submit' value='- " . put("delSys", $l) . "'></form>";
+    $output .= "<form method='POST' style='display:inline-block;' action='?page=office&sub=messages'><input type='hidden' name='delSys' value='del'><input class='tableTopButton dialog' name='delSys' type='submit' value='- " . put("delSys", $l) . "'></form>";
+    
+    //Alle Nachrichten als gelesen markieren
+    $output .= "<form method='POST' style='display:inline-block;' action='?page=office&sub=messages'><input type='hidden' name='readAll' value='read'><input class='tableTopButton dialog' name='delSys' type='submit' value='- " . put("readAll", $l) . "'></form>";
 
     //Tabellen Header
     $output .= "<table style='font-size:13px;' class='tableRed messages noclick'>

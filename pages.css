@@ -1,18 +1,18 @@
-#cardealer, #tuner, #storage, #cartuning, #settings, #market, #messageBox, #racing {
+#cardealer, #tuner, #settings, #storage, #cartuning, #settings, #market, #messageBox, #racing {
     margin: 10px 0;
 }
 
 
 
 ::-webkit-scrollbar {
-      width:1px;
-      color:black;
-      background: white;
-    }
-::-webkit-scrollbar-thumb {
-      background:#800C4E !important;
+    width:1px;
+    color:black;
+    background: white;
 }
-    
+::-webkit-scrollbar-thumb {
+    background:#800C4E !important;
+}
+
 input[type="submit"]:disabled{
     background-color:grey;
     cursor:no-drop;
@@ -46,7 +46,7 @@ select {
     border-radius: 3px;
 }
 
-.dealer {
+.dealer, .prod {
     background:#EFEFEF;
     padding:10px;
     border-radius:2px;
@@ -58,6 +58,13 @@ select {
 
 .imgFlex {
     height:140px;
+    min-width: 154px;
+    margin-right:8px;
+    box-shadow: 0px 1px 3px -1px;
+}
+
+.smallFlex {
+    height: 100px;
     min-width: 154px;
     margin-right:8px;
     box-shadow: 0px 1px 3px -1px;
@@ -493,6 +500,7 @@ tr:nth-child(even) {
     filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#68a54b', endColorstr='#74ad5a',GradientType=0);
     background-color:#68a54b;
 }
+
 .tableTopButton:active {
     position:relative;
     top:1px;
@@ -506,6 +514,26 @@ tr:nth-child(even) {
     box-shadow:none;
 }
 
+.redButton {
+    background: rgb(175,93,93);
+    background: -moz-linear-gradient(top,  rgba(175,93,93,1) 5%, rgba(155,71,71,1) 100%);
+    background: -webkit-linear-gradient(top,  rgba(175,93,93,1) 5%,rgba(155,71,71,1) 100%);
+    background: linear-gradient(to bottom,  rgba(175,93,93,1) 5%,rgba(155,71,71,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#af5d5d', endColorstr='#9b4747',GradientType=0 );
+    border: 1px solid #351212;
+    box-shadow:inset 0px 1px 0px 0px #cc8585;
+    
+}
+
+.redButton:hover {
+    background: rgb(163,75,75);
+    background: -moz-linear-gradient(top,  rgba(163,75,75,1) 5%, rgba(173,91,91,1) 100%);
+    background: -webkit-linear-gradient(top,  rgba(163,75,75,1) 5%,rgba(173,91,91,1) 100%);
+    background: linear-gradient(to bottom,  rgba(163,75,75,1) 5%,rgba(173,91,91,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a34b4b', endColorstr='#ad5b5b',GradientType=0 );
+
+}
+
 .tableTopInput {
     height: 23px;
     padding: 0px 3px;
@@ -517,7 +545,7 @@ tr:nth-child(even) {
     height:100%;
     top:0;
     left:0;
-    background-color: rgba(1,1,1,0.8);
+    background-color: rgba(1,1,1,0.85);
     text-align:center;
     font-size:40px;
     color:white;
@@ -571,5 +599,48 @@ tr:nth-child(even) {
 }
 
 .textBlock h2 {
+
+}
+
+.count_big {
+    font-size: 62px;
+    color: rgb(128, 12, 78);
+    text-shadow: -1px 1px 3px rgb(150, 150, 150);
+    position: absolute;
+    top: 0px;
+    right: 10px;
+}
+
+.sysDriver {
+    background: #EFEFEF;
+    padding: 10px;
+    border-radius: 2px;
+    margin-top: 5px;
+    //display: flex;
+    border: 1px solid gainsboro;
+    position: relative;
+}
+
+.driverLiga {
+    display:inline-block;
+    vertical-align: middle;
+}
+
+.driverLiga img {
+    height: 25px;
+}
+
+.settings {
     
+    background:#EFEFEF;
+    padding:10px;
+    border-radius:2px;
+    margin-top:5px;
+    border: 1px solid gainsboro;
+    position:relative;
+    font-size:15px;
+}
+
+.settingPoint {
+    font-weight:bold;
 }
