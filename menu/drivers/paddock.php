@@ -12,32 +12,31 @@ else
 $driver = getDriverByID($id);
 
 
-if (isset($post["action"]) AND $post["action"]=="fire") {
-        //remove driver
-        $remove = removeDriverByID($id);
-        $output .= "<span class='dealInfoText $remove'>";
-        $output .= put($remove, $l);
-        $output .= "</span>";
-        
-        $driver = false;
-    }
+if (isset($post["action"]) AND $post["action"] == "fire") {
+    //remove driver
+    $remove = removeDriverByID($id);
+    $output .= "<span class='dealInfoText $remove'>";
+    $output .= put($remove, $l);
+    $output .= "</span>";
+
+    $driver = false;
+}
 
 
 if ($mode == "manage" && $driver) {
 
-    if (isset($post["action"]) AND $post["action"]=="changeName") {
+    if (isset($post["action"]) AND $post["action"] == "changeName") {
         $newName = trim($post["newName"]);
-        
-        if(strlen($newName) > 3 AND strlen($newName) < 18 AND isValid($newName)) {
+
+        if (strlen($newName) > 3 AND strlen($newName) < 18 AND isValid($newName)) {
             changeDriverName($id, $newName);
             $driver["name"] = $newName;
         }
-    
     }
-    
-    
-    
-    
+
+
+
+
     $output .= backLink("?page=drivers&sub=paddock");
 
     $name = $driver["name"];
@@ -69,8 +68,10 @@ if ($mode == "manage" && $driver) {
                 
                  <hr/>
 
-                
-                        
+                <div class='settingPoint'>Skill:</div>
+                $skill
+                      
+                <hr/>
                 <form method='POST' style='display:inline-block;' action='$path'>
                     <input type='hidden' name='action' value='fire'></input>
                     <input type='hidden' name='driver_id' value='$id'></input>
@@ -82,7 +83,7 @@ if ($mode == "manage" && $driver) {
             ";
 } else {
 
-    
+
 
     $output .= "<div id='cardealer'>";
 

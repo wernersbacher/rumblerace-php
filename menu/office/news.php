@@ -1,15 +1,17 @@
 <?php
 
 $output = outputTut("game_news", $l);
-$output .= outputTut("not_done", $l);
 
 
-$output .= "<div class='textBlock'>";
+$output .= "<div class='settings'>";
 $output .= "<h2>News</h2>";
-$output .= "<small>16th Feb 2016</small><br/>";
+$output .= "<small>17th September 2016</small><br/>";
 
-$output .= "Welcome to RumbleRace. This game is in early alpha version. Please don't expect full game experiences! If you want to help to make the game good,
-        don't hesitate!<br/><br/>
+$output .= "Welcome to Racing Inc. This game is in early alpha stage. Please don't expect full game experiences! If you want to help to make the game good,
+        don't hesitate by sending us feedback, help, money, whatever you want!<br/>
+        <a href='mailto:hi@facethepace.com'>hi@facethepace.com</a>
+        <br/>
+        <br/>
         
         <h3>Quick Guide</h3>
         Your goal is to go up leagues, make money and get new cars! Buy a car in the cardealer. Drive a few beginner races and make your first bucks.
@@ -18,17 +20,19 @@ $output .= "Welcome to RumbleRace. This game is in early alpha version. Please d
         
         <h3>What's planned</h3>
         <ul>
-            <li>UI Improvments</li>
-            <li>Car Market</li>
+            <li>UI Improvments (more filters etc)</li>
+            <li>Car Market & Driver Market</li>
             <li>Upgrades</li>
+            <li>Achievements</li>
             <li>Additional currency</li>
             <li>Racing against other players</li>
+            <li>more Content</li>
             <li>...</li>
         </ul>
         The list is long. We are working hard in our spare time to make a good game.
         <br/><br/>
-        Kind regards, 
-        RR Team
+        Kind regards, <br/>
+        Markus
         ";
 
 

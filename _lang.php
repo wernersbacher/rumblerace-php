@@ -47,6 +47,7 @@ $lg["options"] = ["Options", "Optionen"];
 //Submenü Links
 $lg["s_messages"] = ["SMS", "SMS"];
 $lg["s_news"] = ["News", "News"];
+$lg["s_bonus"] = ["Bonus", "Bonus"];
 $lg["s_cars"] = ["Cars", "Autos"];
 $lg["s_tuner"] = ["Tuner", "Tuner"];
 $lg["s_storage"] = ["Storage", "Lager"];
@@ -58,10 +59,12 @@ $lg["s_newbie"] = ["Technical", "Technisches"];
 $lg["s_faq"] = ["FAQs", "FAQs"];
 $lg["s_carmarket"] = ["Car Market", "Automarkt"];
 $lg["s_partmarket"] = ["Part Market", "Teilemarkt"];
-$lg["s_enDurance"] = ["Public Races", "Öffentliche Rennen"];
+$lg["s_endurance"] = ["Public Races", "Öffentliche Rennen"];
 $lg["s_running"] = ["Running Races", "Laufende Rennen"];
 $lg["s_racing"] = ["Races", "Rennen"];
-$lg["s_mainstats"] = ["Main Statistics", "Hauptstatistiken"];
+$lg["s_mainstats"] = ["Your stats", "Deine Statistiken"];
+$lg["s_globalstats"] = ["Global stats", "Globale Statistiken"];
+$lg["s_chat"] = ["Chat", "Chat"];
 $lg["s_settings"] = ["Settings", "Einstellungen"];
 $lg["s_logout"] = ["Confirm", "Bestätigen"];
 $lg["s_upgrades"] = ["Upgrades", "Upgrades"];
@@ -155,6 +158,7 @@ $lg["game_news"] = ["Get the latest game news!", "Alle neuen Informationen gibts
 $lg["coming_soon"] = ["This feature is not available yet. Please come back later!", "Dieses Feature wurde noch nicht eingebaut. Komm später wieder!"];
 $lg["not_done"] = ["This feature is still in developing. Please come back later!", "Dieses Feature befindet sich noch in der Entwicklung. Komm später wieder!"];
 $lg["erfahrung"] = ["Experience", "Erfahrung"];
+$lg["real_logout"] = ["If you really want to logout, click the button below.", "Um dich auszuloggen, klicke auf diesen Button."];
 
 
 //Register and Login Register for free!
@@ -218,7 +222,7 @@ $lg["yes"] = ["Yes", "Ja"];
 $lg["no"] = ["No", "Nein"];
 
 //Racing
-$lg["race_info"] = ["Drive races for money and go up a league!", "Fahre Rennen, um Geld zu bekommen und Ligen aufzusteigen!"];
+$lg["race_info"] = ["Drive races for money and go up a league! The more horsepower, the higher the profit. The more performance, the more experience.", "Fahre Rennen, um Geld zu bekommen und Ligen aufzusteigen! Je mehr PS, desto höher der Gewinn. Je mehr Performance, desto mehr EP."];
 $lg["pos_one"] = ["Pos 1", "Platz 1"];
 $lg["reward"] = ["Reward", "Preisgeld"];
 $lg["race_started"] = ["Race started. You will get a SMS when it's done!", "Rennen wurde gestartet. Du bekommst eine SMS, wenn es zuende ist!"];
@@ -267,9 +271,10 @@ $lg["marketing"] = ["Motivation Marketing", "Motivations Werbung"];
 $lg["manager"] = ["Top Manager", "Top Manager"]; 
 $lg["invest"] = ["Investors", "Investoren"]; 
 $lg["place"] = ["New Building", "Neues Gebäude"]; 
+$lg["sprit_prod_sum"] = ["Current production rate", "Aktuelle Produktionrate"]; 
 
 $lg["produce_gas"] = ["Produce your own fuel here! Buy upgrade to produce faster.", 
-    "Hier kannst Du Deinen eigenen Sprit proDuzieren! Kauf Upgrades, um die Produktion zu beschleunigen."];
+    "Hier kannst Du Deinen eigenen Sprit produzieren! Kauf Upgrades, um die Produktion zu beschleunigen."];
 $lg["teil_bought"] = ["You bought the upgrade.", 
     "Du hast das Upgrade erfolgreich gekauft!"];
 
@@ -305,3 +310,12 @@ $lg["open_driver"] = ["Manage Driver", "Fahrer verwalten"];
 $lg["fire_driver"] = ["Dismiss Driver", "Fahrer entlassen"];
 $lg["driver_fired"] = ["The driver stopped his career and is now an 'expert' on TV.", "Der Fahrer wurde entlassen. Und es ward nie wieder etwas von ihm gehört"];
 $lg["no_driver"] = ["You did not hire any driver yet.", "Bisher hast du noch keinen Fahrer eingestellt."];
+
+//Bonus Seite
+$lg["bonus_info"] = ["Get some extra money or gas.", "Hol dir immer etwas Geld oder Sprit zusätzlich."];
+$lg["bonus_accepted"] = ["The bonus was credited to your account.", "Der Bonus wurde dir gutgeschrieben."];
+$lg["can_take_bonus"] = ["Get your hourly bonus now. Decide which one you choose.", "Hol dir jetzt deinen stündlichen Bonus. Wähle einen davon aus."];
+$lg["cant_take_bonus"] = ["Time to wait for next bonus:", "Zeit bis zum nächsten Bonus:"];
+
+//Stats seite
+$lg["global_stats"] = ["Check the best players", "Check die besten Spieler"];

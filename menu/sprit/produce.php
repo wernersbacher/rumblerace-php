@@ -49,7 +49,7 @@ foreach($fabrik as $teil) {
                         </div>
 
                         <div class='dealInfo'>
-                            <span>".$teil["lit"]."L/min</span>
+                            <span>".gas($teil["lit"])."/min</span>
                         </div>
 
                     </div>
@@ -73,7 +73,7 @@ $output .= "$bought
             <div id='produce'>
                 
                 <h3>
-                Aktuelle Produktion: ".calcSpritMin()."L/min
+                ".put("sprit_prod_sum", $l).": ".gas(calcSpritMin())."/min
                 </h3>
 
                 $ausgabe

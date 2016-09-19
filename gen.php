@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '\vendor\autoload.php';
+require __DIR__ . '/vendor/autoload.php';
 $factory = new RandomLib\Factory;
 $generator = $factory->getHighStrengthGenerator();
 

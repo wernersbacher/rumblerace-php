@@ -33,9 +33,9 @@ if($races)
         $carPs = $car["ps"];
         $ps = $carPs+$partPs;
         
-        //$driver = $race["car_id"] Fahrer infos adden
-    
-    
+        //Fahrerdaten
+        $driver = getDriverByID($race["driver_id"]);
+        
         $rennen .= "<div class='dealer removeThis'>
                     <div class='tuneInfoFlex' style='max-width:100%;  margin-bottom:45px;'>
                         <div class='tuneTitle'>
@@ -44,6 +44,7 @@ if($races)
                        
                         <div class='tuneInfo'> 
                             <div class='tuneDesc'>".$car["title"]." ($ps ".put("hp",$l).")
+                                - ".$driver["name"]." (".showSkill($driver["skill"]).")
                                 - ".dollar($race["reward"])."
                             </div>
                             

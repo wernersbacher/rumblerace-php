@@ -1,4 +1,4 @@
-.car_bought, .part_built, .car_updated, .part_on_market, .part_bought, .driver_fired{
+.green, .car_bought, .part_built, .car_updated, .part_on_market, .part_bought, .driver_fired{
     background-color: green;
     color:white;
     border:0;

@@ -49,6 +49,7 @@ function getMaxSprit() {
 }
 
 function calcSpritMin() {
+    $bonus = 0.5;
     $min = 0;
     $data = querySpritUser();
     if ($data)
@@ -56,7 +57,7 @@ function calcSpritMin() {
             $min += $teil["lit"] * $teil["count"];
         } else
         $min = 0;
-    return $min;
+    return $min+$bonus;
 }
 
 function calcNewSprit() {
@@ -93,7 +94,7 @@ function getDriverSkill($driver_id) {
 
 function calcExpFactor($race, $skill) {
     $pure = ($skill * 2) / $race;
-    $added = (2 + $pure) / 3;
+    $added = (3 + $pure) / 4;
     if ($added > 1)
         $added = 1;
     return $added;
@@ -122,7 +123,7 @@ function calcReward($reward, $psReward, $exp, $car_id, $driver_id) {
     return $gain;
 }
 
-function calcExpReward($exp, $psReward, $exp, $car_id, $driver_id) {
+function calcExpReward($exp, $psReward, $car_id, $driver_id) {
     $gain = 0;
     $car = queryPlayerCarID($car_id);
     $partPrf = calcPerf($car_id);
@@ -215,6 +216,10 @@ function ep($val) {
     }
 }
 
+function gas($val) {
+    return $val." &#8467;";
+}
+
 function formatSeconds($val) {
     return date("H:i:s", $val - 3600);
 }
@@ -239,9 +244,9 @@ function getLangChange() {
     } else {
         $lang = "en";
     }
-    $out = '<form style="display:inline-block;" method="post" action="' . $_SERVER['PHP_SELF'] . '?' . $_SERVER['QUERY_STRING'] . '">
+    $out = '<form id="langForm" data-lang="'.$l.'" style="display:inline-block;" method="post" action="' . $_SERVER['PHP_SELF'] . '?' . $_SERVER['QUERY_STRING'] . '">
                     <input type="hidden" name="lang" value="' . $lang . '">
-                    <input type="submit" name="submit" value="" class="langSubmit" style="background:url(img/' . $lang . '.png)">
+                    <input type="submit" value="" name="submit" class="langSubmit" style="background:url(img/' . $lang . '.png)">
                  </form>';
     return $out;
 }
@@ -281,4 +286,32 @@ function generateToken($now, $email) {
 
 function sendMail($empfaenger, $betreff, $inhalt) {
     mail($empfaenger, $betreff, $inhalt, "noreply@facethepace.com");
+}
+
+define("LIGA_MULTI", 4);
+define("LIGA_START", 300);
+
+function queryLigaChange() {
+    $liga = getPlayerLiga();
+    $exp = getPlayerExp();
+    
+    $expLiga = LIGA_START;
+    $newLiga = 1;
+    
+    while($expLiga < $exp) {
+        $expLiga *= LIGA_MULTI;
+        $newLiga++;
+    }
+    
+    if($newLiga > $liga)
+            upgradeLiga($newLiga);
+}
+
+function expToLiga($l) {
+    
+    $exp = LIGA_START;
+    for($i=1; $i<$l; $i++) {
+        $exp *= LIGA_MULTI;
+    }
+    return $exp;
 }

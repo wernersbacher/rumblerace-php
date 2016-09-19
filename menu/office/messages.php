@@ -90,6 +90,8 @@ if ($mode == "new") {
                     </div>";
 
         $output .= "</div>";
+        
+        markAsRead($m_id);
     } else {
         $output .= "Nachricht wurde gelöscht.";
     }

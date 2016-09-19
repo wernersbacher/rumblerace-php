@@ -16,6 +16,21 @@ function setTuneData(part, preis, worst, best, dur) {
 
 }
 
+
+function nwc(x) {
+	if(x === undefined) return "unknown";
+        x = precise_round(x, 2);
+	var save = $("#langForm").data("lang");
+	var komma = ".";
+	var tausend = ",";
+	if(save === "de") {
+		komma = ","; tausend = ".";
+	}
+    var parts = x.toString().split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, tausend);
+	return parts.join(komma);
+}
+
 function startSprit() {
     var max = parseFloat($("#spritTags").data("spritmax"));
     var spm = parseFloat($("#spritTags").data("promin"));
@@ -23,7 +38,7 @@ function startSprit() {
     var old = parseFloat($("#playerSprit").html());
 
     function setSprit(x) {
-        $("#playerSprit").html(precise_round(x, 2));
+        $("#playerSprit").html(nwc(x)+" &#8467;");
     }
 
     function interval() {

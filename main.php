@@ -50,7 +50,7 @@ queryRaceDone();
 //Sprit hinzufügen
 querySpritAdd();
 //Überprüfen om Liga Aufstieg
-if(getPlayerLiga() <8)
+if (getPlayerLiga() < 8)
     queryLigaChange();
 
 
@@ -59,9 +59,9 @@ $inc = "menu/$page/$sub.php";
 if (file_exists($inc)) {
     include($inc);
 } else if ($page === "logout") {
-    $output = "<div class='textCenter'>If you really want to logout, click the button below.<br/>";
+    $output = "<div class='textCenter'>" . put("real_logout", $l) . "<br/>";
     $output .= '<form action="logout.php">
-                        <input type="submit" value="Logout">
+                        <input class="tableTopButton" type="submit" value="Logout">
                     </form></div>';
 } else {
     include("menu/404.php");
@@ -74,7 +74,7 @@ $player = queryPlayerStats();
 //Anzeigen des Spritstatistik
 $spm = calcSpritMin();
 $max = getMaxSprit();
-$sprit = "<span title='". $spm/60 ."L/sec' id='spritTags' data-spritmax='$max' data-promin='$spm'><span id='playerSprit'>".getPlayerSprit()."</span>L/".nwc($max)."L</span>";
+$sprit = "<span title='" . gas(nwc($spm / 60)) . "/sec' id='spritTags' data-spritmax='$max' data-promin='$spm'><span id='playerSprit'>" . gas(getPlayerSprit()) . "</span>/" . gas(nwc($max)) . "</span>";
 
 //Adding Submenu for page
 $subarray = getSubMenu($page);
@@ -100,10 +100,16 @@ else
 
 //Neue Nachrichten Symbol
 $newFx = areThereMessenges();
-if($newFx)
+if ($newFx)
     $letter = "letter_new";
 else
     $letter = "letter";
+
+//Bonus bereit?
+if (isThereBonus()) {
+    $bonus = "bonus_new";
+} else
+    $bonus = "bonus";
 ?>
 <!DOCTYPE html>
 <!--
@@ -154,12 +160,12 @@ http://wernersbacher.de
         <div id="mainmenu">
             <ul>
                 <a href="main.php"><li><img src="img/office40.png"><?php echo put("office", $l) ?></li></a>
-                <a href="main.php?page=race"><li><img src="img/race40.png"><?php echo put("race", $l) ?></li></a>
                 <a href="main.php?page=garage"><li><img src="img/car40.png">Garage</li></a>
                 <a href="main.php?page=drivers"><li><img src="img/man40.png"><?php echo put("drivers", $l) ?></li></a>
+                <a href="main.php?page=race"><li><img src="img/race40.png"><?php echo put("race", $l) ?></li></a>
                 <a href="main.php?page=sprit"><li><img src="img/fuel40.png"><?php echo put("sprit", $l) ?></li></a>
                 <a href="main.php?page=market"><li><img src="img/store40.png"><?php echo put("market", $l) ?></li></a>
-                <a href="#"><li><img src="img/special.png">Special</li></a>
+                <a href="main.php?page=special"><li><img src="img/special.png"><?php echo put("special", $l) ?></li></a>
                 <a href="main.php?page=options"><li><img src="img/setting40.png"><?php echo put("options", $l) ?></li></a>
                 <a href="main.php?page=help"><li><img src="img/help40.png"><?php echo put("help", $l) ?></li></a>
                 <a href="main.php?page=logout"><li><img src="img/logout40.png">Logout</li></a>
@@ -176,40 +182,41 @@ http://wernersbacher.de
                     <span class="playername"><?php echo $_SESSION["username"] ?></span><br/>
                     <span class="stats">
                         <img src="img/dollar.png" /> <?php echo dollar(getPlayerMoney()) ?><br/>
-                        <img src="img/star.png" /> <?php echo ep(getPlayerExp()) ?><br/>
+                        <img src="img/star.png" /> <span title="<?php echo ep(expToLiga(getPlayerLiga()) - getPlayerExp()) ?> left"><?php echo ep(getPlayerExp()) ?></span><br/>
                         <img src="img/energy.png" /> <?php echo $sprit ?><br/>
                     </span>
                     <div class="playerQuick"  style="margin-top: 4px;">
                         <a href="?page=office&sub=messages"><img src="img/<?php echo $letter ?>.png" alt="messages" /></a></a>
+                        <a href="?page=office&sub=bonus"><img src="img/<?php echo $bonus ?>.png" alt="bonus" /></a></a>
                     </div>
                     <div class="playerLiga">
                         <img src="img/liga/<?php echo getPlayerLiga() ?>.png" />
                     </div>
                 </div>
                 <div id="submenu">
-                    <?php echo $submenu ?>
+<?php echo $submenu ?>
                 </div>
-                
+
                 <hr/>
                 <div id="always">
-                <ul>
-                    <a><li class="infoPop" data-open="supportus">Support Us</li></a>
-                    <a><li class="infoPop" data-open="bugrep">Bugreport</li></a>
-                </ul>
-                    
+                    <ul>
+                        <a><li class="infoPop" data-open="supportus">Support Us</li></a>
+                        <a><li class="infoPop" data-open="bugrep">Bugreport</li></a>
+                    </ul>
+
                     <a href="http://markus.wernersbacher.de/pages/about-this-website/">&copy; wernersbacher 2015-2016</a><br/>
                     <noscript> <?php echo put("noscript", $l) ?><br/> </noscript>
-                    <?php echo getLangChange() ?> | ALPHA 0.1 <br/> 
-                    <?php echo "Server: ".date("d M Y H:i:s"); ?>
-                    
-                    
+<?php echo getLangChange() ?> | ALPHA 0.1 <br/> 
+                    <?php echo "Server: " . date("d M Y H:i:s"); ?>
+
+
                 </div>
 
             </div>
 
             <div id="contentWindow">
                 <span class="h1"><?php echo put($page, $l) . $subpage ?> </span>
-                <?php echo $content ?>
+<?php echo $content ?>
             </div>
         </div>
 
@@ -217,16 +224,24 @@ http://wernersbacher.de
 
 
         <!-- Footer Segment Anfang -->
-            <div id="supportus" title="Support us">
-            <p>Share RumbleRace with your friends! If you want to grant some real money, you can use Paypal.</p>
-          </div>
-          <div id="bugrep" title="Report a bug">
-              <form id="bugForm" action="bug.php" method="post">
-                  <p>Please describe your probleme here.</p>
-                  <textarea name="text" style="width:100%; height:100px;"></textarea><br/>
-                  <input type="submit" value="Send" />
-              </form>
-          </div>
+        <div id="supportus" title="Support us">
+            <p>Any feedback, help, tips, typos and bad grammatic just send an email: <b><a href='mailto:hi@facethepace.com'>hi@facethepace.com</a></b><br/>
+                Paypal address for donating: <b>mwernersbach@web.de</b><br/>
+                Bitcoin address for donating: <b>1GrK1y4KNrMwkrBeB6wDUCd2ZVEWaqnSuc</b><br/>
+                <br/>
+                <b>Sharing the game with friends</b> is still the best help we can get. Thank you!
+                <br/><br/>
+                PS: Wir können natürlich auch <b>Deutsch</b>.
+            </p>
+        </div>
+        <div id="bugrep" title="Report a bug">
+            <form id="bugForm" action="bug.php" method="post">
+                <p>Please describe your problem here:</p>
+                <textarea name="text" style="width:100%; height:100px;"></textarea><br/>
+                Leave your email if you want an answer.</br>
+                <input type="submit" value="Send" />
+            </form>
+        </div>
 
 
         <!--<?php include("_footer.php") ?>-->
