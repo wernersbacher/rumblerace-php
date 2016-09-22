@@ -108,6 +108,7 @@ if ($mode == "new") {
     $output .= outputTut("messages_info", $l);
     $output .= $del;
     $output .= "<div id='messageBox'>";
+    $output .= "<div class='messageButtons'>";
 
     //Neue Nachricht Button
     $output .= "<a href='?page=office&sub=messages&mode=new' class='tableTopButton'>+ " . put("new_mes", $l) . "</a>";
@@ -121,6 +122,8 @@ if ($mode == "new") {
     //Alle Nachrichten als gelesen markieren
     $output .= "<form method='POST' style='display:inline-block;' action='?page=office&sub=messages'><input type='hidden' name='readAll' value='read'><input class='tableTopButton' name='delSys' type='submit' value='- " . put("readAll", $l) . "'></form>";
 
+    $output .= "</div>"; 
+    
     //Tabellen Header
     $output .= "<table style='font-size:13px;' class='tableRed messages noclick'>
                 <tr>

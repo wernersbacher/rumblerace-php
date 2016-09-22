@@ -774,7 +774,7 @@ function removeItem($storage_id) {
     if (mysqli_affected_rows($mysqli) > 0)
         return true;
     else
-       return false;
+        return false;
 }
 
 function queryMarketParts($s, $getAll, $partFilter, $ligaFilter) {
@@ -1458,15 +1458,63 @@ function sellCarSystem($garage_id) {
     querySQL($sql);
     if (mysqli_affected_rows($mysqli) > 0) {
         resetTuningParts($garage_id);
-        
+
         addMoney($money); //Add money
         return "car_sold";
-    }
-    else
+    } else
         return "car_not_found";
 }
 
 function resetTuningParts($garage_id) {
     $sql = "UPDATE storage SET garage_id = 0 WHERE garage_id = $garage_id";
     querySQL($sql);
+}
+
+//Upgrades
+function getUserUpgrades() {
+    $sql = "SELECT * FROM upgrades up, upgrades_user uu WHERE up.id = uu.up_id AND uu.user_id = '" . $_SESSION["user_id"] . "'";
+    $entry = querySQL($sql);
+    if ($entry) {
+        while ($row = mysqli_fetch_assoc($entry)) {
+            $data[$row["name"]] = $row["ups"];
+        }
+        if (isset($data))
+            return $data;
+    } else {
+        return false;
+    }
+}
+
+function getAllUpgradePoints() {
+    $sql = "SELECT SUM(ups) AS ups FROM upgrades_user WHERE user_id = '" . $_SESSION["user_id"] . "'";
+    $entry = querySQL($sql);
+
+    if ($entry) {
+        $row = mysqli_fetch_assoc($entry);
+        return $row["ups"];
+    } else {
+        return false;
+    }
+}
+
+function buyUpgradePoint($cost) {
+    global $mysqli;
+    mysqli_autocommit($mysqli, FALSE);
+
+    $upgrade = mysqli_query($mysqli, "UPDATE stats SET uppoints = uppoints + 1 WHERE id = '".$_SESSION["user_id"]."'"
+    );
+    $spend = mysqli_query($mysqli, "UPDATE stats
+            SET money = money - $cost
+            WHERE id = '" . $_SESSION["user_id"] . "'"
+    );
+    
+    if ($upgrade && $spend) {
+        mysqli_commit($mysqli);
+        $out = "point_bought";
+    } else {
+        mysqli_rollback($mysqli);
+        $out = "database_error";
+    }
+    mysqli_autocommit($mysqli, TRUE);
+    return $out;
 }

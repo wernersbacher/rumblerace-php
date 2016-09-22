@@ -271,7 +271,11 @@ $lg["running_races"] = ["Check the races you are currently driving!", "Hier sieh
 $lg["race_canc"] = ["Race canceled!", "Rennen abgebrochen!"];
 
 //Fehlerhinweise
+$lg["garage_full_1"] = ["You still got place for", "Du hast noch Platz für"];
+$lg["garage_full_2"] = ["more car(s).", "Auto(s)."];
+$lg["garage_more_space"] = ["Upgrade the garage or sell cars for more space.", "Upgrade die Garage oder verkaufe Autos für mehr Platz!"];
 $lg["garage_empty"] = ["Your garage is empty!", "Die Garage is leer!"];
+$lg["garage_full"] = ["Your garage is full!", "Deine Garage ist leider voll!"];
 $lg["page_no_content"] = ["The page you are looking for is currently not available.", "Die gesuchte Seite ist zur Zeit leider nicht verfügbar."];
 $lg["database_error"] = ["Database Error", "Datenbank Fehler"];
 $lg["noscript"] = ["Please activate Javascript to enjoy this game 100%.", 
@@ -361,3 +365,9 @@ $lg["cant_take_bonus"] = ["Time to wait for next bonus:", "Zeit bis zum nächste
 
 //Stats seite
 $lg["global_stats"] = ["Check the best players", "Check die besten Spieler"];
+
+//Upgrades
+$lg["point_bought"] = ["You bought an upgrade point.", "Du hast einen Upgradepunkt gekauft!"];
+$lg["used_points"] = ["Used upgrade points:", "Eingesetzte Upgradepunkte:"];
+$lg["unused_points"] = ["Not used upgrade points:", "Ungenutzte Upgradepunkte:"];
+$lg["buy_another_point"] = ["Buy another point for", "Kaufe einen Punkt für"];

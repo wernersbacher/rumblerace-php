@@ -9,6 +9,7 @@ $output .= "<h2>Changes</h2><small>21st September 2016</small><br/>
         We made a few changes in the last days:
         
         <ul>
+            <li>There is no limitless space in the garage anymore.</li>
             <li>Sell cars</li>
             <li>A few UI improvements</li>
             <li>Drivers are not that cheap anymore</li>

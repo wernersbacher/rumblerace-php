@@ -23,6 +23,11 @@ function getPlayerAds() {
     else return false;
 }
 
+function getPlayerUpPoints() {
+    global $player;
+    return $player["uppoints"];
+}
+
 function getPlayerLiga() {
     global $player;
     return $player["liga"];
@@ -352,8 +357,4 @@ function ttc($bool) {//turn true into "checked"
         return "checked";
     else
         return "";
-}
-
-function carSellPrice($c) {
-    return $c*0.22;
 }

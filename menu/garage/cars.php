@@ -106,7 +106,9 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
 
     $output .= "</div>";
 } else { //Übersicht der Autos ausgeben
+    
     $output = outputTut("cd_your_cars", $l);
+    
     if (isset($post["action"]) && isset($post["garage_id"])) {
         //Auto verkaufen
         $garage_id = intval($post["garage_id"]);
@@ -120,11 +122,20 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
         $output .= put($sellCar, $l);
         $output .= "</span>";
     }
+    
+    $cars = queryPlayerCars(); // Autos auslesen
+    $nowCars = count($cars);
+    $maxCars = getMaxCars();
+    $left = $maxCars-$nowCars;
 
+    $output .= "<div class='settings'>
+            ".put("garage_full_1", $l)." <b>$left</b> ".put("garage_full_2", $l)." ($nowCars/$maxCars) <br/>
+            ".put("garage_more_space", $l)."
+            </div>";
 
     $output .= "<div id='cardealer'>";
 
-    $cars = queryPlayerCars();
+    
     if ($cars)
         foreach ($cars as $car) {//$car["title"]
             $carLiga = $car["carLiga"];
@@ -172,7 +183,10 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
                         </form>
                     </div>
                </div>";
-        } else
-        $output .= put("garage_empty", $l);
+        } else {
+            $output .= "<div class='settings'>
+            ".put("garage_empty", $l)."
+            </div>";
+        }
     $output .= "</div>";
 }

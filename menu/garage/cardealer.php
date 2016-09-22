@@ -3,8 +3,13 @@
 function buyNewCar($model) {
     $money = getPlayerMoney();
     $price = queryNewCarCost($model);
-    if ($money >= $price) {
+    $cars = queryPlayerCars(); // Autos auslesen
+    $nowCars = count($cars);
+    $maxCars = getMaxCars();
+    if ($money >= $price && $nowCars < $maxCars) {
         return queryCarBuy($model, $price);
+    } else if ($nowCars >= $maxCars) {
+        return "garage_full";
     } else {
         return "no_money";
     }
@@ -25,12 +30,25 @@ if (isset($post['send'])) { //Abgeschicktes Formular
 //Liste aller neuen Fahrzeuge ausgeben
 $cars = queryNewCars(getPlayerLiga());
 $money = getPlayerMoney();
+
+$carsPlayer = queryPlayerCars(); // Autos auslesen
+$nowCars = count($carsPlayer);
+$maxCars = getMaxCars();
+$left = $maxCars - $nowCars;
+
+$output .= "<div class='settings'>
+            ".put("garage_full_1", $l)." <b>$left</b> ".put("garage_full_2", $l)." ($nowCars/$maxCars) <br/>
+            </div>";
+
 $output .= "<div id='cardealer'>";
 
 foreach ($cars as $car) {//$car["title"]
     $liga = $car["liga"];
     $preis = $car["preis"];
-    if($preis > $money) $dis = "disabled"; else $dis = "";
+    if ($preis > $money OR $left<1)
+        $dis = "disabled";
+    else
+        $dis = "";
 
     $output .= "<div class='dealer'>
                     <div class='imgFlex'>
