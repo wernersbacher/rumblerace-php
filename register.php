@@ -5,20 +5,27 @@ if (isset($_SESSION['user'])) {
 }
 require_once('_mysql.php');
 require_once('_lang.php');
+require_once('_function.php');
 $status = "";
 
 if (isset($_POST['send'])) {
-    $user = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING)["user"];
+    $user = filter_input_array(INPUT_POST)["user"];
     $pass = filter_input_array(INPUT_POST)["pass"];
     $pass2 = filter_input_array(INPUT_POST)["pass2"];
     $email = filter_input_array(INPUT_POST, FILTER_VALIDATE_EMAIL)["email"];
     $userExists = queryExistsUser($user);
 
-    if ($pass === $pass2 && strlen($user) < 13 && strlen($user) > 2 && !$userExists) {
+    if ($pass === $pass2 && strlen($user) < 13 && strlen($user) > 2 && !$userExists && checkUsername($user)) {
         //Registrieren
         $status = queryRegister($user, $pass, $email);
     } else if ($userExists) {
         $status = "username_exists";
+    } else if ($pass !== $pass2) {
+        $status = "password_not_correct";
+    } else if (strlen($user) >= 13 OR strlen($user) <= 2) {
+        $status = "user_too_short_long";
+    } else if (!checkUsername($user)) {
+        $status = "bad_user_char";
     } else {
         $status = "wrong_input_reg";
     }

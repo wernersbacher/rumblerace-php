@@ -106,11 +106,16 @@ if (isset($post['send'])) { //Abgeschicktes Formular
 $carSelect = returnCarSelect();
 $driverSelect = returnDriverSelect();
 
-if(strlen($carSelect) < 1 OR strlen($driverSelect) < 1) {
+$disabled = "";
+
+if(strlen($carSelect) < 1) {
     $disabled = "disabled";
     $carSelect = "<option>------</option>";
-    $driverSelect = "<option>------</option>";
-} else $disabled = "";
+} 
+if(strlen($driverSelect) < 1) {
+   $disabled = "disabled";
+    $driverSelect = "<option>------</option>"; 
+}
 
 if($races)
     foreach($races as $race) {
@@ -120,7 +125,7 @@ if($races)
     $whyBlock = "";
     
     if($canRace === "exp") {
-        $exp_needed = expToLiga($liga)*$race["exp_needed"];
+        $exp_needed = expToLiga($liga)*$race["exp_needed"]* getLigaQuot();
         $whyBlock = "only ".ep($exp_needed-getPlayerExp())." left";
     } else if ($canRace === "sprit") {
         $whyBlock = "Not enough fuel. ".$race["sprit_needed"]."L is needed";

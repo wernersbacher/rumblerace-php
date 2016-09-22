@@ -10,6 +10,7 @@ require_once('_function.php');
 require_once('_mysql.php');
 require_once('_lang.php');
 require_once('_submenu.php');
+require_once('_ads.php');
 
 //Language changer
 if (isset($post["lang"])) {
@@ -161,6 +162,7 @@ http://wernersbacher.de
             <ul>
                 <a href="main.php"><li><img src="img/office40.png"><?php echo put("office", $l) ?></li></a>
                 <a href="main.php?page=garage"><li><img src="img/car40.png">Garage</li></a>
+                <a href="main.php?page=tuner"><li><img src="img/tools40.png">Tuner</li></a>
                 <a href="main.php?page=drivers"><li><img src="img/man40.png"><?php echo put("drivers", $l) ?></li></a>
                 <a href="main.php?page=race"><li><img src="img/race40.png"><?php echo put("race", $l) ?></li></a>
                 <a href="main.php?page=sprit"><li><img src="img/fuel40.png"><?php echo put("sprit", $l) ?></li></a>
@@ -182,7 +184,7 @@ http://wernersbacher.de
                     <span class="playername"><?php echo $_SESSION["username"] ?></span><br/>
                     <span class="stats">
                         <img src="img/dollar.png" /> <?php echo dollar(getPlayerMoney()) ?><br/>
-                        <img src="img/star.png" /> <span title="<?php echo ep(expToLiga(getPlayerLiga()) - getPlayerExp()) ?> left"><?php echo ep(getPlayerExp()) ?></span><br/>
+                        <img src="img/star.png" /> <span title="<?php echo ep(expToLiga(getPlayerLiga() + 1) - getPlayerExp()) ?> left"><?php echo ep(getPlayerExp()) ?></span><br/>
                         <img src="img/energy.png" /> <?php echo $sprit ?><br/>
                     </span>
                     <div class="playerQuick"  style="margin-top: 4px;">
@@ -194,29 +196,37 @@ http://wernersbacher.de
                     </div>
                 </div>
                 <div id="submenu">
-<?php echo $submenu ?>
+                    <?php echo $submenu ?>
                 </div>
 
                 <hr/>
                 <div id="always">
                     <ul>
                         <a><li class="infoPop" data-open="supportus">Support Us</li></a>
-                        <a><li class="infoPop" data-open="bugrep">Bugreport</li></a>
+                        <a><li class="infoPop" data-open="bugrep">Feedback</li></a>
                     </ul>
+
+                    <?php echo onlineUser() . " " . put("online_user", $l); ?> 
+
+                    <br/>
 
                     <a href="http://markus.wernersbacher.de/pages/about-this-website/">&copy; wernersbacher 2015-2016</a><br/>
                     <noscript> <?php echo put("noscript", $l) ?><br/> </noscript>
-<?php echo getLangChange() ?> | ALPHA 0.1 <br/> 
+                    <?php echo getLangChange() ?> | ALPHA 0.1.3 <br/> 
                     <?php echo "Server: " . date("d M Y H:i:s"); ?>
 
 
                 </div>
+                <?php echo getScrapperAd(); ?>
+                
+                
 
             </div>
 
             <div id="contentWindow">
                 <span class="h1"><?php echo put($page, $l) . $subpage ?> </span>
-<?php echo $content ?>
+                <?php echo $content ?>
+                <?php echo getBannerAd(); ?>
             </div>
         </div>
 
@@ -236,15 +246,13 @@ http://wernersbacher.de
         </div>
         <div id="bugrep" title="Report a bug">
             <form id="bugForm" action="bug.php" method="post">
-                <p>Please describe your problem here:</p>
+                <p>Just send us feedback, bugs, infos!</p>
                 <textarea name="text" style="width:100%; height:100px;"></textarea><br/>
                 Leave your email if you want an answer.</br>
                 <input type="submit" value="Send" />
             </form>
         </div>
 
-
-        <!--<?php include("_footer.php") ?>-->
 
         <!-- Footer Segment Ende -->
 

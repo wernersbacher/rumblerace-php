@@ -22,7 +22,7 @@ if (isset($post["action"]) AND $post["action"] == "fire") {
     $driver = false;
 }
 
-
+//Einzelner Fahrer
 if ($mode == "manage" && $driver) {
 
     if (isset($post["action"]) AND $post["action"] == "changeName") {
@@ -30,10 +30,20 @@ if ($mode == "manage" && $driver) {
 
         if (strlen($newName) > 3 AND strlen($newName) < 18 AND isValid($newName)) {
             changeDriverName($id, $newName);
-            $driver["name"] = $newName;
+        }
+    } else if (isset($post["action"]) AND $post["action"] == "upgrade") {
+        $driver = getDriverByID(intval($post["driver_id"]));
+        $cost = driverUpgradeCost($driver["liga"]);
+        if ($driver AND getPlayerMoney() >= $cost) {
+            $up = upgradeDriver($post["driver_id"], $cost);
+
+            $output .= "<span class='dealInfoText $up'>";
+            $output .= put($up, $l);
+            $output .= "</span>";
         }
     }
 
+    $driver = getDriverByID($id);
 
 
 
@@ -44,11 +54,13 @@ if ($mode == "manage" && $driver) {
     $liga = $driver["liga"];
     $anteil = $driver["anteil"];
 
-    /*
-     * TODO:
-     * Änderung annhemen
-     * Fahrer feuern
-     */
+    $upgradeCost = driverUpgradeCost($liga);
+
+    if ($upgradeCost > getPlayerMoney())
+        $disabled = "disabled";
+    else
+        $disabled = "";
+
 
     $output .= "
         
@@ -67,12 +79,25 @@ if ($mode == "manage" && $driver) {
                 <div class='driverLiga absLiga'><img src='img/liga/" . $liga . ".png' alt='League " . $liga . "' title='League " . $liga . "' /></div>
                 
                  <hr/>
+                 <div class='driver_quick'>
+                 
+                    <div class='settingPoint'>Skill:<br/>$skill</div>
+                    
 
-                <div class='settingPoint'>Skill:</div>
-                $skill
-                      
+                    <div class='settingPoint'>" . put("anteil", $l) . ":<br/>$anteil%</div>
+                    
+
+                </div>
                 <hr/>
-                <form method='POST' style='display:inline-block;' action='$path'>
+                <form data-dialog='Do you want to upgrade the driver?' method='POST' style='display:inline-block;' action='$path'>
+                    <input type='hidden' name='action' value='upgrade'></input>
+                    <input type='hidden' name='driver_id' value='$id'></input>
+                    <input class='tableTopButton dialog' name='send' type='submit' value='" . put("upgrade_driver", $l) . "' $disabled>
+                </form>
+                <span> " . put("kostenpunkt", $l) . ": " . dollar($upgradeCost) . " </span>
+
+                <br/>
+                <form data-dialog='Do you want to fire your driver?' method='POST' style='display:inline-block;' action='$path'>
                     <input type='hidden' name='action' value='fire'></input>
                     <input type='hidden' name='driver_id' value='$id'></input>
                     <input class='tableTopButton redButton dialog' name='send' type='submit' value='" . put("fire_driver", $l) . "'>
@@ -81,6 +106,8 @@ if ($mode == "manage" && $driver) {
 
 
             ";
+
+    //Fahrer übersicht
 } else {
 
 
@@ -110,7 +137,7 @@ if ($mode == "manage" && $driver) {
 
             $output .= "<form method='POST' action='$path'>";
             $output .= "<input type='hidden' name='driver_id' value='$did'></input>";
-            $output .= "<span class='dealPrice'>$anteil% Anteil </span> "
+            $output .= "<span class='dealPrice'>$anteil% " . put("anteil", $l) . " </span> "
                     . "<input class='tableTopButton' name='manage' type='submit' value='" . put("open_driver", $l) . "'>";
             $output .= "</form>";
 
@@ -119,7 +146,10 @@ if ($mode == "manage" && $driver) {
                 
                 </div>
             ";
-        } else
+        } else {
+        $output .= "<div class='settings'>";
         $output .= put("no_driver", $l);
+        $output .= "</div>";
+    }
     $output .= "</div>";
 }

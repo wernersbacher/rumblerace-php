@@ -1,5 +1,5 @@
 
-
+<!--
 <div id="footer">
     <div id="footerMiddle">
 
@@ -27,3 +27,4 @@
 
     </div>
 </div>
+-->

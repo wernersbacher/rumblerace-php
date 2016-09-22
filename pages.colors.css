@@ -1,16 +1,13 @@
-.green, .car_bought, .part_built, .car_updated, .part_on_market, .part_bought, .driver_fired{
+.message_sent, .part_back, .race_started, .race_canc, .sms_del, .teil_bought, .driver_added, .sprit_back, .sprit_bought, 
+.sprit_selling,*.green, .car_bought, .part_built, .car_updated, .part_on_market, .part_bought, .driver_fired, .driver_upgraded, .car_sold {
     background-color: green;
     color:white;
     border:0;
 }
 
-.message_sent, .part_back, .race_started, .race_canc, .sms_del, .teil_bought, .driver_added {
-    background-color: green;
-    color:white;
-    border:0;
-}
-
-.no_money, .database_error, .too_many_parts, .part_not_found, .sell_check_input, .part_sold, .check_mes_input, .too_many_races {
+.no_money, .database_error, .too_many_parts, .part_not_found, .sell_check_input, .part_sold, .check_mes_input, 
+.too_many_races, .sprit_not_found, .sprit_sold, .sprit_partly_sold, .sell_check_input, .sell_not_enough_sprit, 
+.car_not_found, .car_is_racing{
     background: darkred;
     color:white;
     border:0;

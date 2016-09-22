@@ -78,12 +78,12 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
             $select .= "<option value='0'>----------</option>";
 
             //ausgeben der Teile im Lager
-            if($storage)
-            foreach ($storage as $item) {
-                if ($item["part"] == $part && $item["liga"] == $car["liga"] && $item["garage_id"] == 0) {
-                    $select .= "<option value='" . $item["id"] . "'>" . $item["value"] . " " . put("unit_" . $kat, $l) . " (" . $item["liga"] . ")</option>";
+            if ($storage)
+                foreach ($storage as $item) {
+                    if ($item["part"] == $part && $item["liga"] == $car["liga"] && $item["garage_id"] == 0) {
+                        $select .= "<option value='" . $item["id"] . "'>" . $item["value"] . " " . put("unit_" . $kat, $l) . " (" . $item["liga"] . ")</option>";
+                    }
                 }
-            }
 
 
 
@@ -106,8 +106,21 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
 
     $output .= "</div>";
 } else { //Übersicht der Autos ausgeben
-
     $output = outputTut("cd_your_cars", $l);
+    if (isset($post["action"]) && isset($post["garage_id"])) {
+        //Auto verkaufen
+        $garage_id = intval($post["garage_id"]);
+        $notRacing = queryCarIsNotRacing($garage_id);
+        if ($notRacing) {
+            $sellCar = sellCarSystem($garage_id);
+        } else
+            $sellCar = "car_is_racing";
+
+        $output .= "<span class='dealInfoText $sellCar'>";
+        $output .= put($sellCar, $l);
+        $output .= "</span>";
+    }
+
 
     $output .= "<div id='cardealer'>";
 
@@ -118,12 +131,12 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
             $partPs = calcPS($car["garage_id"]);
             $partPrf = calcPerf($car["garage_id"]);
             $carPs = $car["ps"];
-            $ps = $carPs+$partPs;
-            $perf = $car["perf"]+$partPrf;
-            
-            //Autos, die gefahren werden, können nicht getunt werden.
+            $ps = $carPs + $partPs;
+            $perf = $car["perf"] + $partPrf;
+
+            //Autos, die gefahren werden, können nicht getunt oder verkauft werden.
             $disabled = "disabled";
-            if(queryCarIsNotRacing($car["garage_id"]))
+            if (queryCarIsNotRacing($car["garage_id"]))
                 $disabled = "";
 
             $output .= "<div class='dealer'>
@@ -137,8 +150,8 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
                         </div>
 
                         <div class='dealInfo'>
-                            <span>".ps($ps)." (".ps($carPs)." + ".ps($partPs).")</span> 
-                            <span>$perf Perf. (" . $car["perf"] ." + ".$partPrf." Perf.)</span> 
+                            <span>" . ps($ps) . " (" . ps($carPs) . " + " . ps($partPs) . ")</span> 
+                            <span>$perf Perf. (" . $car["perf"] . " + " . $partPrf . " Perf.)</span> 
                         </div>
 
                     </div>
@@ -147,9 +160,15 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
 
                     <div class='dealBuy'>
                         
+                        <form method='POST' data-dialog='Sell the car for " . dollar(carSellPrice($car["preis"])) . "? The tuning parts are transferred into the storage.' style='display:inline-block;' action='?page=garage&sub=cars'>
+                            <input type='hidden' name='garage_id' value='" . $car["garage_id"] . "'>
+                            <input type='hidden' name='action' value='sell'>
+                            <input class='tableTopButton redButton dialog' name='send' type='submit' value='" . put("sell", $l) . "' $disabled>
+                        </form>
+                        
                         <form method='POST' style='display:inline-block;' action='?page=garage&sub=cars&mode=tune'>
                             <input type='hidden' name='garage_id' value='" . $car["garage_id"] . "'>
-                            <input class='tableTopButton' name='send' type='submit' value='" . put("tune_now", $l) . "' $disabled>
+                            <input class='tableTopButton ' name='send' type='submit' value='" . put("tune_now", $l) . "' $disabled>
                         </form>
                     </div>
                </div>";

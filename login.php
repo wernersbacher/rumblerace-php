@@ -9,7 +9,7 @@ function saveSession($user_id) {
     $cookie = $user_id . ':' . $token;
     $mac = hash_hmac('sha256', $cookie, SECRET_KEY);
     $cookie .= ':' . $mac;
-    setcookie('rememberme', $cookie);   
+    setcookie('rememberme', $cookie, time()+60*60*24*30);   
 }
 
 

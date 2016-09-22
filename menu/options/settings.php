@@ -18,11 +18,43 @@ if (isset($post["action"]) AND $post["action"] == "changeMail") {
             updateEmail($newMail);
             $email = $newMail;
         }
+} else if(isset($post["action"]) AND $post["action"] == "changeSwitches") {
+    if(isset($post['switch_ads'])) {
+        toggleAds(1);
+    } else {
+        toggleAds(0);
+    }
 }
+$ads = ttc(getSwitches()["ads"]);
+
+
+
 
 
 $output .= "    <div class='settings'>
-    
+                
+                <form class='switches' action='?page=options&sub=settings' method='post'>
+                   
+                    <div class='switchUnit'>
+
+                        <div class='switch Desc'>ADs</div>
+                        <div class='onoffswitch'>
+                            <input type='checkbox' name='switch_ads' class='onoffswitch-checkbox' id='switch_ads' $ads>
+                            <label class='onoffswitch-label' for='switch_ads'>
+                                <span class='onoffswitch-inner'></span>
+                                <span class='onoffswitch-switch'></span>
+                            </label>
+
+
+                        </div>
+                    
+                    </div>
+                    
+                    <input type='hidden' name='action' value='changeSwitches'></input>
+                    <input type='submit' style='margin-top: 10px;display:block;' class='tableTopButton' value='Save'></input>
+                </form>
+                <hr/>
+
                 <div class='settingPoint'>Email:</div>
                 <span id='driverName'>  " . put($email, $l) . " <span id='driverNameChange'>&#9998;</span></span>
                 <form id='driverNameInput' name='input' action='?page=options&sub=settings' method='post' style='display: none;'>
@@ -32,7 +64,7 @@ $output .= "    <div class='settings'>
                 </form>  
                 
                 <hr/>
-                <a href='reset.php' target='_blank'>".put("use_pwd_forget", $l)."</a> 
+                <a href='reset.php' target='_blank'>" . put("use_pwd_forget", $l) . "</a> 
 
 
                 </div>

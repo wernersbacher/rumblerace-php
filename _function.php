@@ -1,9 +1,26 @@
 <?php
+define("LIGA_MULTI", 5);
+define("LIGA_START", 400);
+
+function getLigaQuot() {
+    return LIGA_MULTI/4;
+}
+
+function driverUpgradeCost($liga) {
+    return expToLiga($liga+1);
+}
 
 function login($id, $username, $lang) {
     $_SESSION['user_id'] = $id;
     $_SESSION['username'] = $username;
     $_SESSION['lang'] = $lang;
+}
+
+function getPlayerAds() {
+    global $player;
+    if($player["ads"])
+        return true;
+    else return false;
 }
 
 function getPlayerLiga() {
@@ -41,7 +58,10 @@ function getPlayerEmail() {
 }
 
 function getValue($min, $max) {
-    return getExpRand($min, $max);
+    $rand = getExpRand($min, $max);
+    if ($rand < 1)
+        $rand = 1;
+    return $rand;
 }
 
 function getMaxSprit() {
@@ -57,7 +77,7 @@ function calcSpritMin() {
             $min += $teil["lit"] * $teil["count"];
         } else
         $min = 0;
-    return $min+$bonus;
+    return $min + $bonus;
 }
 
 function calcNewSprit() {
@@ -79,8 +99,6 @@ function getExpRand($min, $max, $seed = false) {
     else
         srand();
     $ran = rand(0, 99999999) / 100000000;
-    //$random = pow($ran,2);
-    //$random = 4 * -pow($ran-0.5,3) + 0.5; //4*-(x-0.5)^(3)+0.5 mittelverteilt
     $random = 3.3 * -pow($ran - 0.6, 3) + 0.3; //3.3*-(x-0.6)^(3)+0.3 weiter links/mittel
 
     return (int) floor($min - 1 + ($max - $min + 1) * $random);
@@ -198,6 +216,15 @@ function nwc($x) {
     return numberWithCommas($x);
 }
 
+function getCurrency() {
+    $save = getPlayerLangID();
+    if ($save === 1) { //falls deutsch
+        return "€";
+    } else {
+        return "$";
+    }
+}
+
 function dollar($val) {
     $save = getPlayerLangID();
     if ($save === 1) { //falls deutsch
@@ -217,16 +244,16 @@ function ep($val) {
 }
 
 function gas($val) {
-    return $val." &#8467;";
+    return $val . " &#8467;";
 }
 
 function formatSeconds($val) {
     return date("H:i:s", $val - 3600);
 }
 
-function calcCost($base, $count) {
+function calcCost($base, $count) { //cost for sprit
     $pow = 1.12;
-    return $base * pow($count + 1, $pow);
+    return $base * pow($pow, $count + 1);
 }
 
 function backLink($link) {
@@ -244,7 +271,7 @@ function getLangChange() {
     } else {
         $lang = "en";
     }
-    $out = '<form id="langForm" data-lang="'.$l.'" style="display:inline-block;" method="post" action="' . $_SERVER['PHP_SELF'] . '?' . $_SERVER['QUERY_STRING'] . '">
+    $out = '<form id="langForm" data-lang="' . $l . '" style="display:inline-block;" method="post" action="' . $_SERVER['PHP_SELF'] . '?' . $_SERVER['QUERY_STRING'] . '">
                     <input type="hidden" name="lang" value="' . $lang . '">
                     <input type="submit" value="" name="submit" class="langSubmit" style="background:url(img/' . $lang . '.png)">
                  </form>';
@@ -288,30 +315,45 @@ function sendMail($empfaenger, $betreff, $inhalt) {
     mail($empfaenger, $betreff, $inhalt, "noreply@facethepace.com");
 }
 
-define("LIGA_MULTI", 4);
-define("LIGA_START", 300);
 
 function queryLigaChange() {
     $liga = getPlayerLiga();
     $exp = getPlayerExp();
-    
+
     $expLiga = LIGA_START;
     $newLiga = 1;
-    
-    while($expLiga < $exp) {
+
+    while ($expLiga < $exp) {
         $expLiga *= LIGA_MULTI;
         $newLiga++;
     }
-    
-    if($newLiga > $liga)
-            upgradeLiga($newLiga);
+
+    if ($newLiga > $liga)
+        upgradeLiga($newLiga);
 }
 
 function expToLiga($l) {
-    
+    if ($l === 1)
+        return 0;
+    $l -=1;
     $exp = LIGA_START;
-    for($i=1; $i<$l; $i++) {
+    for ($i = 1; $i < $l; $i++) {
         $exp *= LIGA_MULTI;
     }
     return $exp;
+}
+
+function checkUsername($string) {
+    return (preg_match('/[^a-zA-Z0-9_.*-]/', $string) == 0);
+}
+
+function ttc($bool) {//turn true into "checked"
+    if ($bool)
+        return "checked";
+    else
+        return "";
+}
+
+function carSellPrice($c) {
+    return $c*0.22;
 }

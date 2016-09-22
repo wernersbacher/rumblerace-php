@@ -4,8 +4,13 @@ $output = outputTut("not_done", $l);
 
 
 $output .= "<div class='settings'>
+            <span class='question'>How do I change the language?</span>
+            <p>There is a small flagg on the left side menu. We will add it to the settings menu soon.</p>
+            
+            <hr/>
+            
             <span class='question'>How do I get money and exp?</span>
-            <p>Drives races. Build parts and sell them for money. </p>
+            <p>Drive raced! Hire a driver, get a car, build some parts to make your car faster. You can also sell good parts on the market to other players.</p>
             
             <hr/>
             

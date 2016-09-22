@@ -24,6 +24,7 @@ session_start();
 $site = basename($_SERVER["SCRIPT_FILENAME"], '.php');
 
 if (isset($_SESSION['user_id'])) {
+    setOnline();
     if($site == "login")
         header("Location:main.php");
 } else {

@@ -4,10 +4,28 @@ $output = outputTut("game_news", $l);
 
 
 $output .= "<div class='settings'>";
-$output .= "<h2>News</h2>";
-$output .= "<small>17th September 2016</small><br/>";
 
-$output .= "Welcome to Racing Inc. This game is in early alpha stage. Please don't expect full game experiences! If you want to help to make the game good,
+$output .= "<h2>Changes</h2><small>21st September 2016</small><br/>
+        We made a few changes in the last days:
+        
+        <ul>
+            <li>Sell cars</li>
+            <li>A few UI improvements</li>
+            <li>Drivers are not that cheap anymore</li>
+            <li>Sell and buy fuel</li>
+            <li>You need more exp for league promotion</li>
+            <li>You will gain more fuel from producing</li>
+            <li>Balanced races (less fuel needed, more money gained)</li>
+            <li>You can upgrade your driver to the next league for money</li>
+        </ul>
+
+        Kind regards, <br/>
+        Markus
+        <br/><br/>
+        ";
+
+$output .= "<h2>News</h2><small>17th September 2016</small><br/>
+        Welcome to Racing Inc. This game is in early alpha stage. Please don't expect full game experiences! If you want to help to make the game good,
         don't hesitate by sending us feedback, help, money, whatever you want!<br/>
         <a href='mailto:hi@facethepace.com'>hi@facethepace.com</a>
         <br/>

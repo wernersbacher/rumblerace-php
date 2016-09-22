@@ -58,7 +58,7 @@ if($races)
                         
                         <div class='tuneFooter'>
                     
-                            <form method='POST' style='display:inline-block;' action='?page=race&sub=running&cancel=true'>
+                            <form data-dialog='Cancel race? You won't get any rewards.' method='POST' style='display:inline-block;' action='?page=race&sub=running&cancel=true'>
 
                                 <input type='hidden' name='race_id' value='".$race["id"]."'>
                                 <input class='tableTopButton dialog' name='send' type='submit' value='" . put("cancel", $l) . "'>

@@ -15,7 +15,7 @@ class Driver {
         $maxLiga = getExpRand(1, $liga, $i+$id);
         if($maxLiga <1) $maxLiga = 1;
         $this->maxLiga = $maxLiga;
-        $this->kosten = getExpRand(1000, 3000, $i+$id)*pow($this->maxLiga, 2);
+        $this->kosten = getExpRand(3000, 10000, $i+$id)*pow($this->maxLiga, 2);
         $this->anteil = 20-getExpRand(5, 15, $i+$id);
         $this->skill = getExpRand(20, 1000, $i+$id);
         $this->id = date("dmY").$i;

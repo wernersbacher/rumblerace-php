@@ -33,6 +33,7 @@ $lg = array();
 //Menü Links
 $lg["office"] = ["Office", "Büro"];
 $lg["garage"] = ["Garage", "Garage"];
+$lg["tuner"] = ["Tuner", "Tuner"];
 $lg["drivers"] = ["Drivers", "Fahrer"];
 $lg["sprit"] = ["Fuel", "Sprit"];
 $lg["upgrades"] = ["Upgrades", "Upgrades"];
@@ -51,7 +52,7 @@ $lg["s_bonus"] = ["Bonus", "Bonus"];
 $lg["s_cars"] = ["Cars", "Autos"];
 $lg["s_tuner"] = ["Tuner", "Tuner"];
 $lg["s_storage"] = ["Storage", "Lager"];
-$lg["s_buy"] = ["Buy", "Einkaufen"];
+$lg["s_sell"] = ["Sell Fuel", "Sprit verkaufen"];
 $lg["s_produce"] = ["Producing", "Produktion"];
 $lg["s_cardealer"] = ["Cardealer", "Autohändler"];
 $lg["s_paddock"] = ["Paddock", "Fahrerlager"];
@@ -59,6 +60,7 @@ $lg["s_newbie"] = ["Technical", "Technisches"];
 $lg["s_faq"] = ["FAQs", "FAQs"];
 $lg["s_carmarket"] = ["Car Market", "Automarkt"];
 $lg["s_partmarket"] = ["Part Market", "Teilemarkt"];
+$lg["s_spritmarket"] = ["Fuel Market", "Spritmarkt"];
 $lg["s_endurance"] = ["Public Races", "Öffentliche Rennen"];
 $lg["s_running"] = ["Running Races", "Laufende Rennen"];
 $lg["s_racing"] = ["Races", "Rennen"];
@@ -69,7 +71,7 @@ $lg["s_settings"] = ["Settings", "Einstellungen"];
 $lg["s_logout"] = ["Confirm", "Bestätigen"];
 $lg["s_upgrades"] = ["Upgrades", "Upgrades"];
 $lg["s_achievements"] = ["Achievements", "Erfolge"];
-$lg["s_sysDrivers"] = ["Junior Drivers", "Nachwuchs Fahrer"];
+$lg["s_sysDrivers"] = ["Hire Drivers", "Fahrer einstellen"];
 $lg["s_paddock"] = ["Paddock", "Fahrerlager"];
 
 //Tuning Kats
@@ -83,7 +85,7 @@ $lg["bremse"] = ["Chassis", "Fahrwerk"];
 $lg["unit_bremse"] = ["Perf.", "Perf."];
 
 $lg["turbo"] = ["Turbocharger", "Turbolader"];
-$lg["unit_turbo"] = ["PS", "PS"];
+$lg["unit_turbo"] = ["HP", "PS"];
 
 $lg["schaltung"] = ["Gearshift", "Schaltung"];
 $lg["unit_schaltung"] = ["Perf.", "Perf."];
@@ -100,7 +102,7 @@ $lg["katalysator"] = ["Catalyst","Katalysator"];
 $lg["kolben"] = ["Forged Pistons","Schmiedekolben"];
 
 $lg["ladeluftkuehler"] = ["Charge Air Cooler","Ladeluftkühler"];
-$lg["turbocharger"] = ["Turbocharger","Turbolader MoDul"];
+$lg["turbocharger"] = ["Turbocharger","Turbolader Modul"];
 
 $lg["gelochte"] = ["Perforated Brakes","Gelochte Bremsscheiben"];
 
@@ -159,6 +161,7 @@ $lg["coming_soon"] = ["This feature is not available yet. Please come back later
 $lg["not_done"] = ["This feature is still in developing. Please come back later!", "Dieses Feature befindet sich noch in der Entwicklung. Komm später wieder!"];
 $lg["erfahrung"] = ["Experience", "Erfahrung"];
 $lg["real_logout"] = ["If you really want to logout, click the button below.", "Um dich auszuloggen, klicke auf diesen Button."];
+$lg["online_user"] = ["users are online", "User sind online"];
 
 
 //Register and Login Register for free!
@@ -169,6 +172,9 @@ $lg["or_login"] = ["Already have an account? Login here.", "Bereits registriert?
 $lg["username_exists"] = ["The username is already taken.", "Der ausgewählte Name ist leider bereits vergeben!"];
 $lg["wrong_input_reg"] = ["Please check your input data.", "Bitte überprüfe Deine eingebenen Daten!"];
 $lg["no_user_found"] = ["User or/and password was wrong. Please try again", "Der Nutzername und/oder das Passwort stimmt nicht. Probiere es nocheinmal."];
+$lg["password_not_correct"] = ["The passwords you typed in are noe equal.", "Die Passwörter stimmen nicht überein!"];
+$lg["user_too_short_long"] = ["Your username needs at least 3 characters and max. 13.", "Der Username muss mindestens 3 und höchstens 13 Zeichen haben."];
+$lg["bad_user_char"] = ["You may only use these character for your username: A-Z a-z 0-9 _ . * - ", "Der Username darf nur aus diesen Zeichen bestehen: A-Z a-z 0-9 _ . * - "];
 
 //Einstellungen, Mails vergessen etc
 $lg["add_email"] = ["none yet", "noch keine"];
@@ -203,6 +209,11 @@ $lg["car_tuning"] = ["Tune your car with parts you have already built. A part ha
 $lg["car_updated"] = ["Car configuration saved.", "Fahrzeugkonfiguration wurde gespeichert!"];
 $lg["market_with"] = ["Be aware that withdrawing the part from the market later on will cost you 10% of the offered price.", "Beachte, dass das spätere Zurücknehmen vom Markt 10% des Verkaufspreises kostet!"];
 $lg["market_sell"] = ["Type in the market price for your selected part.", "Gib an, für wie viel Du das Teil verkaufen möchtest"];
+$lg["sell_it"] = ["Sell", "Verkaufen"];
+$lg["part_trashed"] = ["Part was trashed", "Teil wurde entfernt"];
+$lg["car_not_found"] = ["This car doesn't exist anymore.", "Dieses Auto gibt es nicht mehr."];
+$lg["car_sold"] = ["The car was sold to the System!", "Dieses Auto wurde erfolgreich verkauft!"];
+$lg["car_is_racing"] = ["This car is currently not available!", "Dieses Auto ist gerade nicht verfügbar!"];
 
 //Market
 $lg["part_on_market"] = ["The part is now getting sold on the market. You will get a SMS, if someone bought it!", "Das Teil wird nun auf dem Markt angeboten. Sobald es gekauft wird, erhälst Du eine SMS."];
@@ -211,7 +222,7 @@ $lg["sell_check_input"] = ["Check your input.", "Überprüfe Deine Angaben."];
 $lg["part_sold"] = ["The part is already sold. Sorry!", "Das Teil wurde schon verkauft. Sorry!"];
 $lg["part_bought"] = ["Part successfully bought.", "Du hast das Teil erfolgreich gekauft."];
 $lg["partm_info"] = ["Buy rare items here. To sell your own, just go to your storage.", "Hier kannst Du Teile kaufen. Um selbst welche anzubieten, besuche Dein Lager."];
-$lg["market_empty"] = ["There are no parts on the market.", "Auf dem Markt werden keine Teile angeboten."];
+$lg["market_empty"] = ["There is nothing on this market.", "Auf dem Markt wird zur Zeit nichts angeboten."];
 $lg["part_back"] = ["The part is now back in your storage.", "Das Teil befindet sich nun wieder in Deinem Lager.."];
 $lg["part_back_ques"] = ["Do you want to remove your part from the market?", "Möchtest Du das Teil wieder ein Dein Lager verschieben?"];
 $lg["part_back_cost"] = ["It will cost you 10% of the offered price", "Es kostet dich 10% des Angebotpreises"];
@@ -220,9 +231,36 @@ $lg["for_cost"] = ["for", "für einen Preis von"];
 $lg["to_buy"] = ["?", "kaufen?"];
 $lg["yes"] = ["Yes", "Ja"];
 $lg["no"] = ["No", "Nein"];
+$lg["seller"] = ["Seller", "Verkäufer"];
+$lg["part"] = ["Part", "Teil"];
+$lg["power"] = ["Power", "Anteil"];
+$lg["price"] = ["Price", "Preis"];
+$lg["count"] = ["Amount", "Menge"];
+
+//Sprit
+$lg["sprit_not_found"] = ["The offer was not found!", "Das Angebot wurde nicht gefunden!"];
+$lg["buy"] = ["Buy", "Kaufen"];
+$lg["sprit_sold"] = ["The offer doesn't exist anymore. You were too slow :(", "Das Angebot ist weg! Du warst zu langsam :("];
+$lg["sprit_partly_sold"] = ["The amount you wish is not available anymore.", "Diese Menge ist nicht mehr verfügbar!"];
+$lg["sprit_bought"] = ["You bought some fuel!", "Du hast erfolgreich Sprit eingekauft!"];
+$lg["sprit_back"] = ["The sprit is now back in your tank.", "Der Sprit wurde wieder vom Markt genommen."];
+$lg["sell"] = ["Sell", "Verkaufen"];
+$lg["sell_check_input"] = ["You have to type in something!", "Du musst schon etwas eingeben!"];
+$lg["sell_not_enough_sprit"] = ["You don't have enough fuel!", "So viel Sprit kannst du nicht verkaufen!"];
+$lg["sprit_selling"] = ["The fuel was put on the market.", "Der Sprit wird nun am Markt angeboten."];
+$lg["type_in_sprit"] = ["Type in the amount of fuel you want to sell and the price/ℓ.", "Gib die Menge des Sprits und die Kosten/ℓ an."];
+$lg["sprit_back_ok"] = ["You got your fuel back.", "Der Sprit ist jetzt wieder in deinem Inventar."];
+$lg["sprit_back"] = ["Do you want to get your sprit back from the market? If you don't have space for it, it will get trashed.",
+    "Willst du deinen Sprit wiederhaben? Wenn du kein Platz dafür hast, wird er weggeworfen."];
+
+$lg["sell_sprit"] = ["Sell your fuel to other players. To buy fuel from other players, <a href='?page=market&sub=spritmarket'>open the market place</a>.", 
+    "Verkaufe hier deinen Sprit. Um den Sprit von anderen Spielern zu kaufen, <a href='?page=market&sub=spritmarket'>öffne den Marktplatz</a>."];
+
+$lg["sprit_market"] = ["Buy fuel on the global market here. To sell your own fuel, <a href='?page=sprit&sub=sell'>go to 'Fuel'</a>.", 
+    "Kaufe hier Sprit auf dem globalen Markt. Um dein eigenen Sprit zu verkaufen, <a href='?page=sprit&sub=sell'>geh zu 'Sprit'</a>."];
 
 //Racing
-$lg["race_info"] = ["Drive races for money and go up a league! The more horsepower, the higher the profit. The more performance, the more experience.", "Fahre Rennen, um Geld zu bekommen und Ligen aufzusteigen! Je mehr PS, desto höher der Gewinn. Je mehr Performance, desto mehr EP."];
+$lg["race_info"] = ["Drive races for money and go up a league! The more horsepower, the higher the profit. The more performance, the more experience. You need a driver and car which has at least the same league as the race.", "Fahre Rennen, um Geld zu bekommen und Ligen aufzusteigen! Je mehr PS, desto höher der Gewinn. Je mehr Performance, desto mehr EP. Du brauchst mindestens ein Auto und ein Fahrer aus der Liga, in welchem auch das Rennen ist!"];
 $lg["pos_one"] = ["Pos 1", "Platz 1"];
 $lg["reward"] = ["Reward", "Preisgeld"];
 $lg["race_started"] = ["Race started. You will get a SMS when it's done!", "Rennen wurde gestartet. Du bekommst eine SMS, wenn es zuende ist!"];
@@ -309,7 +347,11 @@ $lg["driver_sum"] = ["Check all your drivers here.", "Verwalte hier Deine Fahrer
 $lg["open_driver"] = ["Manage Driver", "Fahrer verwalten"];
 $lg["fire_driver"] = ["Dismiss Driver", "Fahrer entlassen"];
 $lg["driver_fired"] = ["The driver stopped his career and is now an 'expert' on TV.", "Der Fahrer wurde entlassen. Und es ward nie wieder etwas von ihm gehört"];
-$lg["no_driver"] = ["You did not hire any driver yet.", "Bisher hast du noch keinen Fahrer eingestellt."];
+$lg["no_driver"] = ["You did not hire any driver yet. <a href='?page=drivers&sub=sysDrivers'>Do it now</a>", "Bisher hast du noch keinen Fahrer eingestellt. <a href='?page=drivers&sub=sysDrivers'>Tu es jetzt</a>"];
+$lg["anteil"] = ["Stake", "Anteil"];
+$lg["kostenpunkt"] = ["Upgrade cost", "Upgradekosten"];
+$lg["upgrade_driver"] = ["Upgrade to next league", "Upgrade zur nächsten Liga"];
+$lg["driver_upgraded"] = ["The driver advanced to the next league!", "Der Fahrer wurde eine Liga höher eingestuft!"];
 
 //Bonus Seite
 $lg["bonus_info"] = ["Get some extra money or gas.", "Hol dir immer etwas Geld oder Sprit zusätzlich."];

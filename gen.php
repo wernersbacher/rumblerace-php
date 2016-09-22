@@ -2,7 +2,7 @@
 
 require __DIR__ . '/vendor/autoload.php';
 $factory = new RandomLib\Factory;
-$generator = $factory->getHighStrengthGenerator();
+$generator = $factory->getMediumStrengthGenerator();
 
 define("SECRET_KEY", "pJXwZRwK4BTuuy9KdXTUcimO@8+i2VSpTqOT@/99Fqb8HExN80l7C/xiU08cQJA2");
 

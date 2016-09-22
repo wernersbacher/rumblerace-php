@@ -136,13 +136,17 @@ $(document).ready(function () {
     //Abfrage der Dialoge
     $(document).on("click", ".dialog", function (e) {
         currentForm = $(this).closest('form');
+        var mark = "Are you sure?";
+        if(currentForm.data("dialog").length > 0)
+            mark = currentForm.data("dialog");
+        
         e.preventDefault();
         $('<div id="dlg"></div>').dialog({
             modal: true,
             title: "Confirmation",
             open: function () {
-                var markup = 'Are you sure?';
-                $(this).html(markup);
+                
+                $(this).html(mark);
             },
             buttons: {
                 'Sure': function () {
@@ -202,6 +206,18 @@ $(document).ready(function () {
         //if another page gets opened in between
         localStorage.setItem("scrollTop", 0);
     }
+    
+    //calc fuel cost/max win
+    $("#calcSprit").children(".sp").bind("propertychange change click keyup input paste", function(){
+        var price = parseFloat($("#calcSprit").find(".sp_price").val());
+        var amount = parseFloat($("#calcSprit").find(".sp_amount").val());
+        var res = amount*price;
+        if(isNaN(res))
+            res = "--";
+        else res = nwc(res);
+        $("#calcSpritResult").html(res);
+        
+    });
 
 });
 

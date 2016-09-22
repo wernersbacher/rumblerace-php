@@ -116,10 +116,10 @@ if ($mode == "new") {
     $output .= "<a href='#' id='toggle_sys' class='tableTopButton'>- " . put("toggle_sys", $l) . "</a>";
     
     //lösche alle system nachrichten
-    $output .= "<form method='POST' style='display:inline-block;' action='?page=office&sub=messages'><input type='hidden' name='delSys' value='del'><input class='tableTopButton dialog' name='delSys' type='submit' value='- " . put("delSys", $l) . "'></form>";
+    $output .= "<form method='POST' data-dialog='Really delete all system messages?' style='display:inline-block;' action='?page=office&sub=messages'><input type='hidden' name='delSys' value='del'><input class='tableTopButton dialog' name='delSys' type='submit' value='- " . put("delSys", $l) . "'></form>";
     
     //Alle Nachrichten als gelesen markieren
-    $output .= "<form method='POST' style='display:inline-block;' action='?page=office&sub=messages'><input type='hidden' name='readAll' value='read'><input class='tableTopButton dialog' name='delSys' type='submit' value='- " . put("readAll", $l) . "'></form>";
+    $output .= "<form method='POST' style='display:inline-block;' action='?page=office&sub=messages'><input type='hidden' name='readAll' value='read'><input class='tableTopButton' name='delSys' type='submit' value='- " . put("readAll", $l) . "'></form>";
 
     //Tabellen Header
     $output .= "<table style='font-size:13px;' class='tableRed messages noclick'>

@@ -10,6 +10,9 @@ function getHeaderArray() {
     $header[] = "Sprichst du Deutsch?";
     $header[] = "&#60;funny headline missing&#62;";
     $header[] = "";
+    $header[] = "Feedback: hi@facethepace.com";
+    $header[] = "Activate ads in settings!";
+    $header[] = "'RUMBLERACE!'";
     
     return $header;
 }

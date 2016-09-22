@@ -86,20 +86,20 @@ h2 {
     width:800px;
     margin:20px auto;
     font-family: Roboto;
-    font-size:14px;
+    font-size:12px;
 }
 
 #mainmenu ul {
     list-style-type: none;
     display:flex;
-    justify-content: center;
+    justify-content: space-between;
     margin:0;
     padding:0;
 }
 
 #mainmenu ul li {
     text-align:center;
-    width:60px;
+    width:45px;
     border-radius:3px;
     background:#FBFBFB;
     box-shadow:0px 1px 5px -3px black;
@@ -112,12 +112,11 @@ h2 {
 
 #mainmenu ul a {
     text-decoration: none;
-    margin:0px 9px;
 }
 
 #mainmenu ul li img {
-    width:40px;
-    height:40px;
+    width:28px;
+    height:28px;
     margin:auto;
     display:block;
     padding-bottom: 3px;
@@ -264,6 +263,7 @@ a:link, a:visited {
 #always {
     width:220px;
     margin:10px 0;
+    text-align:center;
 }
 
 #always ul {
@@ -381,4 +381,74 @@ hr {
 
 .stat_tdx2 {
     width:20%;
+}
+
+.onoffswitch {
+    display:inline-block;
+    position: relative; width: 88px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #FFFFF; border-radius: 9px;
+}
+.onoffswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block; float: left; width: 50%; height: 31px; padding: 0; line-height: 31px;
+    font-size: 18px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+    content: "ON";
+    padding-left: 14px;
+    background-color: #901094; color: #FFFFFF;
+}
+.onoffswitch-inner:after {
+    content: "OFF";
+    padding-right: 14px;
+    background-color: #a5a5a5;
+    color: #4c4c4c;
+    text-align: right;
+}
+.onoffswitch-switch {
+    display: block; width: 18px; margin: 6.5px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    right: 53px;
+    border: 2px solid #FFFFF; border-radius: 9px;
+    transition: all 0.3s ease-in 0s; 
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px; 
+}
+
+.switches {
+    padding: 8px;
+    border-radius: 3px;
+    background: rgba(249, 249, 249, 0.85);
+}
+
+.switchUnit {
+    font-size:25px;
+    font-weight:bold;
+    display:flex;
+    justify-content: space-between;
+    padding:5px;
+    vertical-align:middle;
+}
+
+.switchUnit:nth-child(odd) {
+    background-color:#d2d2d2; 
+}
+.switchUnit:nth-child(even) {
+    background-color:#f1f1f1; 
 }

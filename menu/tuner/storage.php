@@ -12,25 +12,25 @@ if ($mode == "sell" && isset($post['sell'])) { //Teil verkaufen
 
     $output .= "<div class='textCenter'>";
     $output .= "<b>$part ($value) ($liga)</b><br/>";
-    $output .= put("market_sell", $l).":";
+    $output .= put("market_sell", $l) . ":";
 
-    $output .= "<form method='POST' action='?page=garage&sub=storage'>
+    $output .= "<form method='POST' action='?page=tuner&sub=storage'>
                         <input type='hidden' name='storage_id' value='" . $str_id . "'>
                         <input type='number' min='0.01' step='0.01' name='price' placeholder='100' class='tableTopInput'>
                         <input class='sellButton tableTopButton' name='confirmed' type='submit' value='verkaufen'>
                     </form>";
 
-    $output .= "<br/>".put("market_with", $l);
+    $output .= "<br/>" . put("market_with", $l);
     $output .= "</div>";
 } else {
-
+    
     if (isset($post['confirmed'])) {
         //Teil auf den Markt schmeißen
 
         $str_id = $post["storage_id"];
         $num = $post["price"];
         $num = preg_replace('~[^0-9|^.|(?=2.)]~', '', $num);
-        if($num >= 0.1 && $num < 100000000000)
+        if ($num >= 0.1 && $num < 100000000000)
             $sell = queryPartSell($str_id, $num);
         else
             $sell = "sell_check_input";
@@ -38,6 +38,14 @@ if ($mode == "sell" && isset($post['sell'])) { //Teil verkaufen
         $output .= "<span class='dealInfoText $sell'>";
         $output .= put($sell, $l);
         $output .= "</span>";
+    } else if ($mode == "trash" && isset($post['storage_id'])) {
+        //remove item and get exp
+        $item_id = $post['storage_id'];
+        if (removeItem($item_id)) {
+            $output .= "<span class='dealInfoText green'>";
+            $output .= put("part_trashed", $l);
+            $output .= "</span>";
+        }
     }
 
 
@@ -50,7 +58,7 @@ if ($mode == "sell" && isset($post['sell'])) { //Teil verkaufen
         $rows = "";
         $output .= "<table id='$kat' class='tableRed tableClick'>
                 <tr>
-                  <th colspan='4'>" . put($kat, $l) . "</th>
+                  <th colspan='5'>" . put($kat, $l) . "</th>
                 </tr>";
         if ($storage)
             foreach ($storage as $item) {
@@ -61,12 +69,18 @@ if ($mode == "sell" && isset($post['sell'])) { //Teil verkaufen
                 <td class='partPerf'>" . $item["value"] . " " . put("unit_" . $kat, $l) . "</td>
                 <td>" . put("liga", $l) . " " . $item["liga"] . "</td>
                 <td>
-                    <form method='POST' action='?page=garage&sub=storage&mode=sell'>
+                    <form method='POST' action='?page=tuner&sub=storage&mode=sell'>
                         <input type='hidden' name='storage_id' value='" . $item["id"] . "'>
                         <input type='hidden' name='part' value='" . put($item["part"], $l) . "'>
                         <input type='hidden' name='value' value='" . $item["value"] . " " . put("unit_" . $kat, $l) . "'>
                         <input type='hidden' name='liga' value='" . put("liga", $l) . " " . $item["liga"] . "<'>
-                        <input class='sellButton tableTopButton' name='sell' type='submit' value='verkaufen'>
+                        <input class='sellButton tableTopButton' name='sell' type='submit' value='" . put("sell_it", $l) . "'>
+                    </form>
+                </td>
+                <td>
+                    <form method='POST' data-dialog='Do you want to delete this part?' action='?page=tuner&sub=storage&mode=trash'>
+                        <input type='hidden' name='storage_id' value='" . $item["id"] . "'>
+                        <input class='sellButton tableTopButton redButton dialog' name='trash' type='submit' value='X'>
                     </form>
                 </td>
               </tr>";

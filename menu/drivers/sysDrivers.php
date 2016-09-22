@@ -47,6 +47,10 @@ foreach($drivers as $drv) {
     $liga = $drv->maxLiga;
     $nr = $drv->nr;
     
+    if($kosten > getPlayerMoney())
+        $disabled = "disabled";
+    else $disabled = "";
+    
     $driverPut .= " 
                 <div class='sysDriver'>
                 <h2>$name <div class='driverLiga'><img src='img/liga/" . $liga . ".png' alt='League " . $liga . "' title='League " . $liga . "' /></div></h2>
@@ -56,10 +60,10 @@ foreach($drivers as $drv) {
                 
                 <div class='tuneFooter'>
                     
-                    <span class='dealPrice'>" . dollar($kosten) . " / $anteil% Profit </span>
+                    <span class='dealPrice'>" . dollar($kosten) . " / $anteil% ".put("anteil", $l)." </span>
                     <form method='POST' style='display:inline-block;' action='?page=drivers&sub=sysDrivers'>
                         <input type='hidden' name='driver_nr' value='$nr'>
-                        <input class='tableTopButton dialog' name='send' type='submit' value='" . put("get_driver", $l) . "'>
+                        <input class='tableTopButton dialog' name='send' type='submit' value='" . put("get_driver", $l) . " '$disabled>
                     </form>
                 </div>
                 

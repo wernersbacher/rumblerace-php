@@ -21,14 +21,16 @@ function getFirstSubmenu($page) {
 $m = array();
 
 $m["office"] = ["news", "bonus", "messages"];
-$m["garage"] = ["cars", "tuner", "storage", "cardealer"];
+$m["garage"] = ["cars", "cardealer"];
+$m["tuner"] = [ "tuner", "storage"];
 $m["drivers"] = ["paddock","sysDrivers"];
-$m["sprit"] = ["produce", "buy"];
-$m["market"] = ["partmarket", "carmarket"];
+$m["sprit"] = ["produce", "sell"];
+$m["market"] = ["partmarket", "spritmarket"];
 $m["race"] = ["racing", "endurance", "running"];
 $m["options"] = ["settings"];
 $m["help"] = ["faq", "newbie"];
-$m["special"] = ["chat", "upgrades", "achievements", "mainstats", "globalstats"];
+//$m["special"] = ["chat", "upgrades", "achievements", "mainstats", "globalstats"];
+$m["special"] = ["chat", "globalstats"];
 //$m["logout"] = [""];
 
 //So wird ein neuer Menüpunkt hinzugefügt:
