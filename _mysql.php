@@ -1518,3 +1518,43 @@ function buyUpgradePoint($cost) {
     mysqli_autocommit($mysqli, TRUE);
     return $out;
 }
+
+/*
+ * this_id: ID dieses Upgrades
+ * name: Name des Upgrades
+ * chain: Kette des Upgrades
+ * thisMax: Maximale Anzahl die gekauft werden kann
+ * thisCost: Kosten für Upgrade
+ * hasPre_id: Die ID des Upgrades (this_id), NOT NEEDED
+ * pre_id: ID des benötigten Upgrades
+ * needed: Anzahl benötigt vom vorherigen Upgrade
+ */
+
+function getUpgradeTree() { //gibt alle updates aus, zusammen mit den anforderungen und wie viele der user evtl schon hat
+    $sql = "SELECT upu.ups as userUps,
+        up.id AS this_id, 
+        up.name,
+        up.chain,
+        up.max AS thisMax, 
+        up.points AS thisCost, 
+        upt.up_id AS hasPre_id, 
+        upt.pre_id AS pre_id, 
+        upt.needed
+        FROM upgrades up
+                LEFT JOIN upgrades_tree upt
+                ON up.id = upt.up_id
+                LEFT JOIN upgrades_user upu
+                ON up.id = upu.up_id
+                
+        ";
+    $entry = querySQL($sql);
+    if ($entry) {
+        while ($row = mysqli_fetch_assoc($entry)) {
+            $data[$row["this_id"]] = $row;
+        }
+        if (isset($data))
+            return $data;
+    } else {
+        return false;
+    }
+}

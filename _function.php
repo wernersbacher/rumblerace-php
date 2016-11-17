@@ -1,13 +1,14 @@
 <?php
+
 define("LIGA_MULTI", 5);
 define("LIGA_START", 400);
 
 function getLigaQuot() {
-    return LIGA_MULTI/4;
+    return LIGA_MULTI / 4;
 }
 
 function driverUpgradeCost($liga) {
-    return expToLiga($liga+1);
+    return expToLiga($liga + 1);
 }
 
 function login($id, $username, $lang) {
@@ -18,9 +19,10 @@ function login($id, $username, $lang) {
 
 function getPlayerAds() {
     global $player;
-    if($player["ads"])
+    if ($player["ads"])
         return true;
-    else return false;
+    else
+        return false;
 }
 
 function getPlayerUpPoints() {
@@ -320,7 +322,6 @@ function sendMail($empfaenger, $betreff, $inhalt) {
     mail($empfaenger, $betreff, $inhalt, "noreply@facethepace.com");
 }
 
-
 function queryLigaChange() {
     $liga = getPlayerLiga();
     $exp = getPlayerExp();
@@ -357,4 +358,19 @@ function ttc($bool) {//turn true into "checked"
         return "checked";
     else
         return "";
+}
+
+function orderUpgrades($array) {
+    uasort($array, function($a, $b) {
+        $res = strcmp($a['chain'], $b['chain']);
+
+        // If the rates are the same...
+        if ($res === 0) {
+            // Then compare by id
+            $res = $a['pre_id'] > $b['pre_id'] ? 1 : -1;
+        }
+
+        return $res;
+    });
+    return $array;
 }

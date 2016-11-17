@@ -70,7 +70,7 @@ if (isset($_POST['send'])) {
         
         <div id="loginWindow">
             
-            <?php echo put("please_login", $l) ?><br/>
+            <?php echo put("please_login", $l) ?> (BETA)<br/>
             <?php echo put($error, $l); ?>
             <form action="login.php" method="post">
                 <input type="text" name="user" required="required" placeholder="Username" maxlength="55" />

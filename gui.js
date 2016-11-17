@@ -18,17 +18,19 @@ function setTuneData(part, preis, worst, best, dur) {
 
 
 function nwc(x) {
-	if(x === undefined) return "unknown";
-        x = precise_round(x, 2);
-	var save = $("#langForm").data("lang");
-	var komma = ".";
-	var tausend = ",";
-	if(save === "de") {
-		komma = ","; tausend = ".";
-	}
+    if (x === undefined)
+        return "unknown";
+    x = precise_round(x, 2);
+    var save = $("#langForm").data("lang");
+    var komma = ".";
+    var tausend = ",";
+    if (save === "de") {
+        komma = ",";
+        tausend = ".";
+    }
     var parts = x.toString().split(".");
     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, tausend);
-	return parts.join(komma);
+    return parts.join(komma);
 }
 
 function startSprit() {
@@ -38,7 +40,7 @@ function startSprit() {
     var old = parseFloat($("#playerSprit").html());
 
     function setSprit(x) {
-        $("#playerSprit").html(nwc(x)+" &#8467;");
+        $("#playerSprit").html(nwc(x) + " &#8467;");
     }
 
     function interval() {
@@ -137,15 +139,15 @@ $(document).ready(function () {
     $(document).on("click", ".dialog", function (e) {
         currentForm = $(this).closest('form');
         var mark = "Are you sure?";
-        if(currentForm.data("dialog").length > 0)
+        if (currentForm.data("dialog").length > 0)
             mark = currentForm.data("dialog");
-        
+
         e.preventDefault();
         $('<div id="dlg"></div>').dialog({
             modal: true,
             title: "Confirmation",
             open: function () {
-                
+
                 $(this).html(mark);
             },
             buttons: {
@@ -190,34 +192,54 @@ $(document).ready(function () {
         $("#driverName").hide();
         $('#driverNameInput').show().find(".focusThis").focus();
     });
-    
+
     //Sprit autoscroller (dont want to use ajax)
-    
-    $(".saveScroll").click(function() {
-        
+
+    $(".saveScroll").click(function () {
+
         localStorage.setItem("scrollTop", $(window).scrollTop());
         //alert($(window).scrollTop());
     });
-    
-    if($("#produce").length) {
+
+    if ($("#produce").length) {
         //Scroll to saved position
         $(window).scrollTop(localStorage.getItem("scrollTop"));
     } else {
         //if another page gets opened in between
         localStorage.setItem("scrollTop", 0);
     }
-    
+
     //calc fuel cost/max win
-    $("#calcSprit").children(".sp").bind("propertychange change click keyup input paste", function(){
+    $("#calcSprit").children(".sp").bind("propertychange change click keyup input paste", function () {
         var price = parseFloat($("#calcSprit").find(".sp_price").val());
         var amount = parseFloat($("#calcSprit").find(".sp_amount").val());
-        var res = amount*price;
-        if(isNaN(res))
+        var res = amount * price;
+        if (isNaN(res))
             res = "--";
-        else res = nwc(res);
+        else
+            res = nwc(res);
         $("#calcSpritResult").html(res);
-        
+
     });
+
+    //upgrades
+    if ($("#nodes").length) {
+        var chains = [];
+        $('.node').each(function () {
+            var chain = $(this).data("chain");
+            if (chains.indexOf(chain) < 0)
+                chains.push(chain);
+        });
+        console.log(chains);
+        //make connections
+        for (var i = 0, length = chains.length; i < length; i++) {
+            $(".chain_" + chains[i]).connections();
+        }
+
+
+    }
+
+
 
 });
 
