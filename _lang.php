@@ -371,3 +371,34 @@ $lg["point_bought"] = ["You bought an upgrade point.", "Du hast einen Upgradepun
 $lg["used_points"] = ["Used upgrade points:", "Eingesetzte Upgradepunkte:"];
 $lg["unused_points"] = ["Not used upgrade points:", "Ungenutzte Upgradepunkte:"];
 $lg["buy_another_point"] = ["Buy another point for", "Kaufe einen Punkt für"];
+$lg["up_bought"] = ["Upgrade successfully bought.", "Du hast Upgrade gekauft!"];
+$lg["upgrade_error"] = ["Please report this error. #uperr1", "Bitte melde diesen Fehler. #uperr1"];
+$lg["it-costs"] = ["Costs", "Kosten"];
+$lg["effect"] = ["Effect", "Effekt"];
+
+//Upgrade Units
+
+$lg["cars"] = [" car(s)/upgrade", " Auto(s)/Upgrade"];
+$lg["per"] = ["%/upgrade", "%/Upgrade"];
+
+//+++++Upgrade Beschreibungen
+
+//Garage
+$lg["garage_space-title"] = ["Tidy up", "Aufräumen"];
+$lg["garage_space"] = ["Tidy your grarage, there's some wasted room left!", "Räum' deine Garage auf, es ist noch verschwendeter Platz da!"];
+
+$lg["garage_space_2-title"] = ["Expand", "Erweiterung"];
+$lg["garage_space_2"] = ["Expand your garage.", "Erweitere deine Garage"];
+
+//Mechaniker
+$lg["mechanics-title"] = ["Mechanics", "Mechaniker"];
+$lg["mechanics"] = ["Reduce the time you need for building tuning parts.", "Reduziere die Dauer, die Tuningteile zum Bauen benötigen."];
+
+$lg["mechanics_2-title"] = ["Education", "Weiterbildung"];
+$lg["mechanics_2"] = ["Educate your mechanics with a pro-traing!", "Bilde deine Mechaniker weiter mit einem Pro-Training!"];
+
+$lg["mechanics_3-title"] = ["Education #2", "Weiterbildung #2"];
+$lg["mechanics_3"] = ["It's not over yet!", "Es ist noch nicht vorbei!"];
+
+$lg["mechanics_4-title"] = ["NAVY SEAL?", "NAVY SEAL?"];
+$lg["mechanics_4"] = ["It's the NAVY SEAL training of mechanics, formula 1 experiences!", "Extrem hartes Training: Formel 1 Erfahrungen!"];

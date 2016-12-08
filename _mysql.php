@@ -1535,6 +1535,8 @@ function getUpgradeTree() { //gibt alle updates aus, zusammen mit den anforderun
         up.id AS this_id, 
         up.name,
         up.chain,
+        up.unit,
+        up.effect,
         up.max AS thisMax, 
         up.points AS thisCost, 
         upt.up_id AS hasPre_id, 
@@ -1557,4 +1559,27 @@ function getUpgradeTree() { //gibt alle updates aus, zusammen mit den anforderun
     } else {
         return false;
     }
+}
+
+function upgradeById($up_id, $cost) { //set the upgrade to the db and remove free upgrade points from user
+    global $mysqli;
+    mysqli_autocommit($mysqli, FALSE);
+
+    //Insert upgrade, if its there just upgrade it +1
+    $upgrade = mysqli_query($mysqli, "INSERT INTO upgrades_user (user_id, up_id, ups) VALUES ('" . $_SESSION["user_id"] . "', '$up_id', '1') ON DUPLICATE KEY UPDATE ups = ups + 1"
+    );
+    
+    $spend = mysqli_query($mysqli, "UPDATE stats
+            SET uppoints = uppoints - $cost
+            WHERE id = '" . $_SESSION["user_id"] . "'"
+    );
+    if ($upgrade && $spend) {
+        mysqli_commit($mysqli);
+        $out = "up_bought";
+    } else {
+        mysqli_rollback($mysqli);
+        $out = "database_error";
+    }
+    mysqli_autocommit($mysqli, TRUE);
+    return $out;
 }

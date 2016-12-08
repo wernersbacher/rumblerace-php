@@ -1,6 +1,7 @@
 <?php
 
-$output = outputTut("coming_soon", $l);
+$output = "";
+$nodes = "";
 
 //Upgradepoints auslesen
 $used = getAllUpgradePoints();
@@ -25,20 +26,34 @@ if (isset($post["action"]) && $post["action"] == "buyUpgradePoint") { //Kaufen e
     $output .= "</span>";
 } else if (isset($post["up"])) { //Upgrade eines Skills
     $up_name = $post["up"];
+    $status = "upgrade_error";
     $node = getNodeByName($tree, $up_name);
+    if (checkNodeBuyable($node)) {
+        //kaufen
+        $status = upgradeById($node["this_id"], $node["thisCost"]);
+
+        $free -= $node["thisCost"];
+        $tree = getUpgradeTree();
+    } else {
+        $status = "upgrade_error";
+    }
+
+    $output .= "<span class='dealInfoText $status'>";
+    $output .= put($status, $l);
+    $output .= "</span>";
+}
+
+function checkNodeBuyable($node) {
+    global $tree, $free;
+
     if ($node) {
         //upgrade!
         $preNode = getNodeById($tree, $node["pre_id"]);
-        if (($preNode == false || $preNode["userUps"] >= $node["needed"]) && $node["thisCost"] <= $free && $node["thisMax"] > $node["userUps"]) {
-            //kaufen
-            var_dump("kaufen jetzt");
-            $status = upgradeByName($up_name, $node["thisCost"]);   
-        } else {
-            $status = "upgrade_error";
-        }
+        if (($preNode == false || $preNode["userUps"] >= $node["needed"]) && $node["thisCost"] <= $free && $node["thisMax"] > $node["userUps"])
+            return true;
     }
+    return false;
 }
-
 
 //Ausgabe der Punkteübersicht
 $total = $used + $free;
@@ -60,14 +75,17 @@ $output .= "<div class='settings'>
 
 /*
  * TODO
- * upgrade in der db durchführen (siehe oben)
+ * nodes nur anlickbar wenn auch kaufbar (funktion machen, und im post check auch nutzen)
  */
 
 function generateNode($node) {
-    global $tree;
+    global $tree, $l;
     $name = $node["name"];
-    $id = $node["this_id"];
     $userUps = $node["userUps"];
+    $effect = $node["effect"];
+    $cost = $node["thisCost"];
+    $unit = $node["unit"];
+    $max = $node["thisMax"];
     $chain = $node["chain"];
     $chain = $node["chain"];
     $pre_id = intval($node["pre_id"]);
@@ -75,7 +93,7 @@ function generateNode($node) {
 
     //check if owned
     if ($userUps > 0)
-        $userUps = "<div class='count'>$userUps</div>";
+        $userUps = "<div class='count'>$userUps/$max</div>";
     else
         $userUps = "";
 
@@ -85,16 +103,44 @@ function generateNode($node) {
 
     //check if new line
     if ($pre_id < 1 && $chain != 10)
-        $br = "<br/>";
+        $br = "</div><div>";
     else
         $br = "";
+    
+    //Generate hover with details
+    $hover = "<div class='tooltip'><h2 class='tooltip_h2'>". put($name."-title", $l)."</h2>
+        ". put("it-costs", $l).": $cost <br/>
+        ". put("effect", $l).": $effect". put($unit, $l)."<br/><br/>
+        <span>\"". put($name, $l)."\"</span>
+        </div>";
 
-    $out = "$br<div data-chain='$chain' class='node chain_$chain' title='$name'>
+    //Ausgabe
+
+    if (checkNodeBuyable($node)) {
+        //anderer look, wenns kaufbar ist
+        $out = "$br<div data-chain='$chain' class='node chain_$chain'>
             $userUps
+            $hover
             <form method='post' action='?page=special&sub=upgrades'>";
-    $out .= "<input type='hidden' name='up' value='$name'>";
-    $out .= "<input type='image' name='image' src='img/techtree/$name.png' width='40' height='40'>";
-    $out .= "</form></div>";
+        $out .= "<input type='hidden' name='up' value='$name'>";
+        $out .= "<input type='image' name='image' src='img/techtree/$name.png' width='40' height='40'>";
+        $out .= "</form></div>";
+    } else {
+        //nicht kaufbar
+/*
+        $out = "$br<div data-chain='$chain' class='node nodeDisabled chain_$chain' title='$name'>$userUps";
+        $out .= "<span class='formlike'><img src='img/techtree/$name.png' width='40' height='40' /><span>";
+        $out .= "</div>";*/
+
+        
+          $out = "$br<div data-chain='$chain' class='node nodeDisabled chain_$chain'>
+          $userUps
+          $hover
+          <form disabled>";
+          $out .= "<input style='cursor:default' type='image' name='image' src='img/techtree/$name.png' width='40' height='40' disabled>";
+          $out .= "</form></div>"; 
+    }
+
 
     return $out;
 }
@@ -104,8 +150,12 @@ $tree = orderUpgrades($tree);
 $output .= "<div id='nodes' class='settings'>";
 
 foreach ($tree as $node) {
-    $output.= generateNode($node);
+
+    $nodes.= generateNode($node);
 }
+$output .= "<div>"; //div for 1st chain
+$output .= $nodes;
+$output .= "</div>";
 
 //var_dump(getNodeByName($tree, "garage_space2"));
 

@@ -233,7 +233,14 @@ $(document).ready(function () {
         console.log(chains);
         //make connections
         for (var i = 0, length = chains.length; i < length; i++) {
-            $(".chain_" + chains[i]).connections();
+            var chain_id = chains[i];
+            var chain_arr = $(".chain_" + chain_id).toArray();
+            
+            for (var j = 0, length = chain_arr.length; j < length; j++) {
+                if(j+1 <= chain_arr.length)
+                $(chain_arr[j]).add(chain_arr[j+1]).connections();
+            } 
+            
         }
 
 
