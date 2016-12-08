@@ -5,10 +5,11 @@ if (isset($_SESSION['user'])) {
 }
 require_once('_mysql.php');
 require_once('_lang.php');
+require_once("gen.php");
 require_once('_function.php');
 $status = "";
 
-if (isset($_POST['send'])) {
+if (isset($_POST['register'])) {
     $user = filter_input_array(INPUT_POST)["user"];
     $pass = filter_input_array(INPUT_POST)["pass"];
     $pass2 = filter_input_array(INPUT_POST)["pass2"];
@@ -31,9 +32,38 @@ if (isset($_POST['send'])) {
     }
 
     if ($status === "ok_reg") {
+        saveSession($_SESSION["user_id"]);
         header('location: main.php');
     }
     $error = $status;
+} else if (isset($_POST['guest'])) {
+
+    //check if user is already a guest
+    $guest = isGuestLoggedIn();
+    if ($guest) {
+        $status = queryLogin($guest[0], $guest[1]);
+        if ($status === "ok_user") {
+            saveSession($_SESSION["user_id"]);
+            header('location: main.php');
+        }
+    } else {
+        //Register as guest
+
+        do {
+            $user = generateRandomUsername();
+        } while (queryExistsUser($user));
+
+        $pass = generateRandomPassword();
+        //passwort im cookie speichern
+
+        $status = queryRegister($user, $pass, $email);
+        if ($status === "ok_reg") {
+            saveSession($_SESSION["user_id"]);
+            saveGuestDetails($user, $pass);
+            header('location: main.php');
+        } else
+            $staus = "database_error";
+    }
 } else {
     $error = NULL;
     $user_id = NULL;
@@ -68,22 +98,23 @@ if (isset($_POST['send'])) {
         <div id="loginWindow">
             <?php echo put("register_free", $l) ?><br/>
             <?php echo put($error, $l); ?>
-            <form action="register.php" method="post">
+            <form class="bigForm" action="register.php" method="post">
                 <input type="text" name="user" required="required" placeholder="Username" maxlength="55" /><br/>
                 <input type="password" name="pass" required="required" placeholder="Password" maxlength="50" /><br/>
                 <input type="password" name="pass2" required="required" placeholder="Password (retype)" maxlength="50" /><br/>
                 <input type="email" name="email" placeholder="Email (optional)" maxlength="50" /><br/>
+                <input type="hidden" name="register" value="yes"/>
                 <input type="submit" name="send" value="Register" />
 
             </form>
 
             <a href="login.php" ><?php echo put("or_login", $l) ?></a>
-            
+
         </div>
-        
+
         <div id="login_prev" style="width:100%; height:50%; ">
-            
-            
+
+
         </div>
 
 

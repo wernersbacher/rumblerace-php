@@ -9,6 +9,8 @@ THIS RELEASE
 * mehr ep später
 * ep mal ausrechnen für mich
 * left side free points
+* serverweite upgrades investieren
+
 
 
 NEXT RELEASE
@@ -92,6 +94,16 @@ ERFOLGE
 * voll ausgestattetes auto
 * rennen voll beendet
 * rennübersetzungen
+
+GUEST TODO
+* wenn ein cookie mit details vorhanden ist, nutze diese zum login
+* speichern eines eigenen namens und passwort, statt reg. wird dabei einfach umbenannt, saveSession neu
+-> box wird stetig angezeigt
+
+ADMIN PANEL
+Löschen von Usern
+rundmails
+nachrichten
 
 SOURCES
 

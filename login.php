@@ -2,15 +2,7 @@
 
 include("gen.php");
 include("_checkuser.php");
-
-function saveSession($user_id) {
-    $token = GenerateRandomToken(); // generate a token, should be 128 - 256 bit
-    storeLoginForUser($user_id, $token);
-    $cookie = $user_id . ':' . $token;
-    $mac = hash_hmac('sha256', $cookie, SECRET_KEY);
-    $cookie .= ':' . $mac;
-    setcookie('rememberme', $cookie, time()+60*60*24*30);   
-}
+require_once('_function.php');
 
 
 //session_start();
@@ -70,14 +62,24 @@ if (isset($_POST['send'])) {
         
         <div id="loginWindow">
             
+            Just want to play as guest?
+            <form class="bigForm" action="register.php" method="post">
+                <input type="hidden" name="guest" value="yes"/>
+                <input type="submit" name="send" value="PLAY AS GUEST" />
+            </form>
+            
+            <hr/>
+            
             <?php echo put("please_login", $l) ?> (BETA)<br/>
             <?php echo put($error, $l); ?>
-            <form action="login.php" method="post">
+            <form class="bigForm" action="login.php" method="post">
                 <input type="text" name="user" required="required" placeholder="Username" maxlength="55" />
                 <input type="password" name="pass" required="required" placeholder="Password" maxlength="50" />
+                <input type="hidden" name="login" value="yes"/>
                 <input type="submit" name="send" value="Login" />
                 <div class="sizeNormal"><a href="reset.php"><?php echo put("resetpwd", $l) ?></a></div>
             </form>
+            <hr/>
             
             <a href="register.php" ><?php echo put("or_register", $l) ?></a>
             

@@ -70,7 +70,7 @@ if (isset($post["email"]) && !(isset($get["mail"]) OR isset($get["reset"]))) {
                     //Link is valid
                     $player = queryPlayerByMail($email);
                     echo put("type_new_pwd", $l);
-                    echo '<form action="reset.php?reset=yep" method="post">
+                    echo '<form class="bigForm" action="reset.php?reset=yep" method="post">
                         <input type="hidden" name="email" value="'.$email.'" />
                         <input type="hidden" name="token" value="'.$token.'" />
                         <input type="password" name="pass" required="required" placeholder="Password" maxlength="50" /><br/>
@@ -111,7 +111,7 @@ if (isset($post["email"]) && !(isset($get["mail"]) OR isset($get["reset"]))) {
 
                 echo put("reset_info", $l);
 
-                echo '<form action="reset.php" method="post">
+                echo '<form class="bigForm" action="reset.php" method="post">
                         <input type="email" name="email" placeholder="Email" maxlength="50" /> 
                         <input type="submit" name="send" value="Send" />
 

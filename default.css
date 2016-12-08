@@ -458,3 +458,37 @@ hr {
     top:10px;
     right:8px;
 }
+
+.bigForm input[type=submit] {
+    padding:5px 15px; 
+    color:white;
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 4px; 
+    text-transform: uppercase;
+    background: #a90329;
+    background: -moz-linear-gradient(top,  #a90329 0%, #8f0222 44%, #6d0019 100%);
+    background: -webkit-linear-gradient(top,  #a90329 0%,#8f0222 44%,#6d0019 100%);
+    background: linear-gradient(to bottom,  #a90329 0%,#8f0222 44%,#6d0019 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#6d0019',GradientType=0 );
+}
+
+.bigForm input[type=submit]:hover {
+    background: #dd2339;
+    background: -moz-linear-gradient(top,  #dd2339 0%, #ad142b 44%, #84002e 100%);
+    background: -webkit-linear-gradient(top,  #dd2339 0%,#ad142b 44%,#84002e 100%);
+    background: linear-gradient(to bottom,  #dd2339 0%,#ad142b 44%,#84002e 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dd2339', endColorstr='#84002e',GradientType=0 );
+}
+
+.bigForm input {
+    padding:5px; 
+    border:2px solid #ccc; 
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.bigForm input:focus {
+    border-color:#333;
+}

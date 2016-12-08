@@ -341,7 +341,7 @@ function queryLigaChange() {
 function expToLiga($l) {
     if ($l === 1)
         return 0;
-    $l -=1;
+    $l -= 1;
     $exp = LIGA_START;
     for ($i = 1; $i < $l; $i++) {
         $exp *= LIGA_MULTI;
@@ -373,4 +373,55 @@ function orderUpgrades($array) {
         return $res;
     });
     return $array;
+}
+
+function getRandomString($length) {
+    $validCharacters = "12345abcdefghijklmnopqrstuvwxyz678910";
+    $validCharNumber = strlen($validCharacters);
+    $result = "";
+    for ($i = 0; $i < $length; $i++) {
+        $index = mt_rand(0, $validCharNumber - 1);
+        $result .= $validCharacters[$index];
+    }
+    return $result;
+}
+
+function generateRandomUsername() {
+    return "guest:".getRandomString(5);
+}
+
+function saveSession($user_id) {
+    $token = GenerateRandomToken(); // generate a token, should be 128 - 256 bit
+    storeLoginForUser($user_id, $token);
+    $cookie = $user_id . ':' . $token;
+    $mac = hash_hmac('sha256', $cookie, SECRET_KEY);
+    $cookie .= ':' . $mac;
+    setcookie('rememberme', $cookie, time()+60*60*24*30);   
+}
+
+function saveGuestDetails($user,$pw) {
+    setcookie('guestpw', $user."::".$pw, time()+60*60*24*30);
+}
+
+function isLoggedIn() {
+    $cookie = isset($_COOKIE['rememberme']) ? $_COOKIE['rememberme'] : '';
+    if ($cookie) {
+        list ($user_id, $token, $mac) = explode(':', $cookie);
+        if (!hash_equals(hash_hmac('sha256', $user_id . ':' . $token, SECRET_KEY), $mac)) {
+            return false;
+        }
+        $usertoken = getTokenByUserID($user_id);
+        if (hash_equals($usertoken, $token)) {
+            return $user_id;
+        } else
+            return false;
+    }
+}
+
+function isGuestLoggedIn() {
+    $cookie = isset($_COOKIE['guestpw']) ? $_COOKIE['guestpw'] : '';
+    if ($cookie) {
+        list ($user, $pass) = explode('::', $cookie);
+        return [$user, $pass];
+    } else return false;
 }

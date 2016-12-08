@@ -12,6 +12,7 @@ function carSellPrice($c) {
 
 function getMaxCars() {
     global $upgrades;
+
     return 2+$upgrades["garage_space"];
 }
 

@@ -155,12 +155,14 @@ function queryRegister($user, $pass, $email) {
     $addSprit = mysqli_query($mysqli, "INSERT INTO sprit_upt (user_id, updated) VALUES ('" . $user_id . "', '" . time() . "')");
     $addCar = mysqli_query($mysqli, "INSERT INTO garage (user_id, car_id) VALUES ('" . $user_id . "', 'beamer_pole')");
     $addDriver = mysqli_query($mysqli, "INSERT INTO fahrer (user_id, driver_id, name, skill, liga, anteil) VALUES ('$user_id', '$user_id+d', 'Markus Werner', 150, 1, 5)");
-    if ($addUser && $addStats && $addSprit && $addCar && $addDriver) {
+    $addBonus = mysqli_query($mysqli, "INSERT INTO bonus (user_id, last, invested) VALUES ('$user_id', 0, 0)");
+    if ($addUser && $addStats && $addSprit && $addCar && $addDriver && $addBonus) {
         mysqli_commit($mysqli);
         $status = "ok_reg";
         $_SESSION['user_id'] = $user_id;
         $_SESSION['username'] = $user;
         $_SESSION['lang'] = $lang;
+        
     } else {
         mysqli_rollback($mysqli);
         $status = "bad_reg";
@@ -1472,11 +1474,19 @@ function resetTuningParts($garage_id) {
 
 //Upgrades
 function getUserUpgrades() {
-    $sql = "SELECT * FROM upgrades up, upgrades_user uu WHERE up.id = uu.up_id AND uu.user_id = '" . $_SESSION["user_id"] . "'";
+    /*$sql = "SELECT * FROM upgrades up, 
+        upgrades_user uu 
+        WHERE up.id = uu.up_id AND uu.user_id = '" . $_SESSION["user_id"] . "'";*/
+    $sql = "SELECT * FROM upgrades up 
+            LEFT JOIN upgrades_user uu
+            ON up.id = uu.up_id AND uu.user_id = " . $_SESSION["user_id"];
     $entry = querySQL($sql);
     if ($entry) {
         while ($row = mysqli_fetch_assoc($entry)) {
-            $data[$row["name"]] = $row["ups"];
+            if(is_null($row["ups"]))
+                $data[$row["name"]] = 0;
+            else
+                $data[$row["name"]] = $row["ups"];
         }
         if (isset($data))
             return $data;
@@ -1546,9 +1556,7 @@ function getUpgradeTree() { //gibt alle updates aus, zusammen mit den anforderun
                 LEFT JOIN upgrades_tree upt
                 ON up.id = upt.up_id
                 LEFT JOIN upgrades_user upu
-                ON up.id = upu.up_id
-                
-        ";
+                ON up.id = upu.up_id AND upu.user_id = ".$_SESSION["user_id"];
     $entry = querySQL($sql);
     if ($entry) {
         while ($row = mysqli_fetch_assoc($entry)) {

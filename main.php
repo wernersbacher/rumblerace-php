@@ -277,8 +277,9 @@ http://wernersbacher.de
         </form>
     </div>
 
+    
 
-    <!-- Footer Segment Ende -->
+    <!-- <?php var_dump($upgrades); ?> Footer Segment Ende -->
 
 </body>
 </html>

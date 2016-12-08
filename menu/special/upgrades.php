@@ -145,6 +145,7 @@ function generateNode($node) {
     return $out;
 }
 
+
 $tree = orderUpgrades($tree);
 
 $output .= "<div id='nodes' class='settings'>";
