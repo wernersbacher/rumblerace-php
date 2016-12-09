@@ -17,6 +17,12 @@ function login($id, $username, $lang) {
     $_SESSION['lang'] = $lang;
 }
 
+function isPlayerGuest() {
+   if(explode(":", $_SESSION['username'])[0] == "guest")
+           return true;
+   else return false;
+}
+
 function getPlayerAds() {
     global $player;
     if ($player["ads"])

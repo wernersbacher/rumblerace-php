@@ -172,6 +172,20 @@ function queryRegister($user, $pass, $email) {
     return $status;
 }
 
+function queryGuestRegister($oldUser, $user, $pass) {
+    global $mysqli;
+    $sql = "UPDATE user SET username = '" . mysqli_real_escape_string($mysqli, $user) . "', pass = '". hash5($pass)."' 
+        WHERE username = '" . mysqli_real_escape_string($mysqli, $oldUser) . "'
+        ";
+    $entry = querySQL($sql);
+
+    if ($entry) 
+        return "ok_reg";
+     else 
+        return "database_error";
+    
+}
+
 function setOnline() {
     global $mysqli;
     $mysqli->query("UPDATE user SET activeTime = '" . time() . "' WHERE id = '" . $_SESSION["user_id"] . "'");

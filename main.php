@@ -30,11 +30,9 @@ $l = getPlayerLang();
 
 //Holen der aktuellen Seite
 
-$page = $get["page"];
-
-if (!$page) {
+if(!isset($get["page"]))
     $page = "office";
-}
+else $page = $get["page"];
 
 if (!isset($get["sub"]))
     $sub = getFirstSubmenu($page);
@@ -200,6 +198,31 @@ http://wernersbacher.de
 
     <!-- Main Menü Segment Ende -->
 
+    <div id="mid-header">
+        
+        <?php if(isPlayerGuest()) { ?>
+        <div id="guestInfo">
+            You are just playing as a guest! If your cookies gets deleted, your account will be too. Register your account for free:<br/>
+            <i><?php
+            if(isset($get["reg"]))
+                echo put($get["reg"], $l);
+            ?> </i>
+            <form class="bigForm" action="register.php?guest=true" method="post">
+                <input type="text" name="user" required="required" placeholder="Username" maxlength="55" />
+                <input type="password" name="pass" required="required" placeholder="Password" maxlength="50" />
+                <input type="password" name="pass2" required="required" placeholder="Password (retype)" maxlength="50" />
+                <input type="hidden" name="email" placeholder="Email (optional)" maxlength="50" />
+                <input type="hidden" name="register" value="yes"/>
+                <input type="submit" name="send" value="Register" />
+
+            </form>
+            
+        </div> 
+        <?php } ?>
+        
+    </div>
+    
+    
     <!-- Middle Segment Anfang -->
 
     <div id="middle">
@@ -279,7 +302,7 @@ http://wernersbacher.de
 
     
 
-    <!-- <?php var_dump($upgrades); ?> Footer Segment Ende -->
+    <!-- <?php var_dump(isPlayerGuest()); ?> Footer Segment Ende -->
 
 </body>
 </html>

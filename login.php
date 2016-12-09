@@ -62,7 +62,7 @@ if (isset($_POST['send'])) {
         
         <div id="loginWindow">
             
-            Just want to play as guest?
+            <?php echo put("play_as_guest", $l) ?> 
             <form class="bigForm" action="register.php" method="post">
                 <input type="hidden" name="guest" value="yes"/>
                 <input type="submit" name="send" value="PLAY AS GUEST" />

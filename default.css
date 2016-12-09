@@ -137,6 +137,18 @@ h2 {
     margin-bottom:60px; 
 }
 
+#guestInfo {
+    width: 800px;
+    min-height: 60px;
+    background-color: #ffd6d6;
+    border: 1px #d65353 solid;
+    padding: 8px;
+    color: #8e2929;
+    box-sizing: border-box;
+    border-radius: 3px;
+    margin: 0 auto 10px auto;
+}
+
 #leftMenu {
     flex:1;
     min-height:100%;

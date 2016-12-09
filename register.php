@@ -1,22 +1,65 @@
 <?php
+
 session_start();
-if (isset($_SESSION['user'])) {
+$userGuest = false;
+$userSet = isset($_SESSION['username']);
+if($userSet && explode(":",$_SESSION['username'])[0] == "guest") //check, register ein user ist, der daten angibt
+        $userGuest = true;
+        
+if ($userSet AND !$userGuest) {
     header("Location:main.php");
 }
+//check mit userguest
 require_once('_mysql.php');
 require_once('_lang.php');
 require_once("gen.php");
 require_once('_function.php');
 $status = "";
 
-if (isset($_POST['register'])) {
+
+if(isset($_POST['register']) && isset($_GET['guest'])) { //umbennen des accounts
+    $user = filter_input_array(INPUT_POST)["user"];
+    $pass = filter_input_array(INPUT_POST)["pass"];
+    $pass2 = filter_input_array(INPUT_POST)["pass2"];
+    $userExists = queryExistsUser($user);
+    
+    if ($pass === $pass2 && strlen($user) < 13 && strlen($user) > 2 && !$userExists && checkUsername($user)) {
+        //Registrieren
+        $status = queryGuestRegister($_SESSION['username'], $user, $pass);
+    } else if ($userExists) {
+        $status = "username_exists";
+    } else if ($pass !== $pass2) {
+        $status = "password_not_correct";
+    } else if (strlen($user) >= 13 OR strlen($user) <= 2) {
+        $status = "user_too_short_long";
+    } else if (!checkUsername($user)) {
+        $status = "bad_user_char";
+    } else if(countEmail($email) > 0) {
+        $status = "email_taken";
+    } else {
+        $status = "wrong_input_reg";
+    }
+    
+    if ($status === "ok_reg") {
+        setcookie ("guestpw", "", time() - 3600);
+        
+        queryLogin($user, $pass);
+        saveSession($_SESSION["user_id"]);
+        header('location: main.php?reg=ok_reg');
+    } else {
+        var_dump("test");
+        header('location: main.php?reg='.$status);
+    }
+    
+
+} else if (isset($_POST['register'])) {
     $user = filter_input_array(INPUT_POST)["user"];
     $pass = filter_input_array(INPUT_POST)["pass"];
     $pass2 = filter_input_array(INPUT_POST)["pass2"];
     $email = filter_input_array(INPUT_POST, FILTER_VALIDATE_EMAIL)["email"];
     $userExists = queryExistsUser($user);
 
-    if ($pass === $pass2 && strlen($user) < 13 && strlen($user) > 2 && !$userExists && checkUsername($user)) {
+    if ($pass === $pass2 && strlen($user) < 13 && strlen($user) > 2 && !$userExists && checkUsername($user) && countEmail($email) < 1) {
         //Registrieren
         $status = queryRegister($user, $pass, $email);
     } else if ($userExists) {
@@ -27,13 +70,16 @@ if (isset($_POST['register'])) {
         $status = "user_too_short_long";
     } else if (!checkUsername($user)) {
         $status = "bad_user_char";
+    } else if(countEmail($email) > 0) {
+        $status = "email_taken";
     } else {
         $status = "wrong_input_reg";
     }
 
     if ($status === "ok_reg") {
+        queryLogin($user, $pass);
         saveSession($_SESSION["user_id"]);
-        header('location: main.php');
+        header('location: main.php?reg=ok_reg');
     }
     $error = $status;
 } else if (isset($_POST['guest'])) {
@@ -43,6 +89,8 @@ if (isset($_POST['register'])) {
     if ($guest) {
         $status = queryLogin($guest[0], $guest[1]);
         if ($status === "ok_user") {
+            $user = queryPlayerByID($_SESSION["user_id"]);
+            login($_SESSION["user_id"], $user["username"], $user["lang"]);
             saveSession($_SESSION["user_id"]);
             header('location: main.php');
         }
@@ -62,7 +110,7 @@ if (isset($_POST['register'])) {
             saveGuestDetails($user, $pass);
             header('location: main.php');
         } else
-            $staus = "database_error";
+            $status = "database_error";
     }
 } else {
     $error = NULL;
