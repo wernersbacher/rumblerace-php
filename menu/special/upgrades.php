@@ -33,6 +33,7 @@ if (isset($post["action"]) && $post["action"] == "buyUpgradePoint") { //Kaufen e
         $status = upgradeById($node["this_id"], $node["thisCost"]);
 
         $free -= $node["thisCost"];
+        $used += $node["thisCost"];
         $tree = getUpgradeTree();
     } else {
         $status = "upgrade_error";
@@ -57,15 +58,17 @@ function checkNodeBuyable($node) {
 
 //Ausgabe der Punkteübersicht
 $total = $used + $free;
+$up_cost = getUpgradePointCost($bought);
+if($up_cost > getPlayerMoney()) $dis = "disabled"; else $dis = ""; 
 $output .= "<div class='settings'>
     " . put("used_points", $l) . " <b>$used</b><br/>
     " . put("unused_points", $l) . " <b>$free</b>
         
         <div class='buttonTopRight'>
-            " . put("buy_another_point", $l) . " <b>" . dollar(getUpgradePointCost($bought)) . "</b>
+            " . put("buy_another_point", $l) . " <b>" . dollar($up_cost) . "</b>
             <form method='POST' style='display:inline-block;' action='?page=special&sub=upgrades'>
                 <input type='hidden' name='action' value='buyUpgradePoint'>
-                <input class='tableTopButton' name='send' type='submit' value='" . put("buy", $l) . "'>
+                <input class='tableTopButton' name='send' type='submit' value='" . put("buy", $l) . "' $dis>
             </form>
         </div>
     </div>

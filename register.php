@@ -34,7 +34,7 @@ if(isset($_POST['register']) && isset($_GET['guest'])) { //umbennen des accounts
         $status = "user_too_short_long";
     } else if (!checkUsername($user)) {
         $status = "bad_user_char";
-    } else if(countEmail($email) > 0) {
+    } else if(countEmail($email) > 0 AND strlen($email) >0) {
         $status = "email_taken";
     } else {
         $status = "wrong_input_reg";
@@ -59,7 +59,7 @@ if(isset($_POST['register']) && isset($_GET['guest'])) { //umbennen des accounts
     $email = filter_input_array(INPUT_POST, FILTER_VALIDATE_EMAIL)["email"];
     $userExists = queryExistsUser($user);
 
-    if ($pass === $pass2 && strlen($user) < 13 && strlen($user) > 2 && !$userExists && checkUsername($user) && countEmail($email) < 1) {
+    if ($pass === $pass2 && strlen($user) < 13 && strlen($user) > 2 && !$userExists && checkUsername($user) && (countEmail($email) < 1 OR strlen($email) < 1)) {
         //Registrieren
         $status = queryRegister($user, $pass, $email);
     } else if ($userExists) {
@@ -70,7 +70,7 @@ if(isset($_POST['register']) && isset($_GET['guest'])) { //umbennen des accounts
         $status = "user_too_short_long";
     } else if (!checkUsername($user)) {
         $status = "bad_user_char";
-    } else if(countEmail($email) > 0) {
+    } else if(countEmail($email) > 0 AND strlen($email) >0) {
         $status = "email_taken";
     } else {
         $status = "wrong_input_reg";

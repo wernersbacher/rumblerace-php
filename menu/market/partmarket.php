@@ -151,20 +151,22 @@ if ($mode == "buy" && isset($get["id"])) {
     $output .= "</table>";
 
     //Anzahl der Seiten ausgegeben
+    $output .= "<div class='pages'>";
     if ($menge > 1)
         for ($a = 0; $a < $menge; $a++) {
             $b = $a + 1;
 
             //Wenn der User sich auf dieser Seite befindet, keinen Link ausgeben 
             if ($s == $b) {
-                $output .= "  <b>$b</b> ";
+                $output .= "  <span><b>$b</b></span> ";
             }
 
             //Aus dieser Seite ist der User nicht, also einen Link ausgeben 
             else {
-                $output .= "  <a href=\"?page=market&sub=partmarket&s=$b\">$b</a> ";
+                $output .= "  <span><a href=\"?page=market&sub=partmarket&s=$b\">$b</a></span> ";
             }
         }
+        $output .= "</div>";
 }
 
 $output .= "</div>";

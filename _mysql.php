@@ -452,7 +452,7 @@ function queryPartBuy($part_id, $price, $dur) {
 
 function queryRunningPartTime($part) {
     global $mysqli;
-    $sql = "SELECT sr.time_end as time_end, pa.duration as duration FROM storage_run sr
+    $sql = "SELECT sr.time_end as time_end, sr.dur as saved_dur, pa.duration as duration FROM storage_run sr
             LEFT JOIN parts pa
                 ON pa.id = sr.part_id
                 WHERE pa.part = '" . mysqli_real_escape_string($mysqli, $part) . "' AND sr.user_id = '" . $_SESSION["user_id"] . "'";
@@ -1488,9 +1488,6 @@ function resetTuningParts($garage_id) {
 
 //Upgrades
 function getUserUpgrades() {
-    /*$sql = "SELECT * FROM upgrades up, 
-        upgrades_user uu 
-        WHERE up.id = uu.up_id AND uu.user_id = '" . $_SESSION["user_id"] . "'";*/
     $sql = "SELECT * FROM upgrades up 
             LEFT JOIN upgrades_user uu
             ON up.id = uu.up_id AND uu.user_id = " . $_SESSION["user_id"];
@@ -1498,9 +1495,9 @@ function getUserUpgrades() {
     if ($entry) {
         while ($row = mysqli_fetch_assoc($entry)) {
             if(is_null($row["ups"]))
-                $data[$row["name"]] = 0;
+                $data[$row["name"]] = false;
             else
-                $data[$row["name"]] = $row["ups"];
+                $data[$row["name"]] = array("ups" => $row["ups"], "effect" => $row["effect"]);
         }
         if (isset($data))
             return $data;
@@ -1604,4 +1601,34 @@ function upgradeById($up_id, $cost) { //set the upgrade to the db and remove fre
     }
     mysqli_autocommit($mysqli, TRUE);
     return $out;
+}
+
+//Chat System
+
+function saveToDB($user, $msg) {
+    global $mysqli;
+    mysqli_autocommit($mysqli, FALSE);
+
+    $addMsg = mysqli_query($mysqli, "INSERT INTO chat_msg (user, msg, timestamp) 
+            values ('" . $user . "', '" . mysqli_real_escape_string($mysqli, $msg) . "', '".time()."')"
+    );
+    $updateStat = mysqli_query($mysqli, "UPDATE stats
+            SET chat_count = chat_count+1
+            WHERE id = '" . $_SESSION["user_id"] . "'"
+    );
+    if ($addMsg && $updateStat) {
+        mysqli_commit($mysqli);
+        $out = "msg_saved";
+    } else {
+        mysqli_rollback($mysqli);
+        $out = "database_error";
+    }
+    mysqli_autocommit($mysqli, TRUE);
+    return $out;
+}
+
+function loadFromDB($limit) {
+    $sql = "SELECT * FROM chat_msg LIMIT $limit";
+    
+    return getArray($sql);
 }

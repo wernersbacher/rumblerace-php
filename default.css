@@ -163,9 +163,11 @@ h2 {
 
 #player-info {
     width: 200px;
-    background: #ECECEC;
-    padding:10px;
-    position:relative;
+    background: #f7f7f7;
+    padding: 10px;
+    position: relative;
+    border-radius: 3px;
+    border: 1px solid grey;
 }
 
 .playername {

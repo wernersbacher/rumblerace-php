@@ -257,7 +257,7 @@ http://wernersbacher.de
 
                 <br/>
 
-                <a href="http://markus.wernersbacher.de/pages/about-this-website/">&copy; wernersbacher 2015-2016</a><br/>
+                <a href="http://markus.wernersbacher.de/pages/about-this-website/">&copy; wernersbacher 2017</a><br/>
                 <noscript> <?php echo put("noscript", $l) ?><br/> </noscript>
                 <?php echo getLangChange() ?> | ALPHA 0.1.3 <br/> 
                 <?php echo "Server: " . date("d M Y H:i:s"); ?>

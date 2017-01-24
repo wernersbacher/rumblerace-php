@@ -1,19 +1,26 @@
 THIS RELEASE
 
-* same car config
+* upgrade automatisch auslesen lassen!!
+* mehr upgrades einbauen 
+* balancing
+
+* same car config (??)
 * autos dauern bis sie wieder gekauft werden können
 * turbo teurer
-* balancing
-* irgendwelche live daten einbauen
-* max autos in garage
 * mehr ep später
-* ep mal ausrechnen für mich
 * left side free points
-* serverweite upgrades investieren
-
+* nicht genug geld fehler bei spritgewinn
+* faq: skill
+* optionen: schalter für infoboxen
+* tuning balken korrigieren
 
 
 NEXT RELEASE
+* irgendwelche live daten einbauen
+* ep mal ausrechnen für mich
+* serverweite upgrades investieren
+* mobiles design
+* admin konsole
 * piwik
 * switches: dont get system sms
 * js drpdown menü
@@ -95,10 +102,6 @@ ERFOLGE
 * rennen voll beendet
 * rennübersetzungen
 
-GUEST TODO
-* wenn ein cookie mit details vorhanden ist, nutze diese zum login
-* speichern eines eigenen namens und passwort, statt reg. wird dabei einfach umbenannt, saveSession neu
--> box wird stetig angezeigt
 
 ADMIN PANEL
 Löschen von Usern

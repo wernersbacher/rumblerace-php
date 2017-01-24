@@ -23,10 +23,17 @@ class ComposerStaticInitaa2fa5357436c415f45d1956655354ae
         ),
     );
 
+    public static $classMap = array (
+        'Pusher' => __DIR__ . '/..' . '/pusher/pusher-php-server/lib/Pusher.php',
+        'PusherException' => __DIR__ . '/..' . '/pusher/pusher-php-server/lib/Pusher.php',
+        'PusherInstance' => __DIR__ . '/..' . '/pusher/pusher-php-server/lib/Pusher.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixesPsr0 = ComposerStaticInitaa2fa5357436c415f45d1956655354ae::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitaa2fa5357436c415f45d1956655354ae::$classMap;
 
         }, null, ClassLoader::class);
     }

@@ -1,102 +1,147 @@
+<?php include("../_checkuser.php"); ?>
+
+<!--
+TOPO Chat
+
+User anklickbar
+User für Admin sperrbar
+Nachrichtenspam vermeiden
+
+-->
+
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset='UTF-8' />
-<style type="text/css">
-<!--
-.chat_wrapper {
-	width: 500px; 
-	margin-right: auto;
-	margin-left: auto;
-	background: #CCCCCC;
-	border: 1px solid #999999;
-	padding: 10px;
-	font: 12px 'lucida grande',tahoma,verdana,arial,sans-serif;
-}
-.chat_wrapper .message_box {
-	background: #FFFFFF;
-	height: 150px;
-	overflow: auto;
-	padding: 10px;
-	border: 1px solid #999999;
-}
-.chat_wrapper .panel input{
-	padding: 2px 2px 2px 5px;
-}
-.system_msg{color: #BDBDBD;font-style: italic;}
-.user_name{font-weight:bold;}
-.user_message{color: #88B6E0;}
--->
-</style>
-</head>
-<body>	
-<?php 
-$colours = array('007AFF','FF7000','FF7000','15E25F','CFC700','CFC700','CF1100','CF00BE','F00');
-$user_colour = array_rand($colours);
-?>
+    <head>
+        <meta charset='UTF-8' />
+        <style type="text/css">
+            <!--
+            .chat_wrapper {
+                width: 533px; 
+                margin-right: auto;
+                margin-left: auto;
+                background: #CCCCCC;
+                border: 1px solid #999999;
+                padding: 10px;
+                font: 12px 'lucida grande',tahoma,verdana,arial,sans-serif;
+            }
+            .chat_wrapper .message_box {
+                background: #FFFFFF;
+                height: 245px;
+                overflow: auto;
+                padding: 10px;
+                border: 1px solid #999999;
+            }
+            .chat_wrapper .panel input{
+                padding: 2px 2px 2px 5px;
+            }
+            .panel {
+                margin-top: 7px;
+            }
+            .system_msg{color: #BDBDBD;font-style: italic;}
+            .user_name{font-weight:bold;}
+            .user_message{color: #88B6E0;}
+            -->
+        </style>
+        <script src="https://js.pusher.com/3.2/pusher.min.js"></script>
+    </head>
+    <body>	
+        <?php
+        $colours = array('007AFF', 'FF7000', 'FF7000', '15E25F', 'CFC700', 'CFC700', 'CF1100', 'CF00BE', 'F00');
+        $user_colour = array_rand($colours);
+        
+        $chat = loadFromDB(30);
+        $preload = "";
+        foreach ($chat as $line) {
+            $preload .= "<div><span class=\"user_name\">" .$line["user"]. "</span>: <span class=\"user_message\">".$line["msg"]."</span></div>\n";
+            
+        } $preload .= "<hr/>"
+        
+        ?>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 
-<script language="javascript" type="text/javascript">  
-$(document).ready(function(){
-	//create a new WebSocket object.
-	var wsUri = "ws://facethepace.com:61443/chat/server.php"; 	
-	websocket = new WebSocket(wsUri); 
-	
-	websocket.onopen = function(ev) { // connection is open 
-		$('#message_box').append("<div class=\"system_msg\">Connected!</div>"); //notify user
-	};
+        <script language="javascript" type="text/javascript">
+            $(document).ready(function () {
 
-	$('#send-btn').click(function(){ //use clicks message send button	
-		var mymessage = $('#message').val(); //get message text
-		var myname = "Testuser";
-		
-		if(mymessage === ""){ //emtpy message?
-			alert("Enter Some message Please!");
-			return;
-		}
-		
-		//prepare json data
-		var msg = {
-		message: mymessage,
-		name: myname,
-		color : '<?php echo $colours[$user_colour]; ?>'
-		};
-		//convert and send data to server
-		websocket.send(JSON.stringify(msg));
-	});
-	
-	//#### Message received from server?
-	websocket.onmessage = function(ev) {
-		var msg = JSON.parse(ev.data); //PHP sends Json data
-		var type = msg.type; //message type
-		var umsg = msg.message; //message text
-		var uname = msg.name; //user name
-		var ucolor = msg.color; //color
+                function sendMessage() {
+                    var mymessage = $('#message').val(); //get message text
 
-		if(type === 'usermsg') 
-		{
-			$('#message_box').append("<div><span class=\"user_name\" style=\"color:#"+ucolor+"\">"+uname+"</span> : <span class=\"user_message\">"+umsg+"</span></div>");
-		}
-		if(type === 'system')
-		{
-			$('#message_box').append("<div class=\"system_msg\">"+umsg+"</div>");
-		}
-		
-		$('#message').val(''); //reset text
-	};
-	
-	websocket.onerror	= function(ev){$('#message_box').append("<div class=\"system_error\">Error Occurred - "+ev.data+"</div>");}; 
-	websocket.onclose 	= function(ev){$('#message_box').append("<div class=\"system_msg\">Connection Closed</div>");}; 
-});
-</script>
-<div class="chat_wrapper">
-<div class="message_box" id="message_box"></div>
-<div class="panel">
-<input type="text" name="message" id="message" placeholder="Message" maxlength="80" style="width:60%" />
-<button id="send-btn">Send</button>
-</div>
-</div>
+                    if (mymessage === "") { //emtpy message?
+                        return;
+                    }
 
-</body>
+                    //prepare json data
+                    var msg = {
+                        type: "user",
+                        message: mymessage
+                    };
+                    //send data to server
+                    //$.post("send.php", JSON.stringify(msg));
+
+                    $.ajax({
+                        type: "POST",
+                        url: "send.php",
+                        data: msg,
+                        success: function(data) {console.log(data);}
+                    });
+
+                    $('#message').val("");
+                }
+
+
+                //Get messages from PUSHER
+                // Enable pusher logging - don't include this in production
+                Pusher.logToConsole = false;
+
+                var pusher = new Pusher('b41c8eb316335d2af468', {
+                    cluster: 'eu',
+                    encrypted: true
+                });
+
+                var channel = pusher.subscribe('main-chat');
+                channel.bind('new-msg', function (data) {
+                    var msg = JSON.parse(data); //PHP sends Json data
+                    console.log(msg);
+                    var type = msg.type; //message type
+                    var umsg = msg.message; //message text
+                    var uname = msg.sender; //user name
+                    var ucolor = msg.color; //color
+
+                    if (type === 'system')
+                    {
+                        $('#message_box').append("<div class=\"system_msg\">" + umsg + "</div>");
+                    } else
+                    {
+                        $('#message_box').append("<div><span class=\"user_name\" style=\"color:#" + ucolor + "\">" + uname + "</span>: <span class=\"user_message\">" + umsg + "</span></div>");
+                    }
+
+                    $('#message').val(''); //reset text
+                });
+
+                //Send Data to server
+
+                $($('#message')).keypress(function (e) {
+                    if (e.which === 13) {
+                        sendMessage();
+                    }
+                });
+
+                $('#send-btn').click(function () { //use clicks message send button
+                    sendMessage();
+
+                });
+
+            });
+        </script>
+        <div class="chat_wrapper">
+            <div class="message_box" id="message_box">
+                <?php echo $preload ?>
+            </div>
+            <div class="panel">
+                <input type="text" name="message" id="message" placeholder="Message" maxlength="200" style="width:60%" />
+                <button id="send-btn">Send</button>
+            </div>
+        </div>
+
+    </body>
 </html>

@@ -10,7 +10,7 @@ function buildNewPart($part, $liga) {
     $data = queryPartData($part, $liga);
     $price = $data["preis"];
     $part_id = $data["id"];
-    $dur = getTuningDur($data["duration"]);
+    $dur = $data["duration"];
 
     if ($money >= $price && !$isStillRunning) {
         return queryPartBuy($part_id, $price, $dur);
@@ -71,7 +71,7 @@ if ($mode == "parts") { // Wenn eine Kategorie gewählt wurde
                 $worst = $data["worst"];
                 $best = $data["best"];
                 $preis = dollar($data["preis"]);
-                $dur = getTuningDur($data["duration"]);
+                $dur = $data["duration"];
 
                 if ($liga == 1) { //nur beim ersten element ausgabe setzen (rest JS)
                     $checked = "checked";
@@ -115,7 +115,7 @@ if ($mode == "parts") { // Wenn eine Kategorie gewählt wurde
         if ($isPartRunningNow === $part) {
             $durData = queryRunningPartTime($part);
             $time_to_end = $durData["time_end"] - time();
-            $duration = $durData["saved_dur"];
+            $duration = $durData["duration"];
             $time_went = $duration - $time_to_end;
 
             if ($time_went > 0)
