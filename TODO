@@ -1,6 +1,6 @@
 THIS RELEASE
 
-* upgrade automatisch auslesen lassen!!
+* chat nochmal testen bzw pusher
 * mehr upgrades einbauen 
 * balancing
 
@@ -11,11 +11,13 @@ THIS RELEASE
 * left side free points
 * nicht genug geld fehler bei spritgewinn
 * faq: skill
-* optionen: schalter für infoboxen
 * tuning balken korrigieren
+* ssl for everyone
 
 
 NEXT RELEASE
+* optionen: schalter für infoboxen
+* filter für alle tabellen
 * irgendwelche live daten einbauen
 * ep mal ausrechnen für mich
 * serverweite upgrades investieren
@@ -28,7 +30,7 @@ NEXT RELEASE
 * changelog
 * garage car id speicherung ändern
 * legend driver
-* dialoge personalisierien
+* dialoge designen
 * nur eigene sachen auf dem markt anzeigen (checkbox)
 * del sms
 * time left zeitzonen
@@ -37,15 +39,12 @@ NEXT RELEASE
 * verträge an andere spieler
 * support us und faq, texte in 2 sprachen
 * perf verbessern
-* balancing
 * liga symbole über 9
 * rennen position speichern
 * mehrere tuningteile bauen? upgrade
 * bonus countdown
-* webchat
 * fahrermarkt
 * coins
-* mechaniker/upgrades einbauen
 * Liga Fortschritt 
 * Ligas schalten Markt und Upgrades frei
 * Admin Interface für Nachrichten/news
@@ -58,10 +57,8 @@ NEXT RELEASE
 * Teil grün markieren, wenn beste und rot entsprechend
 * mechaniker engagieren 
 * achievements
-* autos verkaufen
 * coins und fax einführen, changelog
 * schönere logos
-* Händler und Garage mit jQuery filtern
 * Profil
 * Autos bekommen veteranen status (exp werden auch auf autos verdient)
 * teile und autos zum schrotti (10% wert oder so)
@@ -71,7 +68,6 @@ NEXT RELEASE
 * buy max
 * sicherheitsfragen abschalten
 * popup bei nachricht
-* session anlegen bei register?
 * tooltips
 
 WERBUNG
@@ -86,7 +82,6 @@ IRGENDWANN MAL
 * aktien?!
 
 UPGRADES
-* Mechaniker, welche die Tuningzeit verkürzen
 * Mehr Geld von rennen
 * billigere upgrades von fahrern und billigere fahrer
 * weniger sprit verbrauch

@@ -432,8 +432,8 @@ function queryPartBuy($part_id, $price, $dur) {
     $time_end = time() + $dur;
     mysqli_autocommit($mysqli, FALSE);
 
-    $addPart = mysqli_query($mysqli, "INSERT INTO storage_run (user_id, part_id, time_end) 
-            values ('" . $_SESSION["user_id"] . "', '" . mysqli_real_escape_string($mysqli, $part_id) . "', '" . $time_end . "')"
+    $addPart = mysqli_query($mysqli, "INSERT INTO storage_run (user_id, part_id, time_end, dur) 
+            values ('" . $_SESSION["user_id"] . "', '" . mysqli_real_escape_string($mysqli, $part_id) . "', '" . $time_end . "', '$dur')"
     );
     $spend = mysqli_query($mysqli, "UPDATE stats
             SET money = money - $price
@@ -1233,13 +1233,15 @@ function querySpritAdd() {
     $addCar = mysqli_query($mysqli, "UPDATE stats
             SET sprit = $sprit
             WHERE id = '" . $_SESSION["user_id"] . "'");
-    $spend = mysqli_query($mysqli, "UPDATE sprit_upt
+    
+    $ssql= "UPDATE sprit_upt
             SET updated = '" . time() . "'
-            WHERE id = '" . $_SESSION["user_id"] . "'"
+            WHERE user_id = '" . $_SESSION["user_id"] . "'";
+    $spend = mysqli_query($mysqli, $ssql
     );
     if ($addCar && $spend) {
         mysqli_commit($mysqli);
-        $out = "spit_added";
+        $out = "sprit_added";
     } else {
         mysqli_rollback($mysqli);
         $out = "database_error";

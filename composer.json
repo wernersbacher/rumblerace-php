@@ -9,6 +9,8 @@
         }
     ],
     "require": {
-        "ircmaxell/random-lib": "^1.2"
+        "ircmaxell/random-lib": "^1.2",
+        "pusher/pusher-php-server": "^2.6",
+        "league/event": "^2.1"
     }
 }

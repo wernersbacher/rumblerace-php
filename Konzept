@@ -1,7 +1,12 @@
 EP VERTEILUNG
 
-EP eines Rennen werden dem Spieler/Player gutschrieben, sowie das Geld, abhängig von den PS und Fahrerskill
-- calcReward (Geld)
-- calcExpReward 
+EP werden dem Spieler/Fahrer gutgeschrieben; umso öfter das Rennen gefahren wurde, desto weniger EP gibt es 
+-> muss regenerieren
 
-EP eines Rennen werden dem Fahrer gutgeschrieben, zudem bekommt er einen gewissen Profit vom Gewinn ab.
+Dazu eine Funktion basteln, die zurückgibt, wieviel EP es gibt, aufgrund der Base EP und der letzten Fahrt des Fahrers.
+Die Regeneration hängt von der Dauer des Rennens ab.
+Regeneration Dauer: Renndauer * (9-Liga)
+Die EP sind unabhängig von Skill etc.
+
+Geldgewinne:
+Wird runtergebrochen, nach Skill

@@ -1,5 +1,5 @@
 <?php
-error_reporting(E_ERROR | E_WARNING | E_PARSE);
+error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 $get = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
 $post = filter_input_array(INPUT_POST);
 
@@ -257,7 +257,7 @@ http://wernersbacher.de
 
                 <br/>
 
-                <a href="http://markus.wernersbacher.de/pages/about-this-website/">&copy; wernersbacher 2017</a><br/>
+                <a href="http://markus.wernersbacher.de/pages/about-this-website/">&copy; wernersbacher 2016-2017</a><br/>
                 <noscript> <?php echo put("noscript", $l) ?><br/> </noscript>
                 <?php echo getLangChange() ?> | ALPHA 0.1.3 <br/> 
                 <?php echo "Server: " . date("d M Y H:i:s"); ?>

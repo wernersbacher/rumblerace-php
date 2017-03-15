@@ -279,6 +279,10 @@ select {
     text-align:center;
 }
 
+.right-border-grey {
+    border-right: 1px solid grey !important;
+}
+
 tr:nth-child(odd) {
     background-color:#eee; 
 }

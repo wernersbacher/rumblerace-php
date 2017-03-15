@@ -95,12 +95,13 @@ function calcSpritMin() {
 
 function calcNewSprit() {
     $sps = calcSpritMin() / 60;
-    $old = getPlayerSprit();
+    $old = intval(getPlayerSprit());
     $last = getLastSpritUpdate();
     $now = time();
     $max = getMaxSprit();
 
     $sprit = ($now - $last) * $sps + $old; //Neuer Sprit wert
+    
     if ($sprit > $max)
         $sprit = $max;
     return $sprit;
@@ -417,7 +418,7 @@ function isLoggedIn() {
             return false;
         }
         $usertoken = getTokenByUserID($user_id);
-        if (hash_equals($usertoken, $token)) {
+        if (is_string($usertoken) && hash_equals($usertoken, $token)) {
             return $user_id;
         } else
             return false;

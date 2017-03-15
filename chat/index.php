@@ -52,16 +52,21 @@ Nachrichtenspam vermeiden
         $chat = loadFromDB(30);
         $preload = "";
         foreach ($chat as $line) {
-            $preload .= "<div><span class=\"user_name\">" .$line["user"]. "</span>: <span class=\"user_message\">".$line["msg"]."</span></div>\n";
-            
+            $preload .= "<div><span class=\"user_name\">" . $line["user"] . "</span>: <span class=\"user_message\">" . $line["msg"] . "</span></div>\n";
         } $preload .= "<hr/>"
-        
         ?>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 
         <script language="javascript" type="text/javascript">
+
+            function htmlEntities(str) {
+                return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+            }
             $(document).ready(function () {
+                
+                var objDiv = document.getElementById("message_box");
+                
 
                 function sendMessage() {
                     var mymessage = $('#message').val(); //get message text
@@ -82,10 +87,13 @@ Nachrichtenspam vermeiden
                         type: "POST",
                         url: "send.php",
                         data: msg,
-                        success: function(data) {console.log(data);}
+                        success: function (data) {
+                            console.log(data);
+                        }
                     });
-
+                    //$('#message_box').append("<div><span class=\"user_name\" style=\"color:darkblue\">Ich</span>: <span class=\"user_message\">" + htmlEntities(mymessage) + "</span></div>");
                     $('#message').val("");
+                    objDiv.scrollTop = objDiv.scrollHeight;
                 }
 
 

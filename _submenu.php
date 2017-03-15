@@ -30,11 +30,11 @@ $m["race"] = ["racing", "endurance", "running"];
 $m["options"] = ["settings"];
 $m["help"] = ["faq", "newbie"];
 //$m["special"] = ["chat", "upgrades", "achievements", "mainstats", "globalstats"];
-$m["special"] = ["upgrades", "chat", "globalstats"];
+$m["special"] = ["quests", "upgrades", "chat", "globalstats"];
 //$m["logout"] = [""];
 
 //So wird ein neuer Menüpunkt hinzugefügt:
 // Hier eintragen
 // Datei anlegen
-// in main.php hinzufügen (Bei übgeordnetem Punkt)
+// in main.php hinzufügen (nur Bei übgeordnetem Punkt)
 // Übersetzungen eintragen

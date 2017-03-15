@@ -13,7 +13,7 @@ function getNodeByName($tree, $name) {
     return false;
 }
 
-function getNodeById($tree, $id) {
+function getNodeById($tree, $id) { 
 
     foreach ($tree as $node) {
         if ($node["this_id"] == $id)

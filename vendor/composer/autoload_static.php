@@ -6,6 +6,20 @@ namespace Composer\Autoload;
 
 class ComposerStaticInitaa2fa5357436c415f45d1956655354ae
 {
+    public static $prefixLengthsPsr4 = array (
+        'L' => 
+        array (
+            'League\\Event\\' => 13,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'League\\Event\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/league/event/src',
+        ),
+    );
+
     public static $prefixesPsr0 = array (
         'S' => 
         array (
@@ -32,6 +46,8 @@ class ComposerStaticInitaa2fa5357436c415f45d1956655354ae
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->prefixLengthsPsr4 = ComposerStaticInitaa2fa5357436c415f45d1956655354ae::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitaa2fa5357436c415f45d1956655354ae::$prefixDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInitaa2fa5357436c415f45d1956655354ae::$prefixesPsr0;
             $loader->classMap = ComposerStaticInitaa2fa5357436c415f45d1956655354ae::$classMap;
 

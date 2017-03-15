@@ -67,6 +67,7 @@ $lg["s_racing"] = ["Races", "Rennen"];
 $lg["s_mainstats"] = ["Your stats", "Deine Statistiken"];
 $lg["s_globalstats"] = ["Global stats", "Globale Statistiken"];
 $lg["s_chat"] = ["Chat", "Chat"];
+$lg["s_quests"] = ["Quests", "Aufträge"];
 $lg["s_settings"] = ["Settings", "Einstellungen"];
 $lg["s_logout"] = ["Confirm", "Bestätigen"];
 $lg["s_upgrades"] = ["Upgrades", "Upgrades"];
