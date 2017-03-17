@@ -42,7 +42,7 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
                 <div class='carTuningTitle'>" . $car["title"] . "
                     <img src='img/liga/" . $car["liga"] . ".png' />
                 </div>
-                <div class='carTuningInfo'>" . $car["ps"] . " " . put("hp", $l) . "</div>
+                <div class='carTuningInfo'>Nice car.</div>
                 <div id='car_sketch'>";
 
     $katNames = queryTuningKats();
@@ -53,7 +53,7 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
     foreach ($katNames as $kat) {
 
         //Direktes Ausgeben desr SKetchangaben
-        $output.= "<div id = '$kat' class = 'tuningPart'>
+        $output .= "<div id = '$kat' class = 'tuningPart'>
         <div class = 'tuningPartName'>" . put($kat, $l) . "</div>
         </div>";
 
@@ -72,7 +72,11 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
 
             //Ausgeben der aktuell eingebauten Sachen.
             if (array_key_exists($part, $mountedParts)) {
-                $select .= "<option value='none'>" . $mountedParts[$part]["value"] . " " . put("unit_" . $kat, $l) . " (" . $mountedParts[$part]["liga"] . ") **</option>";
+                $acc = $mountedParts[$part]["acc"];
+                $speed = $mountedParts[$part]["speed"];
+                $hand = $mountedParts[$part]["hand"];
+                $dura = $mountedParts[$part]["dura"];
+                $select .= "<option value='none'>". outputDetails($acc, $speed, $hand, $dura)." (" . $mountedParts[$part]["liga"] . ") **</option>";
             }
 
             $select .= "<option value='0'>----------</option>";
@@ -80,8 +84,13 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
             //ausgeben der Teile im Lager
             if ($storage)
                 foreach ($storage as $item) {
+
                     if ($item["part"] == $part && $item["liga"] == $car["liga"] && $item["garage_id"] == 0) {
-                        $select .= "<option value='" . $item["id"] . "'>" . $item["value"] . " " . put("unit_" . $kat, $l) . " (" . $item["liga"] . ")</option>";
+                        $acc = $item["acc"];
+                        $speed = $item["speed"];
+                        $hand = $item["hand"];
+                        $dura = $item["dura"];
+                        $select .= "<option value='" . $item["id"] . "'>". outputDetails($acc, $speed, $hand, $dura)." (" . $item["liga"] . ")</option>";
                     }
                 }
 
@@ -95,7 +104,7 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
         $select .= "</table>";
     }
 
-    $output.= "</div>"; //Schließen des sketches
+    $output .= "</div>"; //Schließen des sketches
     //Tuning ausgeben
 
     $output .= "<form method='POST' action='?page=garage&sub=cars&mode=tune'>";
@@ -106,9 +115,8 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
 
     $output .= "</div>";
 } else { //Übersicht der Autos ausgeben
-    
     $output = outputTut("cd_your_cars", $l);
-    
+
     if (isset($post["action"]) && isset($post["garage_id"])) {
         //Auto verkaufen
         $garage_id = intval($post["garage_id"]);
@@ -122,29 +130,29 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
         $output .= put($sellCar, $l);
         $output .= "</span>";
     }
-    
+
     $cars = queryPlayerCars(); // Autos auslesen
     $nowCars = count($cars);
     $maxCars = getMaxCars();
-    $left = $maxCars-$nowCars;
+    $left = $maxCars - $nowCars;
 
     $output .= "<div class='settings'>
-            ".put("garage_full_1", $l)." <b>$left</b> ".put("garage_full_2", $l)." ($nowCars/$maxCars) <br/>
-            ".put("garage_more_space", $l)."
+            " . put("garage_full_1", $l) . " <b>$left</b> " . put("garage_full_2", $l) . " ($nowCars/$maxCars) <br/>
+            " . put("garage_more_space", $l) . "
             </div>";
 
     $output .= "<div id='cardealer'>";
 
-    
+
     if ($cars)
         foreach ($cars as $car) {//$car["title"]
             $carLiga = $car["carLiga"];
-            $partPs = calcPS($car["garage_id"]);
-            $partPrf = calcPerf($car["garage_id"]);
-            $carPs = $car["ps"];
-            $ps = $carPs + $partPs;
-            $perf = $car["perf"] + $partPrf;
-
+            $acc = calcAcc($car["garage_id"]); // [car => 10, parts => 80]
+            $speed = calcSpeed($car["garage_id"]);
+            $hand = calcHand($car["garage_id"]);
+            $dura = calcDura($car["garage_id"]);
+            
+            
             //Autos, die gefahren werden, können nicht getunt oder verkauft werden.
             $disabled = "disabled";
             if (queryCarIsNotRacing($car["garage_id"]))
@@ -161,8 +169,10 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
                         </div>
 
                         <div class='dealInfo'>
-                            <span>" . ps($ps) . " (" . ps($carPs) . " + " . ps($partPs) . ")</span> 
-                            <span>$perf Perf. (" . $car["perf"] . " + " . $partPrf . " Perf.)</span> 
+                            <span>A: ".$acc["sum"]." (".$acc["car"]." + ".$acc["parts"].")</span> 
+                            <span>S: ".$speed["sum"]." (".$speed["car"]." + ".$speed["parts"].")</span> 
+                            <span>H: ".$hand["sum"]." (".$hand["car"]." + ".$hand["parts"].")</span> 
+                            <span>D: ".$dura["sum"]." (".$dura["car"]." + ".$dura["parts"].")</span> 
                         </div>
 
                     </div>
@@ -184,9 +194,9 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
                     </div>
                </div>";
         } else {
-            $output .= "<div class='settings'>
-            ".put("garage_empty", $l)."
+        $output .= "<div class='settings'>
+            " . put("garage_empty", $l) . "
             </div>";
-        }
+    }
     $output .= "</div>";
 }

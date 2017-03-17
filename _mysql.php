@@ -257,7 +257,7 @@ function queryAddBugreport($text, $id, $time) {
 
 function queryNewCars($liga) {
 
-    $sql = "SELECT * FROM new_cars WHERE liga <= $liga ORDER BY liga ASC, preis ASC, ps ASC";
+    $sql = "SELECT * FROM new_cars WHERE liga <= $liga ORDER BY liga ASC, preis ASC, acc ASC";
 
     $entry = querySQL($sql);
     if ($entry) {
@@ -308,19 +308,19 @@ function queryCarBuy($model, $cost) {
 }
 
 function queryPlayerCars() {
-    $sql = "SELECT nc.id, gr.id as garage_id, gr.car_id, nc.title, nc.ps, nc.liga as carLiga, nc.name, nc.perf, preis
+    $sql = "SELECT nc.id, gr.id as garage_id, gr.car_id, nc.title, nc.liga as carLiga, nc.name, preis, nc.acc, nc.speed, nc.hand, nc.dura
             FROM garage gr
                 INNER JOIN new_cars nc 
                     ON gr.car_id = nc.name 
             WHERE gr.user_id = '" . $_SESSION["user_id"] . "' AND gr.sell = '0'
-            ORDER BY nc.liga DESC, nc.ps DESC";
+            ORDER BY nc.liga DESC, nc.acc, nc.speed, nc.hand DESC";
 
     return getArray($sql);
 }
 
 function queryPlayerCarID($id) {
     global $mysqli;
-    $sql = "SELECT gr.id as garage_id, gr.car_id, nc.title, nc.ps, nc.liga, nc.perf, preis
+    $sql = "SELECT gr.id as garage_id, gr.car_id, nc.title, nc.liga, preis, nc.acc, nc.speed, nc.hand, nc.dura
             FROM garage gr
                 INNER JOIN new_cars nc 
                     ON gr.car_id = nc.name 
@@ -331,7 +331,7 @@ function queryPlayerCarID($id) {
 
 function queryPlayerPartsID($id) {
     global $mysqli;
-    $sql = "SELECT sr.part, sr.value, sr.liga, pa.kat
+    $sql = "SELECT sr.part, sr.liga, pa.kat, sr.acc, sr.speed, sr.hand, sr.dura
             FROM storage sr
                 INNER JOIN parts pa
                     ON pa.part = sr.part
@@ -340,7 +340,7 @@ function queryPlayerPartsID($id) {
 
     if ($entry) {
         while ($row = mysqli_fetch_assoc($entry)) {
-            $data[$row["part"]] = array("kat" => $row["kat"], "value" => $row["value"], "liga" => $row["liga"]);
+            $data[$row["part"]] = array("kat" => $row["kat"], "liga" => $row["liga"], "acc" => $row["acc"], "speed" => $row["speed"], "hand" => $row["hand"], "dura" => $row["dura"]);
         }
     }
     if (isset($data)) {
@@ -469,6 +469,7 @@ function queryPartsBuildingDone() {
                 sr.part_id as part_id,
                 pa.worst as worst,
                 pa.best as best,
+                pa.acc, pa.speed, pa.hand, pa.dura,
                 pa.liga as liga,
                 pa.part as part
             FROM storage_run sr
@@ -493,10 +494,11 @@ function queryPartsBuildingDone() {
             mysqli_autocommit($mysqli, FALSE);
             $part_id = $part["part_id"];
             $storage_id = $part["storage_id"];
-            $value = getValue($part["worst"], $part["best"]);
+            /*$value = getValue($part["worst"], $part["best"]); DEL*/ 
+            $values = getValues(array("acc" => $part["acc"], "speed" => $part["speed"], "hand" => $part["hand"], "dura" => $part["dura"]));
 
-            $addBuiltPart = mysqli_query($mysqli, "INSERT INTO storage (user_id, part_id, value, liga, part) 
-                values ('" . $_SESSION["user_id"] . "', '" . mysqli_real_escape_string($mysqli, $part_id) . "', '" . $value . "', '" . $part["liga"] . "', '" . $part["part"] . "')"
+            $addBuiltPart = mysqli_query($mysqli, "INSERT INTO storage (user_id, part_id, liga, part, acc, speed, hand, dura) 
+                values ('" . $_SESSION["user_id"] . "', '" . mysqli_real_escape_string($mysqli, $part_id) . "',  '" . $part["liga"] . "', '" . $part["part"] . "', '" . $values["acc"] . "', '" . $values["speed"] . "', '" . $values["hand"] . "', '" . $values["dura"] . "')"
             );
             $deleteProgress = mysqli_query($mysqli, "DELETE
                 FROM storage_run
@@ -515,7 +517,7 @@ function queryPartsBuildingDone() {
 }
 
 function queryStorage() {
-    $sql = "SELECT sr.id as id, sr.value as value, pa.liga as liga, pa.part as part, pa.kat as kat, sr.garage_id
+    $sql = "SELECT sr.id as id, pa.liga as liga, pa.part as part, pa.kat as kat, sr.garage_id, sr.acc, sr.speed, sr.hand, sr.dura
             FROM storage sr
             LEFT JOIN parts pa
                 ON pa.id = sr.part_id
@@ -803,7 +805,7 @@ function queryMarketParts($s, $getAll, $partFilter, $ligaFilter) {
     else
         $limit = " LIMIT $start, $max";
 
-    $sql = "SELECT DISTINCT sr.id, sr.part_id, sr.part, sr.liga, sr.value, sr.sell, us.username, pa.kat
+    $sql = "SELECT DISTINCT sr.id, sr.part_id, sr.part, sr.liga, sr.sell, us.username, pa.kat, sr.acc, sr.speed, sr.hand, sr.dura
             FROM storage sr
             INNER JOIN user us
                 ON us.id = sr.user_id
@@ -866,7 +868,7 @@ function queryMarketSprit($s, $getAll) {
 
 function queryMarketPartData($id) {
     global $mysqli;
-    $sql = "SELECT sr.user_id, sr.part_id, sr.part, sr.liga, sr.value, sr.sell, pa.kat
+    $sql = "SELECT sr.user_id, sr.part_id, sr.part, sr.liga, sr.sell, pa.kat, sr.acc, sr.speed, sr.hand, sr.dura
             FROM storage sr
             LEFT JOIN parts pa
                 ON pa.id = sr.part_id
@@ -1632,5 +1634,11 @@ function saveToDB($user, $msg) {
 function loadFromDB($limit) {
     $sql = "SELECT * FROM chat_msg LIMIT $limit";
     
+    return getArray($sql);
+}
+
+//Items
+function getUserItems() {
+    $sql = "SELECT * FROM items WHERE user_id = '" . $_SESSION["user_id"] . "'";
     return getArray($sql);
 }

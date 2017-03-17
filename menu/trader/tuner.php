@@ -68,24 +68,30 @@ if ($mode == "parts") { // Wenn eine Kategorie gewählt wurde
             $liga = $data["liga"];
 
             if ($data["part"] === $part && $liga <= getPlayerLiga() && $liga > 0) {
-                $worst = $data["worst"];
-                $best = $data["best"];
+                $acc = $data["acc"];
+                $speed = $data["speed"];
+                $hand = $data["hand"];
+                $dura = $data["dura"];
+                
                 $preis = dollar($data["preis"]);
                 $dur = getTuningDur($data["duration"]);
 
                 if ($liga == 1) { //nur beim ersten element ausgabe setzen (rest JS)
                     $checked = "checked";
                     $preis1 = $preis;
-                    $worst1 = $worst;
-                    $best1 = $best;
                     $dur1 = $dur;
+                    
+                    $acc1 = $acc;
+                    $speed1 = $speed;
+                    $hand1 = $hand;
+                    $dura1 = $dura;
                 } else {
                     $checked = "";
                 }
 
                 $labels .= "<label>
-                        <input onclick='setTuneData(\"$part\", \"$preis\", \"$worst\", \"$best\", \"$dur\");' class='tuneLigas' type='radio' name='liga' value='" . $liga . "' $checked>
-                        <img title='$worst - $best (PS)' style='width:23px;' src='img/liga/" . $data["liga"] . ".png'>
+                        <input onclick='setTuneData(\"$part\", \"$preis\", \"$dur\", \"$acc\", \"$speed\", \"$hand\", \"$dura\");' class='tuneLigas' type='radio' name='liga' value='" . $liga . "' $checked>
+                        <img title='Cool!' style='width:23px;' src='img/liga/" . $data["liga"] . ".png'>
                     </label>";
             }
         }
@@ -95,7 +101,7 @@ if ($mode == "parts") { // Wenn eine Kategorie gewählt wurde
                         <img class='tuningImage' src='img/parts/$kat.jpg' />
                     </div>
 
-                    <div class='tuneInfoFlex'>
+                    <div class='tuneInfoFlex tuneInfoFlex150'>
                         <div class='tuneTitle'>
                             " . put($part, $l) . "
                         </div>
@@ -107,9 +113,13 @@ if ($mode == "parts") { // Wenn eine Kategorie gewählt wurde
         //falls gerade kein Teil gebaut wird, darf alles ausgegeben werden
         $output .= "        <div class='tuneBuyDetails'>
                                 <span class='tuneCost'>$preis1</span> | 
-                                <span class='tuneDur'>" . formatSeconds($dur1) . "s</span> |
-                                min. <span class='tuneMin'>$worst1</span> " . put("unit_" . $kat, $l) . ", 
-                                max. <span class='tuneMax'>$best1</span> " . put("unit_" . $kat, $l) . "
+                                <span class='tuneDur'>" . formatSeconds($dur1) . "s</span>
+                            </div>";
+        $output .= "        <div class='tuneBuyDetails'>
+                                Accel: <span class='tune_acc'>$acc1</span>  
+                                Speed: <span class='tune_speed'>$speed1</span> 
+                                Handling: <span class='tune_hand'>$hand1</span> 
+                                Dura: <span class='tune_dura'>$dura1</span> 
                             </div>";
 
         if ($isPartRunningNow === $part) {

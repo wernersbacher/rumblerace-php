@@ -33,7 +33,7 @@ $lg = array();
 //Menü Links
 $lg["office"] = ["Office", "Büro"];
 $lg["garage"] = ["Garage", "Garage"];
-$lg["tuner"] = ["Tuner", "Tuner"];
+$lg["trader"] = ["Trader", "Händler"];
 $lg["drivers"] = ["Drivers", "Fahrer"];
 $lg["sprit"] = ["Fuel", "Sprit"];
 $lg["upgrades"] = ["Upgrades", "Upgrades"];
@@ -51,6 +51,7 @@ $lg["s_news"] = ["News", "News"];
 $lg["s_bonus"] = ["Bonus", "Bonus"];
 $lg["s_cars"] = ["Cars", "Autos"];
 $lg["s_tuner"] = ["Tuner", "Tuner"];
+$lg["s_items"] = ["Items", "Items"];
 $lg["s_storage"] = ["Storage", "Lager"];
 $lg["s_sell"] = ["Sell Fuel", "Sprit verkaufen"];
 $lg["s_produce"] = ["Producing", "Produktion"];
@@ -204,8 +205,8 @@ $lg["cd_shiny"] = ["Buy brand new cars. They are not tuned, but they have a shin
     "Hier kannst Du neue Fahrzeuge kaufen. Sie sind nicht getunt, aber haben einen schönen neuen Lack."];
 $lg["cd_your_cars"] = ["These are your cars. Install tuning parts to make them faster!", 
     "Hier siehst Du Deine Fahrzeuge. Bringe neue Teile an, um sie schneller zu machen!"];
-$lg["tn_info"] = ["Research new car parts here. Every part has a minimum and a maximum possible value to reach, while better parts are rare. You will need parts of a better league to mount them in a high league car.",
-        "Erforsche hier neue Fahrzeugteile! Jedes Teil hat einen Minimum- und ein Maximalwert, welches es erreichen kann. Besser Teile sind seltener. Außerdem benötigst Du für Fahrzeuge höherer Ligen auch mindestens die Teile aus dieser Liga!"];
+$lg["tn_info"] = ["Research new car parts here. Every part has acceleration, speed, handling and durability values. The given values are the max values it can reach when producing! Higher values are much more rare. You will need parts of a better league to mount them in a high league cars.",
+        "Erforsche hier neue Fahrzeugteile! Jedes Teil Beschleunigung, Topspeed, Handling und Zuverlässigkeit. Die angegegeben Werte sind maximale Werte, welche beim Bauen erreicht werden können. Höhere Werte sind viel seltener. Außerdem benötigst Du für Fahrzeuge höherer Ligen auch mindestens die Teile aus dieser Liga!"];
 $lg["too_many_parts"] = ["You can't build that many parts at once.", "Du kannst nicht so viele Teile gleichzeitig bauen!"];
 $lg["part_built"] = ["You part is getting build.", "Das Tuningteil wird nun gebaut!"];
 $lg["st_info"] = ["All unmounted parts are in your storage.", "Alle nicht verwendeten Teile sind hier im Lager."];
@@ -371,6 +372,17 @@ $lg["cant_take_bonus"] = ["Time to wait for next bonus:", "Zeit bis zum nächste
 
 //Stats seite
 $lg["global_stats"] = ["Check the best players", "Check die besten Spieler"];
+
+//Itemsseite
+$lg["items_info"] = ["Manage your items here. Activate or sell them!","Verwalte hier deine Items. Aktiviere oder verkaufe sie!"];
+$lg["car_items"] = ["Car Items","Auto Items"];
+
+//++++++Item Beschreibungen Texte
+
+$lg["car_fig_title"] = ["Santini Figurati","Santini Figurati"];
+$lg["car_fig_desc"] = ["Free Santini. Yoou need place in your garage to activate.","Kostenloser Santini! Du brauchst Platz in der Garage zum Aktivieren."];
+
+//++++++ Items Ende
 
 //Upgrades
 $lg["point_bought"] = ["You bought an upgrade point.", "Du hast einen Upgradepunkt gekauft!"];

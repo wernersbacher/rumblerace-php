@@ -88,7 +88,7 @@ if ($mode == "sell" && isset($post['sell'])) { //Teil verkaufen
             }
         if ($rows == "") {
             $rows = "<tr>
-                  <td class='right-border-grey' colspan='4'>" . put("no_parts_storage", $l) . "</td>
+                  <td colspan='4'>" . put("no_parts_storage", $l) . "</td>
                 </tr>";
         }
         $output .= $rows;

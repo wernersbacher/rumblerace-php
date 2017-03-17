@@ -21,8 +21,8 @@ function getFirstSubmenu($page) {
 $m = array();
 
 $m["office"] = ["news", "bonus", "messages"];
-$m["garage"] = ["cars", "cardealer"];
-$m["tuner"] = [ "tuner", "storage"];
+$m["garage"] = ["cars", "storage", "items"];
+$m["trader"] = [ "tuner", "cardealer"];
 $m["drivers"] = ["paddock","sysDrivers"];
 $m["sprit"] = ["produce", "sell"];
 $m["market"] = ["partmarket", "spritmarket"];

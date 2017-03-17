@@ -37,7 +37,7 @@ $maxCars = getMaxCars();
 $left = $maxCars - $nowCars;
 
 $output .= "<div class='settings'>
-            ".put("garage_full_1", $l)." <b>$left</b> ".put("garage_full_2", $l)." ($nowCars/$maxCars) <br/>
+            " . put("garage_full_1", $l) . " <b>$left</b> " . put("garage_full_2", $l) . " ($nowCars/$maxCars) <br/>
             </div>";
 
 $output .= "<div id='cardealer'>";
@@ -45,7 +45,7 @@ $output .= "<div id='cardealer'>";
 foreach ($cars as $car) {//$car["title"]
     $liga = $car["liga"];
     $preis = $car["preis"];
-    if ($preis > $money OR $left<1)
+    if ($preis > $money OR $left < 1)
         $dis = "disabled";
     else
         $dis = "";
@@ -61,8 +61,10 @@ foreach ($cars as $car) {//$car["title"]
                         </div>
 
                         <div class='dealInfo'>
-                            <span>" . $car["ps"] . " " . put("hp", $l) . "</span> 
-                            <span>" . $car["perf"] . " Perf.</span> 
+                            <span>A: ". $car["acc"] . "</span> 
+                            <span>S: ". $car["speed"] . "</span> 
+                            <span>H: ". $car["hand"] . "</span> 
+                            <span>D: ". $car["dura"] . "</span> 
                         </div>
 
                     </div>

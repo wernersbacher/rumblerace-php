@@ -63,17 +63,21 @@ if ($mode == "sell" && isset($post['sell'])) { //Teil verkaufen
         if ($storage)
             foreach ($storage as $item) {
                 if ($item["kat"] == $kat && $item["garage_id"] == 0) {
-
+                    $acc = $item["acc"];
+                    $speed = $item["speed"];
+                    $hand = $item["hand"];
+                    $dura = $item["dura"];
+                    
                     $rows .= "<tr>
                 <td class='partTitle'>" . put($item["part"], $l) . "</td>
-                <td class='partPerf'>" . $item["value"] . " " . put("unit_" . $kat, $l) . "</td>
+                <td class='partPerf' title='Accel|Speed|Hand|Dura'>".outputDetails($acc,$speed,$hand,$dura,true)."</td>
                 <td>" . put("liga", $l) . " " . $item["liga"] . "</td>
                 <td>
                     <form method='POST' action='?page=tuner&sub=storage&mode=sell'>
                         <input type='hidden' name='storage_id' value='" . $item["id"] . "'>
                         <input type='hidden' name='part' value='" . put($item["part"], $l) . "'>
-                        <input type='hidden' name='value' value='" . $item["value"] . " " . put("unit_" . $kat, $l) . "'>
-                        <input type='hidden' name='liga' value='" . put("liga", $l) . " " . $item["liga"] . "<'>
+                        <input type='hidden' name='value' value='A:$acc S:$speed H:$hand D:$dura'>
+                        <input type='hidden' name='liga' value='" . put("liga", $l) . " " . $item["liga"] . "'>
                         <input class='sellButton tableTopButton' name='sell' type='submit' value='" . put("sell_it", $l) . "'>
                     </form>
                 </td>
@@ -88,7 +92,7 @@ if ($mode == "sell" && isset($post['sell'])) { //Teil verkaufen
             }
         if ($rows == "") {
             $rows = "<tr>
-                  <td colspan='4'>" . put("no_parts_storage", $l) . "</td>
+                  <td class='right-border-grey' colspan='4'>" . put("no_parts_storage", $l) . "</td>
                 </tr>";
         }
         $output .= $rows;

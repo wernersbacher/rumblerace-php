@@ -24,9 +24,10 @@ class Driver {
     }
 }
 
+/*
 class Legend extends Driver {
     
-}
+}*/
 
 //Erstellt 5 neue System Fahrer
 for($i = 1; $i <=5; $i++) {

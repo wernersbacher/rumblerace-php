@@ -8,14 +8,15 @@ function precise_round(num, decimals) {
 }
 
 
-function setTuneData(part, preis, worst, best, dur) {
+function setTuneData(part, preis, dur, acc, speed, hand, dura) {
     $("#" + part).find(".tuneCost").html(preis);
     $("#" + part).find(".tuneDur").html(formatTime(dur));
-    $("#" + part).find(".tuneMin").html(worst);
-    $("#" + part).find(".tuneMax").html(best);
+    $("#" + part).find(".tune_acc").html(acc);
+    $("#" + part).find(".tune_speed").html(speed);
+    $("#" + part).find(".tune_hand").html(hand);
+    $("#" + part).find(".tune_dura").html(dura);
 
 }
-
 
 function nwc(x) {
     if (x === undefined)

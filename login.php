@@ -7,7 +7,7 @@ require_once('_function.php');
 
 //session_start();
 define('SECURE', true);
-error_reporting(E_ALL);
+error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 
 require_once('_mysql.php');
 require_once('_lang.php');

@@ -9,6 +9,7 @@ require_once('_checkuser.php');
 require_once('_function.php');
 require_once('_mysql.php');
 require_once('_upgrades.php');
+require_once('_rewards.php');
 require_once('_lang.php');
 require_once('_submenu.php');
 require_once('_ads.php');
@@ -184,7 +185,7 @@ http://wernersbacher.de
         <ul>
             <a href="main.php"><li><img src="img/office40.png"><?php echo put("office", $l) ?></li></a>
             <a href="main.php?page=garage"><li><img src="img/car40.png">Garage</li></a>
-            <a href="main.php?page=tuner"><li><img src="img/tools40.png">Tuner</li></a>
+            <a href="main.php?page=trader"><li><img src="img/tools40.png"><?php echo put("trader", $l) ?></li></a>
             <a href="main.php?page=drivers"><li><img src="img/man40.png"><?php echo put("drivers", $l) ?></li></a>
             <a href="main.php?page=race"><li><img src="img/race40.png"><?php echo put("race", $l) ?></li></a>
             <a href="main.php?page=sprit"><li><img src="img/fuel40.png"><?php echo put("sprit", $l) ?></li></a>
@@ -302,7 +303,7 @@ http://wernersbacher.de
 
     
 
-    <!-- <?php var_dump(isPlayerGuest()); ?> Footer Segment Ende -->
+    <!-- <?php var_dump($_rewards); ?> Footer Segment Ende -->
 
 </body>
 </html>

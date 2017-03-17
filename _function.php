@@ -18,9 +18,10 @@ function login($id, $username, $lang) {
 }
 
 function isPlayerGuest() {
-   if(explode(":", $_SESSION['username'])[0] == "guest")
-           return true;
-   else return false;
+    if (explode(":", $_SESSION['username'])[0] == "guest")
+        return true;
+    else
+        return false;
 }
 
 function getPlayerAds() {
@@ -77,6 +78,20 @@ function getValue($min, $max) {
     return $rand;
 }
 
+function getValues($array) {
+    $ret_array = array();
+    foreach ($array as $key => $value) {
+        $rand = getExpRand(floor($value*(2/3)), $value);
+        if ($rand < 1 && $value > 0) //Gibt immer min. 1 zurück, außer maximal ist auch 0
+            $rand = 1;
+        else if($value == 0)
+            $rand = 0;
+        $ret_array[$key] = $rand;
+    }
+
+    return $ret_array;
+}
+
 function getMaxSprit() {
     return 10000;
 }
@@ -101,7 +116,7 @@ function calcNewSprit() {
     $max = getMaxSprit();
 
     $sprit = ($now - $last) * $sps + $old; //Neuer Sprit wert
-    
+
     if ($sprit > $max)
         $sprit = $max;
     return $sprit;
@@ -176,29 +191,36 @@ function calcExpReward($exp, $psReward, $car_id, $driver_id) {
     return $gain;
 }
 
-function calcPS($id) {
+function calcPart($id, $kind) {
     $carParts = queryPlayerPartsID($id);
-    $ps = 0;
+    $car = queryPlayerCarID($id);
+    $perf = 0;
+    $counter = 0;
     foreach ($carParts as $part) {
-        $kat = $part["kat"];
-        if ($kat == "motor" OR $kat == "auspuff" OR $kat == "turbo") {
-            $ps += $part["value"];
-        }
+        //$kat = $part["kat"];
+        $perf += $part[$kind]; 
+        if($part[$kind] > 0) 
+            $counter++;
     }
-    return $ps;
+    if($counter>0)
+        $perf = floor($perf/$counter);
+   
+    return ["car" => $car[$kind], "parts" => $perf, "sum" => $car[$kind]+$perf];
 }
 
-function calcPerf($id) {
-    $carParts = queryPlayerPartsID($id);
-    $perf = 0;
-    foreach ($carParts as $part) {
-        $kat = $part["kat"];
-        if ($kat == "bremse" OR $kat == "schaltung") {
-            $perf += $part["value"];
-        }
-    }
-    return $perf;
+function calcAcc($id) {
+    return calcPart($id,"acc");
 }
+function calcSpeed($id) {
+    return calcPart($id,"speed");
+}
+function calcHand($id) {
+    return calcPart($id,"hand");
+}
+function calcDura($id) {
+    return calcPart($id,"dura");
+}
+
 
 function ps($ps) {
     return $ps . " " . put("hp", getPlayerLang());
@@ -209,6 +231,14 @@ function prf($partPrf) {
 }
 
 //HTML Output Funktionen
+
+function outputDetails($acc,$speed,$hand,$dura,$br = false) {
+    if($br)
+        $umbruch = "<br/>";
+    else $umbruch = "";
+    
+    return "A:$acc S:$speed $umbruch H:$hand D:$dura";
+}
 
 function outputTut($val, $l) {
     return "<span class='pageInfo'>" . put($val, $l) . "</span>";
@@ -329,6 +359,10 @@ function sendMail($empfaenger, $betreff, $inhalt) {
     mail($empfaenger, $betreff, $inhalt, "noreply@facethepace.com");
 }
 
+function sendLog() {
+    
+}
+
 function queryLigaChange() {
     $liga = getPlayerLiga();
     $exp = getPlayerExp();
@@ -394,7 +428,7 @@ function getRandomString($length) {
 }
 
 function generateRandomUsername() {
-    return "guest:".getRandomString(5);
+    return "guest:" . getRandomString(5);
 }
 
 function saveSession($user_id) {
@@ -403,11 +437,11 @@ function saveSession($user_id) {
     $cookie = $user_id . ':' . $token;
     $mac = hash_hmac('sha256', $cookie, SECRET_KEY);
     $cookie .= ':' . $mac;
-    setcookie('rememberme', $cookie, time()+60*60*24*30);   
+    setcookie('rememberme', $cookie, time() + 60 * 60 * 24 * 30);
 }
 
-function saveGuestDetails($user,$pw) {
-    setcookie('guestpw', $user."::".$pw, time()+60*60*24*30);
+function saveGuestDetails($user, $pw) {
+    setcookie('guestpw', $user . "::" . $pw, time() + 60 * 60 * 24 * 30);
 }
 
 function isLoggedIn() {
@@ -430,5 +464,6 @@ function isGuestLoggedIn() {
     if ($cookie) {
         list ($user, $pass) = explode('::', $cookie);
         return [$user, $pass];
-    } else return false;
+    } else
+        return false;
 }
