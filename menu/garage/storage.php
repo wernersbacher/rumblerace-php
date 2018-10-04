@@ -14,7 +14,7 @@ if ($mode == "sell" && isset($post['sell'])) { //Teil verkaufen
     $output .= "<b>$part ($value) ($liga)</b><br/>";
     $output .= put("market_sell", $l) . ":";
 
-    $output .= "<form method='POST' action='?page=tuner&sub=storage'>
+    $output .= "<form method='POST' action='?page=$page&sub=storage'>
                         <input type='hidden' name='storage_id' value='" . $str_id . "'>
                         <input type='number' min='0.01' step='0.01' name='price' placeholder='100' class='tableTopInput'>
                         <input class='sellButton tableTopButton' name='confirmed' type='submit' value='verkaufen'>
@@ -73,7 +73,7 @@ if ($mode == "sell" && isset($post['sell'])) { //Teil verkaufen
                 <td class='partPerf' title='Accel|Speed|Hand|Dura'>".outputDetails($acc,$speed,$hand,$dura,true)."</td>
                 <td>" . put("liga", $l) . " " . $item["liga"] . "</td>
                 <td>
-                    <form method='POST' action='?page=tuner&sub=storage&mode=sell'>
+                    <form method='POST' action='?page=$page&sub=storage&mode=sell'>
                         <input type='hidden' name='storage_id' value='" . $item["id"] . "'>
                         <input type='hidden' name='part' value='" . put($item["part"], $l) . "'>
                         <input type='hidden' name='value' value='A:$acc S:$speed H:$hand D:$dura'>

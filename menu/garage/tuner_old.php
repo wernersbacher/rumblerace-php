@@ -42,7 +42,7 @@ if ($mode == "parts") { // Wenn eine Kategorie gewählt wurde
     else
         $kat = $get["kat"];
     
-    $output .= backLink("?page=tuner&sub=tuner");
+    $output .= backLink("?page=garage&sub=tuner");
 
     $isPartRunningNow = isPartRunning()[0];
     $counter=1;
@@ -133,7 +133,7 @@ if ($mode == "parts") { // Wenn eine Kategorie gewählt wurde
                         </div>
                     
                     <div class='tuneFooter'>
-                        <form method='POST' action='?page=tuner&sub=tuner&mode=parts&kat=$kat'>
+                        <form method='POST' action='?page=garage&sub=tuner&mode=parts&kat=$kat'>
                         $labels
                             <input type='hidden' name='part' value='$part'>
                             <input style='vertical-align: bottom;' class='tableTopButton' name='send' type='submit' value='" . put("build", $l) . "' $disabled>
@@ -172,7 +172,7 @@ if ($mode == "parts") { // Wenn eine Kategorie gewählt wurde
                     
                     <div class='tuneFooter'>
                         $build
-                        <form method='POST' action='?page=tuner&sub=tuner&mode=parts&kat=$kat' style='display:inline-block;'>
+                        <form method='POST' action='?page=garage&sub=tuner&mode=parts&kat=$kat' style='display:inline-block;'>
                             <input class='tableTopButton' name='open' type='submit' value='" . put("open_kat", $l) . "'>
                         </form>
                     </div>                    

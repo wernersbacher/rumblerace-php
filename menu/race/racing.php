@@ -39,17 +39,18 @@ if($cars)
     foreach ($cars as $car) {
         $carLiga = $car["carLiga"];
         $car_id = $car["garage_id"];
-        $partPs = calcPS($car_id);
-        $partPrf = calcPerf($car_id);
-        $carPs = $car["ps"];
-        $ps = $carPs+$partPs;
-        $perf = $car["perf"]+$partPrf;
+//        $acc = $car["acc"];
+//        $speed = $car["speed"] + calcCarAttribute("speed");
+//        $hand = $car["hand"];
+//        $dura = $car["dura"];
         $name = $car["title"];
         
-        if($carLiga == $liga && queryCarIsNotRacing($car_id))
-            $carselect .= "<option value='$car_id'>$name ($ps ".  put("hp", $l).")</option>";
+        $carValueList = outputCarPartsSumList($car_id);
+        
+        if($carLiga <= $liga && queryCarIsNotRacing($car_id))
+            $carselect .= "<option value='$car_id'>$name ($carValueList)</option>";
     }
-    return $carselect;
+    return $carselect; 
 }
 
 //Fahrerliste gen

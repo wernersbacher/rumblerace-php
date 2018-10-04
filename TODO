@@ -1,3 +1,9 @@
+2018
+* durability beschädigt autos, müssen repariert werden
+* mobile design
+* bessere ansicht von fahrzeug werten
+* "wichtigkeits" anzeige bei rennen
+
 THIS RELEASE
 
 * chat nochmal testen bzw pusher
@@ -16,6 +22,7 @@ THIS RELEASE
 
 
 NEXT RELEASE
+* besseres nachrichten system + icons
 * optionen: schalter für infoboxen
 * filter für alle tabellen
 * irgendwelche live daten einbauen

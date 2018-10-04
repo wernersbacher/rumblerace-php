@@ -22,7 +22,7 @@ $m = array();
 
 $m["office"] = ["news", "bonus", "messages"];
 $m["garage"] = ["cars", "storage", "items"];
-$m["trader"] = [ "tuner", "cardealer"];
+$m["trader"] = ["tuner", "cardealer"];
 $m["drivers"] = ["paddock","sysDrivers"];
 $m["sprit"] = ["produce", "sell"];
 $m["market"] = ["partmarket", "spritmarket"];

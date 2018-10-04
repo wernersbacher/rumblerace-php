@@ -65,6 +65,7 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
 
         $allParts = queryTuningParts($kat);
         foreach ($allParts as $part) {
+            $partsAvail = false;
             $select .= "<tr>
                         <td>" . put($part, $l) . "</td>
                         <td>
@@ -76,13 +77,16 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
                 $speed = $mountedParts[$part]["speed"];
                 $hand = $mountedParts[$part]["hand"];
                 $dura = $mountedParts[$part]["dura"];
-                $select .= "<option value='none'>". outputDetails($acc, $speed, $hand, $dura)." (" . $mountedParts[$part]["liga"] . ") **</option>";
+                $select .= "<option value='none'>" . outputDetails($acc, $speed, $hand, $dura) . " (" . $mountedParts[$part]["liga"] . ") **</option>";
+                $partsAvail = true;
             }
 
             $select .= "<option value='0'>----------</option>";
 
             //ausgeben der Teile im Lager
-            if ($storage)
+            if ($storage) {
+                $partsAvail = true;
+
                 foreach ($storage as $item) {
 
                     if ($item["part"] == $part && $item["liga"] == $car["liga"] && $item["garage_id"] == 0) {
@@ -90,10 +94,10 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
                         $speed = $item["speed"];
                         $hand = $item["hand"];
                         $dura = $item["dura"];
-                        $select .= "<option value='" . $item["id"] . "'>". outputDetails($acc, $speed, $hand, $dura)." (" . $item["liga"] . ")</option>";
+                        $select .= "<option value='" . $item["id"] . "'>" . outputDetails($acc, $speed, $hand, $dura) . " (" . $item["liga"] . ")</option>";
                     }
                 }
-
+            }
 
 
             $select .= "</select>
@@ -151,8 +155,8 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
             $speed = calcSpeed($car["garage_id"]);
             $hand = calcHand($car["garage_id"]);
             $dura = calcDura($car["garage_id"]);
-            
-            
+
+
             //Autos, die gefahren werden, können nicht getunt oder verkauft werden.
             $disabled = "disabled";
             if (queryCarIsNotRacing($car["garage_id"]))
@@ -166,18 +170,19 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
                     <div class='infoFlex'>
                         <div class='dealTitle'>
                             " . $car["title"] . "
+                                <div class='driverLiga'><img src='img/liga/" . $carLiga . ".png' alt='League " . $carLiga . "' title='League " . $carLiga . "' /></div>
                         </div>
 
                         <div class='dealInfo'>
-                            <span>A: ".$acc["sum"]." (".$acc["car"]." + ".$acc["parts"].")</span> 
-                            <span>S: ".$speed["sum"]." (".$speed["car"]." + ".$speed["parts"].")</span> 
-                            <span>H: ".$hand["sum"]." (".$hand["car"]." + ".$hand["parts"].")</span> 
-                            <span>D: ".$dura["sum"]." (".$dura["car"]." + ".$dura["parts"].")</span> 
+                            <span>A: " . $acc["sum"] . " (" . $acc["car"] . " + " . $acc["parts"] . ")</span> 
+                            <span>S: " . $speed["sum"] . " (" . $speed["car"] . " + " . $speed["parts"] . ")</span> 
+                            <span>H: " . $hand["sum"] . " (" . $hand["car"] . " + " . $hand["parts"] . ")</span> 
+                            <span>D: " . $dura["sum"] . " (" . $dura["car"] . " + " . $dura["parts"] . ")</span> 
                         </div>
 
                     </div>
 
-                    <div class='dealLiga'><img src='img/liga/" . $carLiga . ".png' alt='League " . $carLiga . "' title='League " . $carLiga . "' /></div>
+                    <!--<div class='dealLiga'><img src='img/liga/" . $carLiga . ".png' alt='League " . $carLiga . "' title='League " . $carLiga . "' /></div>-->
 
                     <div class='dealBuy'>
                         

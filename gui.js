@@ -236,16 +236,66 @@ $(document).ready(function () {
         for (var i = 0, length = chains.length; i < length; i++) {
             var chain_id = chains[i];
             var chain_arr = $(".chain_" + chain_id).toArray();
-            
+
             for (var j = 0, length = chain_arr.length; j < length; j++) {
-                if(j+1 <= chain_arr.length)
-                $(chain_arr[j]).add(chain_arr[j+1]).connections();
-            } 
-            
+                if (j + 1 <= chain_arr.length)
+                    $(chain_arr[j]).add(chain_arr[j + 1]).connections();
+            }
+
         }
 
 
     }
+
+    //Tooltips
+    var clicked = false;
+    var stayopen = false;
+    $('.tooltips').tooltipster({
+        theme: 'tooltipster-borderless',
+        contentCloning: true,
+        trigger: 'custom',
+        animationDuration: 50,
+        interactive: true,
+        minWidth: 100,
+        maxWidth: 300
+    }).on('mouseover', function () {
+        $(this).tooltipster('show');
+    }).on('mouseout', function () {
+        if (!clicked) { //Nur bei normalen Mouseover..
+            $(this).tooltipster('hide');
+            /*setTimeout(function () {
+                console.log(stayopen);
+                
+                if(!stayopen) //nur schließen, wenn der User das Item verlassen hat, nicht aber beim Verlassen auf das tooltip
+                $("#"+stayopen).tooltipster('hide');
+            
+            }, 200);*/
+        }
+    }).on('click', function (e) {
+        if (!clicked) {
+            clicked = true;
+            $(this).tooltipster('show');
+        } else {
+            clicked = false;
+            $(this).tooltipster('hide');
+        }
+        e.stopPropagation(); // This is the preferred method.
+        return false;
+    });
+
+    /*$(".tipDiv").on("mouseover", function () {
+        stayopen = $(this).data("Id");
+        console.log("stayopen");
+    }).on("mouseout", function () {
+        $("#"+stayopen).tooltipster('hide');
+        console.log(stayopen);
+        stayopen = false;
+    });*/
+
+    $(document).click(function () {
+        //if ($(evt.target).attr('class') !== "tooltips")
+        $('.tooltips').tooltipster('hide');
+    });
 
 
 

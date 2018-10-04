@@ -28,6 +28,8 @@ if (isset($post['send'])) { //Abgeschicktes Formular
 }
 
 //Liste aller neuen Fahrzeuge ausgeben
+
+
 $cars = queryNewCars(getPlayerLiga());
 $money = getPlayerMoney();
 
@@ -53,11 +55,13 @@ foreach ($cars as $car) {//$car["title"]
     $output .= "<div class='dealer'>
                     <div class='imgFlex'>
                         <img src='img/car/" . $car["name"] . ".jpg' />
+                            
                     </div>
 
                     <div class='infoFlex'>
                         <div class='dealTitle'>
                             " . $car["title"] . "
+                                <div class='driverLiga'><img src='img/liga/" . $liga . ".png' alt='League " . $liga . "' title='League " . $liga . "' /></div>
                         </div>
 
                         <div class='dealInfo'>
@@ -69,11 +73,11 @@ foreach ($cars as $car) {//$car["title"]
 
                     </div>
 
-                    <div class='dealLiga'><img src='img/liga/" . $liga . ".png' alt='League " . $liga . "' title='League " . $liga . "' /></div>
+                    <!--<div class='dealLiga'><img src='img/liga/" . $liga . ".png' alt='League " . $liga . "' title='League " . $liga . "' /></div>-->
 
                     <div class='dealBuy'>
                         <span class='dealPrice'>" . dollar($preis) . "</span>
-                        <form method='POST' style='display:inline-block;' action='?page=garage&sub=cardealer'>
+                        <form method='POST' style='display:inline-block;' action='?page=trader&sub=cardealer'>
                             <input type='hidden' name='model' value='" . $car["name"] . "'>
                             <input class='tableTopButton' name='send' type='submit' value='" . put("buy_now", $l) . "'$dis>
                         </form>

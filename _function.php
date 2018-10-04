@@ -38,6 +38,7 @@ function getPlayerUpPoints() {
 }
 
 function getPlayerLiga() {
+    // var_dump($player);
     global $player;
     return $player["liga"];
 }
@@ -78,13 +79,22 @@ function getValue($min, $max) {
     return $rand;
 }
 
+function getFreeGarageSlots() {
+    $cars = queryPlayerCars(); // Autos auslesen
+    $nowCars = count($cars);
+    $maxCars = getMaxCars();
+    $left = $maxCars - $nowCars;
+
+    return $left;
+}
+
 function getValues($array) {
     $ret_array = array();
     foreach ($array as $key => $value) {
-        $rand = getExpRand(floor($value*(2/3)), $value);
+        $rand = getExpRand(floor($value * (2 / 3)), $value);
         if ($rand < 1 && $value > 0) //Gibt immer min. 1 zurück, außer maximal ist auch 0
             $rand = 1;
-        else if($value == 0)
+        else if ($value == 0)
             $rand = 0;
         $ret_array[$key] = $rand;
     }
@@ -147,29 +157,38 @@ function calcExpFactor($race, $skill) {
     return $added;
 }
 
-function calcReward($reward, $psReward, $exp, $car_id, $driver_id) {
+/*
+ * Berechnen des Rewards Multiplikators
+ * Berechnung des Fahrer-Faktors
+ * pn: performance needed
+ */
+
+function calcRewardMulti($pn, $macc, $mspeed, $mhand, $exp, $car_id, $driver_id) {
     $gain = 0;
     //Get car data
-    $car = queryPlayerCarID($car_id);
-    $partPs = calcPS($car_id);
-    $carPs = $car["ps"];
-    $ps = $carPs + $partPs;
+    $carAttr = getCarPartsSum($car_id);
+    //$car = queryPlayerCarID($car_id);
     $skill = getDriverSkill($driver_id);
-
     $expf = calcExpFactor($exp, $skill);
+    
+    $track_perf = $carAttr["acc"] * $macc + $carAttr["speed"] * $mspeed + $carAttr["hand"] * $mhand;
 
-    if ($ps >= $psReward) {
-        $gain = $reward;
+    
+    if ($track_perf >= $pn) {
+        $gain = 1;
     } else {
         //$reward = (($ps+($psReward-$ps)/2)/100) * $reward;
-        $gain = ($ps / 100) * $reward;
+        $gain = ($track_perf / $pn);
     }
 
     $gain *= $expf; //If good driver, max, if not, less rewards
-
+    if($gain < 0.1)
+        $gain = 0;
+    
     return $gain;
 }
 
+/*
 function calcExpReward($exp, $psReward, $car_id, $driver_id) {
     $gain = 0;
     $car = queryPlayerCarID($car_id);
@@ -189,38 +208,63 @@ function calcExpReward($exp, $psReward, $car_id, $driver_id) {
     $gain *= $expf; //If good driver, max, if not, less rewards
 
     return $gain;
+}*/
+
+/*
+ * Gibt die Summe der Fahrzeugattribute aus, vor allem für Racing nützlich
+ * $id entspricht der $car_id in der DB.
+ */
+function getCarPartsSum($id) {
+    return [
+        "acc" => calcPart($id, "acc")["sum"],
+        "speed" => calcPart($id, "speed")["sum"],
+        "hand" => calcPart($id, "hand")["sum"],
+        "dura" => calcPart($id, "dura")["sum"],
+    ];
 }
+
+function outputCarPartsSumList($id) {
+    $carvals = getCarPartsSum($id);
+    return $carvals["acc"]."/".$carvals["speed"]."/".$carvals["hand"]."/".$carvals["dura"];
+}
+
+/*
+ * Berechnet den Wert eines Teiles UND eines Autowertes
+ */
 
 function calcPart($id, $kind) {
     $carParts = queryPlayerPartsID($id);
     $car = queryPlayerCarID($id);
     $perf = 0;
     $counter = 0;
+    $sum = 0;
     foreach ($carParts as $part) {
         //$kat = $part["kat"];
-        $perf += $part[$kind]; 
-        if($part[$kind] > 0) 
+        $perf += $part[$kind];
+        if ($part[$kind] > 0)
             $counter++;
     }
-    if($counter>0)
-        $perf = floor($perf/$counter);
-   
-    return ["car" => $car[$kind], "parts" => $perf, "sum" => $car[$kind]+$perf];
+    if ($counter > 0)
+        $perf = floor($perf / $counter);
+
+    return ["car" => $car[$kind], "parts" => $perf, "sum" => $car[$kind] + $perf];
 }
 
 function calcAcc($id) {
-    return calcPart($id,"acc");
-}
-function calcSpeed($id) {
-    return calcPart($id,"speed");
-}
-function calcHand($id) {
-    return calcPart($id,"hand");
-}
-function calcDura($id) {
-    return calcPart($id,"dura");
+    return calcPart($id, "acc");
 }
 
+function calcSpeed($id) {
+    return calcPart($id, "speed");
+}
+
+function calcHand($id) {
+    return calcPart($id, "hand");
+}
+
+function calcDura($id) {
+    return calcPart($id, "dura");
+}
 
 function ps($ps) {
     return $ps . " " . put("hp", getPlayerLang());
@@ -232,16 +276,30 @@ function prf($partPrf) {
 
 //HTML Output Funktionen
 
-function outputDetails($acc,$speed,$hand,$dura,$br = false) {
-    if($br)
+function outputDetails($acc, $speed, $hand, $dura, $br = false) {
+    if ($br)
         $umbruch = "<br/>";
-    else $umbruch = "";
-    
+    else
+        $umbruch = "";
+
     return "A:$acc S:$speed $umbruch H:$hand D:$dura";
 }
 
 function outputTut($val, $l) {
     return "<span class='pageInfo'>" . put($val, $l) . "</span>";
+}
+
+function outputBool($bool) {
+    global $l;
+    if ($bool)
+        return put("yes", $l);
+    else
+        return put("no", $l);
+}
+
+function outputRar($rar) {
+    global $l;
+    return "<span class='text_$rar'>" . put("rar_" . $rar, $l) . "</span>";
 }
 
 function numberWithCommas($val) {

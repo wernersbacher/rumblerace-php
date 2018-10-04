@@ -25,6 +25,7 @@ if (isset($post["lang"])) {
 //Hier noch User stats holen, wie money, liga etc.
 //Spieler stats und Sprache holen
 $player = queryPlayerStats();
+
 $upgrades = getUserUpgrades();
 $l = getPlayerLang();
 
@@ -70,6 +71,9 @@ if (file_exists($inc)) {
 }
 
 $content = $output;
+//Check for tooltip data
+if(!isset($htmlTooltips)) 
+    $htmlTooltips = "";
 //Load new any maybe changed player data for output
 $player = queryPlayerStats();
 
@@ -130,18 +134,22 @@ http://wernersbacher.de
     <head>
         <title><?php echo put($page, $l) ?> | Racing Inc</title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
         <link rel="stylesheet" href="src/font.css">
+        <link rel="stylesheet" href="mobile.css">
         <link rel="stylesheet" href="default.css">
         <link rel="stylesheet" href="pages.css">
         <link rel="stylesheet" href="pages.colors.css">
         <link rel="stylesheet" href="lib/jquery-ui.css">
+        <link rel="stylesheet" href="lib/tooltipster.bundle.min.css" />
+        <link rel="stylesheet" href="lib/tooltipster-sideTip-borderless.min.css" />
         <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
         <script type="text/javascript" src="backstretch.min.js"></script>
         <script type="text/javascript" src="lib/jquery-ui.min.js"></script>
         <script type="text/javascript" src="lib/jquery.connections.js"></script>
         <script type="text/javascript" src="lib/form.min.js"></script>
         <script type="text/javascript" src="lib/date.js"></script>
+        <script type="text/javascript" src="lib/tooltipster.bundle.min.js"></script>
         <script type="text/javascript" src="cookie.js"></script>
         <script type="text/javascript" src="gui.js"></script>
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300' rel='stylesheet' type='text/css'> 
@@ -229,7 +237,7 @@ http://wernersbacher.de
     <div id="middle">
         <div id="leftMenu">
             <div id="player-info">
-                <span class="playername"><?php echo $_SESSION["username"] ?></span><br/>
+                <span class="playername"><?php echo $_SESSION["username"] ?> <img id="mobile_liga" style="height:16px; display: none;" src="img/liga/<?php echo getPlayerLiga() ?>.png"></span><br/>
                 <span class="stats">
                     <img src="img/dollar.png" /> <?php echo dollar(getPlayerMoney()) ?><br/>
                     <img src="img/star.png" /> <span title="<?php echo ep(expToLiga(getPlayerLiga() + 1) - getPlayerExp()) ?> left"><?php echo ep(getPlayerExp()) ?></span><br/>
@@ -239,7 +247,7 @@ http://wernersbacher.de
                     <a href="?page=office&sub=messages"><img src="img/<?php echo $letter ?>.png" alt="messages" /></a></a>
                     <a href="?page=office&sub=bonus"><img src="img/<?php echo $bonus ?>.png" alt="bonus" /></a></a>
                 </div>
-                <div class="playerLiga">
+                <div class="playerLiga" id="desktop_liga">
                     <img src="img/liga/<?php echo getPlayerLiga() ?>.png" />
                 </div>
             </div>
@@ -301,6 +309,9 @@ http://wernersbacher.de
         </form>
     </div>
 
+    <div id="tooltip_templates">
+        <?php echo $htmlTooltips; ?>
+    </div>
     
 
     <!-- <?php var_dump($_rewards); ?> Footer Segment Ende -->

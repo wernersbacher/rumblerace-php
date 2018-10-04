@@ -375,7 +375,23 @@ $lg["global_stats"] = ["Check the best players", "Check die besten Spieler"];
 
 //Itemsseite
 $lg["items_info"] = ["Manage your items here. Activate or sell them!","Verwalte hier deine Items. Aktiviere oder verkaufe sie!"];
+$lg["activate"] = ["Activate","Aktivieren"];
+$lg["item_activated"] = ["Item got activated successful!","Das Item wurde erfolgreich aktiviert!"];
+$lg["item_error"] = ["We can't activate your item. Do you have enough space for your rewards?","Das Item konnte nicht aktiviert werden. Hast du noch genug Platz übrig?"];
+$lg["no_items"] = ["Looks like you don't have any items.","Leider hast du keine Items!"];
+
+$lg["art_car"] = ["Car","Auto"];
+$lg["rar_common"] = ["Common","Standard"];
+$lg["rar_rare"] = ["Rare","Selten"];
+$lg["rar_legend"] = ["Legendary","Legendär"];
+
 $lg["car_items"] = ["Car Items","Auto Items"];
+
+$lg["itSellable"] = ["Sellable","Handelbar"];
+$lg["itArt"] = ["Typ","Typ"];
+$lg["itRar"] = ["Rarity","Seltenheit"];
+$lg["itLiga"] = ["League","Liga"];
+$lg["itCount"] = ["Quantity","Anzahl"];
 
 //++++++Item Beschreibungen Texte
 

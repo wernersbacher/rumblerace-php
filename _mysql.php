@@ -49,6 +49,12 @@ function getColumn($sql) {
     }
 }
 
+function getCount($sql) {
+    $entry = querySQL($sql);
+    $count = mysqli_num_rows($entry);
+    return $count;
+}
+
 function getArray($sql) {
 
     $entry = querySQL($sql);
@@ -162,7 +168,6 @@ function queryRegister($user, $pass, $email) {
         $_SESSION['user_id'] = $user_id;
         $_SESSION['username'] = $user;
         $_SESSION['lang'] = $lang;
-        
     } else {
         mysqli_rollback($mysqli);
         $status = "bad_reg";
@@ -174,16 +179,15 @@ function queryRegister($user, $pass, $email) {
 
 function queryGuestRegister($oldUser, $user, $pass) {
     global $mysqli;
-    $sql = "UPDATE user SET username = '" . mysqli_real_escape_string($mysqli, $user) . "', pass = '". hash5($pass)."' 
+    $sql = "UPDATE user SET username = '" . mysqli_real_escape_string($mysqli, $user) . "', pass = '" . hash5($pass) . "' 
         WHERE username = '" . mysqli_real_escape_string($mysqli, $oldUser) . "'
         ";
     $entry = querySQL($sql);
 
-    if ($entry) 
+    if ($entry)
         return "ok_reg";
-     else 
+    else
         return "database_error";
-    
 }
 
 function setOnline() {
@@ -220,7 +224,6 @@ function queryPlayerStats() {
 function queryPlayerByID($id) {
 
     $sql = "SELECT * FROM stats, user WHERE stats.id = user.id AND stats.id = '" . $id . "' LIMIT 1";
-
     return getColumn($sql);
 }
 
@@ -494,7 +497,7 @@ function queryPartsBuildingDone() {
             mysqli_autocommit($mysqli, FALSE);
             $part_id = $part["part_id"];
             $storage_id = $part["storage_id"];
-            /*$value = getValue($part["worst"], $part["best"]); DEL*/ 
+            /* $value = getValue($part["worst"], $part["best"]); DEL */
             $values = getValues(array("acc" => $part["acc"], "speed" => $part["speed"], "hand" => $part["hand"], "dura" => $part["dura"]));
 
             $addBuiltPart = mysqli_query($mysqli, "INSERT INTO storage (user_id, part_id, liga, part, acc, speed, hand, dura) 
@@ -643,7 +646,11 @@ function queryRunningRaces() {
 //checkt, ob rennen fertig ist HINZUFÜGEN DER EXP ZUM FAHRER
 function queryRaceDone() {
     global $mysqli, $l;
-    $sql = "SELECT rc.ps as ps,
+    $sql = "SELECT rc.perf_needed as pn,
+                    rc.macc as macc,
+                    rc.mspeed as mspeed,
+                    rc.mhand as mhand,
+                    rc.mdura as mdura,
                     rc.reward as reward,
                     rc.exp as exp,
                     rr.id as id,
@@ -677,9 +684,12 @@ function queryRaceDone() {
 
             //$driver = getDriverByID($race["driver_id"]);
             $id = $race["id"];
-            $reward = calcReward($race["reward"], $race["ps"], $race["exp"], $race["car_id"], $race["driver_id"]);
-            $exp = calcExpReward($race["exp"], $race["ps"], $race["car_id"], $race["driver_id"]);
+            $rewardMulti = calcRewardMulti($race["pn"], $race["macc"], $race["mspeed"], $race["mhand"], $race["exp"], $race["car_id"], $race["driver_id"]);
+            //$exp = calcExpReward($race["exp"], $race["ps"], $race["car_id"], $race["driver_id"]);
 
+            $reward = $race["reward"] * $rewardMulti;
+            $exp = $race["exp"] * $rewardMulti;
+            
             $reward_granted = mysqli_query($mysqli, "UPDATE stats 
                 SET money = money + '$reward', exp = exp + '$exp'
                 WHERE id = '" . $_SESSION["user_id"] . "'"
@@ -1069,7 +1079,7 @@ function areThereMessenges() {
 
     $row = mysqli_fetch_array($entry, MYSQLI_ASSOC);
 
-    if (count($row) >= 1) {
+    if (@count($row) >= 1) {
         return true;
     } else
         return false;
@@ -1235,8 +1245,8 @@ function querySpritAdd() {
     $addCar = mysqli_query($mysqli, "UPDATE stats
             SET sprit = $sprit
             WHERE id = '" . $_SESSION["user_id"] . "'");
-    
-    $ssql= "UPDATE sprit_upt
+
+    $ssql = "UPDATE sprit_upt
             SET updated = '" . time() . "'
             WHERE user_id = '" . $_SESSION["user_id"] . "'";
     $spend = mysqli_query($mysqli, $ssql
@@ -1498,7 +1508,7 @@ function getUserUpgrades() {
     $entry = querySQL($sql);
     if ($entry) {
         while ($row = mysqli_fetch_assoc($entry)) {
-            if(is_null($row["ups"]))
+            if (is_null($row["ups"]))
                 $data[$row["name"]] = false;
             else
                 $data[$row["name"]] = array("ups" => $row["ups"], "effect" => $row["effect"]);
@@ -1526,13 +1536,13 @@ function buyUpgradePoint($cost) {
     global $mysqli;
     mysqli_autocommit($mysqli, FALSE);
 
-    $upgrade = mysqli_query($mysqli, "UPDATE stats SET uppoints = uppoints + 1 WHERE id = '".$_SESSION["user_id"]."'"
+    $upgrade = mysqli_query($mysqli, "UPDATE stats SET uppoints = uppoints + 1 WHERE id = '" . $_SESSION["user_id"] . "'"
     );
     $spend = mysqli_query($mysqli, "UPDATE stats
             SET money = money - $cost
             WHERE id = '" . $_SESSION["user_id"] . "'"
     );
-    
+
     if ($upgrade && $spend) {
         mysqli_commit($mysqli);
         $out = "point_bought";
@@ -1571,7 +1581,7 @@ function getUpgradeTree() { //gibt alle updates aus, zusammen mit den anforderun
                 LEFT JOIN upgrades_tree upt
                 ON up.id = upt.up_id
                 LEFT JOIN upgrades_user upu
-                ON up.id = upu.up_id AND upu.user_id = ".$_SESSION["user_id"];
+                ON up.id = upu.up_id AND upu.user_id = " . $_SESSION["user_id"];
     $entry = querySQL($sql);
     if ($entry) {
         while ($row = mysqli_fetch_assoc($entry)) {
@@ -1591,7 +1601,7 @@ function upgradeById($up_id, $cost) { //set the upgrade to the db and remove fre
     //Insert upgrade, if its there just upgrade it +1
     $upgrade = mysqli_query($mysqli, "INSERT INTO upgrades_user (user_id, up_id, ups) VALUES ('" . $_SESSION["user_id"] . "', '$up_id', '1') ON DUPLICATE KEY UPDATE ups = ups + 1"
     );
-    
+
     $spend = mysqli_query($mysqli, "UPDATE stats
             SET uppoints = uppoints - $cost
             WHERE id = '" . $_SESSION["user_id"] . "'"
@@ -1614,7 +1624,7 @@ function saveToDB($user, $msg) {
     mysqli_autocommit($mysqli, FALSE);
 
     $addMsg = mysqli_query($mysqli, "INSERT INTO chat_msg (user, msg, timestamp) 
-            values ('" . $user . "', '" . mysqli_real_escape_string($mysqli, $msg) . "', '".time()."')"
+            values ('" . $user . "', '" . mysqli_real_escape_string($mysqli, $msg) . "', '" . time() . "')"
     );
     $updateStat = mysqli_query($mysqli, "UPDATE stats
             SET chat_count = chat_count+1
@@ -1633,7 +1643,7 @@ function saveToDB($user, $msg) {
 
 function loadFromDB($limit) {
     $sql = "SELECT * FROM chat_msg LIMIT $limit";
-    
+
     return getArray($sql);
 }
 
@@ -1641,4 +1651,22 @@ function loadFromDB($limit) {
 function getUserItems() {
     $sql = "SELECT * FROM items WHERE user_id = '" . $_SESSION["user_id"] . "'";
     return getArray($sql);
+}
+
+function userItemCount($item_id) {
+    global $mysqli;
+    $sql = "SELECT count FROM items WHERE item_id = '" . mysqli_real_escape_string($mysqli, $item_id) . "' AND user_id = '" . $_SESSION["user_id"] . "'";
+    $col = getColumn($sql);
+    return $col;
+}
+
+function lowerItemCount($id) {
+    $sql = "UPDATE items SET count = count-1 WHERE item_id = '$id' AND user_id = '" . $_SESSION["user_id"] . "'";
+    querySQL($sql);
+}
+
+//Item Functions
+function addCar($car_id) {
+    $sql = "INSERT INTO garage (user_id, car_id) VALUES ('" . $_SESSION["user_id"] . "', '$car_id')";
+    return querySQL($sql);
 }

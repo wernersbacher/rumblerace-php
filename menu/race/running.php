@@ -29,9 +29,8 @@ if($races)
             $width = 100;
         //Autodaten laden
         $car = queryPlayerCarID($race["car_id"]);
-        $partPs = calcPS($race["car_id"]);
-        $carPs = $car["ps"];
-        $ps = $carPs+$partPs;
+        
+        $carValueList = outputCarPartsSumList($race["car_id"]);
         
         //Fahrerdaten
         $driver = getDriverByID($race["driver_id"]);
@@ -43,7 +42,7 @@ if($races)
                         </div>
                        
                         <div class='tuneInfo'> 
-                            <div class='tuneDesc'>".$car["title"]." ($ps ".put("hp",$l).")
+                            <div class='tuneDesc'>".$car["title"]." ($carValueList)
                                 - ".$driver["name"]." (".showSkill($driver["skill"]).")
                                 - ".dollar($race["reward"])."
                             </div>
