@@ -156,6 +156,12 @@ if($races)
                                 " . put("reward", $l) . ": max. ".dollar($race["reward"]).", 
                                 " . put("erfahrung", $l) . ": max. ".ep($race["exp"])." 
                             </div>
+                            <div class='tuneBuyDetails'>
+                                <div class='stat_image_wrapper_tuner'><img src='img/stats/acc1.png' alt='Acc'/></div> <span class='tune_acc'></span> |
+                                <div class='stat_image_wrapper_tuner'><img src='img/stats/speed1.png' alt='speed'/></div> <span class='tune_speed'></span> | 
+                                <div class='stat_image_wrapper_tuner'><img src='img/stats/handling1.png' alt='hand'/></div> <span class='tune_speed'></span> |
+                                <div class='stat_image_wrapper_tuner'><img src='img/stats/strength1.png' alt='str'/></div> <span class='tune_speed'></span> 
+                            </div>
                             
 
                         </div>

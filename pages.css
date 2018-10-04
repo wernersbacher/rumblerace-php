@@ -318,6 +318,21 @@ tr:nth-child(even) {
     table-layout: fixed;
 }
 
+/* stat wrapper */
+.stat_image_wrapper {
+    width:100px;
+    height:15px;
+    display:inline-block;
+}
+.stat_image_wrapper > img, .stat_image_wrapper_tuner > img {
+    height:100%;
+}
+
+.stat_image_wrapper_tuner {
+    height:10px;
+    display:inline-block;
+}
+
 /* Car tuning */
 
 #car_sketch {
