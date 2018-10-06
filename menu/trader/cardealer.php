@@ -4,7 +4,7 @@ function buyNewCar($model) {
     $money = getPlayerMoney();
     $price = queryNewCarCost($model);
     $cars = queryPlayerCars(); // Autos auslesen
-    $nowCars = count($cars);
+    $nowCars = __count($cars);
     $maxCars = getMaxCars();
     if ($money >= $price && $nowCars < $maxCars) {
         return queryCarBuy($model, $price);
@@ -34,7 +34,7 @@ $cars = queryNewCars(getPlayerLiga());
 $money = getPlayerMoney();
 
 $carsPlayer = queryPlayerCars(); // Autos auslesen
-$nowCars = count($carsPlayer);
+$nowCars = __count($carsPlayer);
 $maxCars = getMaxCars();
 $left = $maxCars - $nowCars;
 

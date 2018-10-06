@@ -6,6 +6,7 @@ $post = filter_input_array(INPUT_POST);
 //Check if logged in
 require_once('_data.php');
 require_once('_checkuser.php');
+require_once('_overwrite.php');
 require_once('_function.php');
 require_once('_mysql.php');
 require_once('_upgrades.php');

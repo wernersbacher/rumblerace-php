@@ -81,7 +81,7 @@ function getValue($min, $max) {
 
 function getFreeGarageSlots() {
     $cars = queryPlayerCars(); // Autos auslesen
-    $nowCars = count($cars);
+    $nowCars = __count($cars);
     $maxCars = getMaxCars();
     $left = $maxCars - $nowCars;
 
@@ -393,7 +393,7 @@ function getLangChange() {
 function randomHeader() {
     $z = date("z");
     $head = getHeaderArray();
-    $key = $z % count($head);
+    $key = $z % __count($head);
     return $head[$key];
 }
 

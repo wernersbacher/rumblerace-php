@@ -93,7 +93,7 @@ function queryLogin($user, $pass) {
 
         $row = mysqli_fetch_array($entry, MYSQLI_ASSOC);
 
-        if (count($row) >= 1) {
+        if (__count($row) >= 1) {
             //Falls User gefunden wurde
 
             login($row["id"], $row["username"], $row["lang"]);
@@ -539,7 +539,7 @@ function queryUserHasCarID($id) {
 
     $row = mysqli_fetch_array($entry, MYSQLI_ASSOC);
 
-    if (count($row) >= 1) {
+    if (__count($row) >= 1) {
         return true;
     } else
         return false;
@@ -571,7 +571,7 @@ function queryCarIsNotRacing($id) {
 
     $row = mysqli_fetch_array($entry, MYSQLI_ASSOC);
 
-    if (count($row) >= 1) {
+    if (__count($row) >= 1) {
         return true;
     } else
         return false;
@@ -922,7 +922,7 @@ function queryMarketSpritBuy($id, $amount) {
         return keepSprit($id, $row["amount"]);
     } else if ($amount > $row["amount"]) {
         return "sprit_partly_sold";
-    } else if (count($row) >= 1) {
+    } else if (__count($row) >= 1) {
         return updateSprit($id, $row["price"], $amount, $row["user_id"], $row["amount"]);
     } else
         return "sprit_sold";
@@ -1055,7 +1055,7 @@ function queryMarketPartBuy($id) {
     if ($row["user_id"] == $_SESSION["user_id"]) {
 
         return keepPart($row["sell"], $id);
-    } else if (count($row) >= 1) {
+    } else if (__count($row) >= 1) {
 
         return updatePart($row["sell"], $row["user_id"], $id);
     } else
@@ -1079,7 +1079,7 @@ function areThereMessenges() {
 
     $row = mysqli_fetch_array($entry, MYSQLI_ASSOC);
 
-    if (@count($row) >= 1) {
+    if (__count($row) >= 1) {
         return true;
     } else
         return false;
@@ -1168,7 +1168,7 @@ function queryUserHasTeil($teil_id) {
 
     $row = mysqli_fetch_array($entry, MYSQLI_ASSOC);
 
-    if (count($row) >= 1) {
+    if (__count($row) >= 1) {
         return true;
     } else
         return false;
@@ -1295,7 +1295,7 @@ function queryUserHasNotDriverID($driver_id) {
 
     $row = mysqli_fetch_array($entry, MYSQLI_ASSOC);
 
-    if (count($row) >= 1) {
+    if (__count($row) >= 1) {
         return false;
     } else
         return true;
@@ -1362,7 +1362,7 @@ function queryDriverIsNotRacing($id) {
 
     $row = mysqli_fetch_array($entry, MYSQLI_ASSOC);
 
-    if (count($row) >= 1) {
+    if (__count($row) >= 1) {
         return true;
     } else
         return false;

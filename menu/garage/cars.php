@@ -136,7 +136,7 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
     }
 
     $cars = queryPlayerCars(); // Autos auslesen
-    $nowCars = count($cars);
+    $nowCars = __count($cars);
     $maxCars = getMaxCars();
     $left = $maxCars - $nowCars;
 
