@@ -23,7 +23,7 @@ if ($mode == "sell" && isset($post['sell'])) { //Teil verkaufen
     $output .= "<br/>" . put("market_with", $l);
     $output .= "</div>";
 } else {
-    
+
     if (isset($post['confirmed'])) {
         //Teil auf den Markt schmeißen
 
@@ -67,10 +67,18 @@ if ($mode == "sell" && isset($post['sell'])) { //Teil verkaufen
                     $speed = $item["speed"];
                     $hand = $item["hand"];
                     $dura = $item["dura"];
-                    
+
                     $rows .= "<tr>
                 <td class='partTitle'>" . put($item["part"], $l) . "</td>
-                <td class='partPerf' title='Accel|Speed|Hand|Dura'>".outputDetails($acc,$speed,$hand,$dura,true)."</td>
+                <td class='partPerf' title='Accel | Speed | Handling | Dura'>
+                <!--" . outputDetails($acc, $speed, $hand, $dura, true) . "-->
+                    <div class='stat_image_wrapper_tuner'><img src='img/stats/acc1.png' alt='Acc'/></div> <span class='tune_acc'>$acc</span><br/>
+                    <div class='stat_image_wrapper_tuner'><img src='img/stats/speed1.png' alt='speed'/></div> <span class='tune_speed'>$speed</span><br/> 
+                    <div class='stat_image_wrapper_tuner'><img src='img/stats/handling1.png' alt='hand'/></div> <span class='tune_speed'>$hand</span><br/>
+                    <div class='stat_image_wrapper_tuner'><img src='img/stats/strength1.png' alt='str'/></div> <span class='tune_speed'>$dura</span> 
+                 
+
+</td>
                 <td>" . put("liga", $l) . " " . $item["liga"] . "</td>
                 <td>
                     <form method='POST' action='?page=$page&sub=storage&mode=sell'>

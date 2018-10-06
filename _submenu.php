@@ -30,7 +30,7 @@ $m["race"] = ["racing", "endurance", "running"];
 $m["options"] = ["settings"];
 $m["help"] = ["faq", "newbie"];
 //$m["special"] = ["chat", "upgrades", "achievements", "mainstats", "globalstats"];
-$m["special"] = ["quests", "upgrades", "chat", "globalstats"];
+$m["special"] = ["upgrades","quests",  "chat", "globalstats"];
 //$m["logout"] = [""];
 
 //So wird ein neuer Menüpunkt hinzugefügt:

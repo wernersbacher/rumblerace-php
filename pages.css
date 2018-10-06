@@ -277,6 +277,7 @@ select {
     border-collapse: collapse;
     border: 1px solid grey;
     margin-top: 12px;
+    font-size: 13px;
 }
 
 .tableRed td {
@@ -313,6 +314,7 @@ tr:nth-child(even) {
 
 .tableRed .partPerf {
     width: 28%;
+    text-align: right;
 }
 
 .tuningTable {

@@ -32,8 +32,8 @@ $lg = array();
 
 //Menü Links
 $lg["office"] = ["Office", "Büro"];
-$lg["garage"] = ["Garage", "Garage"];
-$lg["trader"] = ["Trader", "Händler"];
+$lg["garage"] = ["Home", "Home"];
+$lg["trader"] = ["Shop", "Laden"];
 $lg["drivers"] = ["Drivers", "Fahrer"];
 $lg["sprit"] = ["Fuel", "Sprit"];
 $lg["upgrades"] = ["Upgrades", "Upgrades"];

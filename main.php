@@ -192,7 +192,7 @@ http://wernersbacher.de
     <div id="mainmenu">
         <ul>
             <a href="main.php"><li><img src="img/office40.png"><?php echo put("office", $l) ?></li></a>
-            <a href="main.php?page=garage"><li><img src="img/car40.png">Garage</li></a>
+            <a href="main.php?page=garage"><li><img src="img/car40.png">Home</li></a>
             <a href="main.php?page=trader"><li><img src="img/tools40.png"><?php echo put("trader", $l) ?></li></a>
             <a href="main.php?page=drivers"><li><img src="img/man40.png"><?php echo put("drivers", $l) ?></li></a>
             <a href="main.php?page=race"><li><img src="img/race40.png"><?php echo put("race", $l) ?></li></a>
