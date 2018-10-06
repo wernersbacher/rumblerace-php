@@ -38,8 +38,9 @@ if (isset($_POST['send'])) {
     <head>
         <title>RACING INC. | Login</title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
         <link rel="stylesheet" href="src/font.css">
+        <link rel="stylesheet" href="mobile.css">
         <link rel="stylesheet" href="default.css">
         <link rel="stylesheet" href="pages.css">
         <link rel="stylesheet" href="pages.colors.css">

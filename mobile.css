@@ -5,6 +5,11 @@
         width: 100%;
     }*/
 
+    #loginWindow {
+        width: inherit !important;
+        
+        padding: 8px !important;
+    }
 
     #middle {
         display:block  !important;
