@@ -18,7 +18,13 @@
         display: none;
     }
 
-
+    #topContent {
+        width: inherit !important;
+        
+    }
+    #blackMenu {
+        display: none !important;
+    }
 
     #mainmenu {
         width:inherit !important;
