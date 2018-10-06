@@ -130,6 +130,13 @@ var currentForm;
 
 $(document).ready(function () {
 
+/*
+ * dirty post-resumbit solution
+ */
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
+
     //Make tables clickable
     $("table:not(.noclick)").find("th").click(function () {
         $(this).closest("table").find("tr:not(:first)").not(".selling").toggle();
