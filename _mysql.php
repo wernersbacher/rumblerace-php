@@ -684,7 +684,7 @@ function queryRaceDone() {
 
             //$driver = getDriverByID($race["driver_id"]);
             $id = $race["id"];
-            $rewardMulti = calcRewardMulti($race["pn"], $race["macc"], $race["mspeed"], $race["mhand"], $race["exp"], $race["car_id"], $race["driver_id"]);
+            $rewardMulti = calcRewardMulti($race["pn"], $race["macc"], $race["mspeed"], $race["mhand"], $race["mdura"], $race["exp"], $race["car_id"], $race["driver_id"]);
             //$exp = calcExpReward($race["exp"], $race["ps"], $race["car_id"], $race["driver_id"]);
 
             $reward = $race["reward"] * $rewardMulti;

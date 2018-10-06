@@ -222,6 +222,14 @@ $lg["car_not_found"] = ["This car doesn't exist anymore.", "Dieses Auto gibt es 
 $lg["car_sold"] = ["The car was sold to the System!", "Dieses Auto wurde erfolgreich verkauft!"];
 $lg["car_is_racing"] = ["This car is currently not available!", "Dieses Auto ist gerade nicht verfügbar!"];
 
+//Car Attribute /teile / Hinweise (tooltips?)
+$lg["tip_acc"] = ["Acceleration is important to go fast.", "Beschleunigung ist wichtig, um schnell vom Fleck zu kommen."];
+$lg["tip_speed"] = ["Speed is also important. Who wonders?", "Geschwindigkeit ist auch wichtig!"];
+$lg["tip_hand"] = ["Handling is important for curvy tracks, and doesn't help you at all when dragracing.", "Handling ist wichtig für kurvige Strecken, hilft dir aber bei Drag renne gar nicht."];
+$lg["tip_dura"] = ["The higher the durability factor, the more it will stress your car. It is also important to have a good durability value when driving long races, so you can keep the pace up longer.", 
+    "Umso höher der Robustheitsfaktor, desto mehr verlangt das Rennen dem Auto ab. Ein hoher Fahrzeug- & Teilewert erhöht ist außerdem wichtig, um bei langen Rennen die Pace aufrechtzuerhalten."];
+
+
 //Market
 $lg["part_on_market"] = ["The part is now getting sold on the market. You will get a SMS, if someone bought it!", "Das Teil wird nun auf dem Markt angeboten. Sobald es gekauft wird, erhälst Du eine SMS."];
 $lg["part_not_found"] = ["You can't sell this part.", "Du kannst dieses Teil nicht verkaufen."];

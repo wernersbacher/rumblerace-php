@@ -1,11 +1,12 @@
 2018
 * durability beschädigt autos, müssen repariert werden
-* bessere ansicht von fahrzeug werten
+* bessere ansicht von fahrzeug werten im lager und teile
 * "wichtigkeits" anzeige bei rennen
 * post anfrage auf unterseiten vermeiden
+* auswirkung von dura auf rennen: hohe dura ermöglicht mehr schnelles fahren. (auch doku!)
 
 THIS RELEASE
-
+* tooltips tocu fähig machen
 * chat nochmal testen bzw pusher
 * mehr upgrades einbauen 
 * balancing
@@ -19,7 +20,7 @@ THIS RELEASE
 * faq: skill
 * tuning balken korrigieren
 * ssl for everyone
-
+* skill vom fahrer auf acc, speed, hand und dura verteilen
 
 NEXT RELEASE
 * besseres nachrichten system + icons

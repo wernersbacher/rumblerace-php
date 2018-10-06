@@ -161,9 +161,11 @@ function calcExpFactor($race, $skill) {
  * Berechnen des Rewards Multiplikators
  * Berechnung des Fahrer-Faktors
  * pn: performance needed
+ * 
+ * Es wird berechnet, wie hoch der Strecken-Richtwert überhaupt ist.
  */
 
-function calcRewardMulti($pn, $macc, $mspeed, $mhand, $exp, $car_id, $driver_id) {
+function calcRewardMulti($pneeded, $macc, $mspeed, $mhand, $mdura, $exp, $car_id, $driver_id) {
     $gain = 0;
     //Get car data
     $carAttr = getCarPartsSum($car_id);
@@ -171,12 +173,16 @@ function calcRewardMulti($pn, $macc, $mspeed, $mhand, $exp, $car_id, $driver_id)
     $skill = getDriverSkill($driver_id);
     $expf = calcExpFactor($exp, $skill);
     
-    $track_perf = $carAttr["acc"] * $macc + $carAttr["speed"] * $mspeed + $carAttr["hand"] * $mhand;
-
+    //Wenn die Boni zu groß sind, wird der Richtwert angehoben, und vice versa
+    $reference_factor = ($macc+ $mspeed+ $mhand+ $mdura)/4;
+    $pn = $reference_factor*$pneeded;
     
+    $track_perf = $carAttr["acc"] * $macc + $carAttr["speed"] * $mspeed + $carAttr["hand"] * $mhand + $carAttr["dura"] * $mdura;
+
+    //Check, if perf über perf needed
     if ($track_perf >= $pn) {
         $gain = 1;
-    } else {
+    } else { //ansonsten wird prozentual abgesetzt
         //$reward = (($ps+($psReward-$ps)/2)/100) * $reward;
         $gain = ($track_perf / $pn);
     }

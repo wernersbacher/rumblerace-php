@@ -155,7 +155,7 @@ http://wernersbacher.de
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300' rel='stylesheet' type='text/css'> 
         <link rel="shortcut icon" type="image/x-icon" href="img/logo16.ico">
         <!-- Piwik -->
-        <script type="text/javascript">
+        <!--<script type="text/javascript">
             var _paq = _paq || [];
             _paq.push(["setCookieDomain", "*.facethepace.com"]);
             _paq.push(["setDomains", ["*.facethepace.com", "*.www.facethepace.com"]]);
@@ -172,7 +172,7 @@ http://wernersbacher.de
                 g.src = u + 'piwik.js';
                 s.parentNode.insertBefore(g, s);
             })();
-        </script>
+        </script>-->
     <noscript><p><img src="//wernersbacher.de/analyse/piwik.php?idsite=3" style="border:0;" alt="" /></p></noscript>
     <!-- End Piwik Code -->
 </head>
@@ -291,9 +291,8 @@ http://wernersbacher.de
 
     <!-- Footer Segment Anfang -->
     <div id="supportus" title="Support us">
-        <p>Any feedback, help, tips, typos and bad grammatic just send an email: <b><a href='mailto:hi@facethepace.com'>hi@facethepace.com</a></b><br/>
+        <p>Any feedback, help, tips, typos and bad grammatic just send an email: <b><a href='mailto:racingInc@wernersbacher.de'>mailto:racingInc@wernersbacher.de</a></b><br/>
             Paypal address for donating: <b>mwernersbach@web.de</b><br/>
-            Bitcoin address for donating: <b>1GrK1y4KNrMwkrBeB6wDUCd2ZVEWaqnSuc</b><br/>
             <br/>
             <b>Sharing the game with friends</b> is still the best help we can get. Thank you!
             <br/><br/>
@@ -304,7 +303,7 @@ http://wernersbacher.de
         <form id="bugForm" action="bug.php" method="post">
             <p>Just send us feedback, bugs, infos!</p>
             <textarea name="text" style="width:100%; height:100px;"></textarea><br/>
-            Leave your email if you want an answer.</br>
+            Leave your email if you want to receive an answer.</br>
             <input type="submit" value="Send" />
         </form>
     </div>
