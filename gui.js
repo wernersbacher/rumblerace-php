@@ -104,13 +104,24 @@ function startCountdown() {
     });
 }
 
-function setToggle() {
 
-    $(".sys").toggle(!(!!Cookies.get("toggle-state")) || Cookies.get("toggle-state") === 'true');
+function setToggle() {
+    
+    if( Cookies.get("toggle-state") === 'true') {
+        console.log("showing");
+    } else  {
+        console.log("hiding");
+        $("#toggle_sys").addClass("offTableTop");
+         $(".sys").toggle();
+    }
+
+    //$(".sys").toggle( !(!!Cookies.get("toggle-state")) || Cookies.get("toggle-state") === 'true' );
 
 
     $('#toggle_sys').on('click', function () {
-        $(".sys").toggle();
+        console.log("toggle");
+        $(".sys").toggle(200);
+        $("#toggle_sys").toggleClass("offTableTop");
         Cookies.set("toggle-state", $(".sys").first().is(':visible'), {expires: 7, path: '/'});
     });
 }
@@ -134,6 +145,7 @@ $(document).ready(function () {
     $("#login_prev").backstretch("img/brett.jpg");
 
     //Tooglen der Systemnachrichten
+    console.log("test");
     setToggle();
 
     //Abfrage der Dialoge

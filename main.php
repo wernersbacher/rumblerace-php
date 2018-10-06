@@ -33,9 +33,10 @@ $l = getPlayerLang();
 
 //Holen der aktuellen Seite
 
-if(!isset($get["page"]))
+if (!isset($get["page"]))
     $page = "office";
-else $page = $get["page"];
+else
+    $page = $get["page"];
 
 if (!isset($get["sub"]))
     $sub = getFirstSubmenu($page);
@@ -73,7 +74,7 @@ if (file_exists($inc)) {
 
 $content = $output;
 //Check for tooltip data
-if(!isset($htmlTooltips)) 
+if (!isset($htmlTooltips))
     $htmlTooltips = "";
 //Load new any maybe changed player data for output
 $player = queryPlayerStats();
@@ -127,8 +128,9 @@ The game is server-sided. So no hacking or exporting savegame :)
 
 Thanks for playing! 
 ALSO VISTIT:
-http://bitcoinergame.com
 http://wernersbacher.de
+
+Love for Meri
 
 -->
 <html>
@@ -151,7 +153,8 @@ http://wernersbacher.de
         <script type="text/javascript" src="lib/form.min.js"></script>
         <script type="text/javascript" src="lib/date.js"></script>
         <script type="text/javascript" src="lib/tooltipster.bundle.min.js"></script>
-        <script type="text/javascript" src="cookie.js"></script>
+        <!--<script type="text/javascript" src="cookie.js"></script>-->
+        <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
         <script type="text/javascript" src="gui.js"></script>
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300' rel='stylesheet' type='text/css'> 
         <link rel="shortcut icon" type="image/x-icon" href="img/logo16.ico">
@@ -209,30 +212,30 @@ http://wernersbacher.de
     <!-- Main Menü Segment Ende -->
 
     <div id="mid-header">
-        
-        <?php if(isPlayerGuest()) { ?>
-        <div id="guestInfo">
-            You are just playing as a guest! If your cookies gets deleted, your account will be too. Register your account for free:<br/>
-            <i><?php
-            if(isset($get["reg"]))
-                echo put($get["reg"], $l);
-            ?> </i>
-            <form class="bigForm" action="register.php?guest=true" method="post">
-                <input type="text" name="user" required="required" placeholder="Username" maxlength="55" />
-                <input type="password" name="pass" required="required" placeholder="Password" maxlength="50" />
-                <input type="password" name="pass2" required="required" placeholder="Password (retype)" maxlength="50" />
-                <input type="hidden" name="email" placeholder="Email (optional)" maxlength="50" />
-                <input type="hidden" name="register" value="yes"/>
-                <input type="submit" name="send" value="Register" />
 
-            </form>
-            
-        </div> 
-        <?php } ?>
-        
+<?php if (isPlayerGuest()) { ?>
+            <div id="guestInfo">
+                You are just playing as a guest! If your cookies gets deleted, your account will be too. Register your account for free:<br/>
+                <i><?php
+                    if (isset($get["reg"]))
+                        echo put($get["reg"], $l);
+                    ?> </i>
+                <form class="bigForm" action="register.php?guest=true" method="post">
+                    <input type="text" name="user" required="required" placeholder="Username" maxlength="55" />
+                    <input type="password" name="pass" required="required" placeholder="Password" maxlength="50" />
+                    <input type="password" name="pass2" required="required" placeholder="Password (retype)" maxlength="50" />
+                    <input type="hidden" name="email" placeholder="Email (optional)" maxlength="50" />
+                    <input type="hidden" name="register" value="yes"/>
+                    <input type="submit" name="send" value="Register" />
+
+                </form>
+
+            </div> 
+<?php } ?>
+
     </div>
-    
-    
+
+
     <!-- Middle Segment Anfang -->
 
     <div id="middle">
@@ -253,7 +256,7 @@ http://wernersbacher.de
                 </div>
             </div>
             <div id="submenu">
-                <?php echo $submenu ?>
+<?php echo $submenu ?>
             </div>
 
             <hr/>
@@ -263,18 +266,18 @@ http://wernersbacher.de
                     <a><li class="infoPop" data-open="bugrep">Feedback</li></a>
                 </ul>
 
-                <?php echo onlineUser() . " " . put("online_user", $l); ?> 
+<?php echo onlineUser() . " " . put("online_user", $l); ?> 
 
                 <br/>
 
                 <a href="http://markus.wernersbacher.de/pages/about-this-website/">&copy; wernersbacher 2016-2017</a><br/>
                 <noscript> <?php echo put("noscript", $l) ?><br/> </noscript>
                 <?php echo getLangChange() ?> | ALPHA 0.1.3 <br/> 
-                <?php echo "Server: " . date("d M Y H:i:s"); ?>
+<?php echo "Server: " . date("d M Y H:i:s"); ?>
 
 
             </div>
-            <?php echo getScrapperAd(); ?>
+<?php echo getScrapperAd(); ?>
 
 
 
@@ -283,7 +286,7 @@ http://wernersbacher.de
         <div id="contentWindow">
             <span class="h1"><?php echo put($page, $l) . $subpage ?> </span>
             <?php echo $content ?>
-            <?php echo getBannerAd(); ?>
+<?php echo getBannerAd(); ?>
         </div>
     </div>
 
@@ -310,9 +313,9 @@ http://wernersbacher.de
     </div>
 
     <div id="tooltip_templates">
-        <?php echo $htmlTooltips; ?>
+<?php echo $htmlTooltips; ?>
     </div>
-    
+
 
     <!-- <?php var_dump($_rewards); ?> Footer Segment Ende -->
 

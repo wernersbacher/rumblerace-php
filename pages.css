@@ -59,7 +59,7 @@ select {
     min-width: 154px;
     margin-right:8px;
     box-shadow: 0px 1px 3px -1px;
-        margin-top: 3px;
+    margin-top: 3px;
 }
 
 .smallFlex {
@@ -459,6 +459,19 @@ tr:nth-child(even) {
     font-style:italic;
 }
 
+.messageButtons {
+    display:flex;
+    justify-content: space-between;
+}
+
+.centerChildVertical {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
 #messageOutput {
     background: #800C4E;
     padding: 18px;
@@ -496,13 +509,7 @@ tr:nth-child(even) {
     -moz-box-shadow:inset 0px 1px 0px 0px #9acc85;
     -webkit-box-shadow:inset 0px 1px 0px 0px #9acc85;
     box-shadow:inset 0px 1px 0px 0px #9acc85;
-    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #74ad5a), color-stop(1, #68a54b));
-    background:-moz-linear-gradient(top, #74ad5a 5%, #68a54b 100%);
-    background:-webkit-linear-gradient(top, #74ad5a 5%, #68a54b 100%);
-    background:-o-linear-gradient(top, #74ad5a 5%, #68a54b 100%);
-    background:-ms-linear-gradient(top, #74ad5a 5%, #68a54b 100%);
     background:linear-gradient(to bottom, #74ad5a 5%, #68a54b 100%);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#74ad5a', endColorstr='#68a54b',GradientType=0);
     background-color:#74ad5a;
     border:1px solid #3b6e22;
     display:inline-block;
@@ -516,19 +523,22 @@ tr:nth-child(even) {
     font-family:Roboto;
 }
 .tableTopButton:hover {
-    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #68a54b), color-stop(1, #74ad5a));
-    background:-moz-linear-gradient(top, #68a54b 5%, #74ad5a 100%);
-    background:-webkit-linear-gradient(top, #68a54b 5%, #74ad5a 100%);
-    background:-o-linear-gradient(top, #68a54b 5%, #74ad5a 100%);
-    background:-ms-linear-gradient(top, #68a54b 5%, #74ad5a 100%);
     background:linear-gradient(to bottom, #68a54b 5%, #74ad5a 100%);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#68a54b', endColorstr='#74ad5a',GradientType=0);
     background-color:#68a54b;
 }
 
 .tableTopButton:active {
     position:relative;
     top:1px;
+}
+.offTableTop{
+    background: linear-gradient(to bottom, #b4c1b7 5%,#a0af9a 100%);
+    border: 1px solid #485d3e00;
+    box-shadow: inset 0px 1px 3px 0px #00000066;
+}
+
+.offTableTop:hover{
+    background: linear-gradient(to bottom, #a0af9a 0%,#b4c1b7 95%);
 }
 
 .tableTopButton:disabled{
@@ -539,6 +549,9 @@ tr:nth-child(even) {
     box-shadow:none;
 }
 
+.smallTableTop {
+    padding: 3px 8px;
+}
 .redButton {
     background: rgb(175,93,93);
     background: -moz-linear-gradient(top,  rgba(175,93,93,1) 5%, rgba(155,71,71,1) 100%);
@@ -804,7 +817,7 @@ tr:nth-child(even) {
 }
 
 .itemImg {
-        margin: 4px 12px 21px 12px;
+    margin: 4px 12px 21px 12px;
     width: 40px;
     height: 40px;
 }

@@ -111,16 +111,16 @@ if ($mode == "new") {
     $output .= "<div class='messageButtons'>";
 
     //Neue Nachricht Button
-    $output .= "<a href='?page=office&sub=messages&mode=new' class='tableTopButton'>+ " . put("new_mes", $l) . "</a>";
+    $output .= "<div class='centerChildVertical'><a href='?page=office&sub=messages&mode=new' class='tableTopButton'>+ " . put("new_mes", $l) . "</a></div>";
     
     //Toggle System nachrichten
-    $output .= "<a href='#' id='toggle_sys' class='tableTopButton'>- " . put("toggle_sys", $l) . "</a>";
+    $output .= "<div class='centerChildVertical'><a href='#' id='toggle_sys' class='tableTopButton'>" . put("toggle_sys", $l) . "</a></div>";
     
     //lösche alle system nachrichten
-    $output .= "<form method='POST' data-dialog='Really delete all system messages?' style='display:inline-block;' action='?page=office&sub=messages'><input type='hidden' name='delSys' value='del'><input class='tableTopButton dialog' name='delSys' type='submit' value='- " . put("delSys", $l) . "'></form>";
+    $output .= "<form method='POST' data-dialog='Really delete all system messages?' style='display:inline-block;' action='?page=office&sub=messages'><input type='hidden' name='delSys' value='del'><input class='tableTopButton dialog' name='delSys' type='submit' value='" . put("delSys", $l) . "'></form>";
     
     //Alle Nachrichten als gelesen markieren
-    $output .= "<form method='POST' style='display:inline-block;' action='?page=office&sub=messages'><input type='hidden' name='readAll' value='read'><input class='tableTopButton' name='delSys' type='submit' value='- " . put("readAll", $l) . "'></form>";
+    $output .= "<form method='POST' style='display:inline-block;' action='?page=office&sub=messages'><input type='hidden' name='readAll' value='read'><input class='tableTopButton' name='delSys' type='submit' value='" . put("readAll", $l) . "'></form>";
 
     $output .= "</div>"; 
     
@@ -159,7 +159,7 @@ if ($mode == "new") {
                 <td>
                     <form method='post' action='$link'>
                         <input type='hidden' name='m_id' value='" . $item["id"] . "'/>
-                        <input type='submit' name='open' value='" . put("read", $l) . "' />
+                        <input class='tableTopButton smallTableTop' type='submit' name='open' value='" . put("read", $l) . "' />
                     </form>
                 </td>";
             $output .= "</tr>";
