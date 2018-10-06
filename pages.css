@@ -193,10 +193,11 @@ select {
 }
 
 .tuneBuyDetails {
-    background-color:#800C4E;
-    color:white;
-    padding: 2px 3px; 
-    /*border-radius:3px;*/
+    background-color: #313131;
+    /* border-radius: 4px; */
+    color: white;
+    padding: 4px 4px;
+    /* margin-bottom: 2px; */
 }
 
 .tuneFooter {

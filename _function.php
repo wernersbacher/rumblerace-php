@@ -276,6 +276,10 @@ function prf($partPrf) {
 
 //HTML Output Funktionen
 
+function outputToProcent($dec) {
+    return intval($dec*100)."%";
+}
+
 function outputDetails($acc, $speed, $hand, $dura, $br = false) {
     if ($br)
         $umbruch = "<br/>";
