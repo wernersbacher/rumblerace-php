@@ -185,7 +185,7 @@ if($races)
                         </select>
 
                             <input type='hidden' name='race_id' value='".$race["id"]."'>
-                            <input class='tableTopButton' name='send' type='submit' value='" . put("race_now", $l) . "' $disabled>
+                            <input class='tableTopButton saveScroll' name='send' type='submit' value='" . put("race_now", $l) . "' $disabled>
                         </form>
                     </div>
                 </div>";

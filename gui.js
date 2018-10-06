@@ -106,13 +106,13 @@ function startCountdown() {
 
 
 function setToggle() {
-    
-    if( Cookies.get("toggle-state") === 'true') {
+
+    if (Cookies.get("toggle-state") === 'true') {
         console.log("showing");
-    } else  {
+    } else {
         console.log("hiding");
         $("#toggle_sys").addClass("offTableTop");
-         $(".sys").toggle();
+        $(".sys").toggle();
     }
 
     //$(".sys").toggle( !(!!Cookies.get("toggle-state")) || Cookies.get("toggle-state") === 'true' );
@@ -207,14 +207,18 @@ $(document).ready(function () {
     });
 
     //Sprit autoscroller (dont want to use ajax)
-
     $(".saveScroll").click(function () {
 
         localStorage.setItem("scrollTop", $(window).scrollTop());
+        //save current page
+        localStorage.setItem("page-id", document.getElementsByTagName("title")[0].innerHTML);
         //alert($(window).scrollTop());
     });
 
-    if ($("#produce").length) {
+    /*
+     * only scroll to saved pos. if on on of those pages AAAAND the site is the same as before
+     */
+    if (($("#produce").length || $("#racing").length) && localStorage.getItem("page-id") === document.getElementsByTagName("title")[0].innerHTML) {
         //Scroll to saved position
         $(window).scrollTop(localStorage.getItem("scrollTop"));
     } else {
@@ -276,12 +280,12 @@ $(document).ready(function () {
         if (!clicked) { //Nur bei normalen Mouseover..
             $(this).tooltipster('hide');
             /*setTimeout(function () {
-                console.log(stayopen);
-                
-                if(!stayopen) //nur schließen, wenn der User das Item verlassen hat, nicht aber beim Verlassen auf das tooltip
-                $("#"+stayopen).tooltipster('hide');
-            
-            }, 200);*/
+             console.log(stayopen);
+             
+             if(!stayopen) //nur schließen, wenn der User das Item verlassen hat, nicht aber beim Verlassen auf das tooltip
+             $("#"+stayopen).tooltipster('hide');
+             
+             }, 200);*/
         }
     }).on('click', function (e) {
         if (!clicked) {
@@ -296,13 +300,13 @@ $(document).ready(function () {
     });
 
     /*$(".tipDiv").on("mouseover", function () {
-        stayopen = $(this).data("Id");
-        console.log("stayopen");
-    }).on("mouseout", function () {
-        $("#"+stayopen).tooltipster('hide');
-        console.log(stayopen);
-        stayopen = false;
-    });*/
+     stayopen = $(this).data("Id");
+     console.log("stayopen");
+     }).on("mouseout", function () {
+     $("#"+stayopen).tooltipster('hide');
+     console.log(stayopen);
+     stayopen = false;
+     });*/
 
     $(document).click(function () {
         //if ($(evt.target).attr('class') !== "tooltips")
