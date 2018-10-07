@@ -592,7 +592,7 @@ tr:nth-child(even) {
     border-radius:3px;
 }
 
-.ligaList {
+.ligaList, .tuningList {
     display:flex;
     list-style-type:none;
     padding:0;
@@ -600,6 +600,9 @@ tr:nth-child(even) {
     justify-content: space-around;
 }
 
+.ligaList img {
+    width:50px;
+}
 
 
 .ligaList li {

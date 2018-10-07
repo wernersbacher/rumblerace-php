@@ -21,6 +21,23 @@ function buildNewPart($part, $liga) {
     }
 }
 
+
+/*
+ * Generiert Tuning Kats Übersicht
+ */
+function showTunerKats($activeKat) {
+    
+    $kats = queryTuningKats();
+    //Tuning Kategorien ausgeben
+    $ret = "<ul class='ligaList'>";
+    foreach ($kats as $kat) {
+        if($kat == $activeKat) $active = "class='active'"; else $active = "";
+        $ret .= "<li $active><a href='?page=trader&sub=tuner&mode=parts&kat=$kat'><img src='img/parts/$kat.png' /></a></li>";
+    }
+    $ret .= "</ul>";
+    return $ret;
+}
+
 //Tuningteil bauen
 if (isset($post['send'])) { //Abgeschicktes Formular
     $part = $post["part"];
@@ -34,15 +51,12 @@ if (isset($post['send'])) { //Abgeschicktes Formular
 }
 
 
-
-
-if ($mode == "parts") { // Wenn eine Kategorie gewählt wurde
-    if (!isset($get["kat"]))
-        $kat = "";
+if (!isset($get["kat"]))
+        $kat = "motor";
     else
         $kat = $get["kat"];
-    
-    $output .= backLink("?page=trader&sub=tuner");
+  
+    $output .= showTunerKats($kat);
 
     $isPartRunningNow = isPartRunning()[0];
     $counter=1;
@@ -98,7 +112,7 @@ if ($mode == "parts") { // Wenn eine Kategorie gewählt wurde
 
         $output .= "<div class='tuner' id='$part'>
                     <div class='imgFlex'>
-                        <img class='tuningImage' src='img/parts/$kat.jpg' />
+                        <img class='tuningImage' src='img/parts/$kat.png' />
                     </div>
 
                     <div class='tuneInfoFlex tuneInfoFlex150'>
@@ -153,41 +167,5 @@ if ($mode == "parts") { // Wenn eine Kategorie gewählt wurde
     
         $counter++;
         }
-} else { //Standardübersicht auswählen
-    $katNames = queryTuningKats();
-    
-    $isKatRunning = isPartRunning()[1];
-    
-    
-    //Jede Teileklasse durchgehen
-    foreach ($katNames as $kat) {
-
-        if($isKatRunning == $kat)
-            $build = "currently building";
-        else $build = "";
-        $output .= "<div class='tuner' id='$kat'>
-                    <div class='imgFlex'>
-                        <img class='tuningImage' src='img/parts/" . $kat . ".jpg' />
-                    </div>
-
-                    <div class='tuneInfoFlex'>
-                        <div class='tuneTitle'>
-                            " . put($kat, $l) . "
-                        </div>
-
-                        <div class='tuneInfo'> 
-                            <div class='tuneDesc'>\"" . put("desc_" . $kat, $l) . "\"</div>
-                        </div>
-                    </div>
-                    
-                    <div class='tuneFooter'>
-                        $build
-                        <form method='POST' action='?page=trader&sub=tuner&mode=parts&kat=$kat' style='display:inline-block;'>
-                            <input class='tableTopButton' name='open' type='submit' value='" . put("open_kat", $l) . "'>
-                        </form>
-                    </div>                    
-               </div>";
-    }
-}
 
 $output .= "</div>";

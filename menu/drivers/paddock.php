@@ -34,7 +34,7 @@ if ($mode == "manage" && $driver) {
     } else if (isset($post["action"]) AND $post["action"] == "upgrade") {
         $driver = getDriverByID(intval($post["driver_id"]));
         $cost = driverUpgradeCost($driver["liga"]);
-        if ($driver AND getPlayerMoney() >= $cost) {
+        if ($driver["liga"] < 8 && $driver AND getPlayerMoney() >= $cost) {
             $up = upgradeDriver($post["driver_id"], $cost);
 
             $output .= "<span class='dealInfoText $up'>";

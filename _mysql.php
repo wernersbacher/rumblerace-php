@@ -355,14 +355,14 @@ function queryPlayerPartsID($id) {
 
 function queryTuningKats() {
     //Gibt nur die Namen zurück.
-    $sql = "SELECT kat FROM parts";
+    $sql = "SELECT DISTINCT kat FROM parts";
     $entry = querySQL($sql);
 
     if ($entry) {
         while ($row = mysqli_fetch_assoc($entry)) {
             $data[] = $row["kat"];
         }
-        return array_unique($data);
+        return ($data);
     } else {
         return false;
     }
