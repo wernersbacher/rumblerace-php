@@ -1,4 +1,5 @@
 <?php
+require_once '_game_config.php';
 
 define("LIGA_MULTI", 5);
 define("LIGA_START", 400);
@@ -103,7 +104,10 @@ function getValues($array) {
 }
 
 function getMaxSprit() {
-    return 10000;
+    global $_config;
+    $max = $_config["vars"]["startMaxSprit"];
+    $max += upgrade("sprit_max");
+    return $max;
 }
 
 function calcSpritMin() {

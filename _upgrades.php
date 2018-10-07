@@ -46,7 +46,8 @@ function upgrade($base_name) { //calculate the effect for the upgrades
 }
 
 function getMaxCars() {
-    $max = 2;
+    global $_config;
+    $max = $_config["vars"]["startMaxCars"];
     $max += upgrade("garage_space");
     return $max;
 }

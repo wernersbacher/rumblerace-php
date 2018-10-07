@@ -90,7 +90,6 @@ function generateNode($node) {
     $unit = $node["unit"];
     $max = $node["thisMax"];
     $chain = $node["chain"];
-    $chain = $node["chain"];
     $pre_id = intval($node["pre_id"]);
     $needed = intval($node["needed"]);
 
