@@ -63,12 +63,12 @@ foreach ($cars as $car) {//$car["title"]
                             " . $car["title"] . "
                                 <div class='driverLiga'><img src='img/liga/" . $liga . ".png' alt='League " . $liga . "' title='League " . $liga . "' /></div>
                         </div>
-
+                        
                         <div class='dealInfo'>
-                            <span>A: ". $car["acc"] . "</span> 
-                            <span>S: ". $car["speed"] . "</span> 
-                            <span>H: ". $car["hand"] . "</span> 
-                            <span>D: ". $car["dura"] . "</span> 
+                            <span><div class='stat_image_wrapper'><img src='img/stats/acc1.png' alt='Acc'/></div> " . $car["acc"]. "</span> 
+                            <span><div class='stat_image_wrapper'><img src='img/stats/speed1.png' alt='speed'/></div> " . $car["speed"]. "</span> 
+                            <span><div class='stat_image_wrapper'><img src='img/stats/handling1.png' alt='handling'/></div> " . $car["hand"]. "</span> 
+                            <span><div class='stat_image_wrapper'><img src='img/stats/strength1.png' alt='strength'/></div> " . $car["dura"]. "</span> 
                         </div>
 
                     </div>
