@@ -422,6 +422,7 @@ $lg["effect"] = ["Effect", "Effekt"];
 
 $lg["cars"] = [" car(s)/upgrade", " Auto(s)/Upgrade"];
 $lg["per"] = ["%/upgrade", "%/Upgrade"];
+$lg["lit"] = [" max sprit/upgrade", " maximaler Sprit/Upgrade"];
 
 //+++++Upgrade Beschreibungen
 
@@ -444,3 +445,16 @@ $lg["mechanics_3"] = ["It's not over yet!", "Es ist noch nicht vorbei!"];
 
 $lg["mechanics_4-title"] = ["NAVY SEAL?", "NAVY SEAL?"];
 $lg["mechanics_4"] = ["It's the NAVY SEAL training of mechanics, formula 1 experiences!", "Extrem hartes Training: Formel 1 Erfahrungen!"];
+
+//max. Sprit
+$lg["sprit_max-title"] = ["Fuel Canister", "Kanister"];
+$lg["sprit_max"] = ["Some jerrycans. Simple.", "Ein paar Benzinkanister zum Befüllen."];
+
+$lg["sprit_max_2-title"] = ["veerry big Fuel Canister", "Grooße Kanister"];
+$lg["sprit_max_2"] = ["Some more. Nothing fancy.", "Ein paar mehr Kanister schaden nie, vor allem, wenn sie groß sind"];
+
+$lg["sprit_max_3-title"] = ["Tank", "Tank"];
+$lg["sprit_max_3"] = ["Has some more volume.", "Ein großer Tank. Achtung, ist groß und hässlich"];
+
+$lg["sprit_max_4-title"] = ["Fuel Canister", "Tank (im Boden)"];
+$lg["sprit_max_4"] = ["A really big tank this time (dont worry, it hasn't a gun)", "Noch ein Tank, diesmal im Boden. Da ist mehr Platz"];

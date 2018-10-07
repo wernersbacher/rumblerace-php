@@ -1570,7 +1570,7 @@ function getUpgradeTree() { //gibt alle updates aus, zusammen mit den anforderun
         up.id AS this_id, 
         up.name,
         up.chain,
-        up.unit,
+        uu.unit,
         up.effect,
         up.max AS thisMax, 
         up.points AS thisCost, 
@@ -1578,6 +1578,8 @@ function getUpgradeTree() { //gibt alle updates aus, zusammen mit den anforderun
         upt.pre_id AS pre_id, 
         upt.needed
         FROM upgrades up
+                LEFT JOIN upgrades_units uu
+                ON up.chain = uu.chain
                 LEFT JOIN upgrades_tree upt
                 ON up.id = upt.up_id
                 LEFT JOIN upgrades_user upu

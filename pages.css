@@ -759,6 +759,10 @@ tr:nth-child(even) {
     height:100%;
 }
 
+#nodes input {
+    margin-top:0px;
+}
+
 .tooltip {
     width: 200px;
     bottom: 45px;
