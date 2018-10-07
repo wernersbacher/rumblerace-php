@@ -17,7 +17,7 @@ if (isset($post["teil_id"])) { //Beim Kauf eines Objektes (Sprit)
     $teil_id = $post["teil_id"];
 
     $purch = buySpritTeil($teil_id);
-
+    
     $bought .= "<span class='dealInfoText $purch'>";
     $bought .= put($purch, $l);
     $bought .= "</span>";

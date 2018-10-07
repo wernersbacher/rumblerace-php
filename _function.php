@@ -410,6 +410,7 @@ function showSkill($ep) {
     global $_config;
     //return round($ep / 100, 1);
     
+    //Neu: a*LOG(1+x)/(1+a*LOG(1+x)) verwendnen?
     return min(round($ep ** (1/3), 1),$_config["driver"]["maxSkill"]);
 }
 

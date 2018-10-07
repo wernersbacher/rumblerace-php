@@ -1399,7 +1399,7 @@ function upgradeDriver($driver_id, $cost) {
     global $mysqli;
     mysqli_autocommit($mysqli, FALSE);
 
-    $upgrade = mysqli_query($mysqli, "UPDATE fahrer SET liga = liga + 1, skill = skill *1.5, anteil = anteil + 1 WHERE id = $driver_id"
+    $upgrade = mysqli_query($mysqli, "UPDATE fahrer SET liga = liga + 1, skill = skill *2, anteil = anteil + 1 WHERE id = $driver_id"
     );
     $spend = mysqli_query($mysqli, "UPDATE stats
             SET money = money - $cost

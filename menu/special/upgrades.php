@@ -31,7 +31,8 @@ if (isset($post["action"]) && $post["action"] == "buyUpgradePoint") { //Kaufen e
     if (checkNodeBuyable($node)) {
         //kaufen
         $status = upgradeById($node["this_id"], $node["thisCost"]);
-
+         
+        header("Location: main.php?page=special&sub=upgrades&status=".$status);
         $free -= $node["thisCost"];
         $used += $node["thisCost"];
         $tree = getUpgradeTree();
@@ -42,6 +43,11 @@ if (isset($post["action"]) && $post["action"] == "buyUpgradePoint") { //Kaufen e
     $output .= "<span class='dealInfoText $status'>";
     $output .= put($status, $l);
     $output .= "</span>";
+} else if (isset($get["status"])) { //Wenn weitergeleitet wurde. Nötig, um die Spritzahl direkt zu refreshen
+    $status = $get["status"];
+    $output .= "<span class='dealInfoText $status'>";
+    $output .= put($status, $l);
+    $output .= "</span>"; 
 }
 
 function checkNodeBuyable($node) {
