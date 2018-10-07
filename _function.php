@@ -170,12 +170,14 @@ function calcExpFactor($race, $skill) {
  */
 
 function calcRewardMulti($pneeded, $macc, $mspeed, $mhand, $mdura, $exp, $car_id, $driver_id) {
-    $gain = 0;
+    global $_config;
+    $car_factor = 1;
     //Get car data
     $carAttr = getCarPartsSum($car_id);
     //$car = queryPlayerCarID($car_id);
     $skill = getDriverSkill($driver_id);
-    $expf = calcExpFactor($exp, $skill);
+    //$expf = calcExpFactor($exp, $skill);
+    $driver_factor = $skill/100; //make to dec num
     
     //Wenn die Boni zu groß sind, wird der Richtwert angehoben, und vice versa
     $reference_factor = ($macc+ $mspeed+ $mhand+ $mdura)/4;
@@ -184,19 +186,20 @@ function calcRewardMulti($pneeded, $macc, $mspeed, $mhand, $mdura, $exp, $car_id
     $track_perf = $carAttr["acc"] * $macc + $carAttr["speed"] * $mspeed + $carAttr["hand"] * $mhand + $carAttr["dura"] * $mdura;
 
     //Check, if perf über perf needed
-    if ($track_perf >= $pn) {
-        $gain = 1;
-    } else { //ansonsten wird prozentual abgesetzt
-        //$reward = (($ps+($psReward-$ps)/2)/100) * $reward;
-        $gain = ($track_perf / $pn);
-    }
-
-    $gain *= $expf; //If good driver, max, if not, less rewards
-    if($gain < 0.1)
-        $gain = 0;
+    if ($track_perf < $pn) {
+        $car_factor = ($track_perf / $pn);
+    } 
+    $car_weight = $_config["racing"]["carWeight"];
+    $gain_factor = $car_weight*$car_factor+(1-$car_weight)*$driver_factor; // gewichtung von Skill zu Auto
+    if($gain_factor < $_config["racing"]["minGoodness"])
+        $gain_factor = 0;
     
-    return $gain;
+    return $gain_factor;
 }
+/*
+ * Gibt den Dollartwert zurück, den man bekommt, abhängig von den Sprit.
+ * Achtung: Gibt fertigen Wert zurück, gerundet.
+ */
  function calcDollarReward($sprit) {
      //global $_config;
      /*
@@ -205,7 +208,8 @@ function calcRewardMulti($pneeded, $macc, $mspeed, $mhand, $mdura, $exp, $car_id
      
         //$expo = $_config["calc"]["rewardBaseExpo"];
      //return 10 * pow($sprit, $expo);
-     return 55000/(1 + EXP(-($sprit-500)*0.005)) - 4269;
+     $dollar = 55000/(1 + EXP(-($sprit-500)*0.005)) - 4269;
+     return round($dollar, -1);
  }
 
 /*
@@ -399,8 +403,14 @@ function calcSkillGain($liga, $ep) {
     return $ep / (pow($liga, 1.7) * 100);
 }
 
+/*
+ * returns skill in %, like 23
+ */
 function showSkill($ep) {
-    return round($ep / 100, 1);
+    global $_config;
+    //return round($ep / 100, 1);
+    
+    return min(round($ep ** (1/3), 1),$_config["driver"]["maxSkill"]);
 }
 
 function isValid($str) {

@@ -81,7 +81,7 @@ if ($mode == "manage" && $driver) {
                  <hr/>
                  <div class='driver_quick'>
                  
-                    <div class='settingPoint'>Skill:<br/>$skill</div>
+                    <div class='settingPoint'>Skill:<br/>$skill%</div>
                     
 
                     <div class='settingPoint'>" . put("anteil", $l) . ":<br/>$anteil%</div>
@@ -127,7 +127,7 @@ if ($mode == "manage" && $driver) {
             $output .= " 
                 <div class='sysDriver'>
                 <h2>$name <div class='driverLiga'><img src='img/liga/" . $liga . ".png' alt='League " . $liga . "' title='League " . $liga . "' /></div></h2>
-                Skill: <b>$skill</b> [$driver_id]
+                Skill: <b>$skill%</b> [$driver_id]
                  
 
                 

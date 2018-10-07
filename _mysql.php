@@ -651,7 +651,7 @@ function queryRaceDone() {
                     rc.mspeed as mspeed,
                     rc.mhand as mhand,
                     rc.mdura as mdura,
-                    rc.reward as reward,
+                    rc.sprit_needed as sprit_needed,
                     rc.exp as exp,
                     rr.id as id,
                     rr.time_end as time_end,
@@ -682,12 +682,10 @@ function queryRaceDone() {
             //Rennen ist fertig
             mysqli_autocommit($mysqli, FALSE);
 
-            //$driver = getDriverByID($race["driver_id"]);
             $id = $race["id"];
             $rewardMulti = calcRewardMulti($race["pn"], $race["macc"], $race["mspeed"], $race["mhand"], $race["mdura"], $race["exp"], $race["car_id"], $race["driver_id"]);
-            //$exp = calcExpReward($race["exp"], $race["ps"], $race["car_id"], $race["driver_id"]);
-
-            $reward = $race["reward"] * $rewardMulti;
+            
+            $reward = calcDollarReward($race["sprit_needed"]) * $rewardMulti;
             $exp = $race["exp"] * $rewardMulti;
             
             $reward_granted = mysqli_query($mysqli, "UPDATE stats 
@@ -697,7 +695,7 @@ function queryRaceDone() {
             $sql_deb = "UPDATE fahrer 
                 SET skill = skill + '$exp'
                 WHERE user_id = '" . $_SESSION["user_id"] . "' AND id = '" . $race["driver_id"] . "'";
-            //var_dump($sql_deb);
+            
             $driver_reward = mysqli_query($mysqli, $sql_deb
             );
 
@@ -1401,7 +1399,7 @@ function upgradeDriver($driver_id, $cost) {
     global $mysqli;
     mysqli_autocommit($mysqli, FALSE);
 
-    $upgrade = mysqli_query($mysqli, "UPDATE fahrer SET liga = liga + 1, anteil = anteil + 1 WHERE id = $driver_id"
+    $upgrade = mysqli_query($mysqli, "UPDATE fahrer SET liga = liga + 1, skill = skill *1.5, anteil = anteil + 1 WHERE id = $driver_id"
     );
     $spend = mysqli_query($mysqli, "UPDATE stats
             SET money = money - $cost

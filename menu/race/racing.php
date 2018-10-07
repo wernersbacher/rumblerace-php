@@ -67,7 +67,7 @@ if($drivers)
         $id = $drv["id"];
         
         if($driver_liga >= $liga && queryDriverIsNotRacing($id))
-            $carselect .= "<option value='$id'>$name (Skill: $skill)</option>";
+            $carselect .= "<option value='$id'>$name (Skill: $skill%)</option>";
     }
     return $carselect;
 }

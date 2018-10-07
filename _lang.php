@@ -275,7 +275,8 @@ $lg["sprit_market"] = ["Buy fuel on the global market here. To sell your own fue
     "Kaufe hier Sprit auf dem globalen Markt. Um dein eigenen Sprit zu verkaufen, <a href='?page=sprit&sub=sell'>geh zu 'Sprit'</a>."];
 
 //Racing
-$lg["race_info"] = ["Drive races for money and go up a league! The more horsepower, the higher the profit. The more performance, the more experience. You need a driver and car which has at least the same league as the race.", "Fahre Rennen, um Geld zu bekommen und Ligen aufzusteigen! Je mehr PS, desto höher der Gewinn. Je mehr Performance, desto mehr EP. Du brauchst mindestens ein Auto und ein Fahrer aus der Liga, in welchem auch das Rennen ist!"];
+$lg["race_info"] = ["Drive races for money and go up a league! The more horsepower, the higher the profit. The more performance, the more experience. You need a driver and car which has at least the same league as the race. The car is 3 times more important than the driver.", 
+    "Fahre Rennen, um Geld zu bekommen und Ligen aufzusteigen! Je mehr PS, desto höher der Gewinn. Je mehr Performance, desto mehr EP. Du brauchst mindestens ein Auto und ein Fahrer aus der Liga, in welchem auch das Rennen ist! Ein gutes Auto 3x so wichtig, wie ein guter Fahrer."];
 $lg["pos_one"] = ["Pos 1", "Platz 1"];
 $lg["reward"] = ["Reward", "Preisgeld"];
 $lg["race_started"] = ["Race started. You will get a SMS when it's done!", "Rennen wurde gestartet. Du bekommst eine SMS, wenn es zuende ist!"];
