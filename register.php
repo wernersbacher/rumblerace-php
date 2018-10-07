@@ -13,6 +13,7 @@ if ($userSet AND !$userGuest) {
 require_once('_mysql.php');
 require_once('_lang.php');
 require_once("gen.php");
+require_once('_overwrite.php');
 require_once('_function.php');
 $status = "";
 

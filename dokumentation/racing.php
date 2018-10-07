@@ -15,3 +15,5 @@ Auswertung von Rennen:
         unter 10% wirds immer 0.
     -> richtwert wird angepasst, je nach % gewichtung der teile. 
         also alle-multis/4 * rennen-richtwert
+        
+    -> driver skill wird in % berechnet, und 75% fahrzeug werten & 25% driver werte
