@@ -1,5 +1,4 @@
 2018
-* sprit upgrade
 * excel tabelle mit sprit verhältnissen
 -> Upgrades ins system einbauen
 
@@ -25,6 +24,7 @@ THIS RELEASE
 * skill vom fahrer auf acc, speed, hand und dura verteilen
 
 NEXT RELEASE
+* acievements
 * chat nochmal testen bzw pusher
 * durability beschädigt autos, müssen repariert werden
 * besseres nachrichten system + icons

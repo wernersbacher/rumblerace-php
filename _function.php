@@ -197,28 +197,16 @@ function calcRewardMulti($pneeded, $macc, $mspeed, $mhand, $mdura, $exp, $car_id
     
     return $gain;
 }
-
-/*
-function calcExpReward($exp, $psReward, $car_id, $driver_id) {
-    $gain = 0;
-    $car = queryPlayerCarID($car_id);
-    $partPrf = calcPerf($car_id);
-    $per = $car["perf"] + $partPrf;
-
-    $skill = getDriverSkill($driver_id);
-    $expf = calcExpFactor($exp, $skill);
-
-    if ($per >= $psReward) {
-        $gain = $exp;
-    } else {
-        //$reward = (($ps+($psReward-$ps)/2)/100) * $reward;
-        $gain = ($per / 100) * $exp;
-    }
-
-    $gain *= $expf; //If good driver, max, if not, less rewards
-
-    return $gain;
-}*/
+ function calcDollarReward($sprit) {
+     //global $_config;
+     /*
+      * Noch liga mit einberechnen, sowie upgrades.
+      */
+     
+        //$expo = $_config["calc"]["rewardBaseExpo"];
+     //return 10 * pow($sprit, $expo);
+     return 55000/(1 + EXP(-($sprit-500)*0.005)) - 4269;
+ }
 
 /*
  * Gibt die Summe der Fahrzeugattribute aus, vor allem für Racing nützlich

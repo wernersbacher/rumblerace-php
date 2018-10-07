@@ -140,6 +140,8 @@ if($races)
     $mhand = outputToProcent($race["mhand"]);
     $mdura = outputToProcent($race["mdura"]);
     
+    $dollar_reward = dollar(calcDollarReward($race["sprit_needed"]));
+    
 
     //Ausgabe einzelner Rennen
     $output .= "<div class='dealer'>
@@ -159,7 +161,7 @@ if($races)
                             <div class='tuneBuyDetails' style=''>
                                 ".$race["sprit_needed"]."L, 
                                 ".formatSeconds($race["dur"])."s, 
-                                " . put("reward", $l) . ": max. ".dollar($race["reward"]).", 
+                                " . put("reward", $l) . ": max. $dollar_reward, 
                                 " . put("erfahrung", $l) . ": max. ".ep($race["exp"])." 
                             </div>
                             <div class='tuneBuyDetails'>
