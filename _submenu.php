@@ -4,7 +4,21 @@ function getMenuList() {
     global $l, $m;
     $out = '<ul>';
     foreach($m as $page => $page_inf) {
-        $out .= "<a href='main.php?page=$page'><li><img src='img/".$page_inf["icon"].".png'>" . put($page, $l) . "</li></a>";
+        $out .= "<div class='mainDropDown'>
+                <a href='main.php?page=$page'><li><img src='img/".$page_inf["icon"].".png'>" . put($page, $l) . "</li></a>
+                    
+                <div class='mainDropDown-content'>";
+                    
+                    foreach($m[$page]["subs"] as $sub) {
+                        $out .= "<a href='main.php?page=$page&sub=$sub'>" . put("s_".$sub, $l) . "</a>";
+                    }
+
+                  
+                $out .= "</div> <!-- closing dropdown-->
+
+
+                </div>";
+        
     }
     /*
     $out = '<ul>
