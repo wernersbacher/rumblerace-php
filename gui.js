@@ -38,6 +38,7 @@ function startSprit() {
     var max = parseFloat($("#spritTags").data("spritmax"));
     var spm = parseFloat($("#spritTags").data("promin"));
     var sps = spm / 60;
+    console.log(sps);
     var old = parseFloat($("#playerSprit").html());
 
     function setSprit(x) {
@@ -55,7 +56,7 @@ function startSprit() {
         }
         setSprit(old);
     }
-    interval();
+    //interval();
     var refresh = setInterval(interval, 1000);
 }
 
@@ -153,7 +154,6 @@ $(document).ready(function () {
     $("#login_prev").backstretch("img/brett.jpg");
 
     //Tooglen der Systemnachrichten
-    console.log("test");
     setToggle();
 
     //Abfrage der Dialoge
