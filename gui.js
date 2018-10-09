@@ -266,6 +266,18 @@ $(document).ready(function () {
 
         });
     }
+    
+    //sprit kaufen
+    if ($("#calcSprit").length) {
+        $("#sprit_buy_max").click(function () {
+            var sprit = parseFloat($("#buy_amount").attr("max"));
+            $("#buy_amount").val(precise_round(sprit, 2));
+            $("#buy_amount").trigger("change");
+
+        });
+    }
+    
+    
 
 
     //upgrades

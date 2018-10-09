@@ -34,7 +34,8 @@ if ($mode == "buy" && isset($get["id"])) {
             $output .= "<form id='calcSprit' method='post' action='?page=market&sub=spritmarket'>";
             $output .= "<input type='hidden' name='id' value='$str_id'> ";
             $output .= "<input type='hidden' value='$price' class='sp_price sp'>";
-            $output .= "<input type='number' min='0.01' max='$amount' step='0.01' name='amount' placeholder='100' class='sp_amount sp tableTopInput'><br/>";
+            $output .= "<input type='number' min='0.01' max='$amount' step='0.01' name='amount' id='buy_amount' placeholder='100' class='sp_amount sp tableTopInput'> ";
+            $output .= "<div id='sprit_buy_max' class='tableTopButton'>max</div> <br/>";
             $output .= "<span id='calcSpritResult'>--</span><br/>";
             $output .= "<input type='submit' class='tableTopButton' name='confirmed' value='" . put("buy", $l) . "'>";
             $output .= "</form>";
