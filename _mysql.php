@@ -155,7 +155,8 @@ function queryLangChange($lang) {
 }
 
 function queryPlayerStats() {
-    return queryPlayerByID($_SESSION["user_id"]);
+    $pl = queryPlayerByID($_SESSION["user_id"]);
+    return $pl;
 }
 
 function queryPlayerByID($id) {

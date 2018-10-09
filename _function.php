@@ -129,7 +129,6 @@ function calcNewSprit() {
     $last = getLastSpritUpdate();
     $now = time();
     $max = getMaxSprit();
-    
     $sprit = ($now - $last) * $sps + $old; //Neuer Sprit wert
 
     if ($sprit > $max)

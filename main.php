@@ -59,6 +59,9 @@ if (getPlayerLiga() < 8)
     queryLigaChange();
 
 
+//Load new any maybe changed player data for output
+$player = queryPlayerStats();
+
 //Ausgeben der aktuellen Seite
 $inc = "menu/$page/$sub.php";
 if (file_exists($inc)) {
@@ -76,8 +79,7 @@ $content = $output;
 //Check for tooltip data
 if (!isset($htmlTooltips))
     $htmlTooltips = "";
-//Load new any maybe changed player data for output
-$player = queryPlayerStats();
+
 
 //Anzeigen des Spritstatistik
 $spm = calcSpritMin();

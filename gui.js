@@ -38,9 +38,8 @@ function startSprit() {
     var max = parseFloat($("#spritTags").data("spritmax"));
     var spm = parseFloat($("#spritTags").data("promin"));
     var sps = spm / 60;
-    console.log(sps);
     var old = parseFloat($("#playerSprit").html());
-
+    var refresh;
     function setSprit(x) {
         $("#playerSprit").html(nwc(x) + " &#8467;").attr("data-sprit-float", x);
 
@@ -57,7 +56,9 @@ function startSprit() {
         setSprit(old);
     }
     //interval();
-    var refresh = setInterval(interval, 1000);
+    setTimeout(function() {
+        refresh = setInterval(interval, 1000);
+    }, 1000);
 }
 
 function startCountdown() {
