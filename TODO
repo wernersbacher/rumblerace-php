@@ -1,8 +1,6 @@
 2018
-sprit wird falsch angezeigt!!
 * mobile menü anpassen
 * sprit verkaufen: bei gleichem preis update
-* php sprit generierung zu langsam
 
 BALANCING:
 * es muss sich lohnen, längere rennen zu fahren, bzw mehr sprit auszugeben.
@@ -27,6 +25,7 @@ THIS RELEASE
 * skill vom fahrer auf acc, speed, hand und dura verteilen
 
 NEXT RELEASE
+* zahlen komma und punkt checken
 * roter button
 * acievements
 * chat nochmal testen bzw pusher

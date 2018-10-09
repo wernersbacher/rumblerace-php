@@ -125,11 +125,11 @@ function calcSpritMin() {
 
 function calcNewSprit() {
     $sps = calcSpritMin() / 60;
-    $old = intval(getPlayerSprit());
+    $old = floatval(getPlayerSprit());
     $last = getLastSpritUpdate();
     $now = time();
     $max = getMaxSprit();
-
+    
     $sprit = ($now - $last) * $sps + $old; //Neuer Sprit wert
 
     if ($sprit > $max)

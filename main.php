@@ -82,7 +82,7 @@ $player = queryPlayerStats();
 //Anzeigen des Spritstatistik
 $spm = calcSpritMin();
 $max = getMaxSprit();
-$sprit = "<span title='" . gas(nwc($spm / 60)) . "/sec' id='spritTags' data-spritmax='$max' data-promin='$spm'><span id='playerSprit'>" . gas(getPlayerSprit()) . "</span>/" . gas(nwc($max)) . "</span>";
+$sprit = "<span title='" . gas(nwc($spm / 60)) . "/sec' id='spritTags' data-spritmax='$max' data-promin='$spm'><span id='playerSprit'>" . gas(round(getPlayerSprit(), 2)) . "</span>/" . gas(nwc($max)) . "</span>";
 
 //Adding Submenu for page
 $subarray = getSubMenu($page);
