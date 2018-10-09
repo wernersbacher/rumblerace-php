@@ -250,11 +250,15 @@ $(document).ready(function () {
     //sprit verkaufen
     if($("#sprit_amount")) {
         
+        $("#sprit_price_min").click(function() {
+            var min = 0.01;
+            $("#sprit_price").val(min);
+        });
         
         
         $("#sprit_amount_max").click(function() {
             var sprit = parseFloat($("#playerSprit").attr("data-sprit-float"));
-            $("#sprit_amount").val(sprit);
+            $("#sprit_amount").val(precise_round(sprit,2));
             
         });
     }
