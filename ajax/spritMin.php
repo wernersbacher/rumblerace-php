@@ -1,8 +1,13 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/*
+ * AJAX OUTPUT: minimum sprit price on market. 
  */
 
+require_once '../_mysql.php';
+
+$sql = "SELECT MIN(price) as min FROM sprit_market";
+
+$result = getColumn($sql);
+
+echo $result["min"];

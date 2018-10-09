@@ -25,3 +25,47 @@ if (mysqli_connect_errno() != 0 || !$mysqli->set_charset('utf8')) {
     die('<strong>ERROR:</strong> Es konnte keine Verbindung mit dem Datenbank-Server hergestellt werden!');
 }
 
+/*
+ * BASE FUNCS
+ */
+
+function hash5($pass) {
+    return md5($pass . "Ich bin witzig");
+}
+
+function querySQL($sql) {
+    global $mysqli;
+    $entry = mysqli_query($mysqli, $sql) or die($sql . "<br/>Error: " . mysqli_error($mysqli));
+    return $entry;
+}
+
+function getColumn($sql) {
+    $entry = querySQL($sql);
+
+    if ($entry) {
+        $row = mysqli_fetch_assoc($entry);
+        return $row;
+    } else {
+        return false;
+    }
+}
+
+function getCount($sql) {
+    $entry = querySQL($sql);
+    $count = mysqli_num_rows($entry);
+    return $count;
+}
+
+function getArray($sql) {
+
+    $entry = querySQL($sql);
+    if ($entry) {
+        while ($row = mysqli_fetch_assoc($entry)) {
+            $data[] = $row;
+        }
+        if (isset($data))
+            return $data;
+    } else {
+        return false;
+    }
+}

@@ -42,7 +42,7 @@ function startSprit() {
 
     function setSprit(x) {
         $("#playerSprit").html(nwc(x) + " &#8467;").attr("data-sprit-float", x);
-        
+
     }
 
     function interval() {
@@ -131,9 +131,9 @@ var currentForm;
 
 $(document).ready(function () {
 
-/*
- * dirty post-resumbit solution
- */
+    /*
+     * dirty post-resumbit solution
+     */
     if (window.history.replaceState) {
         window.history.replaceState(null, null, window.location.href);
     }
@@ -242,24 +242,29 @@ $(document).ready(function () {
         if (isNaN(res))
             res = "--";
         else
-            res = nwc(res);
+            res = "= " + nwc(res);
         $("#calcSpritResult").html(res);
 
     });
 
     //sprit verkaufen
-    if($("#sprit_amount")) {
-        
-        $("#sprit_price_min").click(function() {
-            var min = 0.01;
-            $("#sprit_price").val(min);
+    if ($("#sprit_amount")) {
+
+        $("#sprit_price_min").click(function () {
+
+            $.ajax({url: "ajax/spritMin.php", success: function (result) {
+
+                    $("#sprit_price").val(result);
+                    $("#sprit_price").trigger("change");
+                }});
         });
-        
-        
-        $("#sprit_amount_max").click(function() {
+
+
+        $("#sprit_amount_max").click(function () {
             var sprit = parseFloat($("#playerSprit").attr("data-sprit-float"));
-            $("#sprit_amount").val(precise_round(sprit,2));
-            
+            $("#sprit_amount").val(precise_round(sprit, 2));
+            $("#sprit_amount").trigger("change");
+
         });
     }
 
