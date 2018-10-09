@@ -119,10 +119,10 @@ function setToggle() {
 
 
     $('#toggle_sys').on('click', function () {
-        console.log("toggle");
         $(".sys").toggle(200);
         $("#toggle_sys").toggleClass("offTableTop");
-        Cookies.set("toggle-state", $(".sys").first().is(':visible'), {expires: 7, path: '/'});
+        Cookies.set("toggle-state", !Cookies.get("toggle-state"), {expires: 7, path: '/'});
+        console.log("done");
     });
 }
 
