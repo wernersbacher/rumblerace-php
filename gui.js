@@ -41,7 +41,8 @@ function startSprit() {
     var old = parseFloat($("#playerSprit").html());
 
     function setSprit(x) {
-        $("#playerSprit").html(nwc(x) + " &#8467;");
+        $("#playerSprit").html(nwc(x) + " &#8467;").attr("data-sprit-float", x);
+        
     }
 
     function interval() {
@@ -245,6 +246,19 @@ $(document).ready(function () {
         $("#calcSpritResult").html(res);
 
     });
+
+    //sprit verkaufen
+    if($("#sprit_amount")) {
+        
+        
+        
+        $("#sprit_amount_max").click(function() {
+            var sprit = parseFloat($("#playerSprit").attr("data-sprit-float"));
+            $("#sprit_amount").val(sprit);
+            
+        });
+    }
+
 
     //upgrades
     if ($("#nodes").length) {
