@@ -4,6 +4,10 @@
     /*[class*="col-"] {
         width: 100%;
     }*/
+    
+    .mainDropDown:hover .mainDropDown-content {
+        display: none !important;
+    }
 
     #loginWindow {
         width: inherit !important;
@@ -44,6 +48,10 @@
     #mainmenu > ul > a > li > img{
         /*display:none;*/
     }
+    
+    .mainDropDown {
+        margin: 5px;
+    }
 
 
 
@@ -77,4 +85,12 @@
     #contentWindow > ul > li > a > img {
         width:30px;
     }
+}
+
+@media only screen and (max-width: 480px) {
+
+    #always {
+        display:none;
+    }
+    
 }

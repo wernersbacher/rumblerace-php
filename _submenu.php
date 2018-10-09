@@ -4,7 +4,7 @@ function getMenuList() {
     global $l, $m;
     $out = '<ul>';
     foreach($m as $page => $page_inf) {
-        $out .= "<div class='mainDropDown'>
+        $out .= "<span class='mainDropDown'>
                 <a href='main.php?page=$page'><li><img src='img/".$page_inf["icon"].".png'>" . put($page, $l) . "</li></a>
                     
                 <div class='mainDropDown-content'>";
@@ -17,7 +17,7 @@ function getMenuList() {
                 $out .= "</div> <!-- closing dropdown-->
 
 
-                </div>";
+                </span>";
         
     }
     /*
@@ -37,7 +37,7 @@ function getMenuList() {
 
         </ul>';*/
 
-    $out .= '<a href="main.php?page=logout"><li><img src="img/logout40.png">Logout</li></a></ul>';
+    $out .= '<span class="mainDropDown"><a href="main.php?page=logout"><li><img src="img/logout40.png">Logout</li></a></ul></span>';
 
     return $out;
 }
