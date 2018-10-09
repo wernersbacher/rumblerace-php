@@ -1,6 +1,6 @@
 2018
 * mobile menü anpassen
-* sprit verkaufen: bei gleichem preis update
+* sprit kaufen: max button
 
 BALANCING:
 * es muss sich lohnen, längere rennen zu fahren, bzw mehr sprit auszugeben.
@@ -25,6 +25,7 @@ THIS RELEASE
 * skill vom fahrer auf acc, speed, hand und dura verteilen
 
 NEXT RELEASE
+* sql injects
 * zahlen komma und punkt checken
 * roter button
 * acievements

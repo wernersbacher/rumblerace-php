@@ -717,7 +717,9 @@ function querySpritSell($price, $amount) {
                 WHERE id = '" . $_SESSION["user_id"] . "'";
     $setSprit = querySQL($remove);
 
-    $sql = "INSERT INTO sprit_market (user_id, price, amount, timestamp) VALUES ('" . $_SESSION["user_id"] . "', '$price', '$amount', '" . time() . "')";
+    $sql = "INSERT INTO sprit_market (user_id, price, amount, timestamp) VALUES ('" . $_SESSION["user_id"] . "', '$price', '$amount', '" . time() . "')
+        ON DUPLICATE KEY UPDATE amount=amount+$amount
+        ";
     $setSell = querySQL($sql);
 
     if ($setSprit && $setSell) {

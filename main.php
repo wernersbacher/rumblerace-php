@@ -75,6 +75,8 @@ if (file_exists($inc)) {
     include("menu/404.php");
 }
 
+$player = queryPlayerStats();
+
 $content = $output;
 //Check for tooltip data
 if (!isset($htmlTooltips))
