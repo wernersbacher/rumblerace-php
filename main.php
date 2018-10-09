@@ -154,8 +154,8 @@ Love for Meri
         <script type="text/javascript" src="lib/form.min.js"></script>
         <script type="text/javascript" src="lib/date.js"></script>
         <script type="text/javascript" src="lib/tooltipster.bundle.min.js"></script>
-        <!--<script type="text/javascript" src="cookie.js"></script>-->
-        <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+        <script type="text/javascript" src="cookie.js"></script>
+        <!--<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>-->
         <script type="text/javascript" src="gui.js"></script>
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300' rel='stylesheet' type='text/css'> 
         <link rel="shortcut icon" type="image/x-icon" href="img/logo16.ico">
