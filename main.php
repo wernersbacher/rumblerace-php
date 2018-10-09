@@ -139,6 +139,7 @@ Love for Meri
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
         <link rel="stylesheet" href="src/font.css">
+        <link href="https://fonts.googleapis.com/css?family=Kodchasan:400,700" rel="stylesheet">
         <link rel="stylesheet" href="mobile.css">
         <link rel="stylesheet" href="default.css">
         <link rel="stylesheet" href="pages.css">

@@ -130,10 +130,7 @@ if (!isset($get["kat"]))
                                 <span class='tuneDur'>" . formatSeconds($dur1) . "s</span>
                             </div>";
         $output .= "        <div class='tuneBuyDetails'>
-                                <div class='stat_image_wrapper_tuner'><img src='img/stats/acc1.png' alt='Acc'/></div> <span class='tune_acc'>$acc1</span> |
-                                <div class='stat_image_wrapper_tuner'><img src='img/stats/speed1.png' alt='speed'/></div> <span class='tune_speed'>$speed1</span> | 
-                                <div class='stat_image_wrapper_tuner'><img src='img/stats/handling1.png' alt='hand'/></div> <span class='tune_speed'>$hand1</span> |
-                                <div class='stat_image_wrapper_tuner'><img src='img/stats/strength1.png' alt='str'/></div> <span class='tune_speed'>$dura1</span> 
+                                ".outputAttributesList($acc1, $speed1, $hand1, $dura1)."
                             </div>";
 
         if ($isPartRunningNow === $part) {

@@ -1,4 +1,5 @@
 <?php
+
 require_once '_game_config.php';
 
 define("LIGA_MULTI", 5);
@@ -177,45 +178,47 @@ function calcRewardMulti($pneeded, $macc, $mspeed, $mhand, $mdura, $exp, $car_id
     //$car = queryPlayerCarID($car_id);
     $skill = getDriverSkill($driver_id);
     //$expf = calcExpFactor($exp, $skill);
-    $driver_factor = $skill/100; //make to dec num
-    
+    $driver_factor = $skill / 100; //make to dec num
     //Wenn die Boni zu groß sind, wird der Richtwert angehoben, und vice versa
-    $reference_factor = ($macc+ $mspeed+ $mhand+ $mdura)/4;
-    $pn = $reference_factor*$pneeded;
-    
+    $reference_factor = ($macc + $mspeed + $mhand + $mdura) / 4;
+    $pn = $reference_factor * $pneeded;
+
     $track_perf = $carAttr["acc"] * $macc + $carAttr["speed"] * $mspeed + $carAttr["hand"] * $mhand + $carAttr["dura"] * $mdura;
 
     //Check, if perf über perf needed
     if ($track_perf < $pn) {
         $car_factor = ($track_perf / $pn);
-    } 
+    }
     $car_weight = $_config["racing"]["carWeight"];
-    $gain_factor = $car_weight*$car_factor+(1-$car_weight)*$driver_factor; // gewichtung von Skill zu Auto
-    if($gain_factor < $_config["racing"]["minGoodness"])
+    $gain_factor = $car_weight * $car_factor + (1 - $car_weight) * $driver_factor; // gewichtung von Skill zu Auto
+    if ($gain_factor < $_config["racing"]["minGoodness"])
         $gain_factor = 0;
-    
+
     return $gain_factor;
 }
+
 /*
  * Gibt den Dollartwert zurück, den man bekommt, abhängig von den Sprit.
  * Achtung: Gibt fertigen Wert zurück, gerundet.
  */
- function calcDollarReward($sprit) {
-     //global $_config;
-     /*
-      * Noch liga mit einberechnen, sowie upgrades.
-      */
-     
-        //$expo = $_config["calc"]["rewardBaseExpo"];
-     //return 10 * pow($sprit, $expo);
-     $dollar = 55000/(1 + EXP(-($sprit-500)*0.005)) - 4269;
-     return round($dollar, -1);
- }
+
+function calcDollarReward($sprit) {
+    //global $_config;
+    /*
+     * Noch liga mit einberechnen, sowie upgrades.
+     */
+
+    //$expo = $_config["calc"]["rewardBaseExpo"];
+    //return 10 * pow($sprit, $expo);
+    $dollar = 55000 / (1 + EXP(-($sprit - 500) * 0.005)) - 4269;
+    return round($dollar, -1);
+}
 
 /*
  * Gibt die Summe der Fahrzeugattribute aus, vor allem für Racing nützlich
  * $id entspricht der $car_id in der DB.
  */
+
 function getCarPartsSum($id) {
     return [
         "acc" => calcPart($id, "acc")["sum"],
@@ -227,7 +230,7 @@ function getCarPartsSum($id) {
 
 function outputCarPartsSumList($id) {
     $carvals = getCarPartsSum($id);
-    return $carvals["acc"]."/".$carvals["speed"]."/".$carvals["hand"]."/".$carvals["dura"];
+    return $carvals["acc"] . "/" . $carvals["speed"] . "/" . $carvals["hand"] . "/" . $carvals["dura"];
 }
 
 /*
@@ -278,8 +281,15 @@ function prf($partPrf) {
 
 //HTML Output Funktionen
 
+function outputAttributesList($acc1, $speedl, $handl, $dural) {
+    return "<div class='stat_image_wrapper_tuner'><img src='img/stats/acc1.png' alt='Acc'/></div> <span class='tune_acc'>$acc1</span> |
+                                <div class='stat_image_wrapper_tuner'><img src='img/stats/speed1.png' alt='speed'/></div> <span class='tune_speed'>$speedl</span> | 
+                                <div class='stat_image_wrapper_tuner'><img src='img/stats/handling1.png' alt='hand'/></div> <span class='tune_speed'>$handl</span> |
+                                <div class='stat_image_wrapper_tuner'><img src='img/stats/strength1.png' alt='str'/></div> <span class='tune_speed'>$dural</span>";
+}
+
 function outputToProcent($dec) {
-    return intval($dec*100)."%";
+    return intval($dec * 100) . "%";
 }
 
 function outputDetails($acc, $speed, $hand, $dura, $br = false) {
@@ -406,12 +416,12 @@ function calcSkillGain($liga, $ep) {
 /*
  * returns skill in %, like 23
  */
+
 function showSkill($ep) {
     global $_config;
     //return round($ep / 100, 1);
-    
     //Neu: a*LOG(1+x)/(1+a*LOG(1+x)) verwendnen?
-    return min(round($ep ** (1/3), 1),$_config["driver"]["maxSkill"]);
+    return min(round($ep ** (1 / 3), 1), $_config["driver"]["maxSkill"]);
 }
 
 function isValid($str) {

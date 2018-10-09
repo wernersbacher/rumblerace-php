@@ -157,7 +157,7 @@ function queryRegister($user, $pass, $email) {
             . "'" . mysqli_real_escape_string($mysqli, hash5($pass)) . "', "
             . "'" . mysqli_real_escape_string($mysqli, $email) . "', '$lang', '" . time() . "')");
     $user_id = mysqli_insert_id($mysqli);
-    $addStats = mysqli_query($mysqli, "INSERT INTO stats (id, money, liga, sprit) VALUES ('" . $user_id . "', 25000, 1, 50)");
+    $addStats = mysqli_query($mysqli, "INSERT INTO stats (id, money, liga, sprit) VALUES ('" . $user_id . "', ".$_config["vars"]["startMoney"].", 1, ".$_config["vars"]["startSprit"].")");
     $addSprit = mysqli_query($mysqli, "INSERT INTO sprit_upt (user_id, updated) VALUES ('" . $user_id . "', '" . time() . "')");
     $addCar = mysqli_query($mysqli, "INSERT INTO garage (user_id, car_id) VALUES ('" . $user_id . "', 'beamer_pole')");
     $addDriver = mysqli_query($mysqli, "INSERT INTO fahrer (user_id, driver_id, name, skill, liga, anteil) VALUES ('$user_id', '$user_id+d', 'Markus Werner', 150, 1, 5)");

@@ -35,7 +35,7 @@ if ($mode == "buy" && isset($get["id"])) {
                 //Kaufen des Elements
 
                 $output .= put("you_wish", $l);
-                $output .= "<br/><b>" . put($part, $l) . " ($value " . put("unit_" . $kat, $l) . ") (" . put("liga", $l) . " $liga)</b><br/>";
+                $output .= "<br/><b>" . put($part, $l) . "<br/>(" . outputAttributesList($acc, $speed, $hand, $dura) . ") <br/>(" . put("liga", $l) . " $liga)</b><br/>";
                 $output .= put("for_cost", $l);
                 $output .= "<br/><b>" . dollar($price) . "</b><br/>";
                 $output .= put("to_buy", $l);
