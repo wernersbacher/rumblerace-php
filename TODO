@@ -1,5 +1,13 @@
 2018
-* mobile menü anpassen
+* user profile
+* freie Punkte im Menü links anzeigen
+* nicht genug geld fehler bei spritgewinn
+* tuning balken korrigieren, bzw vorher schon anzeigen
+* del sms (alte automatisch löschen reicht)
+* chat nochmal testen bzw pusher
+* größe tabelle für mobile, austesten
+* bilder verkleinern für mobile
+
 
 BALANCING:
 * es muss sich lohnen, längere rennen zu fahren, bzw mehr sprit auszugeben.
@@ -7,48 +15,36 @@ BALANCING:
 THIS RELEASE
 
 THIS RELEASE
-* tooltips tocu fähig machen
 * mehr upgrades einbauen 
 * balancing
-* login dauert sehr lange
+* legend driver
 
-* same car config (??)
-* autos dauern bis sie wieder gekauft werden können
-* turbo teurer
-* mehr ep später
-* left side free points
-* nicht genug geld fehler bei spritgewinn
-* faq: skill
-* tuning balken korrigieren, bzw vorher schon anzeigen
-* ssl for everyone
-* skill vom fahrer auf acc, speed, hand und dura verteilen
 
 NEXT RELEASE
+* login dauert sehr lange
+* same car config (??)
+* autos dauern bis sie wieder gekauft werden können
+* faq: skill
+* ssl for everyone
+* skill vom fahrer auf acc, speed, hand und dura verteilen
+* ITEMS?!
+* neue fahrzeug namen
 * sprit sammeln wie beim pennergame, afk prod runter balancen
 * sql injects
 * zahlen komma und punkt checken
 * roter button
 * acievements
-* chat nochmal testen bzw pusher
 * durability beschädigt autos, müssen repariert werden
 * besseres nachrichten system + icons
-* optionen: schalter für infoboxen
 * filter für alle tabellen
 * irgendwelche live daten einbauen
-* ep mal ausrechnen für mich
 * serverweite upgrades investieren
-* mobiles design
 * admin konsole
 * piwik
-* switches: dont get system sms
-* js drpdown menü
-* mobile design
 * changelog
 * garage car id speicherung ändern
-* legend driver
 * dialoge designen
 * nur eigene sachen auf dem markt anzeigen (checkbox)
-* del sms
 * time left zeitzonen
 * mehr user-stats speichern
 * stats für driver
@@ -116,6 +112,10 @@ ERFOLGE
 * rennen voll beendet
 * rennübersetzungen
 
+SWITCHES
+* Popups fragen
+* Infoschilder
+* dont get system sms
 
 ADMIN PANEL
 Löschen von Usern
