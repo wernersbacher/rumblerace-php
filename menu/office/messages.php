@@ -120,7 +120,7 @@ if ($mode == "new") {
     $output .= "<form method='POST' data-dialog='Really delete all system messages?' style='display:inline-block;' action='?page=office&sub=messages'><input type='hidden' name='delSys' value='del'><input class='tableTopButton dialog' name='delSys' type='submit' value='" . put("delSys", $l) . "'></form>";
     
     //Alle Nachrichten als gelesen markieren
-    $output .= "<form method='POST' style='display:inline-block;' action='?page=office&sub=messages'><input type='hidden' name='readAll' value='read'><input class='tableTopButton' name='delSys' type='submit' value='" . put("readAll", $l) . "'></form>";
+    $output .= "<form method='POST' style='display:inline-block;' action='?page=office&sub=messages'><input type='hidden' name='readAll' value='read'><input class='tableTopButton' name='readAll' type='submit' value='" . put("readAll", $l) . "'></form>";
 
     $output .= "</div>"; 
     

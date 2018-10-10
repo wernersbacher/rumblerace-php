@@ -1046,7 +1046,7 @@ function queryMessageData($id) {
 }
 
 function markAsRead($id) {
-    $sql = "UPDATE faxes SET open ='1' WHERE id = '$id'";
+    $sql = "UPDATE faxes SET open =1 WHERE id = '$id'";
     querySQL($sql);
 }
 
