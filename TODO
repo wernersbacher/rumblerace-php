@@ -1,12 +1,10 @@
 2018
 * user profile
-* freie Punkte im Menü links anzeigen
 * nicht genug geld fehler bei spritgewinn
 * tuning balken korrigieren, bzw vorher schon anzeigen
 * del sms (alte automatisch löschen reicht)
 * chat nochmal testen bzw pusher
 * größe tabelle für mobile, austesten
-* bilder verkleinern für mobile
 
 
 BALANCING:
@@ -21,6 +19,8 @@ THIS RELEASE
 
 
 NEXT RELEASE
+* bilder verkleinern für mobile
+* exp balken für liga
 * login dauert sehr lange
 * same car config (??)
 * autos dauern bis sie wieder gekauft werden können

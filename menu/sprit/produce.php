@@ -16,8 +16,12 @@ $bought = "";
 if (isset($post["teil_id"])) { //Beim Kauf eines Objektes (Sprit)
     $teil_id = $post["teil_id"];
 
+    //Umleitung, um korrekten Sprit anzuzeugen
     $purch = buySpritTeil($teil_id);
+    header("Location: main.php?page=sprit&status=".$purch);
     
+} else if(isset($get["status"])) {
+    $purch = $get["status"];
     $bought .= "<span class='dealInfoText $purch'>";
     $bought .= put($purch, $l);
     $bought .= "</span>";
