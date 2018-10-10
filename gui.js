@@ -268,11 +268,12 @@ $(document).ready(function () {
     /*
      * only scroll to saved pos. if on on of those pages AAAAND the site is the same as before
      */
-    if (
-            ($("#produce").length ||
+    if (    //Autoscroll ist für alle aktiv, wenn das auskommentiert ist
+           /* ($("#produce").length ||
                     $("#tuner").length ||
-                    $("#racing").length)
-            && localStorage.getItem("page-id") === document.getElementsByTagName("title")[0].innerHTML) {
+                    $("#racing").length) &&*/
+             
+            localStorage.getItem("page-id") === document.getElementsByTagName("title")[0].innerHTML) {
         //Scroll to saved position
         $(window).scrollTop(localStorage.getItem("scrollTop"));
     } else {
