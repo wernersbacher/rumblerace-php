@@ -5,6 +5,9 @@
 * chat nochmal testen bzw pusher
 * größe tabelle für mobile, austesten
 * sms cookie schon wieder kaputt
+* scrolling auch für tuner einbinden
+* upgrades skalierung on resize, mobile testen
+joda apex: dura falsch? berechnung checken
 
 
 BALANCING:
@@ -19,6 +22,9 @@ THIS RELEASE
 
 
 NEXT RELEASE
+* punkte vergeben, gesamtranking
+* anzahl gefahrener rennen speichern
+* mobile scrolling
 * bilder verkleinern für mobile
 * exp balken für liga
 * login dauert sehr lange
