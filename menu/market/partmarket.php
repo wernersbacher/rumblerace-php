@@ -110,14 +110,7 @@ if ($mode == "buy" && isset($get["id"])) {
     $output .= '<input class="sellButton tableTopButton" name="filter" type="submit" value="Refresh">';
     $output .= "</form>";
 
-    //Markt ausgeben
-    $output .= "<table style='font-size:13px;' class='tableRed selling noclick'>
-                <tr>
-                  <th>" . put("seller", $l) . "</th>
-                  <th>" . put("part", $l) . "</th>
-                  <th>" . put("power", $l) . "</th>
-                  <th>" . put("price", $l) . "</th>
-                </tr>";
+
 
     //Filtereingabe überprüfen
     if (isset($get["filterParts"]) AND in_array($get["filterParts"], $filterParts)) {
@@ -137,6 +130,19 @@ if ($mode == "buy" && isset($get["id"])) {
         $s = $get["s"];
     else
         $s = 1;
+
+    $pages = getPages($menge, $s, "?page=market&sub=partmarket");
+    $output .= $pages;
+
+    //Markt ausgeben
+    $output .= "<table style='font-size:13px;' class='tableRed selling noclick'>
+                <tr>
+                  <th>" . put("seller", $l) . "</th>
+                  <th>" . put("part", $l) . "</th>
+                  <th>" . put("power", $l) . "</th>
+                  <th>" . put("price", $l) . "</th>
+                </tr>";
+
     //Aktuelle Seite auslesen
     $partMarket = queryMarketParts($s, false, $partFilter, $ligaFilter);
     if ($partMarket)
@@ -159,24 +165,8 @@ if ($mode == "buy" && isset($get["id"])) {
     }
 
     $output .= "</table>";
-
-    //Anzahl der Seiten ausgegeben
-    $output .= "<div class='pages'>";
-    if ($menge > 1)
-        for ($a = 0; $a < $menge; $a++) {
-            $b = $a + 1;
-
-            //Wenn der User sich auf dieser Seite befindet, keinen Link ausgeben 
-            if ($s == $b) {
-                $output .= "  <span><b>$b</b></span> ";
-            }
-
-            //Aus dieser Seite ist der User nicht, also einen Link ausgeben 
-            else {
-                $output .= "  <span><a href=\"?page=market&sub=partmarket&s=$b\">$b</a></span> ";
-            }
-        }
-    $output .= "</div>";
+    $output .= $pages;
+    
 }
 
 $output .= "</div>";

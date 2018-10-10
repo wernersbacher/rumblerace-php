@@ -28,7 +28,7 @@ if ($mode == "buy" && isset($get["id"])) {
         } else {
             //Kaufen des Elements
 
-            $output .= put("type_in_sprit", $l)." Max " . gas($amount) . "<br/>";
+            $output .= put("type_in_sprit", $l) . " Max " . gas($amount) . "<br/>";
             $output .= "1 litre costs <b>" . dollar($price) . "</b>";
 
             $output .= "<form id='calcSprit' method='post' action='?page=market&sub=spritmarket'>";
@@ -71,6 +71,18 @@ if ($mode == "buy" && isset($get["id"])) {
 
 
 
+
+    //Blätterseite abfragen
+    $menge = ceil(queryMarketSprit(0, true));
+    if (isset($get["s"]) AND $get["s"] <= $menge)
+        $s = $get["s"];
+    else
+        $s = 1;
+
+    //Seiten berechnen und ausgeben
+    $pages = getPages($menge, $s, "?page=market&sub=partmarket");
+    $output .= $pages;
+
     //Markt ausgeben
     $output .= "<table style='font-size:13px;' class='tableRed selling noclick'>
                 <tr>
@@ -79,15 +91,6 @@ if ($mode == "buy" && isset($get["id"])) {
                   <th>" . put("price", $l) . "</th>
                 </tr>";
 
-
-
-
-    //Blätterseite abfragen
-    $menge = ceil(queryMarketSprit(0, true));
-    if (isset($get["s"]) AND $get["s"] <= $menge)
-        $s = $get["s"];
-    else
-        $s = 1;
 
     //Aktuelle Seite auslesen
     $spritMarket = queryMarketSprit($s, false);
@@ -106,24 +109,7 @@ if ($mode == "buy" && isset($get["id"])) {
     }
 
     $output .= "</table>";
-
-    //Anzahl der Seiten ausgegeben
-    $output .= "<div class='pages'>";
-    if ($menge > 1)
-        for ($a = 0; $a < $menge; $a++) {
-            $b = $a + 1;
-
-            //Wenn der User sich auf dieser Seite befindet, keinen Link ausgeben 
-            if ($s == $b) {
-                $output .= "  <span><b>$b</b></span> ";
-            }
-
-            //Aus dieser Seite ist der User nicht, also einen Link ausgeben 
-            else {
-                $output .= "  <span><a href=\"?page=market&sub=partmarket&s=$b\">$b</a></span> ";
-            }
-        }
-        $output .= "</div>";
+    $output .= $pages;
 }
 
 $output .= "</div>";
