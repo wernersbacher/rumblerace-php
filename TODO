@@ -1,27 +1,27 @@
 2018
-* url auflösung/routing
 * user profile
 * tuning balken korrigieren, bzw vorher schon anzeigen
 * del sms (alte automatisch löschen reicht)
-* chat nochmal testen bzw pusher
-* sms cookie schon wieder kaputt
-joda apex: dura falsch? berechnung checken
-
-*inject: queryuserlist
-* pages/blättern auf funktion auslagern
+* joda apex: dura falsch? berechnung checken
+* last online formatting
+* autos auslesen, etc
+* user suche: tablle verschönern
 * Blättern: ... zw. ergebnissen
+*stats: gefahrene rennen eintragen
 
-
-BALANCING:
-* es muss sich lohnen, längere rennen zu fahren, bzw mehr sprit auszugeben.
-* upgrades dürfen es nicht zu einfach machen, bzw werden notwendig sein.
 
 THIS RELEASE
+* chat nochmal testen bzw pusher
+* sms cookie schon wieder kaputt
 * mehr upgrades einbauen 
 * balancing
 * legend driver
 * reset mobile anpassung
+* url auflösung/routing
 
+BALANCING:
+* es muss sich lohnen, längere rennen zu fahren, bzw mehr sprit auszugeben.
+* upgrades dürfen es nicht zu einfach machen, bzw werden notwendig sein.
 
 NEXT RELEASE
 * punkte vergeben, gesamtranking

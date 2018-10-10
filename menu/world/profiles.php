@@ -3,6 +3,53 @@
 $output = outputTut("profile_info", $l);
 $output .= "<div id='profiles'>";
 
+//Wenn ein User mitgegeben wird, soll das profil aufgerufen werden.
+$user_data = false;
+if(isset($get["user"])) 
+    $user_data = queryProfileByName($get["user"]);
+
+//Zeige das Profil an, wenn user_id existiert
+
+if($user_data) {
+    
+    $username = $user_data["username"];
+    $regdate = $user_data["regdate"];
+    $activeTime = $user_data["activeTime"];
+    $lang = $user_data["lang"];
+    
+    $money = $user_data["money"];
+    
+    $output .= backLink("?page=world&sub=profiles");
+    
+    $output .= "
+            <div class='sysDriver' id='user_profile'>
+                <h2><img src='img/" . $lang . ".png' alt='Language' /> $username</h2>
+                
+                <div class='profile_info'>
+                    <span>Reg date</span>
+                    <span>".date("Y-m-d H:i:s", $regdate)."</span>
+                </div>
+                <div class='profile_info'>
+                    <span>Last online</span>
+                    <span>".date("Y-m-d H:i:s", $activeTime)."</span>
+                </div>
+                <div class='profile_info'>
+                    <span>Money:</span>
+                    <span>".dollar($money)."</span>
+                </div>
+            </div>
+
+        ";
+    
+    
+    
+    
+    return; //Aus dem Include rausgehen, d.h. die Tabelle wird nicht mehr angezeigt.
+} 
+
+
+
+
 //Falls User gesucht wird...
 if(isset($post["search"])) {
     $user = filter_input_array(INPUT_POST)["search"];

@@ -964,3 +964,14 @@ tr:nth-child(even) {
 .itemInfo table td {
     padding: 3px 5px;
 }
+
+/*
+    Profile
+*/
+
+#user_profile .profile_info {
+    display:flex;
+    justify-content: space-between;
+    font-family: Kodchasan;
+    font-size: 18px;
+}

@@ -792,9 +792,12 @@ function queryUserList($s, $getAll, $search = false) {
         $limit = "";
     else
         $limit = " LIMIT $start, $max";
-    
+
     //user suchen
-    if($search) $search_like = "AND username like '" . mysqli_real_escape_string($mysqli, $search) . "%'"; else $search_like = "";
+    if ($search)
+        $search_like = "AND username like '" . mysqli_real_escape_string($mysqli, $search) . "%'";
+    else
+        $search_like = "";
 
     $sql = "SELECT * FROM stats, user WHERE stats.id = user.id $search_like ORDER BY user.id ASC";
     $entry = querySQL($sql . $limit);
@@ -813,6 +816,20 @@ function queryUserList($s, $getAll, $search = false) {
     } else {
         return false;
     }
+}
+
+function queryProfileByName($user) {
+    global $mysqli;
+    $sql = "SELECT username, regdate, activeTime, lang, money, liga, exp, chat_count FROM stats, user WHERE stats.id = user.id AND username = '" . mysqli_real_escape_string($mysqli, $user) . "'";
+    $query = querySQL($sql);
+    $row = mysqli_fetch_assoc($query);
+    return $row;
+    /*
+      if ($row) {
+      return $row;
+      } else {
+      return false;
+      } */
 }
 
 function queryMarketSprit($s, $getAll) {
