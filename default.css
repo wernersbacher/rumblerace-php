@@ -156,6 +156,14 @@ h2 {
     margin-right:10px;
 }
 
+#leftMenu a:link, #leftMenu a:visited {
+    color:black;
+}
+
+#leftMenu a:hover {
+    text-decoration: underline;
+}
+
 #contentWindow {
     flex:1;
     min-width:573px;

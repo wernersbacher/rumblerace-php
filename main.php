@@ -238,7 +238,8 @@ Love for Meri
                 <span class="stats">
                     <img src="img/dollar.png" /> <?php echo dollar(getPlayerMoney()) ?><br/>
                     <img src="img/star.png" /> <span title="<?php echo ep(expToLiga(getPlayerLiga() + 1) - getPlayerExp()) ?> left"><?php echo ep(getPlayerExp()) ?></span><br/>
-                    <img src="img/energy.png" /> <?php echo $sprit ?><br/>
+                    <a href="main.php?page=sprit"><img src="img/energy.png" /> <?php echo $sprit ?></a><br/>
+                    <a href="main.php?page=special&sub=upgrades"><img src="img/ups.png" /> <?php echo getPlayerUpPoints() ?></a><br/>
                 </span>
                 <div class="playerQuick"  style="margin-top: 4px;">
                     <a href="?page=office&sub=messages"><img src="img/<?php echo $letter ?>.png" alt="messages" /></a></a>
