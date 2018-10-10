@@ -230,13 +230,16 @@ $(document).ready(function () {
         localStorage.setItem("scrollTop", $(window).scrollTop());
         //save current page
         localStorage.setItem("page-id", document.getElementsByTagName("title")[0].innerHTML);
-        //alert($(window).scrollTop());
     });
 
     /*
      * only scroll to saved pos. if on on of those pages AAAAND the site is the same as before
      */
-    if (($("#produce").length || $("#racing").length) && localStorage.getItem("page-id") === document.getElementsByTagName("title")[0].innerHTML) {
+    if (
+            ($("#produce").length || 
+            $("#tuner").length || 
+            $("#racing").length) 
+            && localStorage.getItem("page-id") === document.getElementsByTagName("title")[0].innerHTML) {
         //Scroll to saved position
         $(window).scrollTop(localStorage.getItem("scrollTop"));
     } else {

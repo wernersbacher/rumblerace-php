@@ -168,7 +168,7 @@ foreach ($partNames as $part) {
                         <form method='POST' action='?page=trader&sub=tuner&mode=parts&kat=$kat'>
                         $labels
                             <input type='hidden' name='part' value='$part'>
-                            <input style='vertical-align: bottom;' class='tableTopButton' name='send' type='submit' value='" . put("build", $l) . "' $disabled>
+                            <input style='vertical-align: bottom;' class='tableTopButton saveScroll' name='send' type='submit' value='" . put("build", $l) . "' $disabled>
                         </form>
                     </div>                    
                </div>";
