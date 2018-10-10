@@ -4,20 +4,18 @@
 * del sms (alte automatisch löschen reicht)
 * chat nochmal testen bzw pusher
 * sms cookie schon wieder kaputt
-* scrolling auch für tuner einbinden
-* upgrades skalierung on resize, mobile testen
 joda apex: dura falsch? berechnung checken
 
 
 BALANCING:
 * es muss sich lohnen, längere rennen zu fahren, bzw mehr sprit auszugeben.
 * upgrades dürfen es nicht zu einfach machen, bzw werden notwendig sein.
-THIS RELEASE
 
 THIS RELEASE
 * mehr upgrades einbauen 
 * balancing
 * legend driver
+* reset mobile anpassung
 
 
 NEXT RELEASE

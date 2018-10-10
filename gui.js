@@ -106,13 +106,13 @@ function startCountdown() {
 }
 
 function startWait() {
-    if($("#tunerWaitForOther").length) {
+    if ($("#tunerWaitForOther").length) {
         var time_left = $("#tunerWaitForOther").html();
         console.log(time_left);
-        setTimeout(function() {
+        setTimeout(function () {
             $("#tuner").find(".tableTopButton").prop("disabled", false);
             console.log("moin");
-        },time_left * 1000);
+        }, time_left * 1000);
     }
 }
 
@@ -134,6 +134,39 @@ function setToggle() {
         $("#toggle_sys").toggleClass("offTableTop");
         Cookies.set("toggle-state", !Cookies.get("toggle-state"), {expires: 7, path: '/'});
         console.log("done");
+    });
+}
+
+/*
+ * todo:
+ *  hier drin den resize handler machen, und löschen on resize und direkt neue bauen?
+ *  dann handler löschen, neu machen und neuen handler? 
+ *  oder einfach löschen vor neuaufruf -> testen weiter unten 
+ */
+
+function connectNodes() {
+    var chains = [];
+    $('.node').each(function () {
+        var chain = $(this).data("chain");
+        if (chains.indexOf(chain) < 0)
+            chains.push(chain);
+    });
+    //make connections
+    for (var i = 0, length = chains.length; i < length; i++) {
+        var chain_id = chains[i];
+        var chain_arr = $(".chain_" + chain_id).toArray();
+
+        for (var j = 0, length = chain_arr.length; j < length; j++) {
+            if (j + 1 <= chain_arr.length)
+                $(chain_arr[j]).add(chain_arr[j + 1]).connections();
+        }
+
+    }
+}
+
+function disconnectNodes() {
+    $('.node').each(function () {
+        $(this).connections('remove');
     });
 }
 
@@ -236,9 +269,9 @@ $(document).ready(function () {
      * only scroll to saved pos. if on on of those pages AAAAND the site is the same as before
      */
     if (
-            ($("#produce").length || 
-            $("#tuner").length || 
-            $("#racing").length) 
+            ($("#produce").length ||
+                    $("#tuner").length ||
+                    $("#racing").length)
             && localStorage.getItem("page-id") === document.getElementsByTagName("title")[0].innerHTML) {
         //Scroll to saved position
         $(window).scrollTop(localStorage.getItem("scrollTop"));
@@ -280,7 +313,7 @@ $(document).ready(function () {
 
         });
     }
-    
+
     //sprit kaufen
     if ($("#calcSprit").length) {
         $("#sprit_buy_max").click(function () {
@@ -290,30 +323,19 @@ $(document).ready(function () {
 
         });
     }
-    
-    
+
+
 
 
     //upgrades
     if ($("#nodes").length) {
-        var chains = [];
-        $('.node').each(function () {
-            var chain = $(this).data("chain");
-            if (chains.indexOf(chain) < 0)
-                chains.push(chain);
-        });
-        console.log(chains);
-        //make connections
-        for (var i = 0, length = chains.length; i < length; i++) {
-            var chain_id = chains[i];
-            var chain_arr = $(".chain_" + chain_id).toArray();
 
-            for (var j = 0, length = chain_arr.length; j < length; j++) {
-                if (j + 1 <= chain_arr.length)
-                    $(chain_arr[j]).add(chain_arr[j + 1]).connections();
-            }
+        connectNodes();
 
-        }
+        window.onresize = function () {
+            disconnectNodes();
+            connectNodes();
+        };
 
 
     }
