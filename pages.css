@@ -687,6 +687,14 @@ tr:nth-child(even) {
     font-size:15px;
 }
 
+.upgrades_points {
+    display:flex;
+    flex-direction:row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+
 .settingPoint {
     font-weight:bold;
 }

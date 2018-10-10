@@ -31,8 +31,8 @@ if (isset($post["action"]) && $post["action"] == "buyUpgradePoint") { //Kaufen e
     if (checkNodeBuyable($node)) {
         //kaufen
         $status = upgradeById($node["this_id"], $node["thisCost"]);
-         
-        header("Location: main.php?page=special&sub=upgrades&status=".$status);
+
+        header("Location: main.php?page=special&sub=upgrades&status=" . $status);
         $free -= $node["thisCost"];
         $used += $node["thisCost"];
         $tree = getUpgradeTree();
@@ -47,7 +47,7 @@ if (isset($post["action"]) && $post["action"] == "buyUpgradePoint") { //Kaufen e
     $status = $get["status"];
     $output .= "<span class='dealInfoText $status'>";
     $output .= put($status, $l);
-    $output .= "</span>"; 
+    $output .= "</span>";
 }
 
 function checkNodeBuyable($node) {
@@ -65,12 +65,16 @@ function checkNodeBuyable($node) {
 //Ausgabe der Punkteübersicht
 $total = $used + $free;
 $up_cost = getUpgradePointCost($bought);
-if($up_cost > getPlayerMoney()) $dis = "disabled"; else $dis = ""; 
-$output .= "<div class='settings'>
+if ($up_cost > getPlayerMoney())
+    $dis = "disabled";
+else
+    $dis = "";
+
+$output .= "<div class='settings upgrades_points'> <div>
     " . put("used_points", $l) . " <b>$used</b><br/>
     " . put("unused_points", $l) . " <b>$free</b>
-        
-        <div class='buttonTopRight'>
+    </div>
+        <div>
             " . put("buy_another_point", $l) . " <b>" . dollar($up_cost) . "</b>
             <form method='POST' style='display:inline-block;' action='?page=special&sub=upgrades'>
                 <input type='hidden' name='action' value='buyUpgradePoint'>
@@ -114,12 +118,12 @@ function generateNode($node) {
         $br = "</div><div>";
     else
         $br = "";
-    
+
     //Generate hover with details
-    $hover = "<div class='tooltip'><h2 class='tooltip_h2'>". put($name."-title", $l)."</h2>
-        ". put("it-costs", $l).": $cost <br/>
-        ". put("effect", $l).": $effect". put($unit, $l)."<br/><br/>
-        <span>\"". put($name, $l)."\"</span>
+    $hover = "<div class='tooltip'><h2 class='tooltip_h2'>" . put($name . "-title", $l) . "</h2>
+        " . put("it-costs", $l) . ": $cost <br/>
+        " . put("effect", $l) . ": $effect" . put($unit, $l) . "<br/><br/>
+        <span>\"" . put($name, $l) . "\"</span>
         </div>";
 
     //Ausgabe
@@ -135,24 +139,23 @@ function generateNode($node) {
         $out .= "</form></div>";
     } else {
         //nicht kaufbar
-/*
-        $out = "$br<div data-chain='$chain' class='node nodeDisabled chain_$chain' title='$name'>$userUps";
-        $out .= "<span class='formlike'><img src='img/techtree/$name.png' width='40' height='40' /><span>";
-        $out .= "</div>";*/
+        /*
+          $out = "$br<div data-chain='$chain' class='node nodeDisabled chain_$chain' title='$name'>$userUps";
+          $out .= "<span class='formlike'><img src='img/techtree/$name.png' width='40' height='40' /><span>";
+          $out .= "</div>"; */
 
-        
-          $out = "$br<div data-chain='$chain' class='node nodeDisabled chain_$chain'>
+
+        $out = "$br<div data-chain='$chain' class='node nodeDisabled chain_$chain'>
           $userUps
           $hover
           <form disabled>";
-          $out .= "<input style='cursor:default' type='image' name='image' src='img/techtree/$name.png' width='40' height='40' disabled>";
-          $out .= "</form></div>"; 
+        $out .= "<input style='cursor:default' type='image' name='image' src='img/techtree/$name.png' width='40' height='40' disabled>";
+        $out .= "</form></div>";
     }
 
 
     return $out;
 }
-
 
 $tree = orderUpgrades($tree);
 
@@ -160,7 +163,7 @@ $output .= "<div id='nodes' class='settings'>";
 
 foreach ($tree as $node) {
 
-    $nodes.= generateNode($node);
+    $nodes .= generateNode($node);
 }
 $output .= "<div>"; //div for 1st chain
 $output .= $nodes;
