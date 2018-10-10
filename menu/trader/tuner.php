@@ -21,17 +21,20 @@ function buildNewPart($part, $liga) {
     }
 }
 
-
 /*
  * Generiert Tuning Kats Übersicht
  */
+
 function showTunerKats($activeKat) {
-    
+
     $kats = queryTuningKats();
     //Tuning Kategorien ausgeben
     $ret = "<ul class='ligaList'>";
     foreach ($kats as $kat) {
-        if($kat == $activeKat) $active = "class='active'"; else $active = "";
+        if ($kat == $activeKat)
+            $active = "class='active'";
+        else
+            $active = "";
         $ret .= "<li $active><a href='?page=trader&sub=tuner&mode=parts&kat=$kat'><img src='img/parts/$kat.png' /></a></li>";
     }
     $ret .= "</ul>";
@@ -52,65 +55,69 @@ if (isset($post['send'])) { //Abgeschicktes Formular
 
 
 if (!isset($get["kat"]))
-        $kat = "motor";
-    else
-        $kat = $get["kat"];
-  
-    $output .= showTunerKats($kat);
+    $kat = "motor";
+else
+    $kat = $get["kat"];
 
-    $isPartRunningNow = isPartRunning()[0];
-    $counter=1;
+$output .= showTunerKats($kat);
 
-    $partsData = queryTuningPartsData($kat);
-    $partNames = queryTuningParts($kat);
-    
-    //Jede Teileklasse durchgehen
-    foreach ($partNames as $part) {
-        $preis1 = 0;
-        $worst1 = 0;
-        $best1 = 0;
-        $dur1 = 0;
-        $labels = "";
+$running = isPartRunning();
+$isPartRunningNow = $running["part"];
+$time_left = $running["end"] - time();
+$counter = 1;
 
-        if ($isPartRunningNow)
-            $disabled = "disabled";
-        else
-            $disabled = "";
+$partsData = queryTuningPartsData($kat);
+$partNames = queryTuningParts($kat);
 
-        //Die Ligen des Teiles durchgehen
-        foreach ($partsData as $data) {
-            $liga = $data["liga"];
+if ($isPartRunningNow)
+    $disabled = "disabled";
+else
+    $disabled = "";
 
-            if ($data["part"] === $part && $liga <= getPlayerLiga() && $liga > 0) {
-                $acc = $data["acc"];
-                $speed = $data["speed"];
-                $hand = $data["hand"];
-                $dura = $data["dura"];
-                
-                $preis = dollar($data["preis"]);
-                $dur = getTuningDur($data["duration"]);
+//Jede Teileklasse durchgehen
+foreach ($partNames as $part) {
+    $preis1 = 0;
+    $worst1 = 0;
+    $best1 = 0;
+    $dur1 = 0;
+    $labels = "";
 
-                if ($liga == 1) { //nur beim ersten element ausgabe setzen (rest JS)
-                    $checked = "checked";
-                    $preis1 = $preis;
-                    $dur1 = $dur;
-                    
-                    $acc1 = $acc;
-                    $speed1 = $speed;
-                    $hand1 = $hand;
-                    $dura1 = $dura;
-                } else {
-                    $checked = "";
-                }
 
-                $labels .= "<label>
+
+    //Die Ligen des Teiles durchgehen
+    foreach ($partsData as $data) {
+        $liga = $data["liga"];
+
+        if ($data["part"] === $part && $liga <= getPlayerLiga() && $liga > 0) {
+            $acc = $data["acc"];
+            $speed = $data["speed"];
+            $hand = $data["hand"];
+            $dura = $data["dura"];
+
+            $preis = dollar($data["preis"]);
+            $dur = getTuningDur($data["duration"]);
+
+            if ($liga == 1) { //nur beim ersten element ausgabe setzen (rest JS)
+                $checked = "checked";
+                $preis1 = $preis;
+                $dur1 = $dur;
+
+                $acc1 = $acc;
+                $speed1 = $speed;
+                $hand1 = $hand;
+                $dura1 = $dura;
+            } else {
+                $checked = "";
+            }
+
+            $labels .= "<label>
                         <input onclick='setTuneData(\"$part\", \"$preis\", \"$dur\", \"$acc\", \"$speed\", \"$hand\", \"$dura\");' class='tuneLigas' type='radio' name='liga' value='" . $liga . "' $checked>
                         <img title='Cool!' style='width:23px;' src='img/liga/" . $data["liga"] . ".png'>
                     </label>";
-            }
         }
+    } //foreach ende
 
-        $output .= "<div class='tuner' id='$part'>
+    $output .= "<div class='tuner' id='$part'>
                     <div class='imgFlex'>
                         <img class='tuningImage' src='img/parts/$kat.png' />
                     </div>
@@ -124,33 +131,37 @@ if (!isset($get["kat"]))
                             <div class='tuneDesc'>\"" . put("desc_" . $part, $l) . "\"</div>";
 
 
-        //falls gerade kein Teil gebaut wird, darf alles ausgegeben werden
-        $output .= "        <div class='tuneBuyDetails'>
+    //falls gerade kein Teil gebaut wird, darf alles ausgegeben werden
+    $output .= "        <div class='tuneBuyDetails'>
                                 <span class='tuneCost'>$preis1</span> | 
                                 <span class='tuneDur'>" . formatSeconds($dur1) . "s</span>
                             </div>";
-        $output .= "        <div class='tuneBuyDetails'>
-                                ".outputAttributesList($acc1, $speed1, $hand1, $dura1)."
+    $output .= "        <div class='tuneBuyDetails'>
+                                " . outputAttributesList($acc1, $speed1, $hand1, $dura1) . "
                             </div>";
 
-        if ($isPartRunningNow === $part) {
-            $durData = queryRunningPartTime($part);
-            $time_to_end = $durData["time_end"] - time();
-            $duration = $durData["saved_dur"];
-            $time_went = $duration - $time_to_end;
+    if ($isPartRunningNow === $part) {
+        $durData = queryRunningPartTime($part);
+        $time_to_end = $durData["time_end"] - time();
+        $duration = $durData["saved_dur"];
+        $time_went = $duration - $time_to_end;
 
-            if ($time_went > 0)
-                $width = (100 * $time_went) / $duration;
-            else
-                $width = 0;
-            if ($width > 100)
-                $width = 100;
-            $output .= "    <div id='prog_$counter' class='tuneProgress' data-time-duration='$duration' data-time-toend='$time_to_end'>
+        if ($time_went > 0)
+            $width = (100 * $time_went) / $duration;
+        else
+            $width = 0;
+        if ($width > 100)
+            $width = 100;
+        $output .= "    <div id='prog_$counter' class='tuneProgress' data-time-duration='$duration' data-time-toend='$time_to_end'>
                                 <div class='tuneProgressBar' style='width:$width%'></div> 
                                 <div class='tuneProgressText'>" . $time_to_end . "s " . put("time_left", $l) . "</div>
                             </div>";
-        }
-        $output .= "</div>
+    } else if($time_left > 0) {
+        //Gibt die Wartezeit aus, solange man bei einem anderen Teil wartet
+        $output .= "<span id='tunerWaitForOther' class='hidden'>$time_left</span>";
+    }
+    
+    $output .= "</div>
                         </div>
                     
                     <div class='tuneFooter'>
@@ -161,8 +172,8 @@ if (!isset($get["kat"]))
                         </form>
                     </div>                    
                </div>";
-    
-        $counter++;
-        }
+
+    $counter++;
+}//foreach ende
 
 $output .= "</div>";

@@ -352,17 +352,16 @@ function queryPartData($part, $liga) {
 }
 
 function isPartRunning() {
-    $sql = "SELECT pa.part as part, pa.kat as kat
+    $sql = "SELECT pa.part as part, pa.kat as kat, sr.time_end as end, sr.dur as dur
             FROM storage_run sr 
             INNER JOIN parts pa
                 ON pa.id = sr.part_id
             WHERE sr.user_id = '" . $_SESSION["user_id"] . "'";
     $entry = querySQL($sql);
 
-
     if ($entry) {
         $row = mysqli_fetch_array($entry, MYSQLI_ASSOC);
-        return array($row["part"], $row["kat"]);
+        return $row;
     } else {
         return false;
     }

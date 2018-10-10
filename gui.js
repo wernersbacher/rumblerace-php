@@ -105,6 +105,16 @@ function startCountdown() {
     });
 }
 
+function startWait() {
+    if($("#tunerWaitForOther").length) {
+        var time_left = $("#tunerWaitForOther").html();
+        console.log(time_left);
+        setTimeout(function() {
+            $("#tuner").find(".tableTopButton").prop("disabled", false);
+            console.log("moin");
+        },time_left * 1000);
+    }
+}
 
 function setToggle() {
 
@@ -145,6 +155,7 @@ $(document).ready(function () {
 
     //Starten des Countdowns für die Tuningteile
     startCountdown();
+    startWait();
 
     //Start des Spritzählers
     startSprit();
