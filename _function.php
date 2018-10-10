@@ -547,3 +547,25 @@ function isGuestLoggedIn() {
     } else
         return false;
 }
+//Blätter Funktion, HTML Ausgabe
+function getPages($menge, $s, $direct_str) {
+    //Anzahl der Seiten ausgegeben
+    $html = "<div class='pages'>";
+    if ($menge > 1)
+        for ($a = 0; $a < $menge; $a++) {
+            $b = $a + 1;
+
+            //Wenn der User sich auf dieser Seite befindet, keinen Link ausgeben 
+            if ($s == $b) {
+                $html .= "  <span><b>$b</b></span> ";
+            }
+
+            //Aus dieser Seite ist der User nicht, also einen Link ausgeben 
+            else {
+                $html .= "  <span><a href=\"$direct_str&s=$b\">$b</a></span> ";
+            }
+        }
+    $html .= "</div>";
+    
+    return $html;
+}

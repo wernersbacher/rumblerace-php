@@ -69,9 +69,9 @@ $m["drivers"] = ["subs" => ["paddock", "sysDrivers"], "icon" => "man40"];
 $m["race"] = ["subs" => ["racing", "endurance", "running"], "icon" => "race40"];
 $m["sprit"] = ["subs" => ["produce", "sell"], "icon" => "fuel40"];
 $m["market"] = ["subs" => ["partmarket", "spritmarket"], "icon" => "store40"];
-$m["special"] = ["subs" => ["upgrades", "chat", "globalstats"], "icon" => "special"];
-$m["options"] = ["subs" => ["settings"], "icon" => "setting40"];
-$m["help"] = ["subs" => ["faq", "newbie"], "icon" => "help40"];
+$m["special"] = ["subs" => ["upgrades"], "icon" => "special"];
+$m["world"] = ["subs" => ["profiles", "chat", "globalstats"], "icon" => "world"];
+$m["options"] = ["subs" => ["settings", "faq", "newbie"], "icon" => "setting40"];
 
 //$m["special"] = ["chat", "upgrades", "achievements", "mainstats", "globalstats"];
 //$m["logout"] = [""];

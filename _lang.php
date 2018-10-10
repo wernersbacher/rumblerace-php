@@ -41,7 +41,8 @@ $lg["stats"] = ["Stats", "Stats"];
 $lg["market"] = ["Market", "Markt"];
 $lg["special"] = ["Special", "Spezial"];
 $lg["race"] = ["Race", "Rennen"];
-$lg["help"] = ["Help", "Hilfe"];
+//$lg["help"] = ["Help", "Hilfe"];
+$lg["world"] = ["World", "Welt"];
 $lg["logout"] = ["Logout", "Logout"];
 $lg["options"] = ["Options", "Optionen"];
 
@@ -75,6 +76,7 @@ $lg["s_upgrades"] = ["Upgrades", "Upgrades"];
 $lg["s_achievements"] = ["Achievements", "Erfolge"];
 $lg["s_sysDrivers"] = ["Hire Drivers", "Fahrer einstellen"];
 $lg["s_paddock"] = ["Paddock", "Fahrerlager"];
+$lg["s_profiles"] = ["Profiles", "Profile"];
 
 //Tuning Kats
 $lg["motor"] = ["Engine", "Motor"];
@@ -459,3 +461,11 @@ $lg["sprit_max_3"] = ["Has some more volume.", "Ein großer Tank. Achtung, ist g
 
 $lg["sprit_max_4-title"] = ["Fuel Canister", "Tank (im Boden)"];
 $lg["sprit_max_4"] = ["A really big tank this time (dont worry, it hasn't a gun)", "Noch ein Tank, diesmal im Boden. Da ist mehr Platz"];
+
+
+//profile ++++++++++++++
+$lg["profile_info"] = ["Find other players and get in touch with them.", "Finde andere User und schreibe Ihnen!"];
+$lg["profile"] = ["Profile", "Profil"];
+$lg["write_msg"] = ["Message", "Nachricht"];
+$lg["no_profile_found"] = ["No user found :(", "Kein Nutzer gefunden :("];
+$lg["search"] = ["Search", "Suchen"];

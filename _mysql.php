@@ -1,5 +1,7 @@
 <?php
+
 require_once '_mysql_login.php';
+
 // *************************************************************************
 // *************************************************************************
 // *************************************************************************
@@ -94,7 +96,7 @@ function queryRegister($user, $pass, $email) {
             . "'" . mysqli_real_escape_string($mysqli, hash5($pass)) . "', "
             . "'" . mysqli_real_escape_string($mysqli, $email) . "', '$lang', '" . time() . "')");
     $user_id = mysqli_insert_id($mysqli);
-    $addStats = mysqli_query($mysqli, "INSERT INTO stats (id, money, liga, sprit) VALUES ('" . $user_id . "', ".$_config["vars"]["startMoney"].", 1, ".$_config["vars"]["startSprit"].")");
+    $addStats = mysqli_query($mysqli, "INSERT INTO stats (id, money, liga, sprit) VALUES ('" . $user_id . "', " . $_config["vars"]["startMoney"] . ", 1, " . $_config["vars"]["startSprit"] . ")");
     $addSprit = mysqli_query($mysqli, "INSERT INTO sprit_upt (user_id, updated) VALUES ('" . $user_id . "', '" . time() . "')");
     $addCar = mysqli_query($mysqli, "INSERT INTO garage (user_id, car_id) VALUES ('" . $user_id . "', 'beamer_pole')");
     $addDriver = mysqli_query($mysqli, "INSERT INTO fahrer (user_id, driver_id, name, skill, liga, anteil) VALUES ('$user_id', '$user_id+d', 'Markus Werner', 150, 1, 5)");
@@ -621,10 +623,10 @@ function queryRaceDone() {
 
             $id = $race["id"];
             $rewardMulti = calcRewardMulti($race["pn"], $race["macc"], $race["mspeed"], $race["mhand"], $race["mdura"], $race["exp"], $race["car_id"], $race["driver_id"]);
-            
+
             $reward = calcDollarReward($race["sprit_needed"]) * $rewardMulti;
             $exp = $race["exp"] * $rewardMulti;
-            
+
             $reward_granted = mysqli_query($mysqli, "UPDATE stats 
                 SET money = money + '$reward', exp = exp + '$exp'
                 WHERE id = '" . $_SESSION["user_id"] . "'"
@@ -632,7 +634,7 @@ function queryRaceDone() {
             $sql_deb = "UPDATE fahrer 
                 SET skill = skill + '$exp'
                 WHERE user_id = '" . $_SESSION["user_id"] . "' AND id = '" . $race["driver_id"] . "'";
-            
+
             $driver_reward = mysqli_query($mysqli, $sql_deb
             );
 
@@ -781,8 +783,39 @@ function queryMarketParts($s, $getAll, $partFilter, $ligaFilter) {
     }
 }
 
-function queryMarketSprit($s, $getAll) {
+function queryUserList($s, $getAll, $search = false) {
     global $mysqli;
+    $max = 25;
+    $start = $s * $max - $max;
+
+    if ($s == 0)
+        $limit = "";
+    else
+        $limit = " LIMIT $start, $max";
+    
+    //user suchen
+    if($search) $search_like = "AND username like '" . mysqli_real_escape_string($mysqli, $search) . "%'"; else $search_like = "";
+
+    $sql = "SELECT * FROM stats, user WHERE stats.id = user.id $search_like ORDER BY user.id ASC";
+    $entry = querySQL($sql . $limit);
+    if ($getAll) {
+        //Menge aller Seiten zurückgeben
+        $menge = mysqli_num_rows($entry);
+        $seiten = $menge / $max;
+        return $seiten;
+        //Aktuelle Seite zurückgeben
+    } else if ($entry) {
+        while ($row = mysqli_fetch_assoc($entry)) {
+            $data[] = $row;
+        }
+        if (isset($data))
+            return $data;
+    } else {
+        return false;
+    }
+}
+
+function queryMarketSprit($s, $getAll) {
     $max = 25;
     $start = $s * $max - $max;
 

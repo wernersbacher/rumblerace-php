@@ -815,6 +815,7 @@ tr:nth-child(even) {
     border-radius: 2px;
     background-color: white;
     display:inline-block;
+    margin: 3px 0;
 }
 
 /* Items */
