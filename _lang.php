@@ -469,3 +469,11 @@ $lg["profile"] = ["Profile", "Profil"];
 $lg["write_msg"] = ["Message", "Nachricht"];
 $lg["no_profile_found"] = ["No user found :(", "Kein Nutzer gefunden :("];
 $lg["search"] = ["Search", "Suchen"];
+
+$lg["avg_pos"] = ["Average Race Position", "Durchschnittsplatzierung"];
+$lg["races_run"] = ["Races Run", "Gefahrene Rennen"];
+$lg["last_online"] = ["Last Online", "Zuletzt online"];
+$lg["reg_date"] = ["Registration Date", "Registrationsdatum"];
+$lg["profile_money"] = ["Bank cash", "Barvermögen"];
+$lg["sum_price"] = ["Price Money Won", "Gesamtverdienst"];
+

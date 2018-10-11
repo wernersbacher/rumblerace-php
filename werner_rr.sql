@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 11. Okt 2018 um 14:46
+-- Erstellungszeit: 11. Okt 2018 um 15:44
 -- Server-Version: 10.1.36-MariaDB
 -- PHP-Version: 7.2.10
 
@@ -452,10 +452,10 @@ CREATE TABLE `fahrer` (
 --
 
 INSERT INTO `fahrer` (`id`, `driver_id`, `user_id`, `name`, `skill`, `liga`, `anteil`) VALUES
-(19, 140920161, 1, 'Renner 1', 687.0633333333329, 2, 12),
-(20, 140920163, 1, 'Markusbacher', 912.4116666666671, 4, 15),
-(21, 150920165, 1, 'Markus W', 3074.1059999999998, 5, 12),
-(23, 160920161, 1, 'Driver-ID#32081', 2403.916944444445, 10, 15),
+(19, 140920161, 1, 'Renner 1', 737.4633333333329, 2, 12),
+(20, 140920163, 1, 'Markusbacher', 962.8116666666671, 4, 15),
+(21, 150920165, 1, 'Markus W', 3124.506, 5, 12),
+(23, 160920161, 1, 'Driver-ID#32081', 2454.316944444445, 10, 15),
 (24, 190920164, 10, 'Steve', 9121.618, 1, 13),
 (25, 190920162, 12, 'Driver-ID#22983', 324, 1, 13),
 (26, 190920163, 19, 'Driver-ID#52796', 388, 1, 12),
@@ -958,7 +958,7 @@ INSERT INTO `fahrer` (`id`, `driver_id`, `user_id`, `name`, `skill`, `liga`, `an
 (527, 708, 708, 'Markus Werner', 150, 1, 5),
 (528, 709, 709, 'Markus Werner', 160.65, 2, 6),
 (529, 710, 710, 'Markus Werner', 150, 1, 5),
-(530, 240120171, 1, 'Driver-ID#31743', 1058.15, 4, 10),
+(530, 240120171, 1, 'Driver-ID#31743', 1108.5500000000002, 4, 10),
 (531, 711, 711, 'Markus Werner', 353.6725, 2, 6);
 
 -- --------------------------------------------------------
@@ -2716,7 +2716,11 @@ INSERT INTO `faxes` (`id`, `to_id`, `from_id`, `open`, `date`, `betreff`, `messa
 (3150, 2, 0, 0, 1538583499, 'New League', 'Congratulations, you advanced to league 1!'),
 (3151, 2, 0, 0, 1538583500, 'New League', 'Congratulations, you advanced to league 1!'),
 (3161, 6, 0, 0, 1538831295, 'Sprit sold on market', 'You sold sprit on the market for 18,40€.'),
-(3200, 1, 0, 1, 1539261924, 'Anfänger Ausdauerrennen finished. Position #3', 'Your end position: 3/10. You made 266,40€ and 136,80 EP!');
+(3201, 1, 0, 1, 1539264844, 'Anfänger Rennen finished. Position #3', 'Your end position: 3/10. You made 72,00€ and 50,40 EP!'),
+(3202, 1, 0, 1, 1539264844, 'Anfänger Rennen finished. Position #3', 'Your end position: 3/10. You made 72,00€ and 50,40 EP!'),
+(3203, 1, 0, 1, 1539264845, 'Anfänger Rennen finished. Position #3', 'Your end position: 3/10. You made 72,00€ and 50,40 EP!'),
+(3204, 1, 0, 1, 1539264845, 'Anfänger Rennen finished. Position #3', 'Your end position: 3/10. You made 72,00€ and 50,40 EP!'),
+(3205, 1, 0, 1, 1539264845, 'Anfänger Rennen finished. Position #3', 'Your end position: 3/10. You made 72,00€ and 50,40 EP!');
 
 -- --------------------------------------------------------
 
@@ -4013,7 +4017,7 @@ CREATE TABLE `sprit_upt` (
 --
 
 INSERT INTO `sprit_upt` (`id`, `user_id`, `updated`) VALUES
-(1, 1, 1539261926),
+(1, 1, 1539265110),
 (6, 6, 1474465669),
 (7, 7, 1474290311),
 (8, 8, 1474290474),
@@ -5144,7 +5148,7 @@ CREATE TABLE `stats` (
 --
 
 INSERT INTO `stats` (`id`, `money`, `liga`, `exp`, `sprit`, `uppoints`, `chat_count`) VALUES
-(1, '10800175935.70', 8, 10950, 275, 2, 27),
+(1, '10800176295.70', 8, 11200, 275, 2, 27),
 (6, '21031.89', 1, 27, 1577.66, 0, 0),
 (7, '25000.00', 1, 0, 50.225, 0, 0),
 (8, '25000.00', 1, 0, 50.2417, 0, 0),
@@ -5861,15 +5865,16 @@ INSERT INTO `stats` (`id`, `money`, `liga`, `exp`, `sprit`, `uppoints`, `chat_co
 CREATE TABLE `stats_racing` (
   `user_id` mediumint(9) NOT NULL,
   `run` mediumint(9) NOT NULL,
-  `sum_positions` int(11) NOT NULL
+  `sum_positions` int(11) NOT NULL,
+  `sum_price` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Daten für Tabelle `stats_racing`
 --
 
-INSERT INTO `stats_racing` (`user_id`, `run`, `sum_positions`) VALUES
-(1, 4, 6);
+INSERT INTO `stats_racing` (`user_id`, `run`, `sum_positions`, `sum_price`) VALUES
+(1, 9, 21, '360.00');
 
 -- --------------------------------------------------------
 
@@ -6909,7 +6914,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `pass`, `email`, `regdate`, `activeTime`, `ads`, `lang`, `token`, `token_date`) VALUES
-(1, 'admin', '3cbabe7cfb4f29bc2816a7f8103b6889', 'mwernersbach@web.de', 1441866181, 1539261926, 0, 'de', '', 0),
+(1, 'admin', '3cbabe7cfb4f29bc2816a7f8103b6889', 'mwernersbach@web.de', 1441866181, 1539265110, 0, 'de', '', 0),
 (6, 'Testuser', '3cbabe7cfb4f29bc2816a7f8103b6889', 'mwernersbach@hotmail.de', 1474289215, 1474465669, 0, 'de', '', 0),
 (7, 'zorny', '67a2cb77f1d829b0add64bca764a895b', '', 1474290284, 0, 0, 'en', '', 0),
 (8, 'RCJax', '1984fe2c85b13f331105a4e528142954', '', 1474290445, 0, 0, 'en', '', 0),
@@ -7808,7 +7813,7 @@ ALTER TABLE `fahrer`
 -- AUTO_INCREMENT für Tabelle `faxes`
 --
 ALTER TABLE `faxes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3201;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3206;
 
 --
 -- AUTO_INCREMENT für Tabelle `garage`
@@ -7838,7 +7843,7 @@ ALTER TABLE `races`
 -- AUTO_INCREMENT für Tabelle `races_run`
 --
 ALTER TABLE `races_run`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT für Tabelle `sprit`

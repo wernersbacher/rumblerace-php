@@ -292,6 +292,19 @@ function prf($partPrf) {
 
 //HTML Output Funktionen
 
+function outputProfileList($list) {
+    global $l;
+    $out = "";
+    
+    foreach($list as $pair)
+    
+        $out .=" <div class='profile_info'>
+                    <div><b>".put($pair["title"], $l)."</b></div>
+                    <div>".$pair["value"]."</div>
+                </div>";
+    return $out;
+}
+
 function outputAttributesList($acc1, $speedl, $handl, $dural) {
     return "<div class='stat_image_wrapper_tuner'><img src='img/stats/acc1.png' alt='Acc'/></div> <span class='tune_acc'>$acc1</span> |
                                 <div class='stat_image_wrapper_tuner'><img src='img/stats/speed1.png' alt='speed'/></div> <span class='tune_speed'>$speedl</span> | 

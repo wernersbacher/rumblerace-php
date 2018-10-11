@@ -17,32 +17,49 @@ if($user_data) {
     $activeTime = $user_data["activeTime"];
     $lang = $user_data["lang"];
     
+    $run = $user_data["run"]; if(!$run) $run = 0;
+    $sum_pos = $user_data["sum_positions"];
+    $avg_pos = $run > 0 ? round($sum_pos/$run,2) : 0;
+    
+    $sum_price = $user_data["sum_price"];
+    
     $money = $user_data["money"];
     
     $output .= backLink("?page=world&sub=profiles");
     
+    $profile_array = ["left" => array(), "right" => array()];
+    
+    $profile["left"][] = ["title" => "reg_date",
+                            "value" => date("Y-m-d H:i:s", $regdate)];
+    $profile["left"][] = ["title" => "last_online",
+                            "value" => date("Y-m-d H:i:s", $activeTime)];
+    
+    $profile["right"][] = ["title" => "profile_money",
+                            "value" => dollar($money)];
+    $profile["right"][] = ["title" => "races_run",
+                            "value" => $run];
+    $profile["right"][] = ["title" => "avg_pos",
+                            "value" => $avg_pos];
+    $profile["right"][] = ["title" => "sum_price",
+                            "value" => round($sum_price,2)];
+    
+    $left = outputProfileList($profile["left"]);
+    $right = outputProfileList($profile["right"]);
+    
     $output .= "
             <div class='sysDriver' id='user_profile'>
                 <h2><img src='img/" . $lang . ".png' alt='Language' /> $username</h2>
-                
-                <div class='profile_info'>
-                    <span>Reg date</span>
-                    <span>".date("Y-m-d H:i:s", $regdate)."</span>
-                </div>
-                <div class='profile_info'>
-                    <span>Last online</span>
-                    <span>".date("Y-m-d H:i:s", $activeTime)."</span>
-                </div>
-                <div class='profile_info'>
-                    <span>Money:</span>
-                    <span>".dollar($money)."</span>
+                <div class='profileListsFlex'>
+                    <div class='profileListsWrapper'>
+                    $left
+                    </div>
+                    <div class='profileListsWrapper text-right'> 
+                    $right
+                    </div>
                 </div>
             </div>
 
         ";
-    
-    
-    
     
     return; //Aus dem Include rausgehen, d.h. die Tabelle wird nicht mehr angezeigt.
 } 

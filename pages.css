@@ -970,8 +970,28 @@ tr:nth-child(even) {
 */
 
 #user_profile .profile_info {
-    display:flex;
-    justify-content: space-between;
+    /*display:flex;
+    justify-content: space-between;*/
     font-family: Kodchasan;
     font-size: 18px;
+    margin-bottom: 9px;
+}
+
+.profileListsFlex {
+    display:flex;
+    flex-direction:row;
+    justify-content: space-between;
+}
+
+.text-right {
+    text-align:right;
+}
+
+.profileListsWrapper {
+    flex-grow: 1;
+    border-radius: 3px;
+    border: 1px solid #80808047;
+    background: #e2e2e2a3;
+    margin: 3px;
+    padding: 3px 7px;
 }

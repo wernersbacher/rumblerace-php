@@ -1,18 +1,17 @@
 2018
 * user profile
-* tuning balken korrigieren, bzw vorher schon anzeigen
+* tuning balken korrigieren, bzw vorher schon anzeigen (?)
 * del sms (alte automatisch löschen reicht)
 
 * last online formatting ago
 * autos auslesen, etc für profil
 * user suche: tablle verschönern
-* Blättern: ... zw. ergebnissen
-    Rennen:
+    
+Rennen:
     => zufall hinzufügen, schlechte dura = hohe ausfallwskt
     => platzierungen generieren anhand config
 
 *sprit market max
-* übersetzungen: titles, profile info
 
 DEBUG
 * rennen, lange dauer zeit falsch? 
@@ -24,14 +23,17 @@ THIS RELEASE
 * mehr upgrades einbauen 
 * balancing
 * legend driver
-* reset mobile anpassung
-* url auflösung/routing
+* reset.php mobile anpassung
+* übersetzungen: titles, profile info
 
 BALANCING:
 * es muss sich lohnen, längere rennen zu fahren, bzw mehr sprit auszugeben.
 * upgrades dürfen es nicht zu einfach machen, bzw werden notwendig sein.
 
 NEXT RELEASE
+* Blättern: ... zw. ergebnissen
+* url auflösung/routing
+* user sortierung
 * punkte vergeben, gesamtranking
 * anzahl gefahrener rennen speichern
 * mobile scrolling

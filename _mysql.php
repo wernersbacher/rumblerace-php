@@ -638,8 +638,8 @@ function queryRaceDone() {
                 SET money = money + '$reward', exp = exp + '$exp'
                 WHERE id = '" . $_SESSION["user_id"] . "'"
             );
-            $sql_race_stats = "INSERT INTO stats_racing (user_id, run, sum_positions)
-                VALUES (".$_SESSION["user_id"].", 1, $position) ON DUPLICATE KEY UPDATE run = run+1, sum_positions = sum_positions + $position
+            $sql_race_stats = "INSERT INTO stats_racing (user_id, run, sum_positions, sum_price)
+                VALUES (".$_SESSION["user_id"].", 1, $position, $reward) ON DUPLICATE KEY UPDATE run = run+1, sum_positions = sum_positions + $position, sum_price = sum_price + $reward
                 ";
             $sql_deb = "UPDATE fahrer 
                 SET skill = skill + '$exp'
@@ -830,7 +830,13 @@ function queryUserList($s, $getAll, $search = false) {
 
 function queryProfileByName($user) {
     global $mysqli;
-    $sql = "SELECT username, regdate, activeTime, lang, money, liga, exp, chat_count FROM stats, user WHERE stats.id = user.id AND username = '" . mysqli_real_escape_string($mysqli, $user) . "'";
+    $sql = "SELECT username, regdate, activeTime, lang, money, liga, exp, chat_count, run, sum_positions, sum_price
+        FROM user us
+        LEFT JOIN stats st
+        ON st.id = us.id
+        LEFT JOIN stats_racing stra
+        ON stra.user_id = us.id
+        WHERE us.username = '" . mysqli_real_escape_string($mysqli, $user) . "'";
     $query = querySQL($sql);
     $row = mysqli_fetch_assoc($query);
     return $row;
