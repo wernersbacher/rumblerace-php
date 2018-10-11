@@ -1,9 +1,7 @@
 2018
-* user profile
 * tuning balken korrigieren, bzw vorher schon anzeigen (?)
 * del sms (alte automatisch löschen reicht)
 
-* last online formatting ago
 * autos auslesen, etc für profil
 * user suche: tablle verschönern
     
@@ -18,6 +16,7 @@ DEBUG
 * joda apex: dura falsch? berechnung checken
 
 THIS RELEASE
+* leute starren
 * chat nochmal testen bzw pusher
 * sms cookie schon wieder kaputt
 * mehr upgrades einbauen 
@@ -31,6 +30,7 @@ BALANCING:
 * upgrades dürfen es nicht zu einfach machen, bzw werden notwendig sein.
 
 NEXT RELEASE
+* last online formatting ago
 * Blättern: ... zw. ergebnissen
 * url auflösung/routing
 * user sortierung

@@ -987,11 +987,17 @@ tr:nth-child(even) {
     text-align:right;
 }
 
+.profileListsFlex {
+    margin: 5px 2px;
+}
+
 .profileListsWrapper {
     flex-grow: 1;
-    border-radius: 3px;
-    border: 1px solid #80808047;
+    border-radius: 2px;
+    /* border: 1px solid #80808047; */
     background: #e2e2e2a3;
-    margin: 3px;
-    padding: 3px 7px;
+    margin: 4px 8px 12px 8px;
+    padding: 6px 9px;
+
+    box-shadow: 0px 0px 0px 0px #e4e4e4, inset 0px 7px 27px -8px #b7b7b7, 5px 5px 15px 5px rgba(0,0,0,0)
 }
