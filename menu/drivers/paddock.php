@@ -56,10 +56,8 @@ if ($mode == "manage" && $driver) {
 
     $upgradeCost = driverUpgradeCost($liga);
 
-    if ($upgradeCost > getPlayerMoney())
-        $disabled = "disabled";
-    else
-        $disabled = "";
+    $disabled = boolToDis($upgradeCost < getPlayerMoney());
+   
 
 
     $output .= "

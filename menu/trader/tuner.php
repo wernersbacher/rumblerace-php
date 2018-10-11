@@ -69,10 +69,7 @@ $counter = 1;
 $partsData = queryTuningPartsData($kat);
 $partNames = queryTuningParts($kat);
 
-if ($isPartRunningNow)
-    $disabled = "disabled";
-else
-    $disabled = "";
+$disabled = boolToDis(!$isPartRunningNow);
 
 //Jede Teileklasse durchgehen
 foreach ($partNames as $part) {

@@ -47,10 +47,8 @@ foreach($drivers as $drv) {
     $liga = $drv->maxLiga;
     $nr = $drv->nr;
     
-    if($kosten > getPlayerMoney())
-        $disabled = "disabled";
-    else $disabled = "";
-    
+    $disabled = boolToDis($kosten < getPlayerMoney());
+        
     $driverPut .= " 
                 <div class='sysDriver'>
                 <h2>$name <div class='driverLiga'><img src='img/liga/" . $liga . ".png' alt='League " . $liga . "' title='League " . $liga . "' /></div></h2>

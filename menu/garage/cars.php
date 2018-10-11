@@ -159,10 +159,8 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
 
 
             //Autos, die gefahren werden, können nicht getunt oder verkauft werden.
-            $disabled = "disabled";
-            if (queryCarIsNotRacing($car["garage_id"]))
-                $disabled = "";
-
+            $disabled = boolToDis(queryCarIsNotRacing($car["garage_id"]));
+           
             $output .= "<div class='dealer'>
                     <div class='imgFlex'>
                         <img src='img/car/" . $car["name"] . ".jpg' />
