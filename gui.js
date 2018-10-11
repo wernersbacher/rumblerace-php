@@ -1,4 +1,4 @@
-/* global moment */
+/* global moment, store */
 function formatTime(dur) {
     return date("H:i:s", dur - 3600) + "s";
 }
@@ -118,12 +118,10 @@ function startWait() {
 
 function setToggle() {
 
-    if (Cookies.get("toggle-state") === 'true') {
-        console.log("showing");
-    } else {
-        console.log("hiding");
+    if (store.get("show-sys") === false) {
+
         $("#toggle_sys").addClass("offTableTop");
-        $(".sys").toggle();
+        $(".sys").hide();
     }
 
     //$(".sys").toggle( !(!!Cookies.get("toggle-state")) || Cookies.get("toggle-state") === 'true' );
@@ -132,8 +130,9 @@ function setToggle() {
     $('#toggle_sys').on('click', function () {
         $(".sys").toggle(200);
         $("#toggle_sys").toggleClass("offTableTop");
-        Cookies.set("toggle-state", !Cookies.get("toggle-state"), {expires: 7, path: '/'});
-        console.log("done");
+
+        var status = store.get("show-sys");
+        store.set("show-sys", !status);
     });
 }
 
@@ -268,11 +267,11 @@ $(document).ready(function () {
     /*
      * only scroll to saved pos. if on on of those pages AAAAND the site is the same as before
      */
-    if (    //Autoscroll ist für alle aktiv, wenn das auskommentiert ist
-           /* ($("#produce").length ||
-                    $("#tuner").length ||
-                    $("#racing").length) &&*/
-             
+    if (//Autoscroll ist für alle aktiv, wenn das auskommentiert ist
+            /* ($("#produce").length ||
+             $("#tuner").length ||
+             $("#racing").length) &&*/
+
             localStorage.getItem("page-id") === document.getElementsByTagName("title")[0].innerHTML) {
         //Scroll to saved position
         $(window).scrollTop(localStorage.getItem("scrollTop"));

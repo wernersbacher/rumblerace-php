@@ -153,6 +153,7 @@ Love for Meri
         <link rel="stylesheet" href="lib/tooltipster-sideTip-borderless.min.css" />
         <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
         <script type="text/javascript" src="backstretch.min.js"></script>
+        <script type="text/javascript" src="lib/store.modern.min.js"></script>
         <script type="text/javascript" src="lib/jquery-ui.min.js"></script>
         <script type="text/javascript" src="lib/jquery.connections.js"></script>
         <script type="text/javascript" src="lib/form.min.js"></script>
