@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 09. Okt 2018 um 20:19
+-- Erstellungszeit: 11. Okt 2018 um 16:54
 -- Server-Version: 10.1.36-MariaDB
 -- PHP-Version: 7.2.10
 
@@ -363,7 +363,7 @@ INSERT INTO `bonus` (`user_id`, `last`, `invested`) VALUES
 (708, 0, '0.00'),
 (709, 1485246771, '0.00'),
 (710, 0, '0.00'),
-(711, 0, '0.00');
+(711, 1539110260, '0.00');
 
 -- --------------------------------------------------------
 
@@ -452,10 +452,10 @@ CREATE TABLE `fahrer` (
 --
 
 INSERT INTO `fahrer` (`id`, `driver_id`, `user_id`, `name`, `skill`, `liga`, `anteil`) VALUES
-(19, 140920161, 1, 'Renner 1', 687.0633333333329, 2, 12),
-(20, 140920163, 1, 'Markusbacher', 912.4116666666671, 4, 15),
-(21, 150920165, 1, 'Markus W', 1443.4529999999997, 4, 11),
-(23, 160920161, 1, 'Driver-ID#32081', 2046.7944444444447, 10, 15),
+(19, 140920161, 1, 'Renner 1', 737.4633333333329, 2, 12),
+(20, 140920163, 1, 'Markusbacher', 962.8116666666671, 4, 15),
+(21, 150920165, 1, 'Markus W', 3124.506, 5, 12),
+(23, 160920161, 1, 'Driver-ID#32081', 2454.316944444445, 10, 15),
 (24, 190920164, 10, 'Steve', 9121.618, 1, 13),
 (25, 190920162, 12, 'Driver-ID#22983', 324, 1, 13),
 (26, 190920163, 19, 'Driver-ID#52796', 388, 1, 12),
@@ -958,7 +958,7 @@ INSERT INTO `fahrer` (`id`, `driver_id`, `user_id`, `name`, `skill`, `liga`, `an
 (527, 708, 708, 'Markus Werner', 150, 1, 5),
 (528, 709, 709, 'Markus Werner', 160.65, 2, 6),
 (529, 710, 710, 'Markus Werner', 150, 1, 5),
-(530, 240120171, 1, 'Driver-ID#31743', 1058.15, 4, 10),
+(530, 240120171, 1, 'Driver-ID#31743', 1108.5500000000002, 4, 10),
 (531, 711, 711, 'Markus Werner', 353.6725, 2, 6);
 
 -- --------------------------------------------------------
@@ -2715,12 +2715,7 @@ INSERT INTO `faxes` (`id`, `to_id`, `from_id`, `open`, `date`, `betreff`, `messa
 (3149, 2, 0, 0, 1538583451, 'New League', 'Congratulations, you advanced to league 1!'),
 (3150, 2, 0, 0, 1538583499, 'New League', 'Congratulations, you advanced to league 1!'),
 (3151, 2, 0, 0, 1538583500, 'New League', 'Congratulations, you advanced to league 1!'),
-(3161, 6, 0, 0, 1538831295, 'Sprit sold on market', 'You sold sprit on the market for 18,40€.'),
-(3186, 1, 0, 0, 1539069439, 'Part sold on market', 'Your part was sold on the market for 100,00€.'),
-(3187, 711, 0, 0, 1539069865, 'Anfänger Rennen finished.', 'You made 76,68€ and 53,67 EP!'),
-(3188, 1, 0, 0, 1539108957, 'Sprit sold on market', 'You sold sprit on the market for 0,12€.'),
-(3189, 1, 0, 0, 1539108968, 'Sprit sold on market', 'You sold sprit on the market for 0,16€.'),
-(3190, 1, 0, 0, 1539109061, 'Sprit sold on market', 'You sold sprit on the market for 0,38€.');
+(3161, 6, 0, 0, 1538831295, 'Sprit sold on market', 'You sold sprit on the market for 18,40€.');
 
 -- --------------------------------------------------------
 
@@ -3605,7 +3600,7 @@ CREATE TABLE `loggedin` (
 --
 
 INSERT INTO `loggedin` (`user_id`, `token`, `created`) VALUES
-(1, '', 1538844279),
+(1, 'pCySJGbAbtPbK6Qze5f/nj2/6PFg@Clj7I2lvJAC+/QXl5umrZNQ@WasMvQseGp4', 1539189036),
 (2, '', 1474014885),
 (4, '', 1474028818),
 (5, '', 1474028849),
@@ -3700,7 +3695,7 @@ INSERT INTO `loggedin` (`user_id`, `token`, `created`) VALUES
 (708, 'zcny71YmtqRWWQ1paz35jNbD@Iqj57yD6vm4o@pv2G6upoiGQj1@a5@KFKpNM3Fo', 1481285001),
 (709, '', 1485252616),
 (710, '', 1485247095),
-(711, 'yhXbpsu6mW0ggHJYJcydmyiOpfVMFyv6kIykcyXsG3G1EW2edz8I31F/qglfeO4w', 1539069151);
+(711, '', 1539069151);
 
 -- --------------------------------------------------------
 
@@ -3725,7 +3720,7 @@ CREATE TABLE `new_cars` (
 --
 
 INSERT INTO `new_cars` (`id`, `name`, `title`, `acc`, `speed`, `hand`, `dura`, `preis`, `liga`) VALUES
-(1, 'beamer_pole', 'Beamer Pole', 20, 20, 20, 200, 2400, 1),
+(1, 'beamer_pole', 'Beamer Pole', 20, 20, 20, 200, 6400, 1),
 (2, 'beamer_gulf', 'Beamer Gulf', 80, 50, 70, 190, 12000, 2),
 (3, 'lmp_fx1', 'Lampadati FX1', 450, 380, 700, 400, 320000, 7),
 (4, 'lmp_fxs', 'Lampadati FX-s.', 545, 460, 700, 500, 833000, 8),
@@ -3998,7 +3993,6 @@ CREATE TABLE `sprit_market` (
 INSERT INTO `sprit_market` (`id`, `user_id`, `amount`, `price`, `timestamp`) VALUES
 (5, 6, '122.00', '115.00', 1474465079),
 (6, 1, '1.67', '2.00', 1474528749),
-(7, 1, '1000.00', '5.00', 1485254380),
 (8, 711, '106.93', '2.00', 1539105730);
 
 -- --------------------------------------------------------
@@ -4018,7 +4012,7 @@ CREATE TABLE `sprit_upt` (
 --
 
 INSERT INTO `sprit_upt` (`id`, `user_id`, `updated`) VALUES
-(1, 1, 1539069128),
+(1, 1, 1539269673),
 (6, 6, 1474465669),
 (7, 7, 1474290311),
 (8, 8, 1474290474),
@@ -4724,7 +4718,7 @@ INSERT INTO `sprit_upt` (`id`, `user_id`, `updated`) VALUES
 (708, 708, 1481286748),
 (709, 709, 1485254049),
 (710, 710, 1485247197),
-(711, 711, 1539109061);
+(711, 711, 1539189030);
 
 -- --------------------------------------------------------
 
@@ -4746,7 +4740,7 @@ CREATE TABLE `sprit_usr` (
 INSERT INTO `sprit_usr` (`id`, `user_id`, `sprit_id`, `count`) VALUES
 (1, 1, 1, 62),
 (2, 1, 4, 13),
-(3, 1, 2, 21),
+(3, 1, 2, 23),
 (4, 1, 3, 16),
 (5, 1, 7, 11),
 (6, 1, 8, 14),
@@ -5149,7 +5143,7 @@ CREATE TABLE `stats` (
 --
 
 INSERT INTO `stats` (`id`, `money`, `liga`, `exp`, `sprit`, `uppoints`, `chat_count`) VALUES
-(1, '10801593818.52', 8, 10408, 275, 0, 27),
+(1, '10800176295.70', 8, 11200, 275, 2, 27),
 (6, '21031.89', 1, 27, 1577.66, 0, 0),
 (7, '25000.00', 1, 0, 50.225, 0, 0),
 (8, '25000.00', 1, 0, 50.2417, 0, 0),
@@ -5855,7 +5849,27 @@ INSERT INTO `stats` (`id`, `money`, `liga`, `exp`, `sprit`, `uppoints`, `chat_co
 (708, '291.01', 1, 0, 144.75, 0, 0),
 (709, '2416.31', 1, 11, 131.181, 0, 0),
 (710, '25000.00', 1, 0, 50.85, 0, 0),
-(711, '23576.02', 1, 54, 1.43, 0, 0);
+(711, '18176.02', 1, 54, 100, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `stats_racing`
+--
+
+CREATE TABLE `stats_racing` (
+  `user_id` mediumint(9) NOT NULL,
+  `run` mediumint(9) NOT NULL,
+  `sum_positions` int(11) NOT NULL,
+  `sum_price` decimal(10,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Daten für Tabelle `stats_racing`
+--
+
+INSERT INTO `stats_racing` (`user_id`, `run`, `sum_positions`, `sum_price`) VALUES
+(1, 9, 21, '360.00');
 
 -- --------------------------------------------------------
 
@@ -6735,10 +6749,10 @@ INSERT INTO `storage` (`id`, `user_id`, `part_id`, `garage_id`, `liga`, `part`, 
 (941, 711, 1, 0, 1, 'nockenwelle', 0, 0, 0, 6, 6, 0, 37),
 (942, 1, 1, 895, 1, 'nockenwelle', 0, 0, 0, 7, 6, 0, 37),
 (943, 1, 6, 895, 1, 'gelochte', 0, 0, 0, 0, 0, 44, 42),
-(944, 1, 24, 0, 5, 'nockenwelle', 0, 0, 0, 139, 114, 0, 219),
+(944, 1, 24, 0, 5, 'nockenwelle', 0, 100, 1539267726, 139, 114, 0, 219),
 (945, 1, 12, 0, 1, 'kolben', 0, 0, 0, 22, 23, 0, 80),
 (946, 1, 12, 0, 1, 'kolben', 0, 0, 0, 22, 22, 0, 77),
-(947, 1, 1, 0, 1, 'nockenwelle', 0, 0, 0, 5, 5, 0, 37),
+(947, 1, 1, 0, 1, 'nockenwelle', 0, 100, 1539267731, 5, 5, 0, 37),
 (948, 711, 6, 0, 1, 'gelochte', 0, 0, 0, 0, 0, 37, 38);
 
 -- --------------------------------------------------------
@@ -6754,6 +6768,13 @@ CREATE TABLE `storage_run` (
   `time_end` int(11) NOT NULL,
   `dur` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Daten für Tabelle `storage_run`
+--
+
+INSERT INTO `storage_run` (`id`, `user_id`, `part_id`, `time_end`, `dur`) VALUES
+(1, 711, 12, 1539189107, 120);
 
 -- --------------------------------------------------------
 
@@ -6888,7 +6909,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `pass`, `email`, `regdate`, `activeTime`, `ads`, `lang`, `token`, `token_date`) VALUES
-(1, 'admin', '3cbabe7cfb4f29bc2816a7f8103b6889', 'mwernersbach@web.de', 1441866181, 1539069128, 0, 'de', '', 0),
+(1, 'admin', '3cbabe7cfb4f29bc2816a7f8103b6889', 'mwernersbach@web.de', 1441866181, 1539269673, 0, 'de', '', 0),
 (6, 'Testuser', '3cbabe7cfb4f29bc2816a7f8103b6889', 'mwernersbach@hotmail.de', 1474289215, 1474465669, 0, 'de', '', 0),
 (7, 'zorny', '67a2cb77f1d829b0add64bca764a895b', '', 1474290284, 0, 0, 'en', '', 0),
 (8, 'RCJax', '1984fe2c85b13f331105a4e528142954', '', 1474290445, 0, 0, 'en', '', 0),
@@ -7595,7 +7616,7 @@ INSERT INTO `user` (`id`, `username`, `pass`, `email`, `regdate`, `activeTime`, 
 (708, 'markusa', '07e20aa16e4df302afe906c2f8be6015', '', 1481284894, 1481286748, 0, 'de', '', 0),
 (709, 'testm', '07e20aa16e4df302afe906c2f8be6015', '', 1485246347, 1485254049, 0, 'de', '', 0),
 (710, 'guest:0kllz', '84fa48be694fe5e3831d7ed17911b7cc', '', 1485247095, 1485247197, 0, 'de', '', 0),
-(711, 'schlingel', 'b92087d3ac55404c2cf91875f6d7cd65', '', 1539069150, 1539109061, 0, 'de', '', 0);
+(711, 'schlingel', 'b92087d3ac55404c2cf91875f6d7cd65', '', 1539069150, 1539189030, 0, 'de', '', 0);
 
 --
 -- Indizes der exportierten Tabellen
@@ -7713,6 +7734,12 @@ ALTER TABLE `stats`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indizes für die Tabelle `stats_racing`
+--
+ALTER TABLE `stats_racing`
+  ADD PRIMARY KEY (`user_id`);
+
+--
 -- Indizes für die Tabelle `storage`
 --
 ALTER TABLE `storage`
@@ -7781,7 +7808,7 @@ ALTER TABLE `fahrer`
 -- AUTO_INCREMENT für Tabelle `faxes`
 --
 ALTER TABLE `faxes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3191;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3206;
 
 --
 -- AUTO_INCREMENT für Tabelle `garage`
@@ -7811,7 +7838,7 @@ ALTER TABLE `races`
 -- AUTO_INCREMENT für Tabelle `races_run`
 --
 ALTER TABLE `races_run`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT für Tabelle `sprit`
@@ -7823,7 +7850,7 @@ ALTER TABLE `sprit`
 -- AUTO_INCREMENT für Tabelle `sprit_market`
 --
 ALTER TABLE `sprit_market`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT für Tabelle `sprit_upt`
@@ -7847,7 +7874,7 @@ ALTER TABLE `storage`
 -- AUTO_INCREMENT für Tabelle `storage_run`
 --
 ALTER TABLE `storage_run`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT für Tabelle `upgrades`

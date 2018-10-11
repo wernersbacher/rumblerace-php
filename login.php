@@ -10,6 +10,7 @@ require_once('_function.php');
 define('SECURE', true);
 error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 
+require_once('_game_config.php');
 require_once('_mysql.php');
 require_once('_lang.php');
 require_once('_function.php');

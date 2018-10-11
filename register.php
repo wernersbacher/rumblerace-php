@@ -1,29 +1,28 @@
 <?php
-
 session_start();
 $userGuest = false;
 $userSet = isset($_SESSION['username']);
-if($userSet && explode(":",$_SESSION['username'])[0] == "guest") //check, register ein user ist, der daten angibt
-        $userGuest = true;
-        
-if ($userSet AND !$userGuest) {
+if ($userSet && explode(":", $_SESSION['username'])[0] == "guest") //check, register ein user ist, der daten angibt
+    $userGuest = true;
+
+if ($userSet AND ! $userGuest) {
     header("Location:main.php");
 }
 //check mit userguest
+
+require_once('_game_config.php');
 require_once('_mysql.php');
 require_once('_lang.php');
 require_once("gen.php");
 require_once('_overwrite.php');
 require_once('_function.php');
 $status = "";
-
-
-if(isset($_POST['register']) && isset($_GET['guest'])) { //umbennen des accounts
+if (isset($_POST['register']) && isset($_GET['guest'])) { //umbennen des accounts
     $user = filter_input_array(INPUT_POST)["user"];
     $pass = filter_input_array(INPUT_POST)["pass"];
     $pass2 = filter_input_array(INPUT_POST)["pass2"];
     $userExists = queryExistsUser($user);
-    
+
     if ($pass === $pass2 && strlen($user) < 13 && strlen($user) > 2 && !$userExists && checkUsername($user)) {
         //Registrieren
         $status = queryGuestRegister($_SESSION['username'], $user, $pass);
@@ -35,24 +34,22 @@ if(isset($_POST['register']) && isset($_GET['guest'])) { //umbennen des accounts
         $status = "user_too_short_long";
     } else if (!checkUsername($user)) {
         $status = "bad_user_char";
-    } else if(countEmail($email) > 0 AND strlen($email) >0) {
+    } else if (countEmail($email) > 0 AND strlen($email) > 0) {
         $status = "email_taken";
     } else {
         $status = "wrong_input_reg";
     }
-    
+
     if ($status === "ok_reg") {
-        setcookie ("guestpw", "", time() - 3600);
-        
+        setcookie("guestpw", "", time() - 3600);
+
         queryLogin($user, $pass);
         saveSession($_SESSION["user_id"]);
         header('location: main.php?reg=ok_reg');
     } else {
         var_dump("test");
-        header('location: main.php?reg='.$status);
+        header('location: main.php?reg=' . $status);
     }
-    
-
 } else if (isset($_POST['register'])) {
     $user = filter_input_array(INPUT_POST)["user"];
     $pass = filter_input_array(INPUT_POST)["pass"];
@@ -71,7 +68,7 @@ if(isset($_POST['register']) && isset($_GET['guest'])) { //umbennen des accounts
         $status = "user_too_short_long";
     } else if (!checkUsername($user)) {
         $status = "bad_user_char";
-    } else if(countEmail($email) > 0 AND strlen($email) >0) {
+    } else if (countEmail($email) > 0 AND strlen($email) > 0) {
         $status = "email_taken";
     } else {
         $status = "wrong_input_reg";
@@ -84,7 +81,6 @@ if(isset($_POST['register']) && isset($_GET['guest'])) { //umbennen des accounts
     }
     $error = $status;
 } else if (isset($_POST['guest'])) {
-
     //check if user is already a guest
     $guest = isGuestLoggedIn();
     if ($guest) {
@@ -94,6 +90,8 @@ if(isset($_POST['register']) && isset($_GET['guest'])) { //umbennen des accounts
             login($_SESSION["user_id"], $user["username"], $user["lang"]);
             saveSession($_SESSION["user_id"]);
             header('location: main.php');
+        } else {
+            setcookie("guestpw", "", time() - 3600);
         }
     } else {
         //Register as guest
@@ -104,14 +102,16 @@ if(isset($_POST['register']) && isset($_GET['guest'])) { //umbennen des accounts
 
         $pass = generateRandomPassword();
         //passwort im cookie speichern
-
         $status = queryRegister($user, $pass, $email);
         if ($status === "ok_reg") {
             saveSession($_SESSION["user_id"]);
             saveGuestDetails($user, $pass);
             header('location: main.php');
-        } else
+        } else {
             $status = "database_error";
+            $error = $status;
+        }
+        
     }
 } else {
     $error = NULL;
@@ -130,6 +130,7 @@ if(isset($_POST['register']) && isset($_GET['guest'])) { //umbennen des accounts
         <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
         <script type="text/javascript" src="backstretch.min.js"></script>
         <script type="text/javascript" src="gui.js"></script>
+        <script type="text/javascript" src="lib/store.js"></script>
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300' rel='stylesheet' type='text/css'> 
         <link rel="shortcut icon" type="image/x-icon" href="img/logo16.ico">
     </head>
@@ -145,8 +146,8 @@ if(isset($_POST['register']) && isset($_GET['guest'])) { //umbennen des accounts
         </div>
 
         <div id="loginWindow">
-            <?php echo put("register_free", $l) ?><br/>
-            <?php echo put($error, $l); ?>
+<?php echo put("register_free", $l) ?><br/>
+<?php echo put($error, $l); ?>
             <form class="bigForm" action="register.php" method="post">
                 <input type="text" name="user" required="required" placeholder="Username" maxlength="55" /><br/>
                 <input type="password" name="pass" required="required" placeholder="Password" maxlength="50" /><br/>

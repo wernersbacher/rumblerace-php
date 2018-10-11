@@ -86,7 +86,7 @@ function updateEmail($email) {
 }
 
 function queryRegister($user, $pass, $email) {
-    global $mysqli;
+    global $mysqli, $_config;
     $lang = getBrowserLang();
 
     mysqli_autocommit($mysqli, FALSE);
@@ -101,7 +101,10 @@ function queryRegister($user, $pass, $email) {
     $addCar = mysqli_query($mysqli, "INSERT INTO garage (user_id, car_id) VALUES ('" . $user_id . "', 'beamer_pole')");
     $addDriver = mysqli_query($mysqli, "INSERT INTO fahrer (user_id, driver_id, name, skill, liga, anteil) VALUES ('$user_id', '$user_id+d', 'Markus Werner', 150, 1, 5)");
     $addBonus = mysqli_query($mysqli, "INSERT INTO bonus (user_id, last, invested) VALUES ('$user_id', 0, 0)");
+    
+    
     if ($addUser && $addStats && $addSprit && $addCar && $addDriver && $addBonus) {
+        
         mysqli_commit($mysqli);
         $status = "ok_reg";
         $_SESSION['user_id'] = $user_id;
@@ -583,8 +586,8 @@ function queryRunningRaces() {
 }
 
 function getCurrentRunningRaces() {
-    $sql = "SELECT COUNT(*) as running FROM races_run WHERE races_run.user_id=".$_SESSION["user_id"];
-    
+    $sql = "SELECT COUNT(*) as running FROM races_run WHERE races_run.user_id=" . $_SESSION["user_id"];
+
     return getColumn($sql)["running"];
 }
 
@@ -639,7 +642,7 @@ function queryRaceDone() {
                 WHERE id = '" . $_SESSION["user_id"] . "'"
             );
             $sql_race_stats = "INSERT INTO stats_racing (user_id, run, sum_positions, sum_price)
-                VALUES (".$_SESSION["user_id"].", 1, $position, $reward) ON DUPLICATE KEY UPDATE run = run+1, sum_positions = sum_positions + $position, sum_price = sum_price + $reward
+                VALUES (" . $_SESSION["user_id"] . ", 1, $position, $reward) ON DUPLICATE KEY UPDATE run = run+1, sum_positions = sum_positions + $position, sum_price = sum_price + $reward
                 ";
             $sql_deb = "UPDATE fahrer 
                 SET skill = skill + '$exp'
@@ -1071,7 +1074,7 @@ function queryDeleteSystem() {
 }
 
 function queryDeleteOld() {
-    $tage = 30 * 24* 60* 60;
+    $tage = 30 * 24 * 60 * 60;
     $jetzt = time();
     $sql = "DELETE FROM faxes WHERE date+$tage < $jetzt AND to_id = '" . $_SESSION["user_id"] . "'";
     querySQL($sql);
