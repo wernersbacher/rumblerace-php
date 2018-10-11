@@ -622,8 +622,9 @@ function queryRaceDone() {
             mysqli_autocommit($mysqli, FALSE);
 
             $id = $race["id"];
-            $rewardMulti = calcRewardMulti($race["pn"], $race["macc"], $race["mspeed"], $race["mhand"], $race["mdura"], $race["exp"], $race["car_id"], $race["driver_id"]);
-
+            $racePerformance = calcRacePerformance($race["pn"], $race["macc"], $race["mspeed"], $race["mhand"], $race["mdura"], $race["exp"], $race["car_id"], $race["driver_id"]);
+            $position = calcPosition($racePerformance); //Berechne Position, abhängig von der Platzierung
+            $rewardMulti = calcRewardMulti($position);
             $reward = calcDollarReward($race["sprit_needed"]) * $rewardMulti;
             $exp = $race["exp"] * $rewardMulti;
 
@@ -644,7 +645,7 @@ function queryRaceDone() {
             );
             if ($reward_granted && $deleteRace && $driver_reward) {
                 mysqli_commit($mysqli);
-                queryNewMessage($_SESSION["user_id"], 0, getRaceName($race["name"]) . " finished.", "You made " . dollar($reward) . " and " . ep($exp) . "!");
+                queryNewMessage($_SESSION["user_id"], 0, getRaceName($race["name"]) . " finished. Position #$position", "Your end position: $position/10. You made " . dollar($reward) . " and " . ep($exp) . "!");
                 $out = "race_done";
             } else {
                 mysqli_rollback($mysqli);

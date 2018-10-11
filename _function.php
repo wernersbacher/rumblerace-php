@@ -169,7 +169,7 @@ function calcExpFactor($race, $skill) {
  * Es wird berechnet, wie hoch der Strecken-Richtwert überhaupt ist.
  */
 
-function calcRewardMulti($pneeded, $macc, $mspeed, $mhand, $mdura, $exp, $car_id, $driver_id) {
+function calcRacePerformance($pneeded, $macc, $mspeed, $mhand, $mdura, $exp, $car_id, $driver_id) {
     global $_config;
     $car_factor = 1;
     //Get car data
@@ -193,7 +193,19 @@ function calcRewardMulti($pneeded, $macc, $mspeed, $mhand, $mdura, $exp, $car_id
     if ($gain_factor < $_config["racing"]["minGoodness"])
         $gain_factor = 0;
 
-    return $gain_factor;
+    return $gain_factor*100;
+}
+
+function calcPosition($rewardMulti) {
+    $pos = ceil((101-$rewardMulti)/9);
+    if($pos < 1) $pos = 1; 
+    else if($pos > 10) $pos = 10;
+    return $pos;
+}
+
+function calcRewardMulti($pos) {
+    $fac = (11-$pos)/10;
+    return $fac;
 }
 
 /*
