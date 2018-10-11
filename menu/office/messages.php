@@ -100,6 +100,9 @@ if ($mode == "new") {
     if(isset($post["delSys"])) {
         queryDeleteSystem();
         $del = outputTut("sms_del", $l);
+    } else if(isset($post["delOld"])) {
+        queryDeleteOld();
+        $del = outputTut("sms_del", $l);
     } else if(isset($post["readAll"])) {
         queryReadAll();
         $del = outputTut("sms_read", $l);
@@ -113,15 +116,18 @@ if ($mode == "new") {
     //Neue Nachricht Button
     $output .= "<div class='centerChildVertical'><a href='?page=office&sub=messages&mode=new' class='tableTopButton'>+ " . put("new_mes", $l) . "</a></div>";
     
+    //lösche alle system nachrichten
+    $output .= "<form class='centerChildVertical' method='POST' data-dialog='Really delete all system messages?' style='display:inline-block;' action='?page=office&sub=messages'><input type='hidden' name='delSys' value='del'><input class='tableTopButton dialog' name='delSys' type='submit' value='" . put("delSys", $l) . "'></form>";
+    
+    //Lösche alle Nachrichten, älter als 30 tage
+    $output .= "<form class='centerChildVertical' method='POST' data-dialog='Really delete old messages?' style='display:inline-block;' action='?page=office&sub=messages'><input type='hidden' name='delOld' value='delOld'><input class='tableTopButton dialog' name='delSys' type='submit' value='" . put("delOld", $l) . "'></form>";
+    
+    //Alle Nachrichten als gelesen markieren
+    $output .= "<form class='centerChildVertical' method='POST' style='display:inline-block;' action='?page=office&sub=messages'><input type='hidden' name='readAll' value='read'><input class='tableTopButton' name='readAll' type='submit' value='" . put("readAll", $l) . "'></form>";
+
     //Toggle System nachrichten
     $output .= "<div class='centerChildVertical'><a href='#' id='toggle_sys' class='tableTopButton'>" . put("toggle_sys", $l) . "</a></div>";
     
-    //lösche alle system nachrichten
-    $output .= "<form method='POST' data-dialog='Really delete all system messages?' style='display:inline-block;' action='?page=office&sub=messages'><input type='hidden' name='delSys' value='del'><input class='tableTopButton dialog' name='delSys' type='submit' value='" . put("delSys", $l) . "'></form>";
-    
-    //Alle Nachrichten als gelesen markieren
-    $output .= "<form method='POST' style='display:inline-block;' action='?page=office&sub=messages'><input type='hidden' name='readAll' value='read'><input class='tableTopButton' name='readAll' type='submit' value='" . put("readAll", $l) . "'></form>";
-
     $output .= "</div>"; 
     
     //Tabellen Header

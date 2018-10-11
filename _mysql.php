@@ -1070,6 +1070,13 @@ function queryDeleteSystem() {
     querySQL($sql);
 }
 
+function queryDeleteOld() {
+    $tage = 30 * 24* 60* 60;
+    $jetzt = time();
+    $sql = "DELETE FROM faxes WHERE date+$tage < $jetzt AND to_id = '" . $_SESSION["user_id"] . "'";
+    querySQL($sql);
+}
+
 function queryReadAll() {
     $sql = "UPDATE faxes SET open ='1' WHERE to_id = '" . $_SESSION["user_id"] . "'";
     querySQL($sql);

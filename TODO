@@ -1,7 +1,4 @@
 2018
-* tuning balken korrigieren, bzw vorher schon anzeigen (?)
-* del sms (alte automatisch löschen reicht)
-
 * autos auslesen, etc für profil
 * user suche: tablle verschönern
     
@@ -9,7 +6,7 @@ Rennen:
     => zufall hinzufügen, schlechte dura = hohe ausfallwskt
     => platzierungen generieren anhand config
 
-*sprit market max
+* sprit market max
 
 DEBUG
 * rennen, lange dauer zeit falsch? 

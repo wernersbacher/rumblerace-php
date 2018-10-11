@@ -318,6 +318,7 @@ $lg["no_title"] = ["No Subject", "Kein Betreff"];
 $lg["toggle_sys"] = ["Toggle System", "System an/aus"];
 $lg["answer"] = ["Answer", "Antworten"];
 $lg["delSys"] = ["Delete System SMS", "Lösche System SMS"];
+$lg["delOld"] = ["Delete 30 day old SMS", "Lösche 30 Tage alte SMS"];
 $lg["readAll"] = ["Mark All As Read", "Alles Als Gelesen"];
 $lg["sms_read"] = ["All SMS were marked as read.", "Alles Nachrichten wurden als gelesen markiert."];
 $lg["sms_del"] = ["All system SMS were deleted.", "Alle System Nachrichten wurden gelöscht."];

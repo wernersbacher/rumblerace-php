@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 11. Okt 2018 um 15:44
+-- Erstellungszeit: 11. Okt 2018 um 16:54
 -- Server-Version: 10.1.36-MariaDB
 -- PHP-Version: 7.2.10
 
@@ -2715,12 +2715,7 @@ INSERT INTO `faxes` (`id`, `to_id`, `from_id`, `open`, `date`, `betreff`, `messa
 (3149, 2, 0, 0, 1538583451, 'New League', 'Congratulations, you advanced to league 1!'),
 (3150, 2, 0, 0, 1538583499, 'New League', 'Congratulations, you advanced to league 1!'),
 (3151, 2, 0, 0, 1538583500, 'New League', 'Congratulations, you advanced to league 1!'),
-(3161, 6, 0, 0, 1538831295, 'Sprit sold on market', 'You sold sprit on the market for 18,40€.'),
-(3201, 1, 0, 1, 1539264844, 'Anfänger Rennen finished. Position #3', 'Your end position: 3/10. You made 72,00€ and 50,40 EP!'),
-(3202, 1, 0, 1, 1539264844, 'Anfänger Rennen finished. Position #3', 'Your end position: 3/10. You made 72,00€ and 50,40 EP!'),
-(3203, 1, 0, 1, 1539264845, 'Anfänger Rennen finished. Position #3', 'Your end position: 3/10. You made 72,00€ and 50,40 EP!'),
-(3204, 1, 0, 1, 1539264845, 'Anfänger Rennen finished. Position #3', 'Your end position: 3/10. You made 72,00€ and 50,40 EP!'),
-(3205, 1, 0, 1, 1539264845, 'Anfänger Rennen finished. Position #3', 'Your end position: 3/10. You made 72,00€ and 50,40 EP!');
+(3161, 6, 0, 0, 1538831295, 'Sprit sold on market', 'You sold sprit on the market for 18,40€.');
 
 -- --------------------------------------------------------
 
@@ -4017,7 +4012,7 @@ CREATE TABLE `sprit_upt` (
 --
 
 INSERT INTO `sprit_upt` (`id`, `user_id`, `updated`) VALUES
-(1, 1, 1539265110),
+(1, 1, 1539269673),
 (6, 6, 1474465669),
 (7, 7, 1474290311),
 (8, 8, 1474290474),
@@ -6754,10 +6749,10 @@ INSERT INTO `storage` (`id`, `user_id`, `part_id`, `garage_id`, `liga`, `part`, 
 (941, 711, 1, 0, 1, 'nockenwelle', 0, 0, 0, 6, 6, 0, 37),
 (942, 1, 1, 895, 1, 'nockenwelle', 0, 0, 0, 7, 6, 0, 37),
 (943, 1, 6, 895, 1, 'gelochte', 0, 0, 0, 0, 0, 44, 42),
-(944, 1, 24, 0, 5, 'nockenwelle', 0, 0, 0, 139, 114, 0, 219),
+(944, 1, 24, 0, 5, 'nockenwelle', 0, 100, 1539267726, 139, 114, 0, 219),
 (945, 1, 12, 0, 1, 'kolben', 0, 0, 0, 22, 23, 0, 80),
 (946, 1, 12, 0, 1, 'kolben', 0, 0, 0, 22, 22, 0, 77),
-(947, 1, 1, 0, 1, 'nockenwelle', 0, 0, 0, 5, 5, 0, 37),
+(947, 1, 1, 0, 1, 'nockenwelle', 0, 100, 1539267731, 5, 5, 0, 37),
 (948, 711, 6, 0, 1, 'gelochte', 0, 0, 0, 0, 0, 37, 38);
 
 -- --------------------------------------------------------
@@ -6914,7 +6909,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `pass`, `email`, `regdate`, `activeTime`, `ads`, `lang`, `token`, `token_date`) VALUES
-(1, 'admin', '3cbabe7cfb4f29bc2816a7f8103b6889', 'mwernersbach@web.de', 1441866181, 1539265110, 0, 'de', '', 0),
+(1, 'admin', '3cbabe7cfb4f29bc2816a7f8103b6889', 'mwernersbach@web.de', 1441866181, 1539269673, 0, 'de', '', 0),
 (6, 'Testuser', '3cbabe7cfb4f29bc2816a7f8103b6889', 'mwernersbach@hotmail.de', 1474289215, 1474465669, 0, 'de', '', 0),
 (7, 'zorny', '67a2cb77f1d829b0add64bca764a895b', '', 1474290284, 0, 0, 'en', '', 0),
 (8, 'RCJax', '1984fe2c85b13f331105a4e528142954', '', 1474290445, 0, 0, 'en', '', 0),

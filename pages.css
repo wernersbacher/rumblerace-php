@@ -467,6 +467,7 @@ tr:nth-child(even) {
 .messageButtons {
     display:flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .centerChildVertical {
@@ -474,6 +475,9 @@ tr:nth-child(even) {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-bottom:4px;
+    text-align: center;
+    flex-grow: 1;
 
 }
 
@@ -510,7 +514,7 @@ tr:nth-child(even) {
 }
 
 .tableTopButton {
-    margin-right:10px;
+    /*margin-right:10px;*/
     -moz-box-shadow:inset 0px 1px 0px 0px #9acc85;
     -webkit-box-shadow:inset 0px 1px 0px 0px #9acc85;
     box-shadow:inset 0px 1px 0px 0px #9acc85;
