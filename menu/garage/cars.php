@@ -1,9 +1,9 @@
 <?php
 
-if (!isset($post["garage_id"]))
+if (!isset($get["garage_id"]))
     $id = 0;
 else
-    $id = $post["garage_id"];
+    $id = $get["garage_id"];
 
 $output = outputTut("car_tuning", $l);
 $output .= backLink("?page=garage&sub=cars");
@@ -57,19 +57,17 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
         <div class = 'tuningPartName'>" . put($kat, $l) . "</div>
         </div>";
 
-        //Speichern der Tabelle
+        //Tabellenkategorien ausgeben
         $select .= "<table class='tuningTable tableRed tableClick'>
                 <tr>
                   <th colspan='2'>" . put($kat, $l) . "</th>
                 </tr>";
 
+
         $allParts = queryTuningParts($kat);
         foreach ($allParts as $part) {
             $partsAvail = false;
-            $select .= "<tr>
-                        <td>" . put($part, $l) . "</td>
-                        <td>
-                            <select name='$part'>";
+            $selectGenerated = "";
 
             //Ausgeben der aktuell eingebauten Sachen.
             if (array_key_exists($part, $mountedParts)) {
@@ -77,29 +75,32 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
                 $speed = $mountedParts[$part]["speed"];
                 $hand = $mountedParts[$part]["hand"];
                 $dura = $mountedParts[$part]["dura"];
-                $select .= "<option value='none'>" . outputDetails($acc, $speed, $hand, $dura) . " (" . $mountedParts[$part]["liga"] . ") **</option>";
+                $selectGenerated .= "<option value='none'>" . outputDetails($acc, $speed, $hand, $dura) . " (" . $mountedParts[$part]["liga"] . ") **</option>";
                 $partsAvail = true;
             }
+            //Standardausrüstung
+            $selectGenerated .= "<option value='0'>----------</option>";
 
-            $select .= "<option value='0'>----------</option>";
-
-            //ausgeben der Teile im Lager
+            //ausgeben der Teile im Lager (für jedes ein Select)
             if ($storage) {
-                $partsAvail = true;
-
+                //var_dump($storage);
                 foreach ($storage as $item) {
-
                     if ($item["part"] == $part && $item["liga"] == $car["liga"] && $item["garage_id"] == 0) {
+                        $partsAvail = true; //Anzeigen, dass in dieser Kategorie ein Teil vorhanden ist
                         $acc = $item["acc"];
                         $speed = $item["speed"];
                         $hand = $item["hand"];
                         $dura = $item["dura"];
-                        $select .= "<option value='" . $item["id"] . "'>" . outputDetails($acc, $speed, $hand, $dura) . " (" . $item["liga"] . ")</option>";
+                        $selectGenerated .= "<option value='" . $item["id"] . "'>" . outputDetails($acc, $speed, $hand, $dura) . " (" . $item["liga"] . ")</option>";
                     }
                 }
             }
+            $select .= "<tr>
+                        <td>" . put($part, $l) . "</td>
+                        <td>
+                            <select name='$part' ".boolToDis($partsAvail).">";
 
-
+            $select .= $selectGenerated;
             $select .= "</select>
                         </td>
                       </tr>";
@@ -111,7 +112,7 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
     $output .= "</div>"; //Schließen des sketches
     //Tuning ausgeben
 
-    $output .= "<form method='POST' action='?page=garage&sub=cars&mode=tune'>";
+    $output .= "<form method='POST' action='?page=garage&sub=cars&mode=tune&garage_id=$id'>";
     $output .= $select;
     $output .= "<input type='hidden' name='garage_id' value='$id'></input>";
     $output .= "<input class='tableTopButton' name='tune' type='submit' value='" . put("save_car", $l) . "'>";
@@ -186,15 +187,15 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
 
                     <div class='dealBuy'>
                         
-                        <form method='POST' data-dialog='Sell the car for " . dollar(carSellPrice($car["preis"])) . "? The tuning parts are transferred into the storage.' style='display:inline-block;' action='?page=garage&sub=cars'>
+                        <form method='POST' data-dialog='Sell the car for " . dollar(carSellPrice($car["preis"])) . "? The tuning parts are transferred into the storage.' style='display:inline-block;' action='?page=garage&sub=cars&garage_id=" . $car["garage_id"] . "'>
                             <input type='hidden' name='garage_id' value='" . $car["garage_id"] . "'>
                             <input type='hidden' name='action' value='sell'>
                             <input class='tableTopButton redButton dialog' name='send' type='submit' value='" . put("sell", $l) . "' $disabled>
                         </form>
                         
-                        <form method='POST' style='display:inline-block;' action='?page=garage&sub=cars&mode=tune'>
+                        <form method='POST' style='display:inline-block;' action='?page=garage&sub=cars&mode=tune&garage_id=" . $car["garage_id"] . "'>
                             <input type='hidden' name='garage_id' value='" . $car["garage_id"] . "'>
-                            <input class='tableTopButton ' name='send' type='submit' value='" . put("tune_now", $l) . "' $disabled>
+                            <input class='tableTopButton' name='send' type='submit' value='" . put("tune_now", $l) . "' $disabled>
                         </form>
                     </div>
                </div>";

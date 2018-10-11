@@ -292,6 +292,10 @@ function prf($partPrf) {
 
 //HTML Output Funktionen
 
+function boolToDis($bool) {
+    return $bool ? "" : "disabled";
+}
+
 function outputProfileList($list) {
     global $l;
     $out = "";
