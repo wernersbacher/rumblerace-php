@@ -50,6 +50,10 @@ function getColumn($sql) {
     }
 }
 
+function getRow($sql) {
+    return getColumn($sql)[0];
+}
+
 function getCount($sql) {
     $entry = querySQL($sql);
     $count = mysqli_num_rows($entry);

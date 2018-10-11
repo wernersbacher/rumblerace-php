@@ -2,22 +2,21 @@
 * user profile
 * tuning balken korrigieren, bzw vorher schon anzeigen
 * del sms (alte automatisch löschen reicht)
-* joda apex: dura falsch? berechnung checken
 
 * last online formatting ago
 * autos auslesen, etc für profil
 * user suche: tablle verschönern
 * Blättern: ... zw. ergebnissen
-* stats: gefahrene rennen eintragen
     Rennen:
     => zufall hinzufügen, schlechte dura = hohe ausfallwskt
     => platzierungen generieren anhand config
 
-* SYS SMS!!
-
 *sprit market max
+* übersetzungen: titles, profile info
 
-
+DEBUG
+* rennen, lange dauer zeit falsch? 
+* joda apex: dura falsch? berechnung checken
 
 THIS RELEASE
 * chat nochmal testen bzw pusher

@@ -582,6 +582,12 @@ function queryRunningRaces() {
     return getArray($sql);
 }
 
+function getCurrentRunningRaces() {
+    $sql = "SELECT COUNT(*) as running FROM races_run WHERE races_run.user_id=".$_SESSION["user_id"];
+    
+    return getColumn($sql)["running"];
+}
+
 //checkt, ob rennen fertig ist HINZUFÜGEN DER EXP ZUM FAHRER
 function queryRaceDone() {
     global $mysqli, $l;
@@ -632,18 +638,21 @@ function queryRaceDone() {
                 SET money = money + '$reward', exp = exp + '$exp'
                 WHERE id = '" . $_SESSION["user_id"] . "'"
             );
+            $sql_race_stats = "INSERT INTO stats_racing (user_id, run, sum_positions)
+                VALUES (".$_SESSION["user_id"].", 1, $position) ON DUPLICATE KEY UPDATE run = run+1, sum_positions = sum_positions + $position
+                ";
             $sql_deb = "UPDATE fahrer 
                 SET skill = skill + '$exp'
                 WHERE user_id = '" . $_SESSION["user_id"] . "' AND id = '" . $race["driver_id"] . "'";
 
-            $driver_reward = mysqli_query($mysqli, $sql_deb
-            );
+            $driver_reward = mysqli_query($mysqli, $sql_deb);
+            $race_stats = mysqli_query($mysqli, $sql_race_stats);
 
             $deleteRace = mysqli_query($mysqli, "DELETE
                 FROM races_run
                 WHERE id = '$id'"
             );
-            if ($reward_granted && $deleteRace && $driver_reward) {
+            if ($reward_granted && $deleteRace && $driver_reward && $race_stats) {
                 mysqli_commit($mysqli);
                 queryNewMessage($_SESSION["user_id"], 0, getRaceName($race["name"]) . " finished. Position #$position", "Your end position: $position/10. You made " . dollar($reward) . " and " . ep($exp) . "!");
                 $out = "race_done";
