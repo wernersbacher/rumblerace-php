@@ -3,15 +3,17 @@
 * tuning balken korrigieren, bzw vorher schon anzeigen
 * del sms (alte automatisch löschen reicht)
 * joda apex: dura falsch? berechnung checken
-* last online formatting
-* autos auslesen, etc
+
+* last online formatting ago
+* autos auslesen, etc für profil
 * user suche: tablle verschönern
 * Blättern: ... zw. ergebnissen
 * stats: gefahrene rennen eintragen
-* todo: plätze bei rennen, durch modulo 10 die prozent ausrechnen 
+    Rennen:
     => zufall hinzufügen, schlechte dura = hohe ausfallwskt
-    - achtung: grlße darf nicht höher als 100 sein, sonst platz = 0
     => platzierungen generieren anhand config
+
+* SYS SMS!!
 
 
 THIS RELEASE

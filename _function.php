@@ -204,7 +204,7 @@ function calcPosition($rewardMulti) {
 }
 
 function calcRewardMulti($pos) {
-    $fac = (11-$pos)/10;
+    $fac = round( ((11-$pos)/10) ** 1.5 ,2);
     return $fac;
 }
 
