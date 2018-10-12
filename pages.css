@@ -260,7 +260,7 @@ select {
 
 .smallProgress .tuneProgressBar {
     background-color: darkred;
-    border-radius: 11px 0 0 11px;
+    border-radius: 11px;
 }
 
 .tuneProgress {

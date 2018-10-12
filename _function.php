@@ -520,7 +520,7 @@ function queryLigaChange() {
 }
 
 function expToLiga($l) {
-    if ($l === 1)
+    if (intval($l) === 1)
         return 0;
     $l -= 1;
     $exp = LIGA_START;

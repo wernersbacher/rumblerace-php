@@ -83,6 +83,7 @@ h2 {
     right:5px;
     /*text-transform: lowercase;*/
     color:white;
+
 }
 
 #mainmenu {
@@ -135,6 +136,7 @@ h2 {
     width:800px;
     display:flex;
     justify-content: space-around;
+    flex-direction: row;
     min-height:100px;
     margin:auto;
     margin-bottom:60px; 
@@ -153,9 +155,11 @@ h2 {
 }
 
 #leftMenu {
-    flex:1;
-    min-height:100%;
+    /*min-height:100%;*/
     margin-right:0;
+    display:flex;
+    max-width:22%;
+    flex:1;
 }
 
 #leftMenu a:link, #leftMenu a:visited {
@@ -170,9 +174,12 @@ h2 {
     flex:1;
     min-width:573px;
     min-height:100%;
+    margin-top:10px;
 }
 
 #blackLeftInfo {
+    min-height: 350px;
+    padding-bottom: 50px;
     font-size: 20px;
     background: #272727;
     border-radius: 3px;
@@ -181,11 +188,66 @@ h2 {
     margin: 10px 10px 0 0;
     box-shadow: 0px 0px 0px 0px #A0A0A0, inset 0px 10px 27px -8px #141414, inset 0px -10px 27px -8px #2f2f2f, 2px 5px 7px 5px rgba(0,0,0,0);
     box-sizing: border-box;
+
+    width: 100%;
 }
 
 #playerData {
     text-align:center;
     padding: 10px 2px;
+}
+
+#blackButtons {
+    display:flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}
+#blackButtons div {
+    width: 34px;
+    height: 34px;
+    background-color: rgba(155,71,71,1);
+    padding: 4px;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#blackButtons div:hover {
+    background-color:rgba(155,76,76,1);
+    box-shadow: 2px 2px 11px -4px inset black;
+}
+
+#blackButtons img {
+    height:30px;
+}
+
+#blackStats {
+    margin: 5px;
+    display:flex;
+    flex-direction: column;
+}
+
+#blackStats img {
+    width:32px;
+}
+
+.blackOutput {
+    background-color: #9b4646;
+    box-shadow: 2px 2px 11px -4px inset black;
+    font-family: Kodchasan;
+    font-size: 15px;
+    overflow: hidden;
+    padding: 4px 7px;
+    border-radius: 7px;
+    margin: 0 5px;
+}
+
+
+
+.vertical-align {
+    display:flex;
+    align-items: center;
 }
 
 #player-info {

@@ -15,6 +15,7 @@ require_once('_lang.php');
 require_once('_submenu.php');
 require_once('_ads.php');
 
+
 //Language changer
 if (isset($post["lang"])) {
     $lang = $post["lang"];
@@ -29,7 +30,6 @@ $player = queryPlayerStats();
 
 $upgrades = getUserUpgrades();
 $l = getPlayerLang();
-
 
 //Holen der aktuellen Seite
 
@@ -255,21 +255,39 @@ Love for Meri
                 <div id="blackLeftInfo">
                     <div id="playerData">
                         <img src="img/ava.png" /><br/>
-                        <span class="playername"><?php echo $_SESSION["username"] ?> <img id="mobile_liga" style="height:16px; " src="img/liga/<?php echo getPlayerLiga() ?>.png"></span><br/>
+                        <span class="playername"><?php echo $_SESSION["username"] ?> <img id="mobile_liga" style="display:none; height:16px; " src="img/liga/<?php echo getPlayerLiga() ?>.png"></span><br/>
 
-                            <div id='prog_exp' class='smallProgress tuneProgress noJS'>
-                                <?php
-                                    $prog = getLigaProg();
-                                    $diffs = getLigaDiffs();
-                                    $anteil = ep($diffs["player"])."/".ep($diffs["liga"]);
-                                    echo "<div title='$anteil' class='tuneProgressBar' style='width:$prog%; background-color: ".colorFromPercent($prog)."' ></div> 
-                                          <div class='tuneProgressText'>Level ".getPlayerLiga()."</div>";
-                                ?>
-                                
-                            </div>
+                        
+                            <?php
+                            $prog = getLigaProg();
+                            $diffs = getLigaDiffs();
+                            $anteil = ep($diffs["player"]) . "/" . ep($diffs["liga"]);
+                                echo "<div title='$anteil' id='prog_exp' class='smallProgress tuneProgress noJS'>
+                                          <div class='tuneProgressBar' style='width:$prog%; background-color: " . colorFromPercent($prog) . "' ></div> 
+                                          <div class='tuneProgressText'>Level " . getPlayerLiga() . "</div>
+                                     </div>";
+                            ?>
+
+                        
+
+
+                    </div>
+                    <div id="blackButtons">
+                        
+                        <a href="main.php?page=office&sub=messages"><div><img src="img/office40.png" /></div></a>
+                         <a href="#"><div><img src="img/car40.png" /></div>
+                         <a href="#"><div><img src="img/tools40.png" /></div></a>
                         
                         
                     </div>
+                    
+                    <div id="blackStats">
+                        <div class='vertical-align'><img src="img/money32.png"/>
+                            <span class="blackOutput"><?php echo dollar(getPlayerMoney()) ?></span>
+                        </div>
+                    </div>
+                    
+                    
                 </div>
 
 
