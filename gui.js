@@ -63,7 +63,7 @@ function startCountdown() {
     //Show countdown for parts and running races
     var selector = "#tuner, #running_races";
 
-    $(selector).find(".tuneProgress").each(function () {
+    $(selector).find(".tuneProgress").not(".noJS").each(function () {
         var duration = $(this).data("timeDuration");
         var time_to_end = $(this).data("timeToend");
         var time_went = duration - time_to_end;

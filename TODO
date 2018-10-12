@@ -1,4 +1,7 @@
 USABILITY
+* rennen db funktioniert nicht!!
+
+* prozentfortschritt funktion
 * anpassung mobile design
 * left menu größer und dicker /redesign
 * info ausblenden, per button einblenden
@@ -21,6 +24,7 @@ USABILITY
 
 
 2018
+* output funktionen auslagern
 * autos auslesen, etc für profil
 * user suche: tablle verschönern
 * tuningteile erst mit höheren stufen freischalten

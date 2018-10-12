@@ -2,8 +2,38 @@
 
 require_once '_game_config.php';
 
+require_once '_design_out.php';
+
 define("LIGA_MULTI", 5);
 define("LIGA_START", 400);
+define("LIGA_MAX", 8);
+
+/*Erst Diff ausrechnen
+ * Gibt den Fortschritt zur nächsten Liga in % an.
+ */
+
+function getLigaDiffs() {
+    $p_liga = getPlayerLiga();
+    $new_liga = expToLiga($p_liga + 1);
+    $old_liga = expToLiga($p_liga);
+    $diff_liga = $new_liga - $old_liga;
+    $diff_player = $new_liga - getPlayerExp();
+    return ["liga"=>$diff_liga, "player"=>$diff_player];
+}
+
+function getLigaProg() {
+    $p_liga = getPlayerLiga();
+    $player = getPlayerExp();
+    if($p_liga > LIGA_MAX)
+        return 100;
+    else if($player < 1) 
+        return 0;
+    $diffs = getLigaDiffs();
+    $diff_liga = $diffs["liga"];
+    $diff_player = $diffs["player"];
+
+    return round(100 * $diff_player / $diff_liga, 2);
+}
 
 function getLigaQuot() {
     return LIGA_MULTI / 4;
@@ -193,18 +223,20 @@ function calcRacePerformance($pneeded, $macc, $mspeed, $mhand, $mdura, $exp, $ca
     if ($gain_factor < $_config["racing"]["minGoodness"])
         $gain_factor = 0;
 
-    return $gain_factor*100;
+    return $gain_factor * 100;
 }
 
 function calcPosition($rewardMulti) {
-    $pos = ceil((101-$rewardMulti)/9);
-    if($pos < 1) $pos = 1; 
-    else if($pos > 10) $pos = 10;
+    $pos = ceil((101 - $rewardMulti) / 9);
+    if ($pos < 1)
+        $pos = 1;
+    else if ($pos > 10)
+        $pos = 10;
     return $pos;
 }
 
 function calcRewardMulti($pos) {
-    $fac = round( ((11-$pos)/10) ** 1.5 ,2);
+    $fac = round(((11 - $pos) / 10) ** 1.5, 2);
     return $fac;
 }
 
@@ -299,12 +331,11 @@ function boolToDis($bool) {
 function outputProfileList($list) {
     global $l;
     $out = "";
-    
-    foreach($list as $pair)
-    
-        $out .=" <div class='profile_info'>
-                    <div><b>".put($pair["title"], $l)."</b></div>
-                    <div>".$pair["value"]."</div>
+
+    foreach ($list as $pair)
+        $out .= " <div class='profile_info'>
+                    <div><b>" . put($pair["title"], $l) . "</b></div>
+                    <div>" . $pair["value"] . "</div>
                 </div>";
     return $out;
 }
@@ -576,6 +607,7 @@ function isGuestLoggedIn() {
     } else
         return false;
 }
+
 //Blätter Funktion, HTML Ausgabe
 function getPages($menge, $s, $direct_str) {
     //Anzahl der Seiten ausgegeben
@@ -595,6 +627,6 @@ function getPages($menge, $s, $direct_str) {
             }
         }
     $html .= "</div>";
-    
+
     return $html;
 }

@@ -255,12 +255,19 @@ Love for Meri
                 <div id="blackLeftInfo">
                     <div id="playerData">
                         <img src="img/ava.png" /><br/>
-                        <span class="playername"><?php echo $_SESSION["username"] ?> <img id="mobile_liga" style="height:16px; display: none;" src="img/liga/<?php echo getPlayerLiga() ?>.png"></span><br/>
+                        <span class="playername"><?php echo $_SESSION["username"] ?> <img id="mobile_liga" style="height:16px; " src="img/liga/<?php echo getPlayerLiga() ?>.png"></span><br/>
 
-                        <div id='prog_exp' class='tuneProgress'>
-                                <div class='tuneProgressBar' style='width:30%'></div> 
-                                <div class='tuneProgressText'>30% Level 2</div>
+                            <div id='prog_exp' class='smallProgress tuneProgress noJS'>
+                                <?php
+                                    $prog = getLigaProg();
+                                    $diffs = getLigaDiffs();
+                                    $anteil = ep($diffs["player"])."/".ep($diffs["liga"]);
+                                    echo "<div title='$anteil' class='tuneProgressBar' style='width:$prog%; background-color: ".colorFromPercent($prog)."' ></div> 
+                                          <div class='tuneProgressText'>Level ".getPlayerLiga()."</div>";
+                                ?>
+                                
                             </div>
+                        
                         
                     </div>
                 </div>
