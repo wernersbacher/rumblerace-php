@@ -257,7 +257,7 @@ Love for Meri
             </div>
 
             <div id="contentWindow">
-                <span class="h1"><?php echo put($page, $l) . $subpage ?> </span>
+                <!--<span class="h1"><?php echo put($page, $l) . $subpage ?> </span>-->
                 <?php echo $content ?>
                 <?php echo getBannerAd(); ?>
             </div>
@@ -313,8 +313,6 @@ Love for Meri
         <?php echo $htmlTooltips; ?>
     </div>
 
-
-    <!-- <?php var_dump($_rewards); ?> Footer Segment Ende -->
 
 </body>
 </html>
