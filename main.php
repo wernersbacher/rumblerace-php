@@ -192,7 +192,7 @@ Love for Meri
     <div id="topBar">
         <div id="topContent">
             <a href='main.php'><span class="rumblerace">RACING <span class="colored">INC.</span></span></a>
-            <span id="blackMenu"><?php echo randomHeader(); ?></span>
+            <span id="blackMenu">ALPHA</span>
         </div>
     </div>
     <!-- Top Segment Ende -->
@@ -291,7 +291,7 @@ Love for Meri
 
     <!-- Footer Segment Anfang -->
     <div id="supportus" title="Support us">
-        <p>Any feedback, help, tips, typos and bad grammatic just send an email: <b><a href='mailto:racingInc@wernersbacher.de'>mailto:racingInc@wernersbacher.de</a></b><br/>
+        <p>Any feedback, help, tips, typos and bad grammatic just send an email: <b><a href='mailto:racingInc@wernersbacher.de'>racingInc@wernersbacher.de</a></b><br/>
             Paypal address for donating: <b>mwernersbach@web.de</b><br/>
             <br/>
             <b>Sharing the game with friends</b> is still the best help we can get. Thank you!

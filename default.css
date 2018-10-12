@@ -79,7 +79,7 @@ h2 {
     display:inline-block;
     position:absolute;
     right:5px;
-    text-transform: lowercase;
+    /*text-transform: lowercase;*/
     color:white;
 }
 

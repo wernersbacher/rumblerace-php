@@ -6,11 +6,11 @@ function getHeaderArray() {
     $header[] = "<a href='http://wernersbacher.de' class='link'>www.wernersbacher.de</a>";
     $header[] = "today on rumblerace: how to drive fast";
     $header[] = "vroom vroom";
-    $header[] = '&#60;?php echo $password ?&#62;';
+    //$header[] = '&#60;?php echo $password ?&#62;';
     $header[] = "Sprichst du Deutsch?";
-    $header[] = "&#60;funny headline missing&#62;";
+    //$header[] = "&#60;funny headline missing&#62;";
     $header[] = "";
-    $header[] = "Feedback: hi@facethepace.com";
+    $header[] = "Feedback";
     $header[] = "Activate ads in settings!";
     $header[] = "'RUMBLERACE!'";
     
