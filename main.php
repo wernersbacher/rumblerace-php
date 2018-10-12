@@ -187,54 +187,54 @@ Love for Meri
     <!-- End Piwik Code -->
 </head>
 <body>
-    
+
     <div id="pageWrapper" >
-    <!-- Top Segment Anfang -->
-    <div id="topBar">
-        <div id="topContent">
-            <a href='main.php'><span class="rumblerace">RACING <span class="colored">INC.</span></span></a>
-            <span id="blackMenu">ALPHA</span>
+        <!-- Top Segment Anfang -->
+        <div id="topBar">
+            <div id="topContent">
+                <a href='main.php'><span class="rumblerace">RACING <span class="colored">INC.</span></span></a>
+                <span id="blackMenu">ALPHA</span>
+            </div>
         </div>
-    </div>
-    <!-- Top Segment Ende -->
+        <!-- Top Segment Ende -->
 
-    <!-- Main Menü Segment Anfang -->
+        <!-- Main Menü Segment Anfang -->
 
-    <div id="mainmenu">
-        <?php echo getMenuList(); ?>
-    </div>
+        <div id="mainmenu">
+            <?php echo getMenuList(); ?>
+        </div>
 
-    <!-- Main Menü Segment Ende -->
+        <!-- Main Menü Segment Ende -->
 
-    <div id="mid-header">
+        <div id="mid-header">
 
-        <?php if (isPlayerGuest()) { ?>
-            <div id="guestInfo">
-                You are just playing as a guest! If your cookies gets deleted, your account will be too. Register your account for free:<br/>
-                <i><?php
-                    if (isset($get["reg"]))
-                        echo put($get["reg"], $l);
-                    ?> </i>
-                <form class="bigForm" action="register.php?guest=true" method="post">
-                    <input type="text" name="user" required="required" placeholder="Username" maxlength="55" />
-                    <input type="password" name="pass" required="required" placeholder="Password" maxlength="50" />
-                    <input type="password" name="pass2" required="required" placeholder="Password (retype)" maxlength="50" />
-                    <input type="hidden" name="email" placeholder="Email (optional)" maxlength="50" />
-                    <input type="hidden" name="register" value="yes"/>
-                    <input type="submit" name="send" value="Register" />
+            <?php if (isPlayerGuest()) { ?>
+                <div id="guestInfo">
+                    You are just playing as a guest! If your cookies gets deleted, your account will be too. Register your account for free:<br/>
+                    <i><?php
+                        if (isset($get["reg"]))
+                            echo put($get["reg"], $l);
+                        ?> </i>
+                    <form class="bigForm" action="register.php?guest=true" method="post">
+                        <input type="text" name="user" required="required" placeholder="Username" maxlength="55" />
+                        <input type="password" name="pass" required="required" placeholder="Password" maxlength="50" />
+                        <input type="password" name="pass2" required="required" placeholder="Password (retype)" maxlength="50" />
+                        <input type="hidden" name="email" placeholder="Email (optional)" maxlength="50" />
+                        <input type="hidden" name="register" value="yes"/>
+                        <input type="submit" name="send" value="Register" />
 
-                </form>
+                    </form>
 
-            </div> 
-        <?php } ?>
+                </div> 
+            <?php } ?>
 
-    </div>
+        </div>
 
 
-    <!-- Middle Segment Anfang -->
+        <!-- Middle Segment Anfang -->
         <div id="middle">
             <div id="leftMenu">
-                <div id="player-info">
+                <!--<div id="player-info">
                     <span class="playername"><?php echo $_SESSION["username"] ?> <img id="mobile_liga" style="height:16px; display: none;" src="img/liga/<?php echo getPlayerLiga() ?>.png"></span><br/>
                     <span class="stats">
                         <img src="img/dollar.png" /> <?php echo dollar(getPlayerMoney()) ?><br/>
@@ -250,7 +250,22 @@ Love for Meri
                     <div class="playerLiga" id="desktop_liga">
                         <img src="img/liga/<?php echo getPlayerLiga() ?>.png" />
                     </div>
+                </div>-->
+
+                <div id="blackLeftInfo">
+                    <div id="playerData">
+                        <img src="img/ava.png" /><br/>
+                        <span class="playername"><?php echo $_SESSION["username"] ?> <img id="mobile_liga" style="height:16px; display: none;" src="img/liga/<?php echo getPlayerLiga() ?>.png"></span><br/>
+
+                        <div id='prog_exp' class='tuneProgress'>
+                                <div class='tuneProgressBar' style='width:30%'></div> 
+                                <div class='tuneProgressText'>30% Level 2</div>
+                            </div>
+                        
+                    </div>
                 </div>
+
+
                 <!--<div id="submenu">
                 <?php echo $submenu ?>
                 </div>-->

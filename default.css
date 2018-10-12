@@ -2,7 +2,7 @@ html, body {
     margin:0;
     padding:0;
     height:100%;
-    
+
     /* Footer Padding */
 }
 
@@ -155,7 +155,7 @@ h2 {
 #leftMenu {
     flex:1;
     min-height:100%;
-    margin-right:10px;
+    margin-right:0;
 }
 
 #leftMenu a:link, #leftMenu a:visited {
@@ -170,6 +170,22 @@ h2 {
     flex:1;
     min-width:573px;
     min-height:100%;
+}
+
+#blackLeftInfo {
+font-size: 20px;
+    background: #272727;
+    border-radius: 3px;
+    color: #fbfbfb;
+    padding: 3px;
+    margin: 10px 10px 0 0;
+    box-shadow: 0px 0px 0px 0px #A0A0A0, inset 0px 10px 27px -8px #141414, inset 0px -10px 27px -8px #2f2f2f, 2px 5px 7px 5px rgba(0,0,0,0);
+    box-sizing: border-box;
+}
+
+#playerData {
+    text-align:center;
+    padding: 10px 2px;
 }
 
 #player-info {
