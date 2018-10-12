@@ -2,6 +2,8 @@ html, body {
     margin:0;
     padding:0;
     height:100%;
+    
+    /* Footer Padding */
 }
 
 body {
@@ -230,7 +232,7 @@ h2 {
 
 .mainDropDown {
     position:relative;
-    
+
 }
 
 .mainDropDown-content {
@@ -316,10 +318,33 @@ a:link, a:visited {
     text-decoration:underline;
 }
 
+#pageWrapper {
+    min-height:100%;
+    box-sizing:border-box;
+    padding-bottom: 100px;
+    position:relative;
+}
+
+footer {
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:100px;   /* Height of the footer */
+    background:#e0e0e0; 
+}
+
 #always {
-    width:220px;
-    margin:10px 0;
-    text-align:center;
+    width: 50%;
+    height:100%;
+    align-items: center;
+    min-width: 300px;
+    margin: 0px auto;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+}
+#always > div {
+    flex-grow: 1;
 }
 
 #always ul {

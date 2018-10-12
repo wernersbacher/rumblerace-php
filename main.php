@@ -187,7 +187,8 @@ Love for Meri
     <!-- End Piwik Code -->
 </head>
 <body>
-
+    
+    <div id="pageWrapper" >
     <!-- Top Segment Anfang -->
     <div id="topBar">
         <div id="topContent">
@@ -207,7 +208,7 @@ Love for Meri
 
     <div id="mid-header">
 
-<?php if (isPlayerGuest()) { ?>
+        <?php if (isPlayerGuest()) { ?>
             <div id="guestInfo">
                 You are just playing as a guest! If your cookies gets deleted, your account will be too. Register your account for free:<br/>
                 <i><?php
@@ -225,67 +226,67 @@ Love for Meri
                 </form>
 
             </div> 
-<?php } ?>
+        <?php } ?>
 
     </div>
 
 
     <!-- Middle Segment Anfang -->
-
-    <div id="middle">
-        <div id="leftMenu">
-            <div id="player-info">
-                <span class="playername"><?php echo $_SESSION["username"] ?> <img id="mobile_liga" style="height:16px; display: none;" src="img/liga/<?php echo getPlayerLiga() ?>.png"></span><br/>
-                <span class="stats">
-                    <img src="img/dollar.png" /> <?php echo dollar(getPlayerMoney()) ?><br/>
-                    <img src="img/star.png" /> <span title="<?php echo ep(expToLiga(getPlayerLiga() + 1) - getPlayerExp()) ?> left"><?php echo ep(getPlayerExp()) ?></span><br/>
-                    <a href="main.php?page=sprit"><img src="img/energy.png" /> <?php echo $sprit ?></a><br/>
-                    <a href="main.php?page=special&sub=upgrades" title="Free Upgrade Points"><img src="img/ups.png" /> <?php echo getPlayerUpPoints() ?></a> | 
-                    <a href="?page=race&sub=running" title="Running races"><img src="img/wait.png" /> <?php echo getCurrentRunningRaces() ?></a><br/>
-                </span>
-                <div class="playerQuick"  style="margin-top: 4px;">
-                    <a href="?page=office&sub=messages"><img src="img/<?php echo $letter ?>.png" alt="messages" /></a></a>
-                    <a href="?page=office&sub=bonus"><img src="img/<?php echo $bonus ?>.png" alt="bonus" /></a></a>
+        <div id="middle">
+            <div id="leftMenu">
+                <div id="player-info">
+                    <span class="playername"><?php echo $_SESSION["username"] ?> <img id="mobile_liga" style="height:16px; display: none;" src="img/liga/<?php echo getPlayerLiga() ?>.png"></span><br/>
+                    <span class="stats">
+                        <img src="img/dollar.png" /> <?php echo dollar(getPlayerMoney()) ?><br/>
+                        <img src="img/star.png" /> <span title="<?php echo ep(expToLiga(getPlayerLiga() + 1) - getPlayerExp()) ?> left"><?php echo ep(getPlayerExp()) ?></span><br/>
+                        <a href="main.php?page=sprit"><img src="img/energy.png" /> <?php echo $sprit ?></a><br/>
+                        <a href="main.php?page=special&sub=upgrades" title="Free Upgrade Points"><img src="img/ups.png" /> <?php echo getPlayerUpPoints() ?></a> | 
+                        <a href="?page=race&sub=running" title="Running races"><img src="img/wait.png" /> <?php echo getCurrentRunningRaces() ?></a><br/>
+                    </span>
+                    <div class="playerQuick"  style="margin-top: 4px;">
+                        <a href="?page=office&sub=messages"><img src="img/<?php echo $letter ?>.png" alt="messages" /></a></a>
+                        <a href="?page=office&sub=bonus"><img src="img/<?php echo $bonus ?>.png" alt="bonus" /></a></a>
+                    </div>
+                    <div class="playerLiga" id="desktop_liga">
+                        <img src="img/liga/<?php echo getPlayerLiga() ?>.png" />
+                    </div>
                 </div>
-                <div class="playerLiga" id="desktop_liga">
-                    <img src="img/liga/<?php echo getPlayerLiga() ?>.png" />
-                </div>
-            </div>
-            <div id="submenu">
-<?php echo $submenu ?>
+                <!--<div id="submenu">
+                <?php echo $submenu ?>
+                </div>-->
             </div>
 
-            <hr/>
+            <div id="contentWindow">
+                <span class="h1"><?php echo put($page, $l) . $subpage ?> </span>
+                <?php echo $content ?>
+                <?php echo getBannerAd(); ?>
+            </div>
+        </div>
+        <footer>
             <div id="always">
-                <ul>
-                    <a><li class="infoPop" data-open="supportus">Support Us</li></a>
-                    <a><li class="infoPop" data-open="bugrep">Feedback</li></a>
-                </ul>
+                <div>
 
-<?php echo onlineUser() . " " . put("online_user", $l); ?> 
+                    <ul>
+                        <a><li class="infoPop" data-open="supportus">Support Us</li></a>
+                        <a><li class="infoPop" data-open="bugrep">Feedback</li></a>
+                    </ul>
+                </div>
+                <div>
 
-                <br/>
+                    <?php echo onlineUser() . " " . put("online_user", $l); ?> 
 
-                <a href="http://markus.wernersbacher.de/pages/about-this-website/">&copy; wernersbacher 2016-2017</a><br/>
-                <noscript> <?php echo put("noscript", $l) ?><br/> </noscript>
-                <?php echo getLangChange() ?> | ALPHA 0.1.3 <br/> 
-<?php echo "Server: " . date("d M Y H:i:s"); ?>
+                    <br/>
 
+                    <a href="http://markus.wernersbacher.de/pages/about-this-website/">&copy; wernersbacher 2016-2017</a><br/>
+                    <noscript> <?php echo put("noscript", $l) ?><br/> </noscript>
+                    <?php echo getLangChange() ?> | ALPHA 0.1.3 <br/> 
+                    <?php echo "Server: " . date("d M Y H:i:s"); ?>
 
+                </div>
             </div>
-<?php echo getScrapperAd(); ?>
+        </footer>
 
-
-
-        </div>
-
-        <div id="contentWindow">
-            <span class="h1"><?php echo put($page, $l) . $subpage ?> </span>
-            <?php echo $content ?>
-<?php echo getBannerAd(); ?>
-        </div>
     </div>
-
     <!-- Middle Segment Ende -->
 
 
@@ -309,7 +310,7 @@ Love for Meri
     </div>
 
     <div id="tooltip_templates">
-<?php echo $htmlTooltips; ?>
+        <?php echo $htmlTooltips; ?>
     </div>
 
 
