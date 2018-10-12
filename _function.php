@@ -404,10 +404,11 @@ function getCurrency() {
 
 function dollar($val) {
     $save = getPlayerLangID();
+    $number = format($val);
     if ($save === 1) { //falls deutsch
-        return numberWithCommas($val) . "€";
+        return $number . "€";
     } else {
-        return "$" . numberWithCommas($val);
+        return "$" . $number;
     }
 }
 
