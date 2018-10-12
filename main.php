@@ -86,7 +86,10 @@ if (!isset($htmlTooltips))
 //Anzeigen des Spritstatistik
 $spm = calcSpritMin();
 $max = getMaxSprit();
-$sprit = "<span title='" . gas(nwc($spm / 60)) . "/sec' id='spritTags' data-spritmax='$max' data-promin='$spm'><span id='playerSprit'>" . gas(round(getPlayerSprit(), 2)) . "</span>/" . gas(nwc($max)) . "</span>";
+//$sprit = "<span title='" . gas(nwc($spm / 60)) . "/sec' id='spritTags' data-spritmax='$max' data-promin='$spm'><span id='playerSprit'>" . gas(round(getPlayerSprit(), 2)) . "</span>/" . gas(nwc($max)) . "</span>";
+$sprit2 = "<span title='" . gas(nwc($spm / 60)) . "/sec' id='spritTags' data-spritmax='$max' data-promin='$spm'>
+    <span id='playerSprit'>" . gas(round(getPlayerSprit(), 2)) . "</span>
+        </span>";
 
 //Adding Submenu for page
 $subarray = getSubMenu($page);
@@ -282,8 +285,14 @@ Love for Meri
                     </div>
                     
                     <div id="blackStats">
+                        <div class='vertical-align'><img src="img/award.png"/>
+                            <span class="blackOutput"><?php echo $diffs["player"] ?></span>
+                        </div>
                         <div class='vertical-align'><img src="img/money32.png"/>
-                            <span class="blackOutput"><?php echo dollar(getPlayerMoney()) ?></span>
+                            <span class="blackOutput"><?php echo format(getPlayerMoney()) ?></span>
+                        </div>
+                        <div class='vertical-align'><img src="img/fuel.png"/>
+                            <span class="blackOutput"><?php echo $sprit2 ?></span>
                         </div>
                     </div>
                     

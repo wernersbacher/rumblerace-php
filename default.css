@@ -241,6 +241,8 @@ h2 {
     padding: 4px 7px;
     border-radius: 7px;
     margin: 0 5px;
+    width: 100%;
+    text-align:right;
 }
 
 

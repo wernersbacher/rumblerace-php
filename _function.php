@@ -18,7 +18,7 @@ function getLigaDiffs() {
     $old_liga = expToLiga($p_liga);
     $diff_liga = $new_liga - $old_liga;
     $diff_player = $new_liga - getPlayerExp();
-    return ["liga"=>$diff_liga, "player"=>$diff_player];
+    return ["liga"=>$diff_liga, "player"=>$diff_liga-$diff_player];
 }
 
 function getLigaProg() {

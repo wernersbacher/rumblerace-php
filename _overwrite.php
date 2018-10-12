@@ -50,3 +50,23 @@ function hslToRgb($h, $s, $l){
 
     return array(round($r * 255), round($g * 255), round($b * 255));
 }
+/*
+ * number format
+ */
+    #    Output easy-to-read numbers
+    #    by james at bandit.co.nz
+function format($n) {
+        // first strip any formatting;
+        $n = (0+str_replace(",","",$n));
+        
+        // is this a number?
+        if(!is_numeric($n)) return false;
+        
+        // now filter it;
+        if($n>1000000000000) return round(($n/1000000000000),1).'TR';
+        else if($n>1000000000) return round(($n/1000000000),1).'B';
+        else if($n>1000000) return round(($n/1000000),1).'M';
+        //else if($n>1000) return round(($n/1000),1).'T';
+        
+        return number_format($n);
+    }

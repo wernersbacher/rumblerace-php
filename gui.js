@@ -51,7 +51,7 @@ function startSprit() {
             old = max;
             setSprit(old);
             clearInterval(refresh);
-            $("#spritTags").css('color', '#B50000');
+            $("#spritTags").css('color', '#54ff98');
         }
         setSprit(old);
     }
