@@ -655,7 +655,6 @@ function queryRaceDone() {
                 FROM races_run
                 WHERE id = '$id'"
             );
-            var_dump($sql_race_stats);
             
             if ($reward_granted && $deleteRace && $driver_reward && $race_stats) {
                 mysqli_commit($mysqli);
