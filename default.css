@@ -189,6 +189,7 @@ h2 {
     box-shadow: 0px 0px 0px 0px #A0A0A0, inset 0px 10px 27px -8px #141414, inset 0px -10px 27px -8px #2f2f2f, 2px 5px 7px 5px rgba(0,0,0,0);
     box-sizing: border-box;
 
+    border: 3px solid #717171;
     width: 100%;
 }
 

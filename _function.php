@@ -18,19 +18,23 @@ function getLigaDiffs() {
     $old_liga = expToLiga($p_liga);
     $diff_liga = $new_liga - $old_liga;
     $diff_player = $new_liga - getPlayerExp();
-    return ["liga"=>$diff_liga, "player"=>$diff_liga-$diff_player];
+    
+    $player_exp = $diff_liga-$diff_player;
+    
+    return ["liga"=>$diff_liga, "player"=>($player_exp>0) ? $player_exp : "max" ];
 }
 
 function getLigaProg() {
     $p_liga = getPlayerLiga();
     $player = getPlayerExp();
-    if($p_liga > LIGA_MAX)
-        return 100;
-    else if($player < 1) 
-        return 0;
     $diffs = getLigaDiffs();
     $diff_liga = $diffs["liga"];
     $diff_player = $diffs["player"];
+    
+    if($p_liga > LIGA_MAX)
+        return 100;
+    else if($player < 1 OR $diff_player == 'max') 
+        return 0;
 
     return round(100 * $diff_player / $diff_liga, 2);
 }
@@ -413,6 +417,9 @@ function dollar($val) {
 }
 
 function ep($val) {
+    if(!is_numeric($val))
+        return $val;
+    
     $save = getPlayerLangID();
     if ($save === 0) { //falls deutsch
         return numberWithCommas($val) . " EXP";
