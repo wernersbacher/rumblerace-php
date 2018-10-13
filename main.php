@@ -277,9 +277,9 @@ Love for Meri
                     </div>
                     <div id="blackButtons">
                         
-                        <a href="main.php?page=office&sub=messages"><div><img src="img/office40.png" /></div></a>
-                         <a href="#"><div><img src="img/car40.png" /></div>
-                         <a href="#"><div><img src="img/tools40.png" /></div></a>
+                        <a href="main.php?page=office&sub=messages"><div><img src="img/office40.png" /><span class="badge alert">1</span></div></a>
+                        <a href="#"><div><img src="img/car40.png" /></div>
+                        <a href="#"><div><img src="img/tools40.png" /></div></a>
                         
                         
                     </div>
