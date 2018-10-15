@@ -37,12 +37,12 @@ h2 {
 }
 
 .pageInfo {
+    display:none;
     background-color: #E2F6FF;
     border: 1px solid #CACACA;
     text-align: justify;
     text-align-last: center;
     -moz-text-align-last: center;
-    display: block;
     padding: 5px;
     border-radius: 2px;
     box-shadow: 0px 2px 3px -3px;

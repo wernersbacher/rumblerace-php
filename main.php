@@ -213,7 +213,7 @@ Love for Meri
 
             <?php if (isPlayerGuest()) { ?>
                 <div id="guestInfo">
-                    You are just playing as a guest! If your cookies gets deleted, your account will be too. Register your account for free:<br/>
+                    <?php echo put("attention_reg", $l); ?><br/>
                     <i><?php
                         if (isset($get["reg"]))
                             echo put($get["reg"], $l);

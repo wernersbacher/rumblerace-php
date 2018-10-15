@@ -180,6 +180,8 @@ $lg["password_not_correct"] = ["The passwords you typed in are noe equal.", "Die
 $lg["user_too_short_long"] = ["Your username needs at least 3 characters and max. 13.", "Der Username muss mindestens 3 und höchstens 13 Zeichen haben."];
 $lg["bad_user_char"] = ["You may only use these character for your username: A-Z a-z 0-9 _ . * - ", "Der Username darf nur aus diesen Zeichen bestehen: A-Z a-z 0-9 _ . * - "];
 $lg["ok_reg"] = ["Registration was successfull.", "Die Registrierung war erfolgreich."];
+$lg["attention_reg"] = ["You are just playing as a guest! If your cookies gets deleted, your account will be too. Register your account for free:", 
+    "Du spielst nur als Gast! Dein Account ist nicht dauerhaft gespeichert. Registriere jetzt deine Account. Kostenlos!"];
 
 
 //Guest Beschreibungen
