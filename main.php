@@ -203,8 +203,11 @@ Love for Meri
 
         <!-- Main Menü Segment Anfang -->
 
-        <div id="mainmenu">
-            <?php echo getMenuList(); ?>
+        <div id="mainMenuWrapper">
+            <div id="mainmenu">
+                <?php echo getMenuList(); ?>
+            </div>
+
         </div>
 
         <!-- Main Menü Segment Ende -->
@@ -260,30 +263,30 @@ Love for Meri
                         <img src="img/ava.png" /><br/>
                         <span class="playername"><?php echo $_SESSION["username"] ?> <img id="mobile_liga" style="display:none; height:16px; " src="img/liga/<?php echo getPlayerLiga() ?>.png"></span><br/>
 
-                        
-                            <?php
-                            $prog = getLigaProg();
-                            $diffs = getLigaDiffs();
-                            $anteil = ep($diffs["player"]) . "/" . ep($diffs["liga"]);
-                                echo "<div title='$anteil' id='prog_exp' class='smallProgress tuneProgress noJS'>
+
+                        <?php
+                        $prog = getLigaProg();
+                        $diffs = getLigaDiffs();
+                        $anteil = ep($diffs["player"]) . "/" . ep($diffs["liga"]);
+                        echo "<div title='$anteil' id='prog_exp' class='smallProgress tuneProgress noJS'>
                                           <div class='tuneProgressBar' style='width:$prog%; background-color: " . colorFromPercent($prog) . "' ></div> 
                                           <div class='tuneProgressText'>Level " . getPlayerLiga() . "</div>
                                      </div>";
-                            ?>
+                        ?>
 
-                        
+
 
 
                     </div>
                     <div id="blackButtons">
-                        
+
                         <a href="main.php?page=office&sub=messages"><div><img src="img/office40.png" /><span <?php echo boolToHide($newFx) ?> class="badge alert"><?php echo $newFx; ?></span></div></a>
                         <a href="#"><div><img src="img/car40.png" /></div>
-                        <a href="#"><div><img src="img/tools40.png" /></div></a>
-                        
-                        
+                            <a href="#"><div><img src="img/tools40.png" /></div></a>
+
+
                     </div>
-                    
+
                     <div id="blackStats">
                         <div class='vertical-align'><img src="img/award.png"/>
                             <span class="blackOutput"><?php echo $diffs["player"] ?></span>
@@ -295,8 +298,8 @@ Love for Meri
                             <span class="blackOutput"><?php echo $sprit2 ?></span>
                         </div>
                     </div>
-                    
-                    
+
+
                 </div>
 
 

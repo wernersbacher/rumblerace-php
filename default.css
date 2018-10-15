@@ -86,9 +86,21 @@ h2 {
 
 }
 
+#mainMenuWrapper {
+    padding: 20px;
+    width: 100%;
+    /* background-color: lightgrey; */
+    /* background-color: #e0e0e0; */
+    box-sizing: border-box;
+    background-image: url(img/pattern/bright1.png); 
+    background-repeat: repeat; 
+    /* border-bottom: 1px solid #efefef; */
+
+}
+
 #mainmenu {
     width:800px;
-    margin:20px auto;
+    margin: auto;
     font-family: Roboto;
     font-size:12px;
 }
@@ -102,12 +114,15 @@ h2 {
 }
 
 #mainmenu ul li {
-    text-align:center;
-    width:45px;
-    border-radius:3px;
-    background:#FBFBFB;
-    box-shadow:0px 1px 5px -3px black;
-    padding:2px;
+    text-align: center;
+    width: 45px;
+    /* border-radius: 3px; */
+    background: #ffffff;
+    /* box-shadow: inset 0px 0px 7px -4px black; */
+    padding: 4px;
+    border: 1px solid #efefef;
+    border-radius: 3px;
+
 }
 
 #mainmenu ul li:hover {
@@ -173,7 +188,8 @@ h2 {
 #contentWindow {
     flex:1;
     min-width:573px;
-    min-height:100%;
+    min-height:100;
+    margin-top:10px;
 }
 
 #blackLeftInfo {
@@ -190,10 +206,10 @@ h2 {
 
     border: 3px solid #717171;
     width: 100%;
-    
+
     background-image: url("img/pattern/dark2.png");
     background-repeat: repeat;
-    
+
 }
 
 #playerData {
@@ -228,7 +244,7 @@ h2 {
 }
 
 .badge {
-position: absolute;
+    position: absolute;
     z-index: 2;
     width: 30%;
     height: 30%;
@@ -431,6 +447,13 @@ a:link, a:visited {
     box-sizing:border-box;
     padding-bottom: 100px;
     position:relative;
+
+    /*
+    background-image: url("img/pattern/bright1.png");
+    background-repeat: repeat;
+    background: url(img/pattern/bg1.jpg) no-repeat center center fixed; 
+    background-size: cover;*/
+
 }
 
 footer {
