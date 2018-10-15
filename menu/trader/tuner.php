@@ -26,7 +26,7 @@ function buildNewPart($part, $liga) {
  */
 
 function showTunerKats($activeKat) {
-
+    global $l;
     $kats = queryTuningKats();
     //Tuning Kategorien ausgeben
     $ret = "<ul class='ligaList'>";
@@ -35,7 +35,13 @@ function showTunerKats($activeKat) {
             $active = "class='active'";
         else
             $active = "";
-        $ret .= "<li $active><a href='?page=trader&sub=tuner&mode=parts&kat=$kat'><img src='img/parts/$kat.png' /></a></li>";
+        
+        $ret .= "<li $active>
+                <a href='?page=trader&sub=tuner&mode=parts&kat=$kat'>
+                    <img src='img/parts/$kat.png' />
+                        <span class='absTitle'>".put($kat,$l)."</span>
+                </a>
+                </li>";
     }
     $ret .= "</ul>";
     return $ret;
