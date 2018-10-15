@@ -154,7 +154,7 @@ $lg["tune_now"] = ["Tune now", "Jetzt tunen"];
 $lg["race_now"] = ["Race now", "Jetzt fahren"];
 $lg["hp"] = ["HP", "PS"];
 $lg["perf"] = ["Perfomance", "Perfomance"];
-$lg["liga"] = ["League", "Liga"];
+$lg["liga"] = ["Level", "Level"];
 $lg["build"] = ["Build", "Bauen"];
 $lg["open_kat"] = ["See all parts", "Alle Teile ansehen"];
 $lg["save_car"] = ["Save configuration", "Konfiguration speichern"];
@@ -207,14 +207,14 @@ $lg["cd_shiny"] = ["Buy brand new cars. They are not tuned, but they have a shin
     "Hier kannst Du neue Fahrzeuge kaufen. Sie sind nicht getunt, aber haben einen schönen neuen Lack."];
 $lg["cd_your_cars"] = ["These are your cars. Install tuning parts to make them faster!", 
     "Hier siehst Du Deine Fahrzeuge. Bringe neue Teile an, um sie schneller zu machen!"];
-$lg["tn_info"] = ["Research new car parts here. Every part has acceleration, speed, handling and durability values. The given values are the max values it can reach when producing! Higher values are much more rare. You will need parts of a better league to mount them in a high league cars.",
-        "Erforsche hier neue Fahrzeugteile! Jedes Teil Beschleunigung, Topspeed, Handling und Zuverlässigkeit. Die angegegeben Werte sind maximale Werte, welche beim Bauen erreicht werden können. Höhere Werte sind viel seltener. Außerdem benötigst Du für Fahrzeuge höherer Ligen auch mindestens die Teile aus dieser Liga!"];
+$lg["tn_info"] = ["Research new car parts here. Every part has acceleration, speed, handling and durability values. The given values are the max values it can reach when producing! Higher values are much more rare. You will need parts of a better level to mount them in a high level cars.",
+        "Erforsche hier neue Fahrzeugteile! Jedes Teil Beschleunigung, Topspeed, Handling und Zuverlässigkeit. Die angegegeben Werte sind maximale Werte, welche beim Bauen erreicht werden können. Höhere Werte sind viel seltener. Außerdem benötigst Du für Fahrzeuge höherer Ligen auch mindestens die Teile aus dieser Level!"];
 $lg["too_many_parts"] = ["You can't build that many parts at once.", "Du kannst nicht so viele Teile gleichzeitig bauen!"];
 $lg["part_built"] = ["You part is getting build.", "Das Tuningteil wird nun gebaut!"];
 $lg["st_info"] = ["All unmounted parts are in your storage.", "Alle nicht verwendeten Teile sind hier im Lager."];
 $lg["no_parts_storage"] = ["No parts in storage yet.", "Keine Teile im Lager."];
-$lg["car_tuning"] = ["Tune your car with parts you have already built. A part has to be in the same league as the car to build in.", 
-    "Tune Dein Fahrzeug mit Teilen, die Du bereits gebaut hast. Das Teil muss mindestens in derselben Liga wie das Fahrzeug sein, damit es angezeigt wird."];
+$lg["car_tuning"] = ["Tune your car with parts you have already built. A part has to be in the same level as the car to build in.", 
+    "Tune Dein Fahrzeug mit Teilen, die Du bereits gebaut hast. Das Teil muss mindestens in derselben Level wie das Fahrzeug sein, damit es angezeigt wird."];
 $lg["car_updated"] = ["Car configuration saved.", "Fahrzeugkonfiguration wurde gespeichert!"];
 $lg["market_with"] = ["Be aware that withdrawing the part from the market later on will cost you 10% of the offered price.", "Beachte, dass das spätere Zurücknehmen vom Markt 10% des Verkaufspreises kostet!"];
 $lg["market_sell"] = ["Type in the market price for your selected part.", "Gib an, für wie viel Du das Teil verkaufen möchtest"];
@@ -277,8 +277,8 @@ $lg["sprit_market"] = ["Buy fuel on the global market here. To sell your own fue
     "Kaufe hier Sprit auf dem globalen Markt. Um dein eigenen Sprit zu verkaufen, <a href='?page=sprit&sub=sell'>geh zu 'Sprit'</a>."];
 
 //Racing
-$lg["race_info"] = ["Drive races for money and go up a league! The more horsepower, the higher the profit. The more performance, the more experience. You need a driver and car which has at least the same league as the race. The car is 3 times more important than the driver.", 
-    "Fahre Rennen, um Geld zu bekommen und Ligen aufzusteigen! Je mehr PS, desto höher der Gewinn. Je mehr Performance, desto mehr EP. Du brauchst mindestens ein Auto und ein Fahrer aus der Liga, in welchem auch das Rennen ist! Ein gutes Auto 3x so wichtig, wie ein guter Fahrer."];
+$lg["race_info"] = ["Drive races for money and go up a level! The more horsepower, the higher the profit. The more performance, the more experience. You need a driver and car which has at least the same level as the race. The car is 3 times more important than the driver.", 
+    "Fahre Rennen, um Geld zu bekommen und Ligen aufzusteigen! Je mehr PS, desto höher der Gewinn. Je mehr Performance, desto mehr EP. Du brauchst mindestens ein Auto und ein Fahrer aus der Level, in welchem auch das Rennen ist! Ein gutes Auto 3x so wichtig, wie ein guter Fahrer."];
 $lg["pos_one"] = ["Pos 1", "Platz 1"];
 $lg["reward"] = ["Reward", "Preisgeld"];
 $lg["race_started"] = ["Race started. You will get a SMS when it's done!", "Rennen wurde gestartet. Du bekommst eine SMS, wenn es zuende ist!"];
@@ -344,7 +344,7 @@ $lg["opt_info"] = ["Change your profile settings here.", "Ändere hier Deine Pro
 $lg["settings_saved"] = ["Changes saved.", "Änderungen gespeichert."];
 $lg["bad_settings"] = ["Check your input. Something went wrong. ", "Irgendetwas ist schief gelaufen. Überprüfe Deine Eingaben."];
 
-//Rennen Liga
+//Rennen Level
 $lg["beginner"] =  ["Beginner", "Anfänger"];
 $lg["amateur"] =  ["Amateur", "Amateur"];
 $lg["pro"] =  ["Pro", "Pro"];
@@ -362,8 +362,8 @@ $lg["end"] =  ["EnDurance", "Ausdauerrennen"];
 $lg["master"] =  ["Masters", "Meister"];
 
 //Fahrer Texte
-$lg["driver_info"] = ["Get a few good drivers! The offer scrambles every day. They cost some money and have a racing share. You will also see the highest league they can race.", 
-    "Hol dir ein paar gute Fahrer! Das Angebot wechselt jeden Tag. Sie kosten anfangs einen Batzen Geld, und danach möchten Sie immer ein Teil des Gewinnes haben! Außerdem siehst Du die Liga, in welcher sie höchstens fahren können."];
+$lg["driver_info"] = ["Get a few good drivers! The offer scrambles every day. They cost some money and have a racing share. You will also see the highest level they can race.", 
+    "Hol dir ein paar gute Fahrer! Das Angebot wechselt jeden Tag. Sie kosten anfangs einen Batzen Geld, und danach möchten Sie immer ein Teil des Gewinnes haben! Außerdem siehst Du die Level, in welcher sie höchstens fahren können."];
 $lg["get_driver"] = ["Hire driver", "Fahrer anheuern"];
 $lg["driver_added"] = ["You hired the driver!", "Du hast den Fahrer erfolgreich angeheuert."];
 $lg["driver_sum"] = ["Check all your drivers here.", "Verwalte hier Deine Fahrer."];
@@ -373,8 +373,8 @@ $lg["driver_fired"] = ["The driver stopped his career and is now an 'expert' on 
 $lg["no_driver"] = ["You did not hire any driver yet. <a href='?page=drivers&sub=sysDrivers'>Do it now</a>", "Bisher hast du noch keinen Fahrer eingestellt. <a href='?page=drivers&sub=sysDrivers'>Tu es jetzt</a>"];
 $lg["anteil"] = ["Stake", "Anteil"];
 $lg["kostenpunkt"] = ["Upgrade cost", "Upgradekosten"];
-$lg["upgrade_driver"] = ["Upgrade to next league", "Upgrade zur nächsten Liga"];
-$lg["driver_upgraded"] = ["The driver advanced to the next league!", "Der Fahrer wurde eine Liga höher eingestuft!"];
+$lg["upgrade_driver"] = ["Upgrade to next level", "Upgrade zur nächsten Level"];
+$lg["driver_upgraded"] = ["The driver advanced to the next level!", "Der Fahrer wurde ein Level höher eingestuft!"];
 
 //Bonus Seite
 $lg["bonus_info"] = ["Get some extra money or gas.", "Hol dir immer etwas Geld oder Sprit zusätzlich."];
@@ -402,7 +402,7 @@ $lg["car_items"] = ["Car Items","Auto Items"];
 $lg["itSellable"] = ["Sellable","Handelbar"];
 $lg["itArt"] = ["Typ","Typ"];
 $lg["itRar"] = ["Rarity","Seltenheit"];
-$lg["itLiga"] = ["League","Liga"];
+$lg["itLiga"] = ["level","Level"];
 $lg["itCount"] = ["Quantity","Anzahl"];
 
 //++++++Item Beschreibungen Texte

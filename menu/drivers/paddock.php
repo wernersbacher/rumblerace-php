@@ -74,7 +74,7 @@ if ($mode == "manage" && $driver) {
                 </form>     
                 </h2>
                     
-                <div class='driverLiga absLiga'><img src='img/liga/" . $liga . ".png' alt='League " . $liga . "' title='League " . $liga . "' /></div>
+                <div class='driverLiga absLiga'><img src='img/liga/" . $liga . ".png' alt='Level " . $liga . "' title='Level " . $liga . "' /></div>
                 
                  <hr/>
                  <div class='driver_quick'>
@@ -124,7 +124,7 @@ if ($mode == "manage" && $driver) {
 
             $output .= " 
                 <div class='sysDriver'>
-                <h2>$name <div class='driverLiga'><img src='img/liga/" . $liga . ".png' alt='League " . $liga . "' title='League " . $liga . "' /></div></h2>
+                <h2>$name <div class='driverLiga'><img src='img/liga/" . $liga . ".png' alt='Level " . $liga . "' title='Level " . $liga . "' /></div></h2>
                 Skill: <b>$skill%</b> [$driver_id]
                  
 

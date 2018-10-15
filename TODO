@@ -1,13 +1,11 @@
 USABILITY
 
-* format auch zu käufen hinzu! -> in dollar rein? test mit komma und großen zahlen TESTEN
 -> admin user
 * links button anpassen
 
 * weltkarte als neues menü,
 	weltkarte links im menü zu erreichen.
 
-* liga ausgabe berechnen
 * anpassung mobile design
 * info ausblenden, per button einblenden
 * rennen fahren: Fahrer und fahrzeug auswählen, besse rdarstellen wenn keiner mehr da ist
@@ -30,6 +28,9 @@ USABILITY
 
 
 2018
+* liga in level umbennen
+* format auch zu käufen hinzu! -> in dollar rein? test mit komma und großen zahlen TESTEN
+* guest accounts verstecken
 * output funktionen auslagern
 * autos auslesen, etc für profil
 * user suche: tablle verschönern

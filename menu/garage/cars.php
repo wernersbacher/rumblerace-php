@@ -169,7 +169,7 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
                     <div class='infoFlex'>
                         <div class='dealTitle'>
                             " . $car["title"] . "
-                                <div class='driverLiga'><img src='img/liga/" . $carLiga . ".png' alt='League " . $carLiga . "' title='League " . $carLiga . "' /></div>
+                                <div class='driverLiga'><img src='img/liga/" . $carLiga . ".png' alt='Level " . $carLiga . "' title='Level " . $carLiga . "' /></div>
                         </div>
 
                         <div class='dealInfo'>
@@ -181,7 +181,7 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
 
                     </div>
 
-                    <!--<div class='dealLiga'><img src='img/liga/" . $carLiga . ".png' alt='League " . $carLiga . "' title='League " . $carLiga . "' /></div>-->
+                    <!--<div class='dealLiga'><img src='img/liga/" . $carLiga . ".png' alt='Level " . $carLiga . "' title='Level " . $carLiga . "' /></div>-->
 
                     <div class='dealBuy'>
                         

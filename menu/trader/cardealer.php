@@ -61,7 +61,7 @@ foreach ($cars as $car) {//$car["title"]
                     <div class='infoFlex'>
                         <div class='dealTitle'>
                             " . $car["title"] . "
-                                <div class='driverLiga'><img src='img/liga/" . $liga . ".png' alt='League " . $liga . "' title='League " . $liga . "' /></div>
+                                <div class='driverLiga'><img src='img/liga/" . $liga . ".png' alt='Level " . $liga . "' title='Level " . $liga . "' /></div>
                         </div>
                         
                         <div class='dealInfo'>
@@ -73,7 +73,7 @@ foreach ($cars as $car) {//$car["title"]
 
                     </div>
 
-                    <!--<div class='dealLiga'><img src='img/liga/" . $liga . ".png' alt='League " . $liga . "' title='League " . $liga . "' /></div>-->
+                    <!--<div class='dealLiga'><img src='img/liga/" . $liga . ".png' alt='Level " . $liga . "' title='Level " . $liga . "' /></div>-->
 
                     <div class='dealBuy'>
                         <span class='dealPrice'>" . dollar($preis) . "</span>

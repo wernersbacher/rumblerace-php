@@ -1142,7 +1142,7 @@ function queryNewMessage($to_id, $from_id, $betreff, $message) {
 
 function upgradeLiga($liga) {
     querySQL("UPDATE stats SET liga = $liga WHERE id = '" . $_SESSION["user_id"] . "'");
-    queryNewMessage($_SESSION["user_id"], 0, "New League", "Congratulations, you advanced to league $liga!");
+    queryNewMessage($_SESSION["user_id"], 0, "New Level", "Congratulations, you advanced to Level $liga!");
 }
 
 function queryFabrikTeile() {
