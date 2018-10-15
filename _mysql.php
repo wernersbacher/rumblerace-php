@@ -1088,13 +1088,13 @@ function queryReadAll() {
 
 function areThereMessenges() {
 
-    $sql = "SELECT id FROM faxes WHERE to_id = '" . $_SESSION["user_id"] . "' AND open = '0'";
+    $sql = "SELECT COUNT(id) as num FROM faxes WHERE to_id = '" . $_SESSION["user_id"] . "' AND open = '0'";
     $entry = querySQL($sql);
 
     $row = mysqli_fetch_array($entry, MYSQLI_ASSOC);
-
-    if (__count($row) >= 1) {
-        return true;
+    $c = intval($row["num"]);
+    if ($c) {
+        return $c;
     } else
         return false;
 }

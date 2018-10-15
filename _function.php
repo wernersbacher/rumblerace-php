@@ -331,6 +331,14 @@ function prf($partPrf) {
 function boolToDis($bool) {
     return $bool ? "" : "disabled";
 }
+/*
+ * für eingabe true: wird angezeigt
+ */
+function boolToHide($bool) {
+    if(!$bool)
+        return " style='display:none;'";
+    
+}
 
 function outputProfileList($list) {
     global $l;
