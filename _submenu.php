@@ -20,22 +20,6 @@ function getMenuList() {
                 </span>";
         
     }
-    /*
-    $out = '<ul>
-            <a href="main.php"><li><img src="img/office40.png"><?php echo put("office", $l) ?></li></a>
-            <a href="main.php?page=garage"><li><img src="img/car40.png">Home</li></a>
-            <a href="main.php?page=trader"><li><img src="img/tools40.png">' . put("trader", $l) . '</li></a>
-            <a href="main.php?page=drivers"><li><img src="img/man40.png"><?php echo put("drivers", $l) ?></li></a>
-            <a href="main.php?page=race"><li><img src="img/race40.png"><?php echo put("race", $l) ?></li></a>
-            <a href="main.php?page=sprit"><li><img src="img/fuel40.png"><?php echo put("sprit", $l) ?></li></a>
-            <a href="main.php?page=market"><li><img src="img/store40.png"><?php echo put("market", $l) ?></li></a>
-            <a href="main.php?page=special"><li><img src="img/special.png"><?php echo put("special", $l) ?></li></a>
-            <a href="main.php?page=options"><li><img src="img/setting40.png"><?php echo put("options", $l) ?></li></a>
-            <a href="main.php?page=help"><li><img src="img/help40.png"><?php echo put("help", $l) ?></li></a>
-            <a href="main.php?page=logout"><li><img src="img/logout40.png">Logout</li></a>
-            
-
-        </ul>';*/
 
     $out .= '<span class="mainDropDown"><a href="main.php?page=logout"><li><img src="img/logout40.png">Logout</li></a></ul></span>';
 
@@ -64,12 +48,13 @@ $m = array();
 
 $m["office"] = ["subs" => ["news", "bonus", "messages"], "icon" => "office40"];
 $m["garage"] = ["subs" => ["cars", "storage"], "icon" => "car40"];
-$m["trader"] = ["subs" => ["tuner", "cardealer"], "icon" => "tools40"];
+$m["factory"] = ["subs" => ["tuner", "upgrades"], "icon" => "factory"];
+$m["trader"] = ["subs" => ["cardealer"], "icon" => "tools40"];
 $m["drivers"] = ["subs" => ["paddock", "sysDrivers"], "icon" => "man40"];
 $m["race"] = ["subs" => ["racing", "endurance", "running"], "icon" => "race40"];
 $m["sprit"] = ["subs" => ["produce", "sell"], "icon" => "fuel40"];
 $m["market"] = ["subs" => ["partmarket", "spritmarket"], "icon" => "store40"];
-$m["special"] = ["subs" => ["upgrades"], "icon" => "special"];
+//$m["special"] = ["subs" => ["upgrades"], "icon" => "special"];
 $m["world"] = ["subs" => ["profiles", "chat", "globalstats"], "icon" => "world"];
 $m["options"] = ["subs" => ["settings", "faq", "newbie"], "icon" => "setting40"];
 

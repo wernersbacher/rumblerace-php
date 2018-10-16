@@ -94,17 +94,18 @@ $sprit2 = "<span title='" . gas(nwc($spm / 60)) . "/sec' id='spritTags' data-spr
 //Adding Submenu for page
 $subarray = getSubMenu($page);
 $submenu = "";
+
 if ($subarray) {
-    $submenu = '<ul>';
+    //$submenu = '<ul>';
     foreach ($subarray as $value) {
         if ($sub === $value) {
             $active = " class='sub_active'";
         } else {
             $active = "";
         }
-        $submenu .= '<a href="main.php?page=' . $page . '&sub=' . $value . '"><li' . $active . '>' . put("s_" . $value, $l) . '</li></a>';
+        $submenu .= '<a href="main.php?page=' . $page . '&sub=' . $value . '"><span' . $active . '>' . put("s_" . $value, $l) . '</span></a>';
     }
-    $submenu .= '</ul>';
+    //$submenu .= '</ul>';
 }
 
 //Überschrift Mittelpunkt (falls untersiete aktiv)
@@ -236,7 +237,14 @@ Love for Meri
 
         </div>
 
-
+        <div id="tabs">
+            
+            <?php 
+            echo $submenu;
+            ?>
+            
+        </div>
+                
         <!-- Middle Segment Anfang -->
         <div id="middle">
             <div id="leftMenu">

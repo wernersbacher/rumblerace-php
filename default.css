@@ -148,14 +148,51 @@ h2 {
 }
 
 #middle {
-    width:800px;
-    display:flex;
+    width: 800px;
+    display: flex;
     justify-content: space-around;
     flex-direction: row;
-    min-height:100px;
-    margin:auto;
-    margin-bottom:60px; 
+    min-height: 100px;
+    margin: auto;
+    margin-bottom: 60px;
+    margin-top: -1px;
+    padding-top: 10px;
+    border-top: 1px solid #dfdfdf;
 }
+
+#tabs {
+    padding-top: 8px;
+    width: 800px;
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+}
+
+#tabs a {
+    display: block;
+    color: #afafaf;
+    /* box-sizing: border-box; */
+    font-size: 20px;
+    /* font-family: Kad; */
+    font-family: Kodchasan;
+}
+
+#tabs span {
+    display: block;
+    padding: 18px 29px;
+    font-weight: 600;
+    text-align: center;
+}
+
+#tabs .sub_active {
+    background-color: inherit !important;
+    border-radius:3px;
+    color: #555;
+    border: 1px solid #ddd;
+    border-top: 2px solid orange;
+    border-bottom: 1px solid #fff;
+}
+
 
 #guestInfo {
     width: 800px;

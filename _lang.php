@@ -32,8 +32,9 @@ $lg = array();
 
 //Menü Links
 $lg["office"] = ["Office", "Büro"];
-$lg["garage"] = ["Home", "Home"];
-$lg["trader"] = ["Shop", "Laden"];
+$lg["garage"] = ["HQ", "HQ"];
+$lg["factory"] = ["Factory", "Fabrik"];
+$lg["trader"] = ["Shop", "Händler"];
 $lg["drivers"] = ["Drivers", "Fahrer"];
 $lg["sprit"] = ["Fuel", "Sprit"];
 $lg["upgrades"] = ["Upgrades", "Upgrades"];
@@ -51,7 +52,7 @@ $lg["s_messages"] = ["SMS", "SMS"];
 $lg["s_news"] = ["News", "News"];
 $lg["s_bonus"] = ["Bonus", "Bonus"];
 $lg["s_cars"] = ["Cars", "Autos"];
-$lg["s_tuner"] = ["Tuner", "Tuner"];
+$lg["s_tuner"] = ["Car Parts", "Teile Forschung"];
 $lg["s_items"] = ["Items", "Items"];
 $lg["s_storage"] = ["Storage", "Lager"];
 $lg["s_sell"] = ["Sell Fuel", "Sprit verkaufen"];

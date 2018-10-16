@@ -43,7 +43,7 @@ if ($mode == "buy" && isset($get["id"])) {
     } else {
         $output .= put("sprit_not_found", $l);
     }
-} else {
+} else { // Ausgabe des marktes
 
     function marketSpritBuy($str_id, $amount) {
         $str_id = intval($str_id);
@@ -70,6 +70,8 @@ if ($mode == "buy" && isset($get["id"])) {
     }
 
 
+    // Button zum verkaufen hinzufügen
+    $output .= "<a href='?page=sprit&sub=sell'><button class='tableTopButton'>".put("s_sell",$l)."</button></a>";
 
 
     //Blätterseite abfragen
