@@ -4,16 +4,53 @@
  * SQL Funktionen, die sich um die Auslesen der Notifications kümmern
  */
 
-function getNotificationsArray() {
+function areThereMessenges() {
+
+    $sql = "SELECT COUNT(id) as num FROM faxes WHERE to_id = '" . $_SESSION["user_id"] . "' AND open = '0'";
+    $entry = querySQL($sql);
+
+    $row = mysqli_fetch_array($entry, MYSQLI_ASSOC);
+    $c = intval($row["num"]);
+    if ($c) {
+        return $c;
+    } else
+        return 0;
+}
+
+
+function isThereBonus() {
+    $sql = "SELECT user_id FROM bonus WHERE user_id = '" . $_SESSION["user_id"] . "' AND last + 3600 < " . time();
+
+    $entry = querySQL($sql);
+
+    $count = mysqli_num_rows($entry);
+
+    return $count;
+}
+
+
+/*
+ * Generierung der Notifies
+ */
+
+function checkNotifies() {
+    
+    $return = [
+        "messages" => areThereMessenges(),
+        "bonus" => isThereBonus()
+    ];
+    
+    return $return;
+}
+
+function getNotifications() {
     global $m;
 
     /*
      * durch $m loopen, um array zu generieren, am ende summe für eltern erstellen
      */
 
-    $return = [
-        "messages" => 1
-    ];
+    $return = checkNotifies();
 
     foreach ($m as $page => $info) {
         $subs = $info["subs"];

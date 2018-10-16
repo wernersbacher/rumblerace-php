@@ -57,8 +57,6 @@ querySpritAdd();
 if (getPlayerLiga() < 8)
     queryLigaChange();
 
-//Load Notifications
-$notify = getNotificationsArray();
 
 //Load new any maybe changed player data for output
 $player = queryPlayerStats();
@@ -93,26 +91,8 @@ $sprit2 = "<span title='" . gas(nwc($spm / 60)) . "/sec' id='spritTags' data-spr
         </span>";
 
 
-
-//Überschrift Mittelpunkt (falls untersiete aktiv)
-if ($sub)
-    $subpage = " &middot; " . put("s_" . $sub, $l);
-else
-    $subpage = "";
-
-//Neue Nachrichten Symbol
-$newFx = areThereMessenges();
-if ($newFx)
-    $letter = "letter_new";
-else
-    $letter = "letter";
-
-//Bonus bereit?
-if (isThereBonus()) {
-    $bonus = "bonus_new";
-} else
-    $bonus = "bonus";
-
+//Load Notifications
+$notify = getNotifications();
 
 //var_dump(getNotificationsArray());
 
@@ -272,17 +252,6 @@ Love for Meri
                             $expForNewLevel = outputLevelProgress();
                             ?>
 
-
-
-
-                        </div>
-                        <div id="blackButtons">
-
-                            <a href="main.php?page=office&sub=messages"><div><img src="img/office40.png" /><span <?php echo boolToHide($newFx) ?> class="badge alert"><?php echo $newFx; ?></span></div></a>
-                            <a href="#"><div><img src="img/car40.png" /></div>
-                                <a href="#"><div><img src="img/tools40.png" /></div></a>
-
-
                         </div>
 
                         <div id="blackStats">
@@ -315,7 +284,6 @@ Love for Meri
                         <div class="bottomLine"></div>   
                     </div>
 
-                <!--<span class="h1"><?php echo put($page, $l) . $subpage ?> </span>-->
                     <?php echo $content ?>
                     <?php echo getBannerAd(); ?>
                 </div>

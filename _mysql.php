@@ -1087,18 +1087,7 @@ function queryReadAll() {
     querySQL($sql);
 }
 
-function areThereMessenges() {
 
-    $sql = "SELECT COUNT(id) as num FROM faxes WHERE to_id = '" . $_SESSION["user_id"] . "' AND open = '0'";
-    $entry = querySQL($sql);
-
-    $row = mysqli_fetch_array($entry, MYSQLI_ASSOC);
-    $c = intval($row["num"]);
-    if ($c) {
-        return $c;
-    } else
-        return false;
-}
 
 function queryMessages() {
     $sql = "SELECT fx.id, fx.from_id, fx.open, fx.date, fx.betreff, fx.message, us.username
@@ -1448,16 +1437,6 @@ function updateLastBonus() {
     $sql = "INSERT INTO bonus (user_id, last, invested) VALUES ('" . $_SESSION["user_id"] . "', '" . time() . "', '0') ON DUPLICATE KEY UPDATE last = '" . time() . "'";
 
     querySQL($sql);
-}
-
-function isThereBonus() {
-    $sql = "SELECT user_id FROM bonus WHERE user_id = '" . $_SESSION["user_id"] . "' AND last + 3600 < " . time();
-
-    $entry = querySQL($sql);
-
-    $count = mysqli_num_rows($entry);
-
-    return $count;
 }
 
 function addMoney($val) {
