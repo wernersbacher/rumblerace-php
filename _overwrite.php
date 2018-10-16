@@ -61,12 +61,14 @@ function format($n) {
         
         // is this a number?
         if(!is_numeric($n)) return false;
-        
         // now filter it;
-        if($n>1000000000000) return round(($n/1000000000000),1).'TR';
-        else if($n>1000000000) return round(($n/1000000000),1).'B';
-        else if($n>1000000) return round(($n/1000000),1).'M';
-        else if($n>100000) return round(($n/1000),1).'T';
+        $string = "";
         
-        return number_format($n);
+        if($n>1000000000000) $string = numberWithCommas(($n/1000000000000)).'TR';
+        else if($n>1000000000) $string = numberWithCommas(($n/1000000000)).'B';
+        else if($n>1000000) $string =  numberWithCommas(($n/1000000)).'M';
+        else if($n>100000) $string =  numberWithCommas(($n/1000)).'T';
+        else $string = numberWithCommas($n);
+        
+        return $string;
     }
