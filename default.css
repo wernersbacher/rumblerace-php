@@ -41,7 +41,7 @@ h2 {
     width:850px;
     margin:15px auto;
     background:white;
-        padding: 15px 10px;
+    padding: 15px 10px;
     border-radius:3px;
 }
 
@@ -215,7 +215,7 @@ TABS FOR MAIN MENU
 
 #tabsMain .sub_active {
     border-bottom: 1px solid white !important;
-    
+
     background-image: url(img/pattern/bright1.png); 
     background-repeat: repeat; 
 }
@@ -565,14 +565,19 @@ a:link, a:visited {
     box-sizing:border-box;
     padding-bottom: 100px;
     position:relative;
-
     /*
     background-image: url("img/pattern/bright1.png");
     background-repeat: repeat;*/
-    background: url(img/pattern/bg1.jpg) no-repeat center center fixed; 
+    background: url(img/pattern/bg2.jpg) no-repeat center center fixed; 
     background-size: cover;
-    
+
 }
+
+.parallax-window {
+    min-height: 100vh;
+    background: transparent;
+}
+
 
 footer {
     position:absolute;

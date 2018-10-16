@@ -1,12 +1,12 @@
 USABILITY
 
-* optionen & logout außerhalb des menüs
+* optionen & logout außerhalb des menüs -> top bar
+* background image besser machen
+* profilpage fix
 
 -> admin user
 * links button anpassen
 
-* weltkarte als neues menü,
-	weltkarte links im menü zu erreichen.
 
 * anpassung mobile design
 * info ausblenden, per button einblenden
@@ -60,6 +60,8 @@ BALANCING:
 * upgrades dürfen es nicht zu einfach machen, bzw werden notwendig sein.
 
 NEXT RELEASE
+* weltkarte als neues menü,
+	weltkarte links im menü zu erreichen.
 * autos zu profile hinzufügen
 * last online formatting ago
 * Blättern: ... zw. ergebnissen

@@ -158,6 +158,7 @@ Love for Meri
         <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
         <script type="text/javascript" src="backstretch.min.js"></script>
         <script type="text/javascript" src="lib/store.modern.min.js"></script>
+        <!--<script type="text/javascript" src="lib/parallax.min.js"></script>-->
         <script type="text/javascript" src="lib/jquery-ui.min.js"></script>
         <script type="text/javascript" src="lib/jquery.connections.js"></script>
         <script type="text/javascript" src="lib/form.min.js"></script>
@@ -193,8 +194,6 @@ Love for Meri
 <body>
 
     <div id="pageWrapper" >
-
-
 
         <!-- Top Segment Anfang -->
         <div id="topBar">
