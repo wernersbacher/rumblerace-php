@@ -585,6 +585,7 @@ footer {
     width:100%;
     height:100px;   /* Height of the footer */
     background:#e0e0e0; 
+    left:0;
 }
 
 #always {
