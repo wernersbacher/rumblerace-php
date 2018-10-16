@@ -8,35 +8,41 @@ define("LIGA_MULTI", 5);
 define("LIGA_START", 400);
 define("LIGA_MAX", 8);
 
-/*Erst Diff ausrechnen
+/* Erst Diff ausrechnen
  * Gibt den Fortschritt zur nächsten Liga in % an.
  */
 
-function getLigaDiffs() {
-    $p_liga = getPlayerLiga();
+function getLigaDiffs($liga = -1, $exp = -1) {
+    $p_liga = ($liga < 0) ? getPlayerLiga() : $liga; //only use params if available
+    $player = ($exp < 0) ? getPlayerExp() : $exp;
+
     $new_liga = expToLiga($p_liga + 1);
     $old_liga = expToLiga($p_liga);
     $diff_liga = $new_liga - $old_liga;
-    $diff_player = $new_liga - getPlayerExp();
-    
-    $player_exp = $diff_liga-$diff_player;
-    
-    return ["liga"=>$diff_liga, "player"=>($player_exp>0) ? $player_exp : "max" ];
+    $diff_player = $new_liga - $player;
+
+    $player_exp = $diff_liga - $diff_player;
+
+    return ["liga" => $diff_liga, "exp" => ($player_exp >= 0) ? $player_exp : "max"];
 }
 
-function getLigaProg() {
-    $p_liga = getPlayerLiga();
-    $player = getPlayerExp();
-    $diffs = getLigaDiffs();
-    $diff_liga = $diffs["liga"];
-    $diff_player = $diffs["player"];
-    
-    if($p_liga > LIGA_MAX)
-        return 100;
-    else if($player < 1 OR $diff_player == 'max') 
-        return 0;
+function getLigaProg($liga = -1, $exp = -1) {
+    $p_liga = ($liga < 0) ? getPlayerLiga() : $liga; //only use params if available
+    $player = ($exp < 0) ? getPlayerExp() : $exp;
 
-    return round(100 * $diff_player / $diff_liga, 2);
+    $diffs = getLigaDiffs($liga, $exp);
+    $diff_liga = $diffs["liga"];
+    $diff_player = $diffs["exp"];
+
+    if ($p_liga > LIGA_MAX)
+        $diffs["prog"] = 100;
+    else if ($player < 1 OR $diff_player == 'max')
+        $diffs["prog"] = 0;
+    else
+        $diffs["prog"] = round(100 * $diff_player / $diff_liga, 2);
+    //return round(100 * $diff_player / $diff_liga, 2);
+    
+    return $diffs;
 }
 
 function getLigaQuot() {
@@ -331,13 +337,14 @@ function prf($partPrf) {
 function boolToDis($bool) {
     return $bool ? "" : "disabled";
 }
+
 /*
  * für eingabe true: wird angezeigt
  */
+
 function boolToHide($bool) {
-    if(!$bool)
+    if (!$bool)
         return " style='display:none;'";
-    
 }
 
 function outputProfileList($list) {
@@ -425,9 +432,9 @@ function dollar($val) {
 }
 
 function ep($val) {
-    if(!is_numeric($val))
+    if (!is_numeric($val))
         return $val;
-    
+
     $save = getPlayerLangID();
     if ($save === 0) { //falls deutsch
         return numberWithCommas($val) . " EXP";

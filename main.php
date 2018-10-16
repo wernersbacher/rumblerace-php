@@ -265,13 +265,8 @@ Love for Meri
 
 
                         <?php
-                        $prog = getLigaProg();
-                        $diffs = getLigaDiffs();
-                        $anteil = ep($diffs["player"]) . "/" . ep($diffs["liga"]);
-                        echo "<div title='$anteil' id='prog_exp' class='smallProgress tuneProgress noJS'>
-                                          <div class='tuneProgressBar' style='width:$prog%; background-color: " . colorFromPercent($prog) . "' ></div> 
-                                          <div class='tuneProgressText'>Level " . getPlayerLiga() . "</div>
-                                     </div>";
+                        //Gibt den absoluten Fortschritt zurück
+                        $expForNewLevel = outputLevelProgress();
                         ?>
 
 
@@ -289,7 +284,7 @@ Love for Meri
 
                     <div id="blackStats">
                         <div class='vertical-align'><img src="img/award.png"/>
-                            <span class="blackOutput"><?php echo $diffs["player"] ?></span>
+                            <span class="blackOutput"><?php echo $expForNewLevel ?></span>
                         </div>
                         <div class='vertical-align'><img src="img/money32.png"/>
                             <span class="blackOutput"><?php echo format(getPlayerMoney()) ?></span>

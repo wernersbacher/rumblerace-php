@@ -15,9 +15,10 @@ foreach ($moneyTop as $user) {
     $usrname = $user["username"];
     $liga = $user["liga"];
     $money = dollar($user["money"]);
+    $link = "?page=world&sub=profiles&user=$usrname";
     $output .= "<tr>
                 <td class='stat_td'>#$i</td>
-                <td class='stat_tdx2'><a href='?page=office&sub=messages&mode=new&to=$usrname'>$usrname</a></td>
+                <td class='stat_tdx2'><a href='$link'>$usrname</a></td>
                 <td>$money</td>
                 <td class='stat_tdx2'>".put("liga", $l)." $liga</td>
               </tr>";
@@ -33,9 +34,10 @@ foreach ($expTop as $user) {
     $usrname = $user["username"];
     $liga = $user["liga"];
     $exp = ep($user["exp"]);
+    $link = "?page=world&sub=profiles&user=$usrname";
     $output .= "<tr>
                 <td class='stat_td'>#$i</td>
-                <td class='stat_tdx2'><a href='?page=office&sub=messages&mode=new&to=$usrname'>$usrname</a></td>
+                <td class='stat_tdx2'><a href='$link'>$usrname</a></td>
                 <td>$exp</td>
                 <td class='stat_tdx2'>".put("liga", $l)." $liga</td>
               </tr>";

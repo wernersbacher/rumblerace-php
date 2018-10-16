@@ -16,6 +16,8 @@ if ($user_data) {
     $regdate = $user_data["regdate"];
     $activeTime = $user_data["activeTime"];
     $lang = $user_data["lang"];
+    $liga = intval($user_data["liga"]);
+    $exp = intval($user_data["exp"]);
 
     $run = $user_data["run"];
     if (!$run)
@@ -27,6 +29,10 @@ if ($user_data) {
 
     $output .= backLink("?page=world&sub=profiles");
 
+    /*
+     * Profile page generation
+     */
+    
     $profile_array = ["left" => array(), "right" => array()];
 
     $profile["left"][] = ["title" => "reg_date",
@@ -49,10 +55,12 @@ if ($user_data) {
 
     $link = "?page=world&sub=profiles&user=$username";
     $link_msg = "?page=office&sub=messages&mode=new&to=$username";
+    
+    $ep_prog = htmlLevelprogress($liga, $exp)["html"];
 
     $output .= "
             <div class='sysDriver' id='user_profile'>
-                <h2><img src='img/" . $lang . ".png' alt='Language' /> $username</h2>
+                <h2><img src='img/" . $lang . ".png' alt='Language' /> $username</h2>  $ep_prog
                 <div class='profileListsFlex'>
                     <div class='profileListsWrapper'>
                     $left
