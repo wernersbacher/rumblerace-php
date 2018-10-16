@@ -237,14 +237,6 @@ Love for Meri
 
         </div>
 
-        <div id="tabs">
-            
-            <?php 
-            echo $submenu;
-            ?>
-            
-        </div>
-                
         <!-- Middle Segment Anfang -->
         <div id="middle">
             <div id="leftMenu">
@@ -254,7 +246,7 @@ Love for Meri
                         <img src="img/dollar.png" /> <?php echo dollar(getPlayerMoney()) ?><br/>
                         <img src="img/star.png" /> <span title="<?php echo ep(expToLiga(getPlayerLiga() + 1) - getPlayerExp()) ?> left"><?php echo ep(getPlayerExp()) ?></span><br/>
                         <a href="main.php?page=sprit"><img src="img/energy.png" /> <?php echo $sprit ?></a><br/>
-                        <a href="main.php?page=special&sub=upgrades" title="Free Upgrade Points"><img src="img/ups.png" /> <?php echo getPlayerUpPoints() ?></a> | 
+                        <a href="main.php?page=factory&sub=upgrades" title="Free Upgrade Points"><img src="img/ups.png" /> <?php echo getPlayerUpPoints() ?></a> | 
                         <a href="?page=race&sub=running" title="Running races"><img src="img/wait.png" /> <?php echo getCurrentRunningRaces() ?></a><br/>
                     </span>
                     <div class="playerQuick"  style="margin-top: 4px;">
@@ -305,14 +297,21 @@ Love for Meri
 
                 </div>
 
-
-                <!--<div id="submenu">
-                <?php echo $submenu ?>
-                </div>-->
             </div>
 
             <div id="contentWindow">
-                <!--<span class="h1"><?php echo put($page, $l) . $subpage ?> </span>-->
+                <div id="tabsWrapper"> <!-- submenu -->
+                    <div id="tabs">
+
+                        <?php
+                        echo $submenu;
+                        ?>
+
+                    </div>
+                    <div id="bottomLine"></div>   
+                </div>
+
+<!--<span class="h1"><?php echo put($page, $l) . $subpage ?> </span>-->
                 <?php echo $content ?>
                 <?php echo getBannerAd(); ?>
             </div>

@@ -37,7 +37,7 @@ function showTunerKats($activeKat) {
             $active = "";
         
         $ret .= "<li $active>
-                <a href='?page=trader&sub=tuner&mode=parts&kat=$kat'>
+                <a href='?page=factory&sub=tuner&mode=parts&kat=$kat'>
                     <img src='img/parts/$kat.png' />
                         <span class='absTitle'>".put($kat,$l)."</span>
                 </a>
@@ -168,7 +168,7 @@ foreach ($partNames as $part) {
                         </div>
                     
                     <div class='tuneFooter'>
-                        <form method='POST' action='?page=trader&sub=tuner&mode=parts&kat=$kat'>
+                        <form method='POST' action='?page=factory&sub=tuner&mode=parts&kat=$kat'>
                         $labels
                             <input type='hidden' name='part' value='$part'>
                             <input style='vertical-align: bottom;' class='tableTopButton saveScroll' name='send' type='submit' value='" . put("build", $l) . "' $disabled>

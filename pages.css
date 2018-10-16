@@ -1,5 +1,7 @@
 #cardealer, #tuner, #settings, #storage, #cartuning, #settings, #market, #messageBox, #racing {
     margin: 1px 0;
+    font-size: 13px;
+    font-family: Roboto;
 }
 
 ::-webkit-scrollbar {
@@ -195,6 +197,8 @@ select {
     text-align: justify;
     height: 32px;
     overflow: hidden;
+    
+    margin-bottom: 2px;
 }
 
 .tuneBuyDetails {
@@ -628,6 +632,10 @@ tr:nth-child(even) {
 
 .ligaList img {
     width:50px;
+}
+
+.ligaList a:link, .ligaList a:visited {
+    color:#791414;
 }
 
 

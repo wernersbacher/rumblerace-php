@@ -155,14 +155,14 @@ h2 {
     min-height: 100px;
     margin: auto;
     margin-bottom: 60px;
-    margin-top: -1px;
-    padding-top: 10px;
-    border-top: 1px solid #dfdfdf;
+}
+
+#tabsWrapper {
+    margin-bottom: 10px;
 }
 
 #tabs {
-    padding-top: 8px;
-    width: 800px;
+    width: 100%;
     display: flex;
     flex-direction: row;
     margin: auto;
@@ -172,14 +172,14 @@ h2 {
     display: block;
     color: #afafaf;
     /* box-sizing: border-box; */
-    font-size: 20px;
+    font-size: 16px;
     /* font-family: Kad; */
     font-family: Kodchasan;
 }
 
 #tabs span {
     display: block;
-    padding: 18px 29px;
+    padding: 15px 19px;
     font-weight: 600;
     text-align: center;
 }
@@ -190,7 +190,14 @@ h2 {
     color: #555;
     border: 1px solid #ddd;
     border-top: 2px solid orange;
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid whitesmoke;
+}
+
+#bottomLine {
+    height:1px;
+    width:100%;
+    border-top: 1px solid #dfdfdf;
+    margin-top: -1px;
 }
 
 
@@ -225,8 +232,15 @@ h2 {
 #contentWindow {
     flex:1;
     min-width:573px;
-    min-height:100;
+    min-height:100px;
     margin-top:10px;
+
+    background-color: whitesmoke;
+    padding: 10px;
+    font-family: Kodchasan;
+    font-size: 16px;
+    box-shadow: inset 1px 1px 11px -9px black;
+    border-radius: 2px;
 }
 
 #blackLeftInfo {

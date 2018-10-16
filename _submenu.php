@@ -51,7 +51,7 @@ $m["garage"] = ["subs" => ["cars", "storage"], "icon" => "car40"];
 $m["factory"] = ["subs" => ["tuner", "upgrades"], "icon" => "factory"];
 $m["trader"] = ["subs" => ["cardealer"], "icon" => "tools40"];
 $m["drivers"] = ["subs" => ["paddock", "sysDrivers"], "icon" => "man40"];
-$m["race"] = ["subs" => ["racing", "endurance", "running"], "icon" => "race40"];
+$m["race"] = ["subs" => ["racing", "running"], "icon" => "race40"];
 $m["sprit"] = ["subs" => ["produce", "sell"], "icon" => "fuel40"];
 $m["market"] = ["subs" => ["partmarket", "spritmarket"], "icon" => "store40"];
 //$m["special"] = ["subs" => ["upgrades"], "icon" => "special"];
