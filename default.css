@@ -156,6 +156,63 @@ h2 {
     margin: auto;
     margin-bottom: 60px;
 }
+/*
+TABS FOR MAIN MENU
+*/
+
+#mainMenuWrapper {
+    padding: 5px;
+    width: 100%;
+    /* background-color: lightgrey; */
+    /* background-color: #e0e0e0; */
+    box-sizing: border-box;
+    /* border-bottom: 1px solid #efefef; */
+
+}
+
+#tabsWrapperMain {
+    width:800px;
+    margin:auto;
+    margin-top: 10px;
+}
+
+#tabsMain {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+}
+
+#tabsMain span {
+
+    display: block;
+    padding: 11px 0px;
+    font-weight: 600;
+    text-align: center;
+}
+
+#tabsMain a {
+    flex: 1;
+}
+
+#tabsMain img {
+    width:28px;
+    height:28px;
+    margin:auto;
+    display:block;
+    padding-bottom: 3px;
+}
+
+#tabsMain .sub_active {
+    border-bottom: 1px solid white !important;
+    
+    background-image: url(img/pattern/bright1.png); 
+    background-repeat: repeat; 
+}
+
+/*
+TABS FOR SUB MENU + some for main menu 
+*/
 
 #tabsWrapper {
     margin-bottom: 10px;
@@ -168,7 +225,7 @@ h2 {
     margin: auto;
 }
 
-#tabs a {
+#tabs a, #tabsMain a {
     display: block;
     color: #afafaf;
     /* box-sizing: border-box; */
@@ -184,7 +241,7 @@ h2 {
     text-align: center;
 }
 
-#tabs .sub_active {
+#tabs .sub_active, #tabsMain .sub_active {
     background-color: inherit !important;
     border-radius:3px;
     color: #555;
@@ -193,7 +250,7 @@ h2 {
     border-bottom: 1px solid whitesmoke;
 }
 
-#bottomLine {
+.bottomLine {
     height:1px;
     width:100%;
     border-top: 1px solid #dfdfdf;

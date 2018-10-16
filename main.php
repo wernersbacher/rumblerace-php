@@ -204,13 +204,24 @@ Love for Meri
 
         <!-- Main Menü Segment Anfang -->
 
-        <div id="mainMenuWrapper">
-            <div id="mainmenu">
-                <?php echo getMenuList(); ?>
+
+
+
+
+        <div id="mainMenuWrapperTabs" >
+
+            <div id="tabsWrapperMain"> <!-- mainmenu as tabs -->
+                <div id="tabsMain">
+
+                    <?php
+                    echo getMenuListTabs($page);
+                    ?>
+
+                </div>
+                <div class="bottomLine"></div>   
             </div>
 
         </div>
-
         <!-- Main Menü Segment Ende -->
 
         <div id="mid-header">
@@ -234,8 +245,9 @@ Love for Meri
 
                 </div> 
             <?php } ?>
-
         </div>
+
+
 
         <!-- Middle Segment Anfang -->
         <div id="middle">
@@ -300,6 +312,7 @@ Love for Meri
             </div>
 
             <div id="contentWindow">
+
                 <div id="tabsWrapper"> <!-- submenu -->
                     <div id="tabs">
 
@@ -308,10 +321,10 @@ Love for Meri
                         ?>
 
                     </div>
-                    <div id="bottomLine"></div>   
+                    <div class="bottomLine"></div>   
                 </div>
 
-<!--<span class="h1"><?php echo put($page, $l) . $subpage ?> </span>-->
+                <!--<span class="h1"><?php echo put($page, $l) . $subpage ?> </span>-->
                 <?php echo $content ?>
                 <?php echo getBannerAd(); ?>
             </div>

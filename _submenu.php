@@ -1,4 +1,28 @@
 <?php
+/*
+ * PHP AUsgabe für Tab Menü
+ */
+
+function getMenuListTabs($current) {
+    global $l, $m;
+    $out = "";
+    
+    foreach($m as $page => $page_inf) {
+        
+        if ($page === $current) {
+            $active = " class='sub_active'";
+        } else {
+            $active = "";
+        }
+        $out .= '<a href="main.php?page=' . $page . '"><span' . $active . '><img src="img/'.$page_inf["icon"].'.png">' . put($page, $l) . '</span></a>';
+                
+    }
+    return $out;
+}
+
+/*
+ * PHP AUsgabe für altes Menü
+ */
 
 function getMenuList() {
     global $l, $m;
@@ -56,7 +80,7 @@ $m["sprit"] = ["subs" => ["produce", "sell"], "icon" => "fuel40"];
 $m["market"] = ["subs" => ["partmarket", "spritmarket"], "icon" => "store40"];
 //$m["special"] = ["subs" => ["upgrades"], "icon" => "special"];
 $m["world"] = ["subs" => ["profiles", "chat", "globalstats"], "icon" => "world"];
-$m["options"] = ["subs" => ["settings", "faq", "newbie"], "icon" => "setting40"];
+//$m["options"] = ["subs" => ["settings", "faq", "newbie"], "icon" => "setting40"];
 
 //$m["special"] = ["chat", "upgrades", "achievements", "mainstats", "globalstats"];
 //$m["logout"] = [""];
