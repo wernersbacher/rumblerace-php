@@ -57,6 +57,8 @@ querySpritAdd();
 if (getPlayerLiga() < 8)
     queryLigaChange();
 
+//Load Notifications
+$notify = getNotificationsArray();
 
 //Load new any maybe changed player data for output
 $player = queryPlayerStats();
@@ -90,22 +92,7 @@ $sprit2 = "<span title='" . gas(nwc($spm / 60)) . "/sec' id='spritTags' data-spr
     <span id='playerSprit'>" . gas(round(getPlayerSprit(), 2)) . "</span>
         </span>";
 
-//Adding Submenu for page
-$subarray = getSubMenu($page);
-$submenu = "";
 
-if ($subarray) {
-    //$submenu = '<ul>';
-    foreach ($subarray as $value) {
-        if ($sub === $value) {
-            $active = " class='sub_active'";
-        } else {
-            $active = "";
-        }
-        $submenu .= '<a href="main.php?page=' . $page . '&sub=' . $value . '"><span' . $active . '>' . put("s_" . $value, $l) . '</span></a>';
-    }
-    //$submenu .= '</ul>';
-}
 
 //Überschrift Mittelpunkt (falls untersiete aktiv)
 if ($sub)
@@ -127,7 +114,7 @@ if (isThereBonus()) {
     $bonus = "bonus";
 
 
-var_dump(getNotificationsArray());
+//var_dump(getNotificationsArray());
 
 
 ?>
@@ -321,7 +308,7 @@ Love for Meri
                         <div id="tabs">
 
                             <?php
-                            echo $submenu;
+                            echo outputSubmenu($page, $sub);
                             ?>
 
                         </div>

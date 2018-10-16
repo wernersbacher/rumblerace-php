@@ -194,7 +194,7 @@ TABS FOR MAIN MENU
 }
 
 #tabsMain span {
-
+    position:relative;
     display: block;
     padding: 11px 0px;
     font-weight: 600;
@@ -218,6 +218,25 @@ TABS FOR MAIN MENU
 
     background-image: url(img/pattern/bright1.png); 
     background-repeat: repeat; 
+}
+
+#tabsMain .tab_badge, #tabs .tab_badge {
+    top: 4px;
+    right: 17px;
+    position: absolute;
+    border-radius: 10px;
+    /* height: 14px; */
+    min-width: 13px;
+    color: white;
+    background-color:  #e24932;
+    border: 1px solid #d4d4d4;
+    box-shadow: 1px 1px 3px -2px black;
+    padding: 3px;
+    font-size: 10px;
+}
+
+#tabsMain .sub_inactive .tab_badge, #tabs .sub_inactive .tab_badge {
+    background-color: #c38177;
 }
 
 /*
@@ -245,6 +264,7 @@ TABS FOR SUB MENU + some for main menu
 }
 
 #tabs span {
+    position:relative;
     display: block;
     padding: 15px 19px;
     font-weight: 600;
@@ -260,6 +280,11 @@ TABS FOR SUB MENU + some for main menu
     border-bottom: 1px solid whitesmoke;
 }
 
+#tabs .tab_badge {
+    top: 2px;
+    right: 3px;
+}
+
 .bottomLine {
     height:1px;
     width:100%;
@@ -267,6 +292,9 @@ TABS FOR SUB MENU + some for main menu
     margin-top: -1px;
 }
 
+/*
+    TABS ENDE
+*/
 
 #guestInfo {
     width: 800px;

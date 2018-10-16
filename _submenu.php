@@ -1,21 +1,31 @@
 <?php
+
 /*
  * PHP AUsgabe für Tab Menü
  */
 
 function getMenuListTabs($current) {
-    global $l, $m;
+    global $l, $m, $notify;
     $out = "";
-    
-    foreach($m as $page => $page_inf) {
-        
+
+    foreach ($m as $page => $page_inf) {
+
+        //active showing
         if ($page === $current) {
             $active = " class='sub_active'";
         } else {
-            $active = "";
+            $active = " class='sub_inactive'";
         }
-        $out .= '<a href="main.php?page=' . $page . '"><span' . $active . '><img src="img/'.$page_inf["icon"].'.png">' . put($page, $l) . '</span></a>';
-                
+
+        //notify showing
+        $num = $notify[$page];
+        $badge = "";
+        if ($num > 0)
+            $badge = "<div class='tab_badge'>$num</div>";
+
+
+
+        $out .= '<a href="main.php?page=' . $page . '"><span' . $active . '><img src="img/' . $page_inf["icon"] . '.png">' . put($page, $l) . ' ' . $badge . '</span></a>';
     }
     return $out;
 }
@@ -27,27 +37,50 @@ function getMenuListTabs($current) {
 function getMenuList() {
     global $l, $m;
     $out = '<ul>';
-    foreach($m as $page => $page_inf) {
+    foreach ($m as $page => $page_inf) {
         $out .= "<span class='mainDropDown'>
-                <a href='main.php?page=$page'><li><img src='img/".$page_inf["icon"].".png'>" . put($page, $l) . "</li></a>
+                <a href='main.php?page=$page'><li><img src='img/" . $page_inf["icon"] . ".png'>" . put($page, $l) . "</li></a>
                     
                 <div class='mainDropDown-content'>";
-                    
-                    foreach($m[$page]["subs"] as $sub) {
-                        $out .= "<a href='main.php?page=$page&sub=$sub'>" . put("s_".$sub, $l) . "</a>";
-                    }
 
-                  
-                $out .= "</div> <!-- closing dropdown-->
+        foreach ($m[$page]["subs"] as $sub) {
+            $out .= "<a href='main.php?page=$page&sub=$sub'>" . put("s_" . $sub, $l) . "</a>";
+        }
+
+
+        $out .= "</div> <!-- closing dropdown-->
 
 
                 </span>";
-        
     }
 
     $out .= '<span class="mainDropDown"><a href="main.php?page=logout"><li><img src="img/logout40.png">Logout</li></a></ul></span>';
 
     return $out;
+}
+
+function outputSubmenu($page, $sub) {
+    global $l, $notify;
+    //Adding Submenu for page
+    $subarray = getSubMenu($page);
+    $submenu = "";
+
+    foreach ($subarray as $kat) {
+
+        if ($sub === $kat) {
+            $active = " class='sub_active'";
+        } else {
+            $active = " class='sub_inactive'";
+        }
+
+        $num = $notify[$kat];
+        $badge = "";
+        if ($num > 0)
+            $badge = "<div class='tab_badge'>$num</div>";
+
+        $submenu .= '<a href="main.php?page=' . $page . '&sub=' . $kat . '"><span' . $active . '>' . put("s_" . $kat, $l) . ' '.$badge.'</span></a>';
+    }
+    return $submenu;
 }
 
 function getSubMenu($page) {
