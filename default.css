@@ -36,6 +36,15 @@ h2 {
     margin:0;
 }
 
+#whiteBGWrapper {
+    width:850px;
+    margin:15px auto;
+    background:white;
+        padding: 15px 10px;
+    border-radius:3px;
+}
+
+
 .pageInfo {
     display:none;
     background-color: #E2F6FF;
@@ -562,6 +571,9 @@ a:link, a:visited {
     background: url(img/pattern/bg1.jpg) no-repeat center center fixed; 
     background-size: cover;*/
 
+    background-image: url(img/pattern/dark1.png); 
+    background-repeat: repeat; 
+    
 }
 
 footer {

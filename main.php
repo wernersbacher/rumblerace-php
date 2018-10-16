@@ -204,131 +204,136 @@ Love for Meri
 
         <!-- Main Menü Segment Anfang -->
 
+        <div id="whiteBGWrapper">
 
 
 
 
-        <div id="mainMenuWrapperTabs" >
+            <div id="mainMenuWrapperTabs" >
 
-            <div id="tabsWrapperMain"> <!-- mainmenu as tabs -->
-                <div id="tabsMain">
-
-                    <?php
-                    echo getMenuListTabs($page);
-                    ?>
-
-                </div>
-                <div class="bottomLine"></div>   
-            </div>
-
-        </div>
-        <!-- Main Menü Segment Ende -->
-
-        <div id="mid-header">
-
-            <?php if (isPlayerGuest()) { ?>
-                <div id="guestInfo">
-                    <?php echo put("attention_reg", $l); ?><br/>
-                    <i><?php
-                        if (isset($get["reg"]))
-                            echo put($get["reg"], $l);
-                        ?> </i>
-                    <form class="bigForm" action="register.php?guest=true" method="post">
-                        <input type="text" name="user" required="required" placeholder="Username" maxlength="55" />
-                        <input type="password" name="pass" required="required" placeholder="Password" maxlength="50" />
-                        <input type="password" name="pass2" required="required" placeholder="Password (retype)" maxlength="50" />
-                        <input type="hidden" name="email" placeholder="Email (optional)" maxlength="50" />
-                        <input type="hidden" name="register" value="yes"/>
-                        <input type="submit" name="send" value="Register" />
-
-                    </form>
-
-                </div> 
-            <?php } ?>
-        </div>
-
-
-
-        <!-- Middle Segment Anfang -->
-        <div id="middle">
-            <div id="leftMenu">
-                <!--<div id="player-info">
-                    <span class="playername"><?php echo $_SESSION["username"] ?> <img id="mobile_liga" style="height:16px; display: none;" src="img/liga/<?php echo getPlayerLiga() ?>.png"></span><br/>
-                    <span class="stats">
-                        <img src="img/dollar.png" /> <?php echo dollar(getPlayerMoney()) ?><br/>
-                        <img src="img/star.png" /> <span title="<?php echo ep(expToLiga(getPlayerLiga() + 1) - getPlayerExp()) ?> left"><?php echo ep(getPlayerExp()) ?></span><br/>
-                        <a href="main.php?page=sprit"><img src="img/energy.png" /> <?php echo $sprit ?></a><br/>
-                        <a href="main.php?page=factory&sub=upgrades" title="Free Upgrade Points"><img src="img/ups.png" /> <?php echo getPlayerUpPoints() ?></a> | 
-                        <a href="?page=race&sub=running" title="Running races"><img src="img/wait.png" /> <?php echo getCurrentRunningRaces() ?></a><br/>
-                    </span>
-                    <div class="playerQuick"  style="margin-top: 4px;">
-                        <a href="?page=office&sub=messages"><img src="img/<?php echo $letter ?>.png" alt="messages" /></a></a>
-                        <a href="?page=office&sub=bonus"><img src="img/<?php echo $bonus ?>.png" alt="bonus" /></a></a>
-                    </div>
-                    <div class="playerLiga" id="desktop_liga">
-                        <img src="img/liga/<?php echo getPlayerLiga() ?>.png" />
-                    </div>
-                </div>-->
-
-                <div id="blackLeftInfo">
-                    <div id="playerData">
-                        <img src="img/ava.png" /><br/>
-                        <span class="playername"><?php echo $_SESSION["username"] ?> <img id="mobile_liga" style="display:none; height:16px; " src="img/liga/<?php echo getPlayerLiga() ?>.png"></span><br/>
-
+                <div id="tabsWrapperMain"> <!-- mainmenu as tabs -->
+                    <div id="tabsMain">
 
                         <?php
-                        //Gibt den absoluten Fortschritt zurück
-                        $expForNewLevel = outputLevelProgress();
-                        ?>
-
-
-
-
-                    </div>
-                    <div id="blackButtons">
-
-                        <a href="main.php?page=office&sub=messages"><div><img src="img/office40.png" /><span <?php echo boolToHide($newFx) ?> class="badge alert"><?php echo $newFx; ?></span></div></a>
-                        <a href="#"><div><img src="img/car40.png" /></div>
-                            <a href="#"><div><img src="img/tools40.png" /></div></a>
-
-
-                    </div>
-
-                    <div id="blackStats">
-                        <div class='vertical-align'><img src="img/award.png"/>
-                            <span class="blackOutput"><?php echo $expForNewLevel ?></span>
-                        </div>
-                        <div class='vertical-align'><img src="img/money32.png"/>
-                            <span class="blackOutput"><?php echo format(getPlayerMoney()) ?></span>
-                        </div>
-                        <div class='vertical-align'><img src="img/fuel.png"/>
-                            <span class="blackOutput"><?php echo $sprit2 ?></span>
-                        </div>
-                    </div>
-
-
-                </div>
-
-            </div>
-
-            <div id="contentWindow">
-
-                <div id="tabsWrapper"> <!-- submenu -->
-                    <div id="tabs">
-
-                        <?php
-                        echo $submenu;
+                        echo getMenuListTabs($page);
                         ?>
 
                     </div>
                     <div class="bottomLine"></div>   
                 </div>
 
-                <!--<span class="h1"><?php echo put($page, $l) . $subpage ?> </span>-->
-                <?php echo $content ?>
-                <?php echo getBannerAd(); ?>
             </div>
+            <!-- Main Menü Segment Ende -->
+
+            <div id="mid-header">
+
+                <?php if (isPlayerGuest()) { ?>
+                    <div id="guestInfo">
+                        <?php echo put("attention_reg", $l); ?><br/>
+                        <i><?php
+                            if (isset($get["reg"]))
+                                echo put($get["reg"], $l);
+                            ?> </i>
+                        <form class="bigForm" action="register.php?guest=true" method="post">
+                            <input type="text" name="user" required="required" placeholder="Username" maxlength="55" />
+                            <input type="password" name="pass" required="required" placeholder="Password" maxlength="50" />
+                            <input type="password" name="pass2" required="required" placeholder="Password (retype)" maxlength="50" />
+                            <input type="hidden" name="email" placeholder="Email (optional)" maxlength="50" />
+                            <input type="hidden" name="register" value="yes"/>
+                            <input type="submit" name="send" value="Register" />
+
+                        </form>
+
+                    </div> 
+                <?php } ?>
+            </div>
+
+
+
+            <!-- Middle Segment Anfang -->
+            <div id="middle">
+                <div id="leftMenu">
+                    <!--<div id="player-info">
+                        <span class="playername"><?php echo $_SESSION["username"] ?> <img id="mobile_liga" style="height:16px; display: none;" src="img/liga/<?php echo getPlayerLiga() ?>.png"></span><br/>
+                        <span class="stats">
+                            <img src="img/dollar.png" /> <?php echo dollar(getPlayerMoney()) ?><br/>
+                            <img src="img/star.png" /> <span title="<?php echo ep(expToLiga(getPlayerLiga() + 1) - getPlayerExp()) ?> left"><?php echo ep(getPlayerExp()) ?></span><br/>
+                            <a href="main.php?page=sprit"><img src="img/energy.png" /> <?php echo $sprit ?></a><br/>
+                            <a href="main.php?page=factory&sub=upgrades" title="Free Upgrade Points"><img src="img/ups.png" /> <?php echo getPlayerUpPoints() ?></a> | 
+                            <a href="?page=race&sub=running" title="Running races"><img src="img/wait.png" /> <?php echo getCurrentRunningRaces() ?></a><br/>
+                        </span>
+                        <div class="playerQuick"  style="margin-top: 4px;">
+                            <a href="?page=office&sub=messages"><img src="img/<?php echo $letter ?>.png" alt="messages" /></a></a>
+                            <a href="?page=office&sub=bonus"><img src="img/<?php echo $bonus ?>.png" alt="bonus" /></a></a>
+                        </div>
+                        <div class="playerLiga" id="desktop_liga">
+                            <img src="img/liga/<?php echo getPlayerLiga() ?>.png" />
+                        </div>
+                    </div>-->
+
+                    <div id="blackLeftInfo">
+                        <div id="playerData">
+                            <img src="img/ava.png" /><br/>
+                            <span class="playername"><?php echo $_SESSION["username"] ?> <img id="mobile_liga" style="display:none; height:16px; " src="img/liga/<?php echo getPlayerLiga() ?>.png"></span><br/>
+
+
+                            <?php
+                            //Gibt den absoluten Fortschritt zurück
+                            $expForNewLevel = outputLevelProgress();
+                            ?>
+
+
+
+
+                        </div>
+                        <div id="blackButtons">
+
+                            <a href="main.php?page=office&sub=messages"><div><img src="img/office40.png" /><span <?php echo boolToHide($newFx) ?> class="badge alert"><?php echo $newFx; ?></span></div></a>
+                            <a href="#"><div><img src="img/car40.png" /></div>
+                                <a href="#"><div><img src="img/tools40.png" /></div></a>
+
+
+                        </div>
+
+                        <div id="blackStats">
+                            <div class='vertical-align'><img src="img/award.png"/>
+                                <span class="blackOutput"><?php echo $expForNewLevel ?></span>
+                            </div>
+                            <div class='vertical-align'><img src="img/money32.png"/>
+                                <span class="blackOutput"><?php echo format(getPlayerMoney()) ?></span>
+                            </div>
+                            <div class='vertical-align'><img src="img/fuel.png"/>
+                                <span class="blackOutput"><?php echo $sprit2 ?></span>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+                <div id="contentWindow">
+
+                    <div id="tabsWrapper"> <!-- submenu -->
+                        <div id="tabs">
+
+                            <?php
+                            echo $submenu;
+                            ?>
+
+                        </div>
+                        <div class="bottomLine"></div>   
+                    </div>
+
+                <!--<span class="h1"><?php echo put($page, $l) . $subpage ?> </span>-->
+                    <?php echo $content ?>
+                    <?php echo getBannerAd(); ?>
+                </div>
+            </div>
+
+
         </div>
+
         <footer>
             <div id="always">
                 <div>
