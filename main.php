@@ -2,7 +2,6 @@
 error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 $get = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
 $post = filter_input_array(INPUT_POST);
-
 //Check if logged in
 require_once('_data.php');
 require_once('_checkuser.php');
@@ -126,6 +125,11 @@ if (isThereBonus()) {
     $bonus = "bonus_new";
 } else
     $bonus = "bonus";
+
+
+var_dump(getNotificationsArray());
+
+
 ?>
 <!DOCTYPE html>
 <!--
