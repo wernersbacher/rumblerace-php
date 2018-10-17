@@ -494,3 +494,6 @@ $lg["log_reward"] = ["Your reward", "Deine Belohnung"];
 $lg["log_advanced"] = ["You advanced to level", "Du bist jetzt Level"];
 $lg["log_sold_for"] = ["sold for", "verkauft für"];
 $lg["log_sprit_sold_sprintf"] = ['You sold %1$s for %2$s (= %3$s).', 'Du hast %1$s für %2$s verkauft (= %3$s).'];
+
+$lg["log_welcome"] = ['WELCOME!', 'WILLKOMMEN!'];
+$lg["log_welcome_msg"] = ['Welcome to Racing Inc! Have fun playing!', 'Willkommen bei Racing Inc! Viel Spaß beim Spielen!'];

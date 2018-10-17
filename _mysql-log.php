@@ -9,6 +9,13 @@
  * spezielle Log Funktionen
  */
 
+function logGeneric($name) {
+    $obj = [
+        "name" => $name
+    ];
+    return queryNewLog($obj);
+}
+
 function logSpritSold($name, $amount, $price, $cost, $seller_id) {
     $obj = [
         "name" => $name,
