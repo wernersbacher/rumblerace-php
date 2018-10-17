@@ -78,6 +78,7 @@ $lg["s_achievements"] = ["Achievements", "Erfolge"];
 $lg["s_sysDrivers"] = ["Hire Drivers", "Fahrer einstellen"];
 $lg["s_paddock"] = ["Paddock", "Fahrerlager"];
 $lg["s_profiles"] = ["Profiles", "Profile"];
+$lg["s_secretary"] = ["Secretary", "Sekräterin"];
 
 //Tuning Kats
 $lg["motor"] = ["Engine", "Motor"];

@@ -103,7 +103,7 @@ function getFirstSubmenu($page) {
 
 $m = array();
 
-$m["office"] = ["subs" => ["news", "bonus", "messages"], "icon" => "office40"];
+$m["office"] = ["subs" => ["secretary", "news", "bonus", "messages"], "icon" => "office40"];
 $m["garage"] = ["subs" => ["cars", "storage"], "icon" => "car40"];
 $m["factory"] = ["subs" => ["tuner", "upgrades"], "icon" => "factory"];
 $m["trader"] = ["subs" => ["cardealer"], "icon" => "tools40"];

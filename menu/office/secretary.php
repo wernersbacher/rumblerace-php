@@ -1,0 +1,7 @@
+<?php
+
+/* 
+ * EVENT Log
+ */
+
+$output = "";
