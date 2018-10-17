@@ -484,3 +484,13 @@ $lg["sum_price"] = ["Price Money Won", "Gesamtverdienst"];
 
 // LOGS +++++++++++++
 $lg["log_race_done"] = ["Race finished!", "Rennen beendet!"];
+$lg["log_new_level"] = ["Level Up!", "Level Up!"];
+$lg["log_part_sold"] = ["Part sold", "Teil verkauft"];
+$lg["log_sprit_sold"] = ["Sprit sold", "Sprit verkauft"];
+
+$lg["log_race_fin"] = ["Your race is finished. Your position:", "Das Rennen wurde beendet. Deine Position:"];
+$lg["log_reward"] = ["Your reward", "Deine Belohnung"];
+
+$lg["log_advanced"] = ["You advanced to level", "Du bist jetzt Level"];
+$lg["log_sold_for"] = ["sold for", "verkauft für"];
+$lg["log_sprit_sold_sprintf"] = ['You sold %1$s for %2$s (= %3$s).', 'Du hast %1$s für %2$s verkauft (= %3$s).'];

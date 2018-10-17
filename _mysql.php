@@ -103,10 +103,10 @@ function queryRegister($user, $pass, $email) {
     $addCar = mysqli_query($mysqli, "INSERT INTO garage (user_id, car_id) VALUES ('" . $user_id . "', 'beamer_pole')");
     $addDriver = mysqli_query($mysqli, "INSERT INTO fahrer (user_id, driver_id, name, skill, liga, anteil) VALUES ('$user_id', '$user_id+d', 'Markus Werner', 150, 1, 5)");
     $addBonus = mysqli_query($mysqli, "INSERT INTO bonus (user_id, last, invested) VALUES ('$user_id', 0, 0)");
-    
-    
+
+
     if ($addUser && $addStats && $addSprit && $addCar && $addDriver && $addBonus) {
-        
+
         mysqli_commit($mysqli);
         $status = "ok_reg";
         $_SESSION['user_id'] = $user_id;
@@ -657,10 +657,9 @@ function queryRaceDone() {
                 FROM races_run
                 WHERE id = '$id'"
             );
-            
+
             if ($reward_granted && $deleteRace && $driver_reward && $race_stats) {
                 mysqli_commit($mysqli);
-                queryNewMessage($_SESSION["user_id"], 0, getRaceName($race["name"]) . " finished. Position #$position", "Your end position: $position/10. You made " . dollar($reward) . " and " . ep($exp) . "!");
                 logRaceDone($race["name"], $position, $reward, $exp);
                 $out = "race_done";
             } else {
@@ -965,7 +964,7 @@ function updateSprit($str_id, $price, $amount, $seller_id, $rest) {
     $entrySprit = querySQL($addSprit);
 
     if ($removeSprit && $setBuyer && $setSeller && $entrySprit) {
-        queryNewMessage($seller_id, 0, "Sprit sold on market", "You sold sprit on the market for " . dollar($cost) . ".");
+        logSpritSold("sprit_sold", $amount, $price, $cost, $seller_id);
         mysqli_commit($mysqli);
         return "sprit_bought";
     } else {
@@ -1027,7 +1026,7 @@ function keepPart($price, $str_id) {
     mysqli_autocommit($mysqli, TRUE);
 }
 
-function updatePart($price, $old_id, $str_id) {
+function updatePart($price, $old_id, $str_id, $part) {
     global $mysqli;
     mysqli_autocommit($mysqli, FALSE);
 
@@ -1044,7 +1043,7 @@ function updatePart($price, $old_id, $str_id) {
     $setSell = querySQL($sql);
 
     if ($setSell && $setBuyer && $setSeller) {
-        queryNewMessage($old_id, 0, "Part sold on market", "Your part was sold on the market for " . dollar($price) . ".");
+        logPartSold("part_sold", $price, $part, $old_id);
         mysqli_commit($mysqli);
         return "part_bought";
     } else {
@@ -1058,7 +1057,7 @@ function updatePart($price, $old_id, $str_id) {
 function queryMarketPartBuy($id) {
     global $mysqli;
 
-    $check = "SELECT sell, user_id FROM storage WHERE id = '" . mysqli_real_escape_string($mysqli, $id) . "' AND sell > 0";
+    $check = "SELECT sell, user_id, part FROM storage WHERE id = '" . mysqli_real_escape_string($mysqli, $id) . "' AND sell > 0";
     $entry = querySQL($check);
     $row = mysqli_fetch_array($entry, MYSQLI_ASSOC);
 
@@ -1067,7 +1066,7 @@ function queryMarketPartBuy($id) {
         return keepPart($row["sell"], $id);
     } else if (__count($row) >= 1) {
 
-        return updatePart($row["sell"], $row["user_id"], $id);
+        return updatePart($row["sell"], $row["user_id"], $id, $row["part"]);
     } else
         return "part_sold";
 }
@@ -1088,8 +1087,6 @@ function queryReadAll() {
     $sql = "UPDATE faxes SET open ='1' WHERE to_id = '" . $_SESSION["user_id"] . "'";
     querySQL($sql);
 }
-
-
 
 function queryMessages() {
     $sql = "SELECT fx.id, fx.from_id, fx.open, fx.date, fx.betreff, fx.message, us.username
@@ -1134,7 +1131,7 @@ function queryNewMessage($to_id, $from_id, $betreff, $message) {
 
 function upgradeLiga($liga) {
     querySQL("UPDATE stats SET liga = $liga WHERE id = '" . $_SESSION["user_id"] . "'");
-    queryNewMessage($_SESSION["user_id"], 0, "New Level", "Congratulations, you advanced to Level $liga!");
+    logNewLevel("new_level", $liga);
 }
 
 function queryFabrikTeile() {

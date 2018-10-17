@@ -1,5 +1,5 @@
 USABILITY
-
+* tabs hover
 * klick auf notify: direkt zu unterseite
 
 * system nachrichten in eigene tabelle,
@@ -36,7 +36,7 @@ USABILITY
 * mobile anpassung schwarzes menü
 
 2018
-* liga in level umbennen
+* achievements
 * format auch zu käufen hinzu! -> in dollar rein? test mit komma und großen zahlen TESTEN
 * guest accounts verstecken
 * output funktionen auslagern
@@ -69,6 +69,7 @@ BALANCING:
 * upgrades dürfen es nicht zu einfach machen, bzw werden notwendig sein.
 
 NEXT RELEASE
+* münzen für achievemtns
 * weltkarte als neues menü,
 	weltkarte links im menü zu erreichen.
 * autos zu profile hinzufügen
