@@ -482,3 +482,5 @@ $lg["reg_date"] = ["Registration Date", "Registrationsdatum"];
 $lg["profile_money"] = ["Bank cash", "Barvermögen"];
 $lg["sum_price"] = ["Price Money Won", "Gesamtverdienst"];
 
+// LOGS +++++++++++++
+$lg["log_race_done"] = ["Race finished!", "Rennen beendet!"];

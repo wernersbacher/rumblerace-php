@@ -37,7 +37,8 @@ function checkNotifies() {
     
     $return = [
         "messages" => areThereMessenges(),
-        "bonus" => isThereBonus()
+        "bonus" => isThereBonus(),
+        "secretary" => getNewLogNum()
     ];
     
     return $return;
