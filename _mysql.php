@@ -2,6 +2,7 @@
 
 require_once '_mysql_login.php';
 require_once '_mysql-notify.php';
+require_once '_mysql-log.php';
 
 // *************************************************************************
 // *************************************************************************
@@ -660,6 +661,7 @@ function queryRaceDone() {
             if ($reward_granted && $deleteRace && $driver_reward && $race_stats) {
                 mysqli_commit($mysqli);
                 queryNewMessage($_SESSION["user_id"], 0, getRaceName($race["name"]) . " finished. Position #$position", "Your end position: $position/10. You made " . dollar($reward) . " and " . ep($exp) . "!");
+                logRaceDone($race["name"], $position, $reward, $exp);
                 $out = "race_done";
             } else {
                 mysqli_rollback($mysqli);
