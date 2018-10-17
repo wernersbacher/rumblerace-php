@@ -116,9 +116,6 @@ if ($mode == "new") {
     //Neue Nachricht Button
     $output .= "<div class='centerChildVertical'><a href='?page=office&sub=messages&mode=new' class='tableTopButton'>+ " . put("new_mes", $l) . "</a></div>";
     
-    //lösche alle system nachrichten
-    $output .= "<form class='centerChildVertical' method='POST' data-dialog='Really delete all system messages?' style='display:inline-block;' action='?page=office&sub=messages'><input type='hidden' name='delSys' value='del'><input class='tableTopButton dialog' name='delSys' type='submit' value='" . put("delSys", $l) . "'></form>";
-    
     //Lösche alle Nachrichten, älter als 30 tage
     $output .= "<form class='centerChildVertical' method='POST' data-dialog='Really delete old messages?' style='display:inline-block;' action='?page=office&sub=messages'><input type='hidden' name='delOld' value='delOld'><input class='tableTopButton dialog' name='delSys' type='submit' value='" . put("delOld", $l) . "'></form>";
     

@@ -237,7 +237,7 @@ $lg["tip_dura"] = ["The higher the durability factor, the more it will stress yo
 
 
 //Market
-$lg["part_on_market"] = ["The part is now getting sold on the market. You will get a SMS, if someone bought it!", "Das Teil wird nun auf dem Markt angeboten. Sobald es gekauft wird, erhälst Du eine SMS."];
+$lg["part_on_market"] = ["The part is now getting sold on the market.", "Das Teil wird nun auf dem Markt angeboten."];
 $lg["part_not_found"] = ["You can't sell this part.", "Du kannst dieses Teil nicht verkaufen."];
 $lg["sell_check_input"] = ["Check your input.", "Überprüfe Deine Angaben."];
 $lg["part_sold"] = ["The part is already sold. Sorry!", "Das Teil wurde schon verkauft. Sorry!"];
@@ -285,7 +285,7 @@ $lg["race_info"] = ["Drive races for money and go up a level! The more horsepowe
     "Fahre Rennen, um Geld zu bekommen und Ligen aufzusteigen! Je mehr PS, desto höher der Gewinn. Je mehr Performance, desto mehr EP. Du brauchst mindestens ein Auto und ein Fahrer aus der Level, in welchem auch das Rennen ist! Ein gutes Auto 3x so wichtig, wie ein guter Fahrer."];
 $lg["pos_one"] = ["Pos 1", "Platz 1"];
 $lg["reward"] = ["Reward", "Preisgeld"];
-$lg["race_started"] = ["Race started. You will get a SMS when it's done!", "Rennen wurde gestartet. Du bekommst eine SMS, wenn es zuende ist!"];
+$lg["race_started"] = ["Race started!", "Rennen wurde gestartet. "];
 $lg["desc_race"] = ["Drive some tracks to make money.", "Fahre Rennen, um etwas Geld zu verdienen!"];
 $lg["cancel"] = ["Cancel", "Abbrechen"];
 $lg["no_races_running"] = ["Currently no races running!", "Momentan sind keine Rennen am Laufen!"];
