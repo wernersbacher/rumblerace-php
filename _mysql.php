@@ -402,14 +402,31 @@ function queryPartBuy($part_id, $price, $dur) {
     return $out;
 }
 
-function queryRunningPartTime($part) {
-    global $mysqli;
-    $sql = "SELECT sr.time_end as time_end, sr.dur as saved_dur, pa.duration as duration FROM storage_run sr
+
+
+function queryMaxPartValues() {
+     global $mysqli;
+    $sql = "SELECT sr.id as storage_id,
+                sr.time_end as time_end, 
+                pa.duration as duration,
+                sr.user_id as user_id,
+                sr.part_id as part_id,
+                pa.worst as worst,
+                pa.best as best,
+                pa.acc, pa.speed, pa.hand, pa.dura,
+                pa.liga as liga,
+                pa.part as part
+            FROM storage_run sr
             LEFT JOIN parts pa
                 ON pa.id = sr.part_id
-                WHERE pa.part = '" . mysqli_real_escape_string($mysqli, $part) . "' AND sr.user_id = '" . $_SESSION["user_id"] . "'";
-
-    return getColumn($sql);
+                WHERE sr.user_id = '" . $_SESSION["user_id"] . "'";
+    $entry = querySQL($sql);
+    if ($entry) {
+        while ($row = mysqli_fetch_assoc($entry)) {
+            $data[] = $row;
+        }
+    } else
+        return;
 }
 
 function queryPartsBuildingDone() {
@@ -441,35 +458,35 @@ function queryPartsBuildingDone() {
     foreach ($data as $part) {
         $time_to_end = $part["time_end"] - time();
 
-        if ($time_to_end <= 0) {
-            //Teil ist fertig, muss verschoben werden ins Lager
-            mysqli_autocommit($mysqli, FALSE);
-            $part_id = $part["part_id"];
-            $storage_id = $part["storage_id"];
-            /* $value = getValue($part["worst"], $part["best"]); DEL */
-            $values = getValues(array("acc" => $part["acc"], "speed" => $part["speed"], "hand" => $part["hand"], "dura" => $part["dura"]));
+        if ($time_to_end > 0) {
+            return;
+        }
+        //Teil ist fertig, muss verschoben werden ins Lager
+        mysqli_autocommit($mysqli, FALSE);
+        $part_id = $part["part_id"];
+        $storage_id = $part["storage_id"];
+        $values = getValues(array("acc" => $part["acc"], "speed" => $part["speed"], "hand" => $part["hand"], "dura" => $part["dura"]));
 
-            $addBuiltPart = mysqli_query($mysqli, "INSERT INTO storage (user_id, part_id, liga, part, acc, speed, hand, dura) 
+        $addBuiltPart = mysqli_query($mysqli, "INSERT INTO storage (user_id, part_id, liga, part, acc, speed, hand, dura) 
                 values ('" . $_SESSION["user_id"] . "', '" . mysqli_real_escape_string($mysqli, $part_id) . "',  '" . $part["liga"] . "', '" . $part["part"] . "', '" . $values["acc"] . "', '" . $values["speed"] . "', '" . $values["hand"] . "', '" . $values["dura"] . "')"
-            );
-            $deleteProgress = mysqli_query($mysqli, "DELETE
+        );
+        $deleteProgress = mysqli_query($mysqli, "DELETE
                 FROM storage_run
                 WHERE id = '$storage_id'"
-            );
-            if ($addBuiltPart && $deleteProgress) {
-                mysqli_commit($mysqli);
-                $out = "part_done";
-            } else {
-                mysqli_rollback($mysqli);
-                $out = "database_error";
-            }
-            mysqli_autocommit($mysqli, TRUE);
+        );
+        if ($addBuiltPart && $deleteProgress) {
+            mysqli_commit($mysqli);
+            $out = "part_done";
+        } else {
+            mysqli_rollback($mysqli);
+            $out = "database_error";
         }
+        mysqli_autocommit($mysqli, TRUE);
     }
 }
 
-function queryStorage() {
-    $sql = "SELECT sr.id as id, pa.liga as liga, pa.part as part, pa.kat as kat, sr.garage_id, sr.acc, sr.speed, sr.hand, sr.dura
+function queryStorage() {                                                                                                           //Max values for colors
+    $sql = "SELECT sr.id as id, pa.liga as liga, pa.part as part, pa.kat as kat, sr.garage_id, sr.acc, sr.speed, sr.hand, sr.dura, pa.acc, pa.speed, pa.hand, pa.dura
             FROM storage sr
             LEFT JOIN parts pa
                 ON pa.id = sr.part_id
@@ -519,11 +536,13 @@ function getCarsLeft() {
     $c = intval($row["num"]);
     return $c;
 }
+
 /*
  * Achtung: SELL überprüfen bei fahrerMarkt update
  */
+
 function getDriversLeft() {
-        $sql = "SELECT COUNT(dr.id) as num FROM fahrer dr
+    $sql = "SELECT COUNT(dr.id) as num FROM fahrer dr
                 LEFT JOIN races_run rr
                 ON dr.id = rr.driver_id
             WHERE dr.user_id = '" . $_SESSION["user_id"] . "' AND rr.driver_id IS NULL";
