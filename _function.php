@@ -444,7 +444,7 @@ function ep($val) {
 }
 
 function gas($val) {
-    return $val . " &#8467;";
+    return format($val) . " &#8467;";
 }
 
 function formatSeconds($val) {

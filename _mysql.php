@@ -964,7 +964,7 @@ function updateSprit($str_id, $price, $amount, $seller_id, $rest) {
     $entrySprit = querySQL($addSprit);
 
     if ($removeSprit && $setBuyer && $setSeller && $entrySprit) {
-        logSpritSold("sprit_sold", $amount, $price, $cost, $seller_id);
+        logSpritSold($amount, $price, $cost, $seller_id);
         mysqli_commit($mysqli);
         return "sprit_bought";
     } else {
@@ -1043,7 +1043,7 @@ function updatePart($price, $old_id, $str_id, $part) {
     $setSell = querySQL($sql);
 
     if ($setSell && $setBuyer && $setSeller) {
-        logPartSold("part_sold", $price, $part, $old_id);
+        logPartSold($price, $part, $old_id);
         mysqli_commit($mysqli);
         return "part_bought";
     } else {
@@ -1131,7 +1131,7 @@ function queryNewMessage($to_id, $from_id, $betreff, $message) {
 
 function upgradeLiga($liga) {
     querySQL("UPDATE stats SET liga = $liga WHERE id = '" . $_SESSION["user_id"] . "'");
-    logNewLevel("new_level", $liga);
+    logNewLevel($liga);
 }
 
 function queryFabrikTeile() {

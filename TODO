@@ -1,8 +1,9 @@
 USABILITY
+
 * TODO sortieren
 * blackmenu erweitern mit free points etc?
-* log mit sprintf bei rennen beendet.
-* log funcs, type aus aufruf entfernen
+
+* log design
 * drop down wieder hinzu?
  explode beginner race (put) function get racename
 

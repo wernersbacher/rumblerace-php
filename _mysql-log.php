@@ -16,32 +16,29 @@ function logGeneric($type) {
     return queryNewLog($type, $obj);
 }
 
-function logSpritSold($type, $amount, $price, $cost, $seller_id) {
+function logSpritSold($amount, $price, $cost, $seller_id) {
     $obj = [
-        "type" => $type,
         "price" => $price,
         "amount" => $amount,
         "cost" => $cost
         
     ];
-    return queryNewLog($type, $obj, $seller_id);
+    return queryNewLog("sprit_sold", $obj, $seller_id);
 }
 
-function logPartSold($type, $liga, $part, $seller_id) {
+function logPartSold($liga, $part, $seller_id) {
     $obj = [
-        "type" => $type,
         "part" => $part,
         "price" => $liga,
     ];
-    return queryNewLog($type,$obj, $seller_id);
+    return queryNewLog("part_sold", $obj, $seller_id);
 }
 
-function logNewLevel($type, $liga) {
+function logNewLevel($liga) {
     $obj = [
-        "type" => $type,
         "liga" => $liga,
     ];
-    return queryNewLog($type, $obj);
+    return queryNewLog("new_level", $obj);
 }
 
 function logRaceDone($name, $position, $reward, $exp) {
