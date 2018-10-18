@@ -13,6 +13,8 @@ $_config["vars"]["startSprit"] = 50;
 $_config["vars"]["startMaxCars"] = 2;
 $_config["vars"]["startMoney"] = 10000;
 
+$_config["bonus"]["wait"] = 3600;
+
 $_config["driver"]["maxSkill"] = 100; //% value
 
 $_config["racing"]["minGoodness"] = 0.1; //decimal procent

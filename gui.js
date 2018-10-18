@@ -116,6 +116,33 @@ function startWait() {
     }
 }
 
+function startBonusTimer() {
+    if ($("#bonus_timer")) {
+        var seconds = $("#bonus_timer").data("left");
+        
+        function timer() {
+            var days = Math.floor(seconds / 24 / 60 / 60);
+            var hoursLeft = Math.floor((seconds) - (days * 86400));
+            var hours = Math.floor(hoursLeft / 3600);
+            var minutesLeft = Math.floor((hoursLeft) - (hours * 3600));
+            var minutes = Math.floor(minutesLeft / 60);
+            var remainingSeconds = seconds % 60;
+            function pad(n) {
+                return (n < 10 ? "0" + n : n);
+            }
+            document.getElementById('bonus_timer').innerHTML = pad(hours) + ":" + pad(minutes) + ":" + pad(remainingSeconds);
+            if (seconds === 0) {
+                clearInterval(countdownTimer);
+                document.getElementById('bonus_timer').innerHTML = "";
+                $("#bonus_btn_container").find(".bonus_button").prop("disabled", false);
+            } else {
+                seconds--;
+            }
+        }
+        var countdownTimer = setInterval(timer, 1000);
+    }
+}
+
 function setToggle() {
 
     if (store.get("show-sys") === false) {
@@ -185,9 +212,10 @@ $(document).ready(function () {
         $(this).closest("table").find("tr:not(:first)").not(".selling").toggle();
     });
 
-    //Starten des Countdowns für die Tuningteile
+    //Starten des Countdowns für die Tuningteile, Tuning, und Bonus Timer
     startCountdown();
     startWait();
+    startBonusTimer();
 
     //Start des Spritzählers
     startSprit();
@@ -323,8 +351,6 @@ $(document).ready(function () {
 
         });
     }
-
-
 
 
     //upgrades
