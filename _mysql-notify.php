@@ -36,9 +36,11 @@ function isThereBonus() {
 function checkNotifies() {
     
     $return = [
+        // getCurrentRunningRaces() ?
         "messages" => areThereMessenges(),
         "bonus" => isThereBonus(),
-        "secretary" => getNewLogNum()
+        "secretary" => getNewLogNum(),
+        "upgrades" => getPlayerUpPoints()
     ];
     
     return $return;

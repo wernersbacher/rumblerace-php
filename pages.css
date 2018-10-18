@@ -1063,6 +1063,7 @@ tr:nth-child(even) {
     /* box-shadow: 0px 1px 8px -5px black; */
 }
 
-.log_item h2 {
+.log_item h2, .sysDriver h2 {
     font-size: 19px;
 }
+

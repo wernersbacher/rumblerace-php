@@ -41,7 +41,7 @@ foreach ($logs as $key => $log) {
             break;
     }
 
-    $log_output .= "<div class='log_item'>";
+    $log_output .= "<div class='sysDriver'>";
     $log_output .= "<h2>" . put("log_" . $type, $l) . "</h2>";
     $log_output .= "<div class='sec_time'>".date("M, d |  H:i:s", $date)."</div>";
     $log_output .= $html;

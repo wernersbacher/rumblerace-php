@@ -1,11 +1,8 @@
 USABILITY
 
 * TODO sortieren
-* blackmenu erweitern mit free points etc?
 
-* log design
 * drop down wieder hinzu?
- explode beginner race (put) function get racename
 
 * Markt auf unterseiten verschieben? -> weniger menüpunkte
 * redirects ausbauen:
@@ -18,11 +15,9 @@ USABILITY
     - siehe blatt
 
 * optionen & logout außerhalb des menüs -> top bar
--> admin user
-* links button anpassen
 
 * anpassung mobile design
-* info ausblenden, per button einblenden
+* hilfe button
 * rennen fahren: Fahrer und fahrzeug auswählen, besse rdarstellen wenn keiner mehr da ist
 
 * neuer namen für tuner
@@ -39,7 +34,11 @@ USABILITY
 
 * mobile anpassung schwarzes menü
 
+* PERFORMANCE!!!
+
+
 2018
+* getCurrentRunningRaces() verarbeiten
 * achievements
 * format auch zu käufen hinzu! -> in dollar rein? test mit komma und großen zahlen TESTEN
 * guest accounts verstecken

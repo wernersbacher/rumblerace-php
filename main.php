@@ -223,24 +223,6 @@ Love for Meri
             <!-- Middle Segment Anfang -->
             <div id="middle">
                 <div id="leftMenu">
-                    <!--<div id="player-info">
-                        <span class="playername"><?php echo $_SESSION["username"] ?> <img id="mobile_liga" style="height:16px; display: none;" src="img/liga/<?php echo getPlayerLiga() ?>.png"></span><br/>
-                        <span class="stats">
-                            <img src="img/dollar.png" /> <?php echo dollar(getPlayerMoney()) ?><br/>
-                            <img src="img/star.png" /> <span title="<?php echo ep(expToLiga(getPlayerLiga() + 1) - getPlayerExp()) ?> left"><?php echo ep(getPlayerExp()) ?></span><br/>
-                            <a href="main.php?page=sprit"><img src="img/energy.png" /> <?php echo $sprit ?></a><br/>
-                            <a href="main.php?page=factory&sub=upgrades" title="Free Upgrade Points"><img src="img/ups.png" /> <?php echo getPlayerUpPoints() ?></a> | 
-                            <a href="?page=race&sub=running" title="Running races"><img src="img/wait.png" /> <?php echo getCurrentRunningRaces() ?></a><br/>
-                        </span>
-                        <div class="playerQuick"  style="margin-top: 4px;">
-                            <a href="?page=office&sub=messages"><img src="img/<?php echo $letter ?>.png" alt="messages" /></a></a>
-                            <a href="?page=office&sub=bonus"><img src="img/<?php echo $bonus ?>.png" alt="bonus" /></a></a>
-                        </div>
-                        <div class="playerLiga" id="desktop_liga">
-                            <img src="img/liga/<?php echo getPlayerLiga() ?>.png" />
-                        </div>
-                    </div>-->
-
                     <div id="blackLeftInfo">
                         <div id="playerData">
                             <img src="img/ava.png" /><br/>
