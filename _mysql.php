@@ -358,6 +358,11 @@ function queryPartData($part, $liga) {
     return getColumn($sql);
 }
 
+function canBuildPart() {
+
+    return intval(!isPartRunning());
+}
+
 function isPartRunning() {
     $sql = "SELECT pa.part as part, pa.kat as kat, sr.time_end as end, sr.dur as dur
             FROM storage_run sr 
@@ -503,13 +508,46 @@ function queryRaceData($race_id) {
     return getColumn($sql);
 }
 
+function getCarsLeft() {
+    $sql = "SELECT COUNT(gr.id) as num FROM garage gr
+                LEFT JOIN races_run rr
+                ON gr.id = rr.car_id
+            WHERE gr.user_id = '" . $_SESSION["user_id"] . "' AND gr.sell = '0' AND rr.user_id IS NULL";
+    $entry = querySQL($sql);
+
+    $row = mysqli_fetch_array($entry, MYSQLI_ASSOC);
+    $c = intval($row["num"]);
+    return $c;
+}
+/*
+ * Achtung: SELL überprüfen bei fahrerMarkt update
+ */
+function getDriversLeft() {
+        $sql = "SELECT COUNT(dr.id) as num FROM fahrer dr
+                LEFT JOIN races_run rr
+                ON dr.id = rr.driver_id
+            WHERE dr.user_id = '" . $_SESSION["user_id"] . "' AND rr.driver_id IS NULL";
+    $entry = querySQL($sql);
+
+    $row = mysqli_fetch_array($entry, MYSQLI_ASSOC);
+    $c = intval($row["num"]);
+    return $c;
+}
+
+function getMaxRacesLeft() {
+    $drivers = getDriversLeft();
+    $cars = getCarsLeft();
+
+    return min($drivers, $cars);
+}
+
 //checkt, ob das auto $car_id dem user gehört und gerade KEIN rennen fährt
 function queryCarIsNotRacing($id) {
     global $mysqli;
 
     $sql = "SELECT gr.id FROM garage gr
-            LEFT JOIN races_run rr
-            ON gr.id = rr.car_id
+                LEFT JOIN races_run rr
+                ON gr.id = rr.car_id
             WHERE gr.user_id = '" . $_SESSION["user_id"] . "' AND gr.id = '" . mysqli_real_escape_string($mysqli, $id) . "' AND gr.sell = '0' AND rr.user_id IS NULL";
     $entry = querySQL($sql);
 

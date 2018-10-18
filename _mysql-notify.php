@@ -40,7 +40,9 @@ function checkNotifies() {
         "messages" => areThereMessenges(),
         "bonus" => isThereBonus(),
         "secretary" => getNewLogNum(),
-        "upgrades" => getPlayerUpPoints()
+        "upgrades" => getPlayerUpPoints(),
+        "racing" => getMaxRacesLeft(),
+        "tuner" => canBuildPart()
     ];
     
     return $return;
