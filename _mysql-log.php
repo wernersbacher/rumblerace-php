@@ -9,39 +9,39 @@
  * spezielle Log Funktionen
  */
 
-function logGeneric($name) {
+function logGeneric($type) {
     $obj = [
-        "name" => $name
+        "type" => $type
     ];
-    return queryNewLog($obj);
+    return queryNewLog($type, $obj);
 }
 
-function logSpritSold($name, $amount, $price, $cost, $seller_id) {
+function logSpritSold($type, $amount, $price, $cost, $seller_id) {
     $obj = [
-        "name" => $name,
+        "type" => $type,
         "price" => $price,
         "amount" => $amount,
         "cost" => $cost
         
     ];
-    return queryNewLog($obj, $seller_id);
+    return queryNewLog($type, $obj, $seller_id);
 }
 
-function logPartSold($name, $liga, $part, $seller_id) {
+function logPartSold($type, $liga, $part, $seller_id) {
     $obj = [
-        "name" => $name,
+        "type" => $type,
         "part" => $part,
         "price" => $liga,
     ];
-    return queryNewLog($obj, $seller_id);
+    return queryNewLog($type,$obj, $seller_id);
 }
 
-function logNewLevel($name, $liga) {
+function logNewLevel($type, $liga) {
     $obj = [
-        "name" => $name,
+        "type" => $type,
         "liga" => $liga,
     ];
-    return queryNewLog($obj);
+    return queryNewLog($type, $obj);
 }
 
 function logRaceDone($name, $position, $reward, $exp) {
@@ -51,7 +51,7 @@ function logRaceDone($name, $position, $reward, $exp) {
         "reward" => $reward,
         "exp" => $exp
     ];
-    return queryNewLog($obj);
+    return queryNewLog("race_done", $obj);
 }
 
 /*
@@ -88,14 +88,14 @@ function getNewLogNum() {
         return 0;
 }
 
-function queryNewLog($properties, $id = null) {
+function queryNewLog($type, $properties, $id = null) {
     //check if $id is there
     $id = isset($id) ? $id : $_SESSION["user_id"];
     $serial = json_encode($properties);
     global $mysqli;
     $sql = "INSERT INTO sys_log (to_id, message_code, properties, date, open)
             VALUES ('$id', 
-                '" . mysqli_real_escape_string($mysqli, $properties["name"]) . "', '" . mysqli_real_escape_string($mysqli, $serial) . "', 
+                '" . mysqli_real_escape_string($mysqli, $type) . "', '" . mysqli_real_escape_string($mysqli, $serial) . "', 
                     '" . time() . "', '0')";
 
     $entry = querySQL($sql);

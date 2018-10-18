@@ -1,4 +1,15 @@
 USABILITY
+* TODO sortieren
+* blackmenu erweitern mit free points etc?
+* log mit sprintf bei rennen beendet.
+* log funcs, type aus aufruf entfernen
+* drop down wieder hinzu?
+ explode beginner race (put) function get racename
+
+* Markt auf unterseiten verschieben? -> weniger menüpunkte
+* redirects ausbauen:
+    weiterleitung entfernen, dafür kann html schneller geladen werden
+
 * klick auf notify: direkt zu unterseite
 * log formatting
 * notify funktionen:
@@ -6,9 +17,6 @@ USABILITY
     - siehe blatt
 
 * optionen & logout außerhalb des menüs -> top bar
-
---> * bonus countdown
-
 -> admin user
 * links button anpassen
 
