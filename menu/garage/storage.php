@@ -72,12 +72,15 @@ if ($mode == "sell" && isset($post['sell'])) { //Teil verkaufen
                         $part_sum .= $partVals["curr"][$attribut] = $item[$attribut]; //part value currently
                         $part_max .= $partVals["max"][$attribut] = $item["m_".$attribut]; //max value and sum up
                         $partVals["min"][$attribut] = $_config["calc"]["partLowest"] * $partVals["max"][$attribut]; //min value
-                        if($partVals["max"][$attribut] > 0)
-                            $color = colorFromPercent(100 *($partVals["curr"][$attribut] - $partVals["min"][$attribut])/($partVals["max"][$attribut]-$partVals["min"][$attribut])); 
-                        else 
-                            $color = "#00";
+                        if($partVals["max"][$attribut] > 0) {
+                            $rarity = ($partVals["curr"][$attribut] - $partVals["min"][$attribut])/($partVals["max"][$attribut]-$partVals["min"][$attribut]);
+                            $color = colorRarity(100 * $rarity); 
+                        } else 
+                            $color = "#696969";
                         //$partVals["color"][$attribut] = colorFromPercent($percent);
-                        $htmlAttributes .= "<div class='stat_image_wrapper_tuner'><img src='img/stats/".$attribut."1.png' alt='$attribut'/></div> <span style='color:$color' class='part_val tune_$attribut'>".$partVals["curr"][$attribut]."</span><br/>";
+                        $htmlAttributes .= "<div class='stat_image_wrapper_tuner'><img src='img/stats/".$attribut."1.png' alt='$attribut'/></div> 
+                            <span title='min: ".$partVals["min"][$attribut].", max: ".$partVals["max"][$attribut]."' style='color:$color; background-color: ".$color."45' class='part_val tune_$attribut'>".$partVals["curr"][$attribut]."</span><br/>";
+                        
                     }
                     
                     

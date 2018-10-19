@@ -4,22 +4,18 @@ USABILITY
 * value bei sell auslesen, nicht mitgeben
 * zufall bei rennenauswertung
 
-* rarity farben anders faden
 * rarity farben auslagern??
 * besondere teile anzeigen
 
 * log zusammenfassen, bzw nachrichten löschen
 * drop down wieder hinzu?
-* syslog part fertig
+* syslog, fertiges teil? oder im lager neues markieren
 
 * Markt auf unterseiten verschieben? -> weniger menüpunkte
 * redirects ausbauen:
     weiterleitung entfernen, dafür kann html schneller geladen werden
 
-* klick auf notify: direkt zu unterseite
-* log formatting
 * notify funktionen:
-    - count free driver and races
     - siehe blatt
 
 * optionen & logout außerhalb des menüs -> top bar
@@ -28,14 +24,7 @@ USABILITY
 * hilfe button
 * rennen fahren: Fahrer und fahrzeug auswählen, besse rdarstellen wenn keiner mehr da ist
 
-* neuer namen für tuner
-* badge syste, sms notify ersetzen (altes design)
-* badge für nachrichten, neues message symbol
-* badge für fertige rennen? badge am menüpunkt
 * badge am auto, wenn teil einbaubar ist
-
-* subemnü hinzufügen (tabs)
-
 
 * TUTORIAL/ ENTSCHLACKUNG
     - fahrzeug tuning offensichtlicer machen

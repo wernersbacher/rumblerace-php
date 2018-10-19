@@ -410,8 +410,12 @@ tr:nth-child(even) {
 }
 
 .part_val {
+    font-weight:bold;
     min-width:25px;
     display:inline-block;
+    border-radius: 3px;
+    padding: 0 2px;
+    margin: 1px;
 }
 
 .carTuningTitle {
