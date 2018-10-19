@@ -384,13 +384,14 @@ function outputDetails($acc, $speed, $hand, $dura, $br = false) {
  * $item muss acc, speed, hand, dura und auch die max werte haben.
  */
 
-function outputItemAttributes($item) {
-    global $_config;
+function outputItemAttributes($item, $inline = false) {
+    global $_config, $l;
     $partVals = [];
     $part_sum = 0;
     $part_max = 0;
     $htmlAttributes = "";
     //Loop through all attributes and gen sum
+    
     foreach ($_config["parts"]["valueArr"] as $attribut) {
         $part_sum += $partVals["curr"][$attribut] = $item[$attribut]; //part value currently
         $part_max += $partVals["max"][$attribut] = $item["m_" . $attribut]; //max value and sum up
@@ -400,12 +401,16 @@ function outputItemAttributes($item) {
             $color = colorRarity(100 * $rarity)["color"];
         } else
             $color = "#696969";
-
-        $htmlAttributes .= "<div class='stat_image_wrapper_tuner'><img src='img/stats/" . $attribut . "1.png' alt='$attribut'/></div> 
+        if ($inline) {
+            $htmlAttributes .= put("attr_".$attribut,$l).":<span style='color:$color; background-color: " . $color . "45'>".$partVals["curr"][$attribut]."</span> ";
+        } else {
+            $htmlAttributes .= "<div class='stat_image_wrapper_tuner'><img src='img/stats/" . $attribut . "1.png' alt='$attribut'/></div> 
                             <span title='min: " . $partVals["min"][$attribut] . ", max: " . $partVals["max"][$attribut] . "' style='color:$color; background-color: " . $color . "45' class='part_val tune_$attribut'>" . $partVals["curr"][$attribut] . "</span><br/>";
+        }
     }
     $part_min = $part_max / 2;
     $sum_rarity = 100 * ($part_sum - $part_min) / ($part_max - $part_min);
+    echo "$sum_rarity: ($part_sum - $part_min) / ($part_max - $part_min) <br/>";
     $sum_color = colorRarity($sum_rarity);
 
     return [

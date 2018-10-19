@@ -234,7 +234,10 @@ $lg["tip_speed"] = ["Speed is also important. Who wonders?", "Geschwindigkeit is
 $lg["tip_hand"] = ["Handling is important for curvy tracks, and doesn't help you at all when dragracing.", "Handling ist wichtig für kurvige Strecken, hilft dir aber bei Drag renne gar nicht."];
 $lg["tip_dura"] = ["The higher the durability factor, the more it will stress your car. It is also important to have a good durability value when driving long races, so you can keep the pace up longer.", 
     "Umso höher der Robustheitsfaktor, desto mehr verlangt das Rennen dem Auto ab. Ein hoher Fahrzeug- & Teilewert erhöht ist außerdem wichtig, um bei langen Rennen die Pace aufrechtzuerhalten."];
-
+$lg["attr_acc"] = ["AC", "AC"];
+$lg["attr_speed"] = ["SP", "SP"];
+$lg["attr_hand"] = ["HA", "HA"];
+$lg["attr_dura"] = ["ST", "ST"];
 
 //Market
 $lg["part_on_market"] = ["The part is now getting sold on the market.", "Das Teil wird nun auf dem Markt angeboten."];
@@ -499,6 +502,8 @@ $lg["log_sprit_sold_sprintf"] = ['You sold %1$s for %2$s (= %3$s).', 'Du hast %1
 
 $lg["log_welcome"] = ['WELCOME!', 'WILLKOMMEN!'];
 $lg["log_welcome_msg"] = ['Welcome to Racing Inc! Have fun playing!', 'Willkommen bei Racing Inc! Viel Spaß beim Spielen!'];
+
+
 
 // rarity
 $lg["bad"] = ["bad", "schlecht"];

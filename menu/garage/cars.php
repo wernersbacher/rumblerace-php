@@ -86,12 +86,15 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
                 //var_dump($storage);
                 foreach ($storage as $item) {
                     if ($item["part"] == $part && $item["liga"] == $car["liga"] && $item["garage_id"] == 0) {
+                        $attr = outputItemAttributes($item);
+                        $part_rarity = $attr["part_rarity"];
+                        
                         $partsAvail = true; //Anzeigen, dass in dieser Kategorie ein Teil vorhanden ist
                         $acc = $item["acc"];
                         $speed = $item["speed"];
                         $hand = $item["hand"];
                         $dura = $item["dura"];
-                        $selectGenerated .= "<option value='" . $item["id"] . "'>" . outputDetails($acc, $speed, $hand, $dura) . " (" . $item["liga"] . ")</option>";
+                        $selectGenerated .= "<option style='color:" . $part_rarity["color"] . "' value='" . $item["id"] . "'>" . outputDetails($acc, $speed, $hand, $dura) . " (" . $item["liga"] . ")</option>";
                     }
                 }
             }

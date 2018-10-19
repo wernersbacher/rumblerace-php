@@ -403,30 +403,30 @@ function queryPartBuy($part_id, $price, $dur) {
 }
 
 /*
-function queryMaxPartValues() {
-     global $mysqli;
-    $sql = "SELECT sr.id as storage_id,
-                sr.time_end as time_end, 
-                pa.duration as duration,
-                sr.user_id as user_id,
-                sr.part_id as part_id,
-                pa.worst as worst,
-                pa.best as best,
-                pa.acc, pa.speed, pa.hand, pa.dura,
-                pa.liga as liga,
-                pa.part as part
-            FROM storage_run sr
-            LEFT JOIN parts pa
-                ON pa.id = sr.part_id
-                WHERE sr.user_id = '" . $_SESSION["user_id"] . "'";
-    $entry = querySQL($sql);
-    if ($entry) {
-        while ($row = mysqli_fetch_assoc($entry)) {
-            $data[] = $row;
-        }
-    } else
-        return;
-}*/
+  function queryMaxPartValues() {
+  global $mysqli;
+  $sql = "SELECT sr.id as storage_id,
+  sr.time_end as time_end,
+  pa.duration as duration,
+  sr.user_id as user_id,
+  sr.part_id as part_id,
+  pa.worst as worst,
+  pa.best as best,
+  pa.acc, pa.speed, pa.hand, pa.dura,
+  pa.liga as liga,
+  pa.part as part
+  FROM storage_run sr
+  LEFT JOIN parts pa
+  ON pa.id = sr.part_id
+  WHERE sr.user_id = '" . $_SESSION["user_id"] . "'";
+  $entry = querySQL($sql);
+  if ($entry) {
+  while ($row = mysqli_fetch_assoc($entry)) {
+  $data[] = $row;
+  }
+  } else
+  return;
+  } */
 
 function queryRunningPartTime($part) {
     global $mysqli;
@@ -837,12 +837,13 @@ function queryMarketParts($s, $getAll, $partFilter, $ligaFilter) {
     else
         $limit = " LIMIT $start, $max";
 
-    $sql = "SELECT DISTINCT sr.id, sr.part_id, sr.part, sr.liga, sr.sell, us.username, pa.kat, sr.acc, sr.speed, sr.hand, sr.dura
+    $sql = "SELECT DISTINCT sr.id, sr.part_id, sr.part, sr.liga, sr.sell, us.username, pa.kat, sr.acc, sr.speed, sr.hand, sr.dura,
+        pa.acc as m_acc, pa.speed as m_speed, pa.hand as m_hand, pa.dura as m_dura
             FROM storage sr
             INNER JOIN user us
                 ON us.id = sr.user_id
             INNER  JOIN parts pa
-                ON pa.part = sr.part
+                ON pa.part = sr.part  AND pa.liga = sr.liga
             WHERE sr.sell > 0 AND sr.part LIKE '" . mysqli_real_escape_string($mysqli, $partFilter) . "' AND sr.liga LIKE '" . mysqli_real_escape_string($mysqli, $ligaFilter) . "'
             ORDER BY sr.sell_date DESC";
     $entry = querySQL($sql . $limit);

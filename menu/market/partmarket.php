@@ -147,6 +147,10 @@ if ($mode == "buy" && isset($get["id"])) {
     $partMarket = queryMarketParts($s, false, $partFilter, $ligaFilter);
     if ($partMarket)
         foreach ($partMarket as $item) {
+            $attr = outputItemAttributes($item, true);
+            $part_rarity = $attr["part_rarity"];
+            $html = $attr["html"];
+
             $acc = $item["acc"];
             $speed = $item["speed"];
             $hand = $item["hand"];
@@ -157,7 +161,7 @@ if ($mode == "buy" && isset($get["id"])) {
             $output .= "<tr>";
             $output .= "<td class='partSeller'><a href='$link'>" . $item["username"] . "</a></td>
                 <td class='partTitle'><a href='$link'>" . put($item["part"], $l) . " (" . $item["liga"] . ")</a></td>
-                <td class='partPerf'><a href='$link'>" . outputDetails($acc, $speed, $hand, $dura) . "</a></td>
+                <td class='partPerf'><a href='$link'>$html</a></td>
                 <td><a href='$link'>" . dollar($item["sell"]) . "</a></td>";
             $output .= "</tr>";
         } else {
@@ -166,7 +170,6 @@ if ($mode == "buy" && isset($get["id"])) {
 
     $output .= "</table>";
     $output .= $pages;
-    
 }
 
 $output .= "</div>";

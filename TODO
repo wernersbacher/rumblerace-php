@@ -2,6 +2,8 @@ USABILITY
 
 * zufall bei rennenauswertung
 
+* market mehr platz für table
+* colorRarity umformatierten in getRarity, welche Namen zurückgibt. Farbe über ARray
 * rarity vom gesamten element ausgeben in select (outputdetails)
 * rarity farben auslagern
 * rarity bei allen unterseiten gleich anzeigen
