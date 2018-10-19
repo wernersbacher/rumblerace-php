@@ -347,6 +347,14 @@ tr:nth-child(even) {
     table-layout: fixed;
 }
 
+.partTitleFormat {
+    font-size: 15px;
+    margin-bottom: 3px;
+    display:block;
+}
+.tune_rarity {
+
+}
 /* stat wrapper */
 .stat_image_wrapper {
     width:100px;

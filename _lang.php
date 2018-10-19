@@ -499,3 +499,10 @@ $lg["log_sprit_sold_sprintf"] = ['You sold %1$s for %2$s (= %3$s).', 'Du hast %1
 
 $lg["log_welcome"] = ['WELCOME!', 'WILLKOMMEN!'];
 $lg["log_welcome_msg"] = ['Welcome to Racing Inc! Have fun playing!', 'Willkommen bei Racing Inc! Viel Spaß beim Spielen!'];
+
+// rarity
+$lg["bad"] = ["bad", "schlecht"];
+$lg["average"] = ["average", "durschnitt"];
+$lg["good"] = ["good", "gut"];
+$lg["rare"] = ["rare", "selten"];
+$lg["legendary"] = ["legendary", "legendär"];

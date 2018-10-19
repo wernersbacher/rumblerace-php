@@ -6,17 +6,16 @@
 
 function colorRarity($p) {
     if ($p < 30)
-        $code = "#696969";
-    //$code = "#a90329";
+        $obj = ["color" => "#696969", "name" => "bad"];
     else if ($p < 50)
-        $code = "#00";
+        $obj = ["color" => "#00", "name" => "average"];
     else if ($p < 80)
-        $code = "#148600";
+        $obj = ["color" => "#148600", "name" => "good"];
     else if ($p < 100)
-        $code = "#18599e";
+        $obj = ["color" => "#18599e", "name" => "rare"];
     else if ($p == 100)
-        $code = "#ec0087";
-    return $code;
+        $obj = ["color" => "#ec0087", "name" => "legendary"];
+    return $obj;
 }
 
 function colorFromPercent($i) {
