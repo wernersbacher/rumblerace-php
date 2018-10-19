@@ -74,36 +74,20 @@ if ($mode == "sell" && isset($post['sell'])) { //Teil verkaufen
         if ($storage)
             foreach ($storage as $item) {
                 if ($item["kat"] == $kat && $item["garage_id"] == 0) {
-                    $partVals = [];
-                    $part_sum = 0;
-                    $part_max = 0;
-                    $htmlAttributes = "";
-                    //Loop through all attributes and gen sum
-                    foreach ($_config["parts"]["valueArr"] as $attribut) {
-                        $part_sum += $partVals["curr"][$attribut] = $item[$attribut]; //part value currently
-                        $part_max += $partVals["max"][$attribut] = $item["m_" . $attribut]; //max value and sum up
-                        $partVals["min"][$attribut] = $_config["calc"]["partLowest"] * $partVals["max"][$attribut]; //min value
-                        if ($partVals["max"][$attribut] > 0) {
-                            $rarity = ($partVals["curr"][$attribut] - $partVals["min"][$attribut]) / ($partVals["max"][$attribut] - $partVals["min"][$attribut]);
-                            $color = colorRarity(100 * $rarity)["color"];
-                        } else
-                            $color = "#696969";
 
-                        $htmlAttributes .= "<div class='stat_image_wrapper_tuner'><img src='img/stats/" . $attribut . "1.png' alt='$attribut'/></div> 
-                            <span title='min: " . $partVals["min"][$attribut] . ", max: " . $partVals["max"][$attribut] . "' style='color:$color; background-color: " . $color . "45' class='part_val tune_$attribut'>" . $partVals["curr"][$attribut] . "</span><br/>";
-                    }
-                    $part_min = $part_max / 2;
-                    $sum_rarity = 100 * ($part_sum - $part_min) / ($part_max - $part_min);
-                    $sum_color = colorRarity($sum_rarity);
-                    
+
+                    $attr = outputItemAttributes($item);
+                    $html = $attr["html"];
+                    $part_rarity = $attr["part_rarity"];
+
 
                     $rows .= "<tr>
                 <td class='partTitle'>
                 <div class='partTitleFormat'>" . put($item["part"], $l) . "</div>
-                    <span class='tune_rarity' style='color:".$sum_color["color"]."'>".put($sum_color["name"], $l)."</span>
+                    <span class='tune_rarity' style='color:" . $part_rarity["color"] . "'>" . put($part_rarity["name"], $l) . "</span>
                     </td>
                 <td class='partPerf'>
-                    $htmlAttributes
+                    $html
                  
                 <td>" . put("liga", $l) . " " . $item["liga"] . "</td>
                 <td>

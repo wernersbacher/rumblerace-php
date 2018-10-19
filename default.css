@@ -862,3 +862,12 @@ hr {
 .bigForm input:focus {
     border-color:#333;
 }
+
+/*
+     SELECT SYTLES
+*/
+
+select:disabled,
+select[disabled]{
+  cursor:not-allowed;
+}

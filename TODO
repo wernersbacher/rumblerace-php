@@ -36,6 +36,7 @@ USABILITY
 
 
 2018
+* select styles, msg stylen
 * news aus db lesen
 * getCurrentRunningRaces() verarbeiten
 * achievements

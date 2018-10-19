@@ -41,7 +41,7 @@ function getLigaProg($liga = -1, $exp = -1) {
     else
         $diffs["prog"] = round(100 * $diff_player / $diff_liga, 2);
     //return round(100 * $diff_player / $diff_liga, 2);
-    
+
     return $diffs;
 }
 
@@ -378,6 +378,40 @@ function outputDetails($acc, $speed, $hand, $dura, $br = false) {
         $umbruch = "";
 
     return "A:$acc S:$speed $umbruch H:$hand D:$dura";
+}
+
+/*
+ * $item muss acc, speed, hand, dura und auch die max werte haben.
+ */
+
+function outputItemAttributes($item) {
+    global $_config;
+    $partVals = [];
+    $part_sum = 0;
+    $part_max = 0;
+    $htmlAttributes = "";
+    //Loop through all attributes and gen sum
+    foreach ($_config["parts"]["valueArr"] as $attribut) {
+        $part_sum += $partVals["curr"][$attribut] = $item[$attribut]; //part value currently
+        $part_max += $partVals["max"][$attribut] = $item["m_" . $attribut]; //max value and sum up
+        $partVals["min"][$attribut] = $_config["calc"]["partLowest"] * $partVals["max"][$attribut]; //min value
+        if ($partVals["max"][$attribut] > 0) {
+            $rarity = ($partVals["curr"][$attribut] - $partVals["min"][$attribut]) / ($partVals["max"][$attribut] - $partVals["min"][$attribut]);
+            $color = colorRarity(100 * $rarity)["color"];
+        } else
+            $color = "#696969";
+
+        $htmlAttributes .= "<div class='stat_image_wrapper_tuner'><img src='img/stats/" . $attribut . "1.png' alt='$attribut'/></div> 
+                            <span title='min: " . $partVals["min"][$attribut] . ", max: " . $partVals["max"][$attribut] . "' style='color:$color; background-color: " . $color . "45' class='part_val tune_$attribut'>" . $partVals["curr"][$attribut] . "</span><br/>";
+    }
+    $part_min = $part_max / 2;
+    $sum_rarity = 100 * ($part_sum - $part_min) / ($part_max - $part_min);
+    $sum_color = colorRarity($sum_rarity);
+
+    return [
+        "part_rarity" => $sum_color,
+        "html" => $htmlAttributes
+    ];
 }
 
 function outputTut($val, $l) {

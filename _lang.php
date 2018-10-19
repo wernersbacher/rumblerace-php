@@ -502,7 +502,7 @@ $lg["log_welcome_msg"] = ['Welcome to Racing Inc! Have fun playing!', 'Willkomme
 
 // rarity
 $lg["bad"] = ["bad", "schlecht"];
-$lg["average"] = ["average", "durschnitt"];
+$lg["average"] = ["average", "durchschnitt"];
 $lg["good"] = ["good", "gut"];
 $lg["rare"] = ["rare", "selten"];
 $lg["legendary"] = ["legendary", "legendär"];
