@@ -1,15 +1,15 @@
 USABILITY
 
-* TODO sortieren
-* value bei sell auslesen, nicht mitgeben
 * zufall bei rennenauswertung
 
-* rarity farben auslagern??
+* rarity farben auslagern
+* rarity bei allen unterseiten gleich anzeigen
 * besondere teile anzeigen
 
 * log zusammenfassen, bzw nachrichten löschen
 * drop down wieder hinzu?
 * syslog, fertiges teil? oder im lager neues markieren
+* syslog nach kategorien sortieren, mittels css durchschalten
 
 * Markt auf unterseiten verschieben? -> weniger menüpunkte
 * redirects ausbauen:
@@ -35,6 +35,7 @@ USABILITY
 
 
 2018
+* news aus db lesen
 * getCurrentRunningRaces() verarbeiten
 * achievements
 * format auch zu käufen hinzu! -> in dollar rein? test mit komma und großen zahlen TESTEN

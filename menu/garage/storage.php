@@ -6,22 +6,33 @@ $output .= "<div id='storage'>";
 
 if ($mode == "sell" && isset($post['sell'])) { //Teil verkaufen
     $str_id = $post["storage_id"];
-    $part = $post["part"];
-    $value = "todo";
-    $liga = $post["liga"];
+    $str_data = queryMarketPartData($str_id);
 
-    $output .= "<div class='textCenter'>";
-    $output .= "<b>$part ($value) ($liga)</b><br/>";
-    $output .= put("market_sell", $l) . ":";
+    if ($str_data) {
+        $part = $str_data["part"];
+        $liga = $str_data["liga"];
 
-    $output .= "<form method='POST' action='?page=$page&sub=storage'>
+        $acc = $str_data["acc"];
+        $speed = $str_data["speed"];
+        $hand = $str_data["hand"];
+        $dura = $str_data["dura"];
+
+
+        $output .= "<div class='textCenter'>";
+        $output .= "<b>$part (" . outputDetails($acc, $speed, $hand, $dura) . ") ($liga)</b><br/>";
+        $output .= put("market_sell", $l) . ":";
+
+        $output .= "<form method='POST' action='?page=$page&sub=storage'>
                         <input type='hidden' name='storage_id' value='" . $str_id . "'>
                         <input type='number' min='0.01' step='0.01' name='price' placeholder='100' class='tableTopInput'>
                         <input class='sellButton tableTopButton' name='confirmed' type='submit' value='verkaufen'>
                     </form>";
 
-    $output .= "<br/>" . put("market_with", $l);
-    $output .= "</div>";
+        $output .= "<br/>" . put("market_with", $l);
+        $output .= "</div>";
+    } else {
+        $output .= put("part_sold", $l);
+    }
 } else {
 
     if (isset($post['confirmed'])) {
@@ -68,22 +79,21 @@ if ($mode == "sell" && isset($post['sell'])) { //Teil verkaufen
                     $part_max = 0;
                     $htmlAttributes = "";
                     //Loop through all attributes and gen sum
-                    foreach($_config["parts"]["valueArr"] as $attribut) {
+                    foreach ($_config["parts"]["valueArr"] as $attribut) {
                         $part_sum .= $partVals["curr"][$attribut] = $item[$attribut]; //part value currently
-                        $part_max .= $partVals["max"][$attribut] = $item["m_".$attribut]; //max value and sum up
+                        $part_max .= $partVals["max"][$attribut] = $item["m_" . $attribut]; //max value and sum up
                         $partVals["min"][$attribut] = $_config["calc"]["partLowest"] * $partVals["max"][$attribut]; //min value
-                        if($partVals["max"][$attribut] > 0) {
-                            $rarity = ($partVals["curr"][$attribut] - $partVals["min"][$attribut])/($partVals["max"][$attribut]-$partVals["min"][$attribut]);
-                            $color = colorRarity(100 * $rarity); 
-                        } else 
+                        if ($partVals["max"][$attribut] > 0) {
+                            $rarity = ($partVals["curr"][$attribut] - $partVals["min"][$attribut]) / ($partVals["max"][$attribut] - $partVals["min"][$attribut]);
+                            $color = colorRarity(100 * $rarity);
+                        } else
                             $color = "#696969";
                         //$partVals["color"][$attribut] = colorFromPercent($percent);
-                        $htmlAttributes .= "<div class='stat_image_wrapper_tuner'><img src='img/stats/".$attribut."1.png' alt='$attribut'/></div> 
-                            <span title='min: ".$partVals["min"][$attribut].", max: ".$partVals["max"][$attribut]."' style='color:$color; background-color: ".$color."45' class='part_val tune_$attribut'>".$partVals["curr"][$attribut]."</span><br/>";
-                        
+                        $htmlAttributes .= "<div class='stat_image_wrapper_tuner'><img src='img/stats/" . $attribut . "1.png' alt='$attribut'/></div> 
+                            <span title='min: " . $partVals["min"][$attribut] . ", max: " . $partVals["max"][$attribut] . "' style='color:$color; background-color: " . $color . "45' class='part_val tune_$attribut'>" . $partVals["curr"][$attribut] . "</span><br/>";
                     }
-                    
-                    
+
+
                     $rows .= "<tr>
                 <td class='partTitle'>" . put($item["part"], $l) . "</td>
                 <td class='partPerf'>
