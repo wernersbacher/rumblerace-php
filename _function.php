@@ -131,9 +131,10 @@ function getFreeGarageSlots() {
 }
 
 function getValues($array) {
+    global $_config;
     $ret_array = array();
     foreach ($array as $key => $value) {
-        $rand = getExpRand(floor($value * (2 / 3)), $value);
+        $rand = getExpRand(floor($value * $_config["calc"]["partLowest"]), $value); //2/3 des orig wertes
         if ($rand < 1 && $value > 0) //Gibt immer min. 1 zurück, außer maximal ist auch 0
             $rand = 1;
         else if ($value == 0)

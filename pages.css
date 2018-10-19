@@ -409,6 +409,11 @@ tr:nth-child(even) {
     font-size:15px;
 }
 
+.part_val {
+    min-width:25px;
+    display:inline-block;
+}
+
 .carTuningTitle {
     font-weight:bold;
     font-size: 34px;

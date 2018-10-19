@@ -22,3 +22,7 @@ $_config["racing"]["carWeight"] = 0.75; //decimal procent, driver_factor = 1-car
 
 
 $_config["calc"]["rewardBaseExpo"] = 1.12;
+$_config["calc"]["partLowest"] = 0.5;
+
+//DB "Settings"
+$_config["parts"]["valueArr"] = ["acc", "speed", "hand", "dura"];

@@ -402,8 +402,7 @@ function queryPartBuy($part_id, $price, $dur) {
     return $out;
 }
 
-
-
+/*
 function queryMaxPartValues() {
      global $mysqli;
     $sql = "SELECT sr.id as storage_id,
@@ -427,6 +426,16 @@ function queryMaxPartValues() {
         }
     } else
         return;
+}*/
+
+function queryRunningPartTime($part) {
+    global $mysqli;
+    $sql = "SELECT sr.time_end as time_end, sr.dur as saved_dur, pa.duration as duration FROM storage_run sr
+            LEFT JOIN parts pa
+                ON pa.id = sr.part_id
+                WHERE pa.part = '" . mysqli_real_escape_string($mysqli, $part) . "' AND sr.user_id = '" . $_SESSION["user_id"] . "'";
+
+    return getColumn($sql);
 }
 
 function queryPartsBuildingDone() {
@@ -486,7 +495,8 @@ function queryPartsBuildingDone() {
 }
 
 function queryStorage() {                                                                                                           //Max values for colors
-    $sql = "SELECT sr.id as id, pa.liga as liga, pa.part as part, pa.kat as kat, sr.garage_id, sr.acc, sr.speed, sr.hand, sr.dura, pa.acc, pa.speed, pa.hand, pa.dura
+    $sql = "SELECT sr.id as id, pa.liga as liga, pa.part as part, pa.kat as kat, 
+        sr.garage_id, sr.acc, sr.speed, sr.hand, sr.dura, pa.acc as m_acc, pa.speed as m_speed, pa.hand as m_hand, pa.dura as m_dura
             FROM storage sr
             LEFT JOIN parts pa
                 ON pa.id = sr.part_id

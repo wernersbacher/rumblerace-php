@@ -7,7 +7,7 @@ $output .= "<div id='storage'>";
 if ($mode == "sell" && isset($post['sell'])) { //Teil verkaufen
     $str_id = $post["storage_id"];
     $part = $post["part"];
-    $value = $post["value"];
+    $value = "todo";
     $liga = $post["liga"];
 
     $output .= "<div class='textCenter'>";
@@ -63,28 +63,34 @@ if ($mode == "sell" && isset($post['sell'])) { //Teil verkaufen
         if ($storage)
             foreach ($storage as $item) {
                 if ($item["kat"] == $kat && $item["garage_id"] == 0) {
-                    $acc = $item["acc"];
-                    $speed = $item["speed"];
-                    $hand = $item["hand"];
-                    $dura = $item["dura"];
-
+                    $partVals = [];
+                    $part_sum = 0;
+                    $part_max = 0;
+                    $htmlAttributes = "";
+                    //Loop through all attributes and gen sum
+                    foreach($_config["parts"]["valueArr"] as $attribut) {
+                        $part_sum .= $partVals["curr"][$attribut] = $item[$attribut]; //part value currently
+                        $part_max .= $partVals["max"][$attribut] = $item["m_".$attribut]; //max value and sum up
+                        $partVals["min"][$attribut] = $_config["calc"]["partLowest"] * $partVals["max"][$attribut]; //min value
+                        if($partVals["max"][$attribut] > 0)
+                            $color = colorFromPercent(100 *($partVals["curr"][$attribut] - $partVals["min"][$attribut])/($partVals["max"][$attribut]-$partVals["min"][$attribut])); 
+                        else 
+                            $color = "#00";
+                        //$partVals["color"][$attribut] = colorFromPercent($percent);
+                        $htmlAttributes .= "<div class='stat_image_wrapper_tuner'><img src='img/stats/".$attribut."1.png' alt='$attribut'/></div> <span style='color:$color' class='part_val tune_$attribut'>".$partVals["curr"][$attribut]."</span><br/>";
+                    }
+                    
+                    
                     $rows .= "<tr>
                 <td class='partTitle'>" . put($item["part"], $l) . "</td>
-                <td class='partPerf' title='Accel | Speed | Handling | Dura'>
-                <!--" . outputDetails($acc, $speed, $hand, $dura, true) . "-->
-                    <div class='stat_image_wrapper_tuner'><img src='img/stats/acc1.png' alt='Acc'/></div> <span class='tune_acc'>$acc</span><br/>
-                    <div class='stat_image_wrapper_tuner'><img src='img/stats/speed1.png' alt='speed'/></div> <span class='tune_speed'>$speed</span><br/> 
-                    <div class='stat_image_wrapper_tuner'><img src='img/stats/handling1.png' alt='hand'/></div> <span class='tune_speed'>$hand</span><br/>
-                    <div class='stat_image_wrapper_tuner'><img src='img/stats/strength1.png' alt='str'/></div> <span class='tune_speed'>$dura</span> 
+                <td class='partPerf'>
+                    $htmlAttributes
                  
-
-</td>
                 <td>" . put("liga", $l) . " " . $item["liga"] . "</td>
                 <td>
                     <form method='POST' action='?page=$page&sub=storage&mode=sell'>
                         <input type='hidden' name='storage_id' value='" . $item["id"] . "'>
                         <input type='hidden' name='part' value='" . put($item["part"], $l) . "'>
-                        <input type='hidden' name='value' value='A:$acc S:$speed H:$hand D:$dura'>
                         <input type='hidden' name='liga' value='" . put("liga", $l) . " " . $item["liga"] . "'>
                         <input class='sellButton tableTopButton' name='sell' type='submit' value='" . put("sell_it", $l) . "'>
                     </form>
