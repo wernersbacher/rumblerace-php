@@ -79,13 +79,18 @@ if ($mode == "sell" && isset($post['sell'])) { //Teil verkaufen
                     $attr = outputItemAttributes($item);
                     $html = $attr["html"];
                     $part_rarity = $attr["part_rarity"];
+                    $new = $item["new"];
 
 
                     $rows .= "<tr>
                 <td class='partTitle'>
-                <div class='partTitleFormat'>" . put($item["part"], $l) . "</div>
-                    <span class='tune_rarity' style='color:" . $part_rarity["color"] . "'>" . put($part_rarity["name"], $l) . "
-                        
+                <div class='partTitleFormat'>" . put($item["part"], $l) . "
+                    
+                        <span class='new_part_hint' ". boolToHide($new).">".put("new",$l)."</span>
+                    </div>
+                    
+                    <span class='tune_rarity' style='color:" . $part_rarity["color"] . "'>
+                        " . put($part_rarity["name"], $l) . "
                     </span>
                     <div>" . formatLevelColor($item["liga"]) . "</div>
                 </td>
@@ -121,3 +126,7 @@ if ($mode == "sell" && isset($post['sell'])) { //Teil verkaufen
 }
 
 $output .= "</div>";
+
+
+//mark new parts as "read"
+markPartsAsRead();

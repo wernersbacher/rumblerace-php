@@ -28,6 +28,18 @@ function isThereBonus() {
     return $count;
 }
 
+function areThereNewParts() {
+    $sql = "SELECT COUNT(id) as num FROM storage WHERE user_id = '" . $_SESSION["user_id"] . "' AND new = '1'";
+    $entry = querySQL($sql);
+
+    $row = mysqli_fetch_array($entry, MYSQLI_ASSOC);
+    $c = intval($row["num"]);
+    if ($c) {
+        return $c;
+    } else
+        return 0;
+}
+
 
 /*
  * Generierung der Notifies
@@ -42,7 +54,8 @@ function checkNotifies() {
         "secretary" => getNewLogNum(),
         "upgrades" => getPlayerUpPoints(),
         "racing" => getMaxRacesLeft(),
-        "tuner" => canBuildPart()
+        "tuner" => canBuildPart(),
+        "storage" => areThereNewParts()
     ];
     
     return $return;

@@ -363,8 +363,8 @@ function outputProfileList($list) {
 function outputAttributesList($acc1, $speedl, $handl, $dural) {
     return "<div class='stat_image_wrapper_tuner'><img src='img/stats/acc1.png' alt='Acc'/></div> <span class='tune_acc'>$acc1</span> |
                                 <div class='stat_image_wrapper_tuner'><img src='img/stats/speed1.png' alt='speed'/></div> <span class='tune_speed'>$speedl</span> | 
-                                <div class='stat_image_wrapper_tuner'><img src='img/stats/handling1.png' alt='hand'/></div> <span class='tune_speed'>$handl</span> |
-                                <div class='stat_image_wrapper_tuner'><img src='img/stats/strength1.png' alt='str'/></div> <span class='tune_speed'>$dural</span>";
+                                <div class='stat_image_wrapper_tuner'><img src='img/stats/hand1.png' alt='hand'/></div> <span class='tune_speed'>$handl</span> |
+                                <div class='stat_image_wrapper_tuner'><img src='img/stats/dura1.png' alt='str'/></div> <span class='tune_speed'>$dural</span>";
 }
 
 function outputToProcent($dec) {

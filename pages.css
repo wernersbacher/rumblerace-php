@@ -254,7 +254,7 @@ select {
     margin: 1px 3px;
 }
 .smallProgress .tuneProgressText {
-        font-size: 14px;
+    font-size: 14px;
     font-weight: bold;
     font-style: italic;
     font-family: Kodchasan;
@@ -351,12 +351,29 @@ tr:nth-child(even) {
 }
 
 .partTitleFormat {
+    position:relative;
     font-size: 15px;
     margin-bottom: 3px;
     display:block;
 }
 .tune_rarity {
+    position:relative;
+}
 
+.new_part_hint {
+    position: absolute;
+    /* top: -2px; */
+    right: 7px;
+    padding: 2px 4px;
+    border-radius: 3px;
+    background-color: #10af23;
+    color: white;
+    /* font-weight: bold; */
+    /* font-style: italic; */
+    font-size: 13px;
+    /* font-family: Kodchasan; */
+    /* border: 1px solid grey; */
+    box-shadow: 0px 4px 11px -3px black;
 }
 /* stat wrapper */
 .stat_image_wrapper {

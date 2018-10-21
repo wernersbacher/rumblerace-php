@@ -492,10 +492,12 @@ function queryPartsBuildingDone() {
         }
         mysqli_autocommit($mysqli, TRUE);
     }
+    
+    return $out;
 }
 
 function queryStorage() {                                                                                                           //Max values for colors
-    $sql = "SELECT sr.id as id, pa.liga as liga, pa.part as part, pa.kat as kat, 
+    $sql = "SELECT sr.id as id, pa.liga as liga, pa.part as part, pa.kat as kat, sr.new as new,
         sr.garage_id, sr.acc, sr.speed, sr.hand, sr.dura, pa.acc as m_acc, pa.speed as m_speed, pa.hand as m_hand, pa.dura as m_dura
             FROM storage sr
             LEFT JOIN parts pa
@@ -504,6 +506,11 @@ function queryStorage() {                                                       
             ORDER BY part ASC, value DESC";
 
     return getArray($sql);
+}
+
+function markPartsAsRead() {
+    $sql = "UPDATE storage SET new = 0 WHERE user_id = '".$_SESSION["user_id"]."'";
+    querySQL($sql);
 }
 
 //checkt, ob user ein auto mit der $id besitrzt.

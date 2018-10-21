@@ -227,6 +227,7 @@ $lg["part_trashed"] = ["Part was trashed", "Teil wurde entfernt"];
 $lg["car_not_found"] = ["This car doesn't exist anymore.", "Dieses Auto gibt es nicht mehr."];
 $lg["car_sold"] = ["The car was sold to the System!", "Dieses Auto wurde erfolgreich verkauft!"];
 $lg["car_is_racing"] = ["This car is currently not available!", "Dieses Auto ist gerade nicht verfügbar!"];
+$lg["new"] =["NEW", "NEU"];
 
 //Car Attribute /teile / Hinweise (tooltips?)
 $lg["tip_acc"] = ["Acceleration is important to go fast.", "Beschleunigung ist wichtig, um schnell vom Fleck zu kommen."];

@@ -178,8 +178,8 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
                         <div class='dealInfo'>
                             <span><div class='stat_image_wrapper'><img src='img/stats/acc1.png' alt='Acc'/></div> " . $acc["sum"] . " (" . $acc["car"] . " + " . $acc["parts"] . ")</span> 
                             <span><div class='stat_image_wrapper'><img src='img/stats/speed1.png' alt='speed'/></div> " . $speed["sum"] . " (" . $speed["car"] . " + " . $speed["parts"] . ")</span> 
-                            <span><div class='stat_image_wrapper'><img src='img/stats/handling1.png' alt='handling'/></div> " . $hand["sum"] . " (" . $hand["car"] . " + " . $hand["parts"] . ")</span> 
-                            <span><div class='stat_image_wrapper'><img src='img/stats/strength1.png' alt='strength'/></div> " . $dura["sum"] . " (" . $dura["car"] . " + " . $dura["parts"] . ")</span> 
+                            <span><div class='stat_image_wrapper'><img src='img/stats/hand1.png' alt='handling'/></div> " . $hand["sum"] . " (" . $hand["car"] . " + " . $hand["parts"] . ")</span> 
+                            <span><div class='stat_image_wrapper'><img src='img/stats/dura1.png' alt='strength'/></div> " . $dura["sum"] . " (" . $dura["car"] . " + " . $dura["parts"] . ")</span> 
                         </div>
 
                     </div>

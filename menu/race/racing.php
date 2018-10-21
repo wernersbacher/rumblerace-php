@@ -167,8 +167,8 @@ if($races)
                             <div class='tuneBuyDetails'>
                                 <div class='stat_image_wrapper_tuner'><img src='img/stats/acc1.png' alt='Acc'/></div> <span class='tune_acc'>$macc</span> |
                                 <div class='stat_image_wrapper_tuner'><img src='img/stats/speed1.png' alt='speed'/></div> <span class='tune_speed'>$mspeed</span> | 
-                                <div class='stat_image_wrapper_tuner'><img src='img/stats/handling1.png' alt='hand'/></div> <span class='tune_speed'>$mhand</span> |
-                                <div class='stat_image_wrapper_tuner'><img src='img/stats/strength1.png' alt='str'/></div> <span class='tune_speed'>$mdura</span> 
+                                <div class='stat_image_wrapper_tuner'><img src='img/stats/hand1.png' alt='hand'/></div> <span class='tune_speed'>$mhand</span> |
+                                <div class='stat_image_wrapper_tuner'><img src='img/stats/dura1.png' alt='str'/></div> <span class='tune_speed'>$mdura</span> 
                             </div>
                             
 

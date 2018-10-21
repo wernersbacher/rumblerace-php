@@ -67,8 +67,8 @@ foreach ($cars as $car) {//$car["title"]
                         <div class='dealInfo'>
                             <span><div class='stat_image_wrapper'><img src='img/stats/acc1.png' alt='Acc'/></div> " . $car["acc"]. "</span> 
                             <span><div class='stat_image_wrapper'><img src='img/stats/speed1.png' alt='speed'/></div> " . $car["speed"]. "</span> 
-                            <span><div class='stat_image_wrapper'><img src='img/stats/handling1.png' alt='handling'/></div> " . $car["hand"]. "</span> 
-                            <span><div class='stat_image_wrapper'><img src='img/stats/strength1.png' alt='strength'/></div> " . $car["dura"]. "</span> 
+                            <span><div class='stat_image_wrapper'><img src='img/stats/hand1.png' alt='handling'/></div> " . $car["hand"]. "</span> 
+                            <span><div class='stat_image_wrapper'><img src='img/stats/dura1.png' alt='strength'/></div> " . $car["dura"]. "</span> 
                         </div>
 
                     </div>

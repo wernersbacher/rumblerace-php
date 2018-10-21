@@ -2,23 +2,16 @@ USABILITY
 
 * zufall bei rennenauswertung
 * kauf bestätigung entfernen und modal
-
-
-* rarity bei allen unterseiten gleich anzeigen
-* besondere teile anzeigen (sum rarity)
+* fehlerhafte images ausblenden
 * optionen: modal ausblenden
 
 * log zusammenfassen, bzw nachrichten löschen
 * drop down wieder hinzu?
-* syslog, fertiges teil? oder im lager neues markieren
 * syslog nach kategorien sortieren, mittels css durchschalten
 
 * Markt auf unterseiten verschieben? -> weniger menüpunkte
 * redirects ausbauen:
     weiterleitung entfernen, dafür kann html schneller geladen werden
-
-* notify funktionen:
-    - siehe blatt
 
 * optionen & logout außerhalb des menüs -> top bar
 
