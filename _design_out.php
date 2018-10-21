@@ -52,3 +52,7 @@ function htmlLevelprogress($liga = -1, $exp = -1) {
     $obj = ["html" => $html, "prog" => $prog["exp"]];
     return $obj;
 }
+
+function formatLevelColor($lvl) {
+    return "<span class='lvlOutput lvl_$lvl'>LEVEL$lvl</span>";
+}

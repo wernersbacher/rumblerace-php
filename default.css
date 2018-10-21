@@ -15,6 +15,10 @@ form input {
     margin-top: 3px;
 }
 
+.inline-form {
+    display:inline-block;
+}
+
 noscript {
     font-weight:bold;
 }

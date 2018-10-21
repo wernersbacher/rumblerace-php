@@ -69,7 +69,7 @@ if ($mode == "sell" && isset($post['sell'])) { //Teil verkaufen
         $rows = "";
         $output .= "<table id='$kat' class='tableRed tableClick'>
                 <tr>
-                  <th colspan='5'>" . put($kat, $l) . "</th>
+                  <th colspan='3'>" . put($kat, $l) . "</th>
                 </tr>";
         if ($storage)
             foreach ($storage as $item) {
@@ -84,22 +84,22 @@ if ($mode == "sell" && isset($post['sell'])) { //Teil verkaufen
                     $rows .= "<tr>
                 <td class='partTitle'>
                 <div class='partTitleFormat'>" . put($item["part"], $l) . "</div>
-                    <span class='tune_rarity' style='color:" . $part_rarity["color"] . "'>" . put($part_rarity["name"], $l) . "</span>
-                    </td>
+                    <span class='tune_rarity' style='color:" . $part_rarity["color"] . "'>" . put($part_rarity["name"], $l) . "
+                        
+                    </span>
+                    <div>" . formatLevelColor($item["liga"]) . "</div>
+                </td>
                 <td class='partPerf'>
                     $html
                  
-                <td>" . put("liga", $l) . " " . $item["liga"] . "</td>
                 <td>
-                    <form method='POST' action='?page=$page&sub=storage&mode=sell'>
+                    <form class='inline-form' method='POST' action='?page=$page&sub=storage&mode=sell'>
                         <input type='hidden' name='storage_id' value='" . $item["id"] . "'>
                         <input type='hidden' name='part' value='" . put($item["part"], $l) . "'>
                         <input type='hidden' name='liga' value='" . put("liga", $l) . " " . $item["liga"] . "'>
                         <input class='sellButton tableTopButton' name='sell' type='submit' value='" . put("sell_it", $l) . "'>
                     </form>
-                </td>
-                <td>
-                    <form method='POST' data-dialog='Do you want to delete this part?' action='?page=tuner&sub=storage&mode=trash'>
+                    <form class='inline-form' method='POST' data-dialog='Do you want to delete this part?' action='?page=tuner&sub=storage&mode=trash'>
                         <input type='hidden' name='storage_id' value='" . $item["id"] . "'>
                         <input class='sellButton tableTopButton redButton dialog' name='trash' type='submit' value='X'>
                     </form>

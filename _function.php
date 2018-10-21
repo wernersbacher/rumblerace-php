@@ -410,7 +410,7 @@ function outputItemAttributes($item, $inline = false) {
     }
     $part_min = $part_max / 2;
     $sum_rarity = 100 * ($part_sum - $part_min) / ($part_max - $part_min);
-    echo "$sum_rarity: ($part_sum - $part_min) / ($part_max - $part_min) <br/>";
+    
     $sum_color = colorRarity($sum_rarity);
 
     return [

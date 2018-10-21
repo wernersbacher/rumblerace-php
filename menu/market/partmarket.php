@@ -135,21 +135,20 @@ if ($mode == "buy" && isset($get["id"])) {
     $output .= $pages;
 
     //Markt ausgeben
-    $output .= "<table style='font-size:13px;' class='tableRed selling noclick'>
+    $output .= "<table style='font-size:13px;' class='tableRed noclick'>
                 <tr>
-                  <th>" . put("seller", $l) . "</th>
-                  <th>" . put("part", $l) . "</th>
-                  <th>" . put("power", $l) . "</th>
-                  <th>" . put("price", $l) . "</th>
+                  <th colspan='4'>" . put("market", $l) . "</th>
                 </tr>";
 
     //Aktuelle Seite auslesen
     $partMarket = queryMarketParts($s, false, $partFilter, $ligaFilter);
     if ($partMarket)
         foreach ($partMarket as $item) {
-            $attr = outputItemAttributes($item, true);
+            $attr = outputItemAttributes($item, false);
             $part_rarity = $attr["part_rarity"];
             $html = $attr["html"];
+            
+            
 
             $acc = $item["acc"];
             $speed = $item["speed"];
@@ -159,10 +158,18 @@ if ($mode == "buy" && isset($get["id"])) {
             $link = "?page=market&sub=partmarket&mode=buy&id=" . $item["id"];
 
             $output .= "<tr>";
-            $output .= "<td class='partSeller'><a href='$link'>" . $item["username"] . "</a></td>
-                <td class='partTitle'><a href='$link'>" . put($item["part"], $l) . " (" . $item["liga"] . ")</a></td>
-                <td class='partPerf'><a href='$link'>$html</a></td>
-                <td><a href='$link'>" . dollar($item["sell"]) . "</a></td>";
+            $output .= "
+                <td class='partTitle'><div class='partTitleFormat'>" . put($item["part"], $l) . "</div>
+                    <span class='tune_rarity' style='color:" . $part_rarity["color"] . "'>" . put($part_rarity["name"], $l) . "</span>
+                    
+                    <div>" . formatLevelColor($item["liga"]) . "</div>
+                    </td>
+                <td class='partPerf'>$html</td>
+                <td>" . dollar($item["sell"]) . "<br/>" . $item["username"] . "</td>
+                    <td>
+                    <a href='$link'><button class='tableTopButton'>" . put("buy", $l) . "</button></a>
+                </td>
+                    ";
             $output .= "</tr>";
         } else {
         $output .= "<tr><td colspan='4'>" . put("market_empty", $l) . "</td></tr>";

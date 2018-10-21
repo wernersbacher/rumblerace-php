@@ -254,7 +254,10 @@ select {
     margin: 1px 3px;
 }
 .smallProgress .tuneProgressText {
-    font-size:15px;
+        font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    font-family: Kodchasan;
 }
 
 .smallProgress {
@@ -335,7 +338,7 @@ tr:nth-child(even) {
 }
 
 .tableRed .partTitle {
-    width:35%;
+    width:30%;
 }
 
 .tableRed .partPerf {
@@ -1084,3 +1087,18 @@ tr:nth-child(even) {
     font-size: 19px;
 }
 
+
+/*
+    LEVELS, RARITYS
+*/
+
+.lvlOutput {
+    font-weight: bold;
+    font-style: italic;
+    font-family: Kodchasan;
+    font-size: 12px;
+}
+
+.lvl_1 {
+    color:darkred;
+}
