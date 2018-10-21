@@ -83,7 +83,11 @@ h2 {
 }
 
 #topContent {
+    display:flex;
+    justify-content: space-between;
     width:800px;
+
+    height: 100%;
     margin:auto;
     background: #484848;
     padding: 0px 5px;
@@ -92,12 +96,33 @@ h2 {
 }
 
 #blackMenu {
-    display:inline-block;
-    position:absolute;
+
     right:5px;
     /*text-transform: lowercase;*/
     color:white;
 
+}
+
+.titleMenu {
+    display:flex;
+    justify-content: space-between;
+}
+
+.titleButton {
+    height: 100%;
+    padding: 0px 6px;
+    background: #656464;
+    /* box-sizing: border-box; */
+    /* margin: 3px; */
+    border-radius: 2px;
+}
+
+.titleButton:hover {
+    background: #797979;
+}
+
+.titleButton img {
+    width:22px;
 }
 
 #mainMenuWrapper {
@@ -873,5 +898,5 @@ hr {
 
 select:disabled,
 select[disabled]{
-  cursor:not-allowed;
+    cursor:not-allowed;
 }

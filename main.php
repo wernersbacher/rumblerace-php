@@ -169,8 +169,8 @@ Love for Meri
         <!-- Top Segment Anfang -->
         <div id="topBar">
             <div id="topContent">
-                <a href='main.php'><span class="rumblerace">RACING <span class="colored">INC.</span></span></a>
-                <span id="blackMenu">ALPHA</span>
+                <div><a href='main.php'><span class="rumblerace">RACING <span class="colored">INC.</span></span></a></div>
+                <div class="titleMenu"> <a href="logout.php"><div class="titleButton"><img src="img/logout40.png" /></div></a></div>
             </div>
         </div>
         <!-- Top Segment Ende -->
