@@ -4,6 +4,22 @@
  * Funktionen, die HTML etc zurückgeben
  */
 
+function calcRarity($p) {
+    $name = "";
+    if ($p < 30)
+        $name = "bad";
+    else if ($p < 50)
+        $name = "average";
+    else if ($p < 80)
+        $name = "good";
+    else if ($p < 100)
+        $name = "rare";
+    else if ($p == 100)
+        $name = "legendary";
+    return $name;
+}
+
+
 function colorRarity($p) {
     if ($p < 30)
         $obj = ["color" => "#696969", "name" => "bad"];
