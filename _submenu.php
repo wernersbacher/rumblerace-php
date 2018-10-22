@@ -9,7 +9,9 @@ function getMenuListTabs($current) {
     $out = "";
 
     foreach ($m as $page => $page_inf) {
-
+        if($page_inf["main"] == false)
+            continue;
+        
         //active showing
         if ($page === $current) {
             $active = " class='sub_active'";
@@ -103,17 +105,17 @@ function getFirstSubmenu($page) {
 
 $m = array();
 
-$m["office"] = ["subs" => ["secretary", "news", "bonus", "messages"], "icon" => "office40"];
-$m["garage"] = ["subs" => ["cars", "storage"], "icon" => "car40"];
-$m["factory"] = ["subs" => ["tuner", "upgrades"], "icon" => "factory"];
-$m["trader"] = ["subs" => ["cardealer"], "icon" => "tools40"];
-$m["drivers"] = ["subs" => ["paddock", "sysDrivers"], "icon" => "man40"];
-$m["race"] = ["subs" => ["racing", "running"], "icon" => "race40"];
-$m["sprit"] = ["subs" => ["produce", "sell"], "icon" => "fuel40"];
-$m["market"] = ["subs" => ["partmarket", "spritmarket"], "icon" => "store40"];
+$m["office"] = ["subs" => ["secretary", "news", "bonus", "messages"], "icon" => "office40", "main" => true];
+$m["garage"] = ["subs" => ["cars", "storage"], "icon" => "car40", "main" => true];
+$m["factory"] = ["subs" => ["tuner", "upgrades"], "icon" => "factory", "main" => true];
+$m["trader"] = ["subs" => ["cardealer"], "icon" => "tools40", "main" => true];
+$m["drivers"] = ["subs" => ["paddock", "sysDrivers"], "icon" => "man40", "main" => true];
+$m["race"] = ["subs" => ["racing", "running"], "icon" => "race40", "main" => true];
+$m["sprit"] = ["subs" => ["produce", "sell"], "icon" => "fuel40", "main" => true];
+$m["market"] = ["subs" => ["partmarket", "spritmarket"], "icon" => "store40", "main" => true];
 //$m["special"] = ["subs" => ["upgrades"], "icon" => "special"];
-$m["world"] = ["subs" => ["profiles", "chat", "globalstats"], "icon" => "world"];
-//$m["options"] = ["subs" => ["settings", "faq", "newbie"], "icon" => "setting40"];
+$m["world"] = ["subs" => ["profiles", "chat", "globalstats"], "icon" => "world", "main" => true];
+$m["options"] = ["subs" => ["settings", "faq", "newbie"], "icon" => "setting40", "main" => false];
 
 //$m["special"] = ["chat", "upgrades", "achievements", "mainstats", "globalstats"];
 //$m["logout"] = [""];

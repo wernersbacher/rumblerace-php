@@ -1,8 +1,12 @@
 USABILITY
 
+* ligabegrenzung aufheben
+    -> level kurve anpassen
+
+* teile ab liga x bis y in db
+
 * zufall bei rennenauswertung
 * kauf bestätigung entfernen und modal
-* fehlerhafte images ausblenden
 * optionen: modal ausblenden
 
 * log zusammenfassen, bzw nachrichten löschen
@@ -13,10 +17,7 @@ USABILITY
 * redirects ausbauen:
     weiterleitung entfernen, dafür kann html schneller geladen werden
 
-* optionen & logout außerhalb des menüs -> top bar
-
 * anpassung mobile design
-* hilfe button
 * rennen fahren: Fahrer und fahrzeug auswählen, besse rdarstellen wenn keiner mehr da ist
 
 * badge am auto, wenn teil einbaubar ist

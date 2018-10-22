@@ -115,6 +115,7 @@ h2 {
     /* box-sizing: border-box; */
     /* margin: 3px; */
     border-radius: 2px;
+    margin-left:5px;
 }
 
 .titleButton:hover {
