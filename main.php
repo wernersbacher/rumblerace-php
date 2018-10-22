@@ -118,6 +118,7 @@ Love for Meri
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
         <link rel="stylesheet" href="src/font.css">
+        <link rel="stylesheet" href="lib/nice-select.css">
         <link href="https://fonts.googleapis.com/css?family=Kodchasan:400,700" rel="stylesheet">
         <link rel="stylesheet" href="mobile.css">
         <link rel="stylesheet" href="default.css">
@@ -132,6 +133,7 @@ Love for Meri
         <!--<script type="text/javascript" src="lib/parallax.min.js"></script>-->
         <script type="text/javascript" src="lib/jquery-ui.min.js"></script>
         <script type="text/javascript" src="lib/jquery.connections.js"></script>
+        <script type="text/javascript" src="lib/jquery.nice-select.min.js"></script>
         <script type="text/javascript" src="lib/form.min.js"></script>
         <script type="text/javascript" src="lib/date.js"></script>
         <script type="text/javascript" src="lib/tooltipster.bundle.min.js"></script>

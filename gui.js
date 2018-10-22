@@ -117,9 +117,9 @@ function startWait() {
 }
 
 function startBonusTimer() {
-    if ($("#bonus_timer")) {
+    if ($("#bonus_timer").length) {
         var seconds = $("#bonus_timer").data("left");
-        
+
         function timer() {
             var days = Math.floor(seconds / 24 / 60 / 60);
             var hoursLeft = Math.floor((seconds) - (days * 86400));
@@ -131,15 +131,16 @@ function startBonusTimer() {
                 return (n < 10 ? "0" + n : n);
             }
             document.getElementById('bonus_timer').innerHTML = pad(hours) + ":" + pad(minutes) + ":" + pad(remainingSeconds);
-            if (seconds === 0) {
-                clearInterval(countdownTimer);
+            if (seconds <= 0) {
+                clearInterval(bonusTimer);
                 document.getElementById('bonus_timer').innerHTML = "";
                 $("#bonus_btn_container").find(".bonus_button").prop("disabled", false);
             } else {
                 seconds--;
             }
         }
-        var countdownTimer = setInterval(timer, 1000);
+
+        var bonusTimer = setInterval(timer, 1000);
     }
 }
 
@@ -206,6 +207,8 @@ $(document).ready(function () {
     if (window.history.replaceState) {
         window.history.replaceState(null, null, window.location.href);
     }
+
+    $('.beautySelect').niceSelect();
 
     //Make tables clickable
     $("table:not(.noclick)").find("th").click(function () {

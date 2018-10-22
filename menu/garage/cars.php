@@ -101,7 +101,7 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
             $select .= "<tr>
                         <td>" . put($part, $l) . "</td>
                         <td>
-                            <select name='$part' ".boolToDis($partsAvail).">";
+                            <select class='beautySelect' name='$part' ".boolToDis($partsAvail).">";
 
             $select .= $selectGenerated;
             $select .= "</select>

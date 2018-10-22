@@ -5,6 +5,8 @@ USABILITY
 
 * teile ab liga x bis y in db
 
+* wenn keine teile -> nichts ausgeben
+
 * zufall bei rennenauswertung
 * kauf bestätigung entfernen und modal
 * optionen: modal ausblenden
@@ -19,6 +21,7 @@ USABILITY
 
 * anpassung mobile design
 * rennen fahren: Fahrer und fahrzeug auswählen, besse rdarstellen wenn keiner mehr da ist
+    - design fahrer select
 
 * badge am auto, wenn teil einbaubar ist
 
