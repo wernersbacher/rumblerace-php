@@ -127,7 +127,7 @@ if($races)
     $whyBlock = "";
     
     if($canRace === "exp") {
-        $exp_needed = expToLiga($liga)*$race["exp_needed"]* getLigaQuot();
+        $exp_needed = levelExp($liga)*$race["exp_needed"]* getLigaQuot();
         $whyBlock = "only ".ep($exp_needed-getPlayerExp())." left";
     } else if ($canRace === "sprit") {
         $whyBlock = "Not enough fuel. ".$race["sprit_needed"]."L is needed";

@@ -95,6 +95,8 @@ $sprit2 = "<span title='" . gas(nwc($spm / 60)) . "/sec' id='spritTags' data-spr
 $notify = getNotifications();
 
 //var_dump(getNotificationsArray());
+//for($i = 1; $i<20; $i++) 
+//    echo "$i: ".format(levelExp($i)).",  ".format(levelExp($i))."<br/>";
 
 
 ?>

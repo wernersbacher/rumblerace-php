@@ -606,7 +606,7 @@ function queryUserCanRace($race_id, $exp, $sprit) {
     if ($entry) {
         $row = mysqli_fetch_assoc($entry);
         $liga = intval($row["liga"]);
-        if (expToLiga($liga) * $row["exp_needed"] * getLigaQuot() > $exp) {
+        if (levelExp($liga) * $row["exp_needed"] * getLigaQuot() > $exp) {
             return "exp";
         } else if ($row["sprit_needed"] > $sprit) {
             return "sprit";

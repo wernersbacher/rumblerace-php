@@ -4,9 +4,9 @@ require_once '_game_config.php';
 
 require_once '_design_out.php';
 
-define("LIGA_MULTI", 5);
-define("LIGA_START", 400);
-define("LIGA_MAX", $_config["vars"]["maxLiga"]);
+define("LIGA_MULTI", $_config["liga"]["ligaMulti"]);
+define("LIGA_START", $_config["liga"]["ligaStart"]);
+define("LIGA_MAX", $_config["liga"]["maxLiga"]);
 
 /* Erst Diff ausrechnen
  * Gibt den Fortschritt zur nächsten Liga in % an.
@@ -16,8 +16,8 @@ function getLigaDiffs($liga = -1, $exp = -1) {
     $p_liga = ($liga < 0) ? getPlayerLiga() : $liga; //only use params if available
     $player = ($exp < 0) ? getPlayerExp() : $exp;
 
-    $new_liga = expToLiga($p_liga + 1);
-    $old_liga = expToLiga($p_liga);
+    $new_liga = levelExp($p_liga + 1);
+    $old_liga = levelExp($p_liga);
     $diff_liga = $new_liga - $old_liga;
     $diff_player = $new_liga - $player;
 
@@ -50,7 +50,7 @@ function getLigaQuot() {
 }
 
 function driverUpgradeCost($liga) {
-    return expToLiga($liga + 1);
+    return levelExp($liga + 1);
 }
 
 function login($id, $username, $lang) {
@@ -590,16 +590,15 @@ function queryLigaChange() {
         upgradeLiga($newLiga);
 }
 
-function expToLiga($l) {
+function levelExp($l) {
     if (intval($l) === 1)
         return 0;
-    $l -= 1;
+    
     $exp = LIGA_START;
-    for ($i = 1; $i < $l; $i++) {
-        $exp *= LIGA_MULTI;
-    }
-    return $exp;
+    
+    return $exp *(LIGA_MULTI ** ($l-2));
 }
+
 
 function checkUsername($string) {
     return (preg_match('/[^a-zA-Z0-9_.*-]/', $string) == 0);
