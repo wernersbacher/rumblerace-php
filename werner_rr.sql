@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 21. Okt 2018 um 18:35
+-- Erstellungszeit: 23. Okt 2018 um 09:48
 -- Server-Version: 10.1.36-MariaDB
 -- PHP-Version: 7.2.10
 
@@ -39,7 +39,7 @@ CREATE TABLE `bonus` (
 --
 
 INSERT INTO `bonus` (`user_id`, `last`, `invested`) VALUES
-(1, 1540134029, '0.00'),
+(1, 1540279853, '0.00'),
 (10, 1474368356, '0.00'),
 (11, 1474290715, '0.00'),
 (12, 1474290678, '0.00'),
@@ -457,10 +457,10 @@ CREATE TABLE `fahrer` (
 --
 
 INSERT INTO `fahrer` (`id`, `driver_id`, `user_id`, `name`, `skill`, `liga`, `anteil`) VALUES
-(19, 140920161, 1, 'Renner 1', 737.4633333333329, 2, 12),
-(20, 140920163, 1, 'Markusbacher', 962.8116666666671, 4, 15),
-(21, 150920165, 1, 'Markus W', 3124.506, 5, 12),
-(23, 160920161, 1, 'Driver-ID#32081', 2807.116944444446, 10, 15),
+(19, 140920161, 1, 'Renner 1', 939.0633333333328, 2, 12),
+(20, 140920163, 1, 'Markusbacher', 1214.8116666666674, 4, 15),
+(21, 150920165, 1, 'Markus W', 3408.7060000000006, 5, 12),
+(23, 160920161, 1, 'Driver-ID#32081', 3109.5169444444464, 10, 15),
 (24, 190920164, 10, 'Steve', 9121.618, 1, 13),
 (25, 190920162, 12, 'Driver-ID#22983', 324, 1, 13),
 (26, 190920163, 19, 'Driver-ID#52796', 388, 1, 12),
@@ -963,7 +963,7 @@ INSERT INTO `fahrer` (`id`, `driver_id`, `user_id`, `name`, `skill`, `liga`, `an
 (527, 708, 708, 'Markus Werner', 150, 1, 5),
 (528, 709, 709, 'Markus Werner', 160.65, 2, 6),
 (529, 710, 710, 'Markus Werner', 150, 1, 5),
-(530, 240120171, 1, 'Driver-ID#31743', 1108.5500000000002, 4, 10),
+(530, 240120171, 1, 'Driver-ID#31743', 1410.9500000000007, 4, 10),
 (531, 711, 711, 'Markus Werner', 353.6725, 2, 6),
 (539, 719, 719, 'Markus Werner', 150, 1, 5),
 (540, 720, 720, 'Markus Werner', 150, 1, 5),
@@ -3614,7 +3614,7 @@ CREATE TABLE `loggedin` (
 --
 
 INSERT INTO `loggedin` (`user_id`, `token`, `created`) VALUES
-(1, 'N/lwNFaCporVV+K8xxPh2Te6Key9zHzPA/L/m@Y9F7QKLO0OW4UivX2pXhZjPIap', 1539843881),
+(1, 'AKuWH+AU4e7YQGiCyhBuJDQbcT7XE1a5YiCleUlCkQDFZwPCzD1V2wuIxsc2Se@e', 1540280686),
 (2, '', 1474014885),
 (4, '', 1474028818),
 (5, '', 1474028849),
@@ -3738,11 +3738,11 @@ CREATE TABLE `new_cars` (
 --
 
 INSERT INTO `new_cars` (`id`, `name`, `title`, `acc`, `speed`, `hand`, `dura`, `preis`, `liga`) VALUES
-(1, 'beamer_pole', 'Beamer Pole', 20, 20, 20, 200, 6400, 1),
-(2, 'beamer_gulf', 'Beamer Gulf', 80, 50, 70, 190, 12000, 2),
+(1, 'beamer_pole', 'Beamer Pole', 20, 20, 20, 20, 6400, 1),
+(2, 'beamer_gulf', 'Beamer Gulf', 80, 50, 70, 60, 12000, 2),
 (3, 'lmp_fx1', 'Lampadati FX1', 450, 380, 700, 400, 320000, 7),
 (4, 'lmp_fxs', 'Lampadati FX-s.', 545, 460, 700, 500, 833000, 8),
-(5, 'santini_figurati', 'Santini Figurati', 55, 40, 50, 150, 8000, 1),
+(5, 'santini_figurati', 'Santini Figurati', 55, 40, 50, 45, 8000, 1),
 (6, 'santini_azzuro', 'Santini Azzuro', 95, 100, 80, 150, 16000, 2),
 (7, 'santini_scusi', 'Santini Scusi', 175, 130, 300, 150, 41000, 4),
 (8, 'santini_dolciamaro', 'Santini Dolciamaro \'74', 220, 190, 300, 180, 59400, 5),
@@ -3753,8 +3753,8 @@ INSERT INTO `new_cars` (`id`, `name`, `title`, `acc`, `speed`, `hand`, `dura`, `
 (13, 'beamer_adler', 'Beamer Adler ', 135, 85, 120, 220, 27000, 3),
 (14, 'beamer_gulfr', 'Beamer Gulf R', 200, 200, 200, 200, 55000, 5),
 (15, 'beamer_adlerm', 'Beamer Adler (M)', 300, 300, 300, 300, 85000, 6),
-(17, 'hatcher_vision', 'Hatcher Vision', 45, 55, 40, 140, 7800, 1),
-(18, 'hatcher_legend', 'Hatcher Legend', 90, 90, 70, 230, 13000, 2),
+(17, 'hatcher_vision', 'Hatcher Vision', 45, 55, 40, 50, 7800, 1),
+(18, 'hatcher_legend', 'Hatcher Legend', 90, 90, 70, 130, 13000, 2),
 (20, 'hatcher_crusader', 'Hatcher Crusader', 110, 110, 100, 195, 20000, 3),
 (21, 'hatcher_fires', 'Hatcher Fire S', 190, 118, 200, 180, 40000, 4),
 (22, 'hatcher_firem', 'Hatcher Fire M', 222, 220, 270, 250, 64000, 5),
@@ -3762,8 +3762,8 @@ INSERT INTO `new_cars` (`id`, `name`, `title`, `acc`, `speed`, `hand`, `dura`, `
 (24, 'hatcher_firel', 'Hatcher Fire L', 300, 290, 450, 200, 97340, 6),
 (25, 'hatcher_centurion', 'Hatcher Centurion', 400, 500, 490, 500, 235000, 7),
 (26, 'hatcher_conq', 'Hatcher Conquerer', 600, 500, 620, 380, 850000, 8),
-(27, 'jonda_apex', 'Jõnda Apex', 65, 60, 30, 130, 8000, 1),
-(29, 'jonda_aura', 'Jõnda Aura', 100, 95, 60, 120, 13300, 2),
+(27, 'jonda_apex', 'Jõnda Apex', 65, 60, 30, 77, 8000, 1),
+(29, 'jonda_aura', 'Jõnda Aura', 100, 95, 60, 100, 13300, 2),
 (30, 'jonda_nightline', 'Jõnda Nightline', 130, 115, 120, 100, 21000, 3),
 (31, 'jonda_legacy', 'Jõnda Legacy', 210, 170, 120, 120, 59000, 4),
 (32, 'jonda_motion', 'Jõnda Motion', 270, 240, 180, 230, 72000, 5),
@@ -3962,6 +3962,17 @@ CREATE TABLE `races_run` (
   `driver_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Daten für Tabelle `races_run`
+--
+
+INSERT INTO `races_run` (`id`, `user_id`, `race_id`, `time_end`, `car_id`, `driver_id`) VALUES
+(28, 1, 3, 1540281634, 866, 23),
+(29, 1, 3, 1540281635, 911, 21),
+(30, 1, 3, 1540281636, 895, 530),
+(31, 1, 3, 1540281637, 897, 20),
+(32, 1, 3, 1540281638, 898, 19);
+
 -- --------------------------------------------------------
 
 --
@@ -4030,7 +4041,7 @@ CREATE TABLE `sprit_upt` (
 --
 
 INSERT INTO `sprit_upt` (`id`, `user_id`, `updated`) VALUES
-(1, 1, 1540139669),
+(1, 1, 1540280913),
 (6, 6, 1474465669),
 (7, 7, 1474290311),
 (8, 8, 1474290474),
@@ -5165,7 +5176,7 @@ CREATE TABLE `stats` (
 --
 
 INSERT INTO `stats` (`id`, `money`, `liga`, `exp`, `sprit`, `uppoints`, `chat_count`) VALUES
-(1, '10799811897.96', 8, 12030, 275, 2, 27),
+(1, '10799813815.96', 8, 13482, 275, 2, 27),
 (6, '21031.89', 1, 27, 1577.66, 0, 0),
 (7, '25000.00', 1, 0, 50.225, 0, 0),
 (8, '25000.00', 1, 0, 50.2417, 0, 0),
@@ -5895,7 +5906,7 @@ CREATE TABLE `stats_racing` (
 --
 
 INSERT INTO `stats_racing` (`user_id`, `run`, `sum_positions`, `sum_price`) VALUES
-(1, 16, 42, '864.00');
+(1, 43, 125, '2782.00');
 
 -- --------------------------------------------------------
 
@@ -6835,7 +6846,34 @@ INSERT INTO `sys_log` (`id`, `to_id`, `message_code`, `properties`, `date`, `ope
 (10, 722, 'welcome', '{\"name\":\"welcome\"}', 1539803395, 1),
 (11, 1, 'race_done', '{\"type\":\"race_done\",\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1539847651, 1),
 (12, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1539847828, 1),
-(13, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1539847955, 1);
+(13, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1539847955, 1),
+(14, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540279515, 1),
+(15, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540279515, 1),
+(16, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540279516, 1),
+(17, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540279516, 1),
+(18, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540279516, 1),
+(19, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540279966, 1),
+(20, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540279966, 1),
+(21, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540279967, 1),
+(22, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540279967, 1),
+(23, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540279967, 1),
+(24, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540280005, 1),
+(25, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540280005, 1),
+(26, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540280042, 1),
+(27, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540280042, 1),
+(28, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540280248, 1),
+(29, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":4,\"reward\":59,\"exp\":41.3}', 1540280248, 1),
+(30, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540280248, 1),
+(31, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540280248, 1),
+(32, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540280248, 1),
+(33, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540280329, 1),
+(34, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":4,\"reward\":59,\"exp\":41.3}', 1540280329, 1),
+(35, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540280329, 1),
+(36, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540280329, 1),
+(37, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540280329, 1),
+(38, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540280405, 1),
+(39, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540280406, 1),
+(40, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540280429, 1);
 
 -- --------------------------------------------------------
 
@@ -6970,7 +7008,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `pass`, `email`, `regdate`, `activeTime`, `ads`, `lang`, `token`, `token_date`) VALUES
-(1, 'admin', '3cbabe7cfb4f29bc2816a7f8103b6889', 'mwernersbach@web.de', 1441866181, 1540139669, 0, 'de', '', 0),
+(1, 'admin', '3cbabe7cfb4f29bc2816a7f8103b6889', 'mwernersbach@web.de', 1441866181, 1540280913, 0, 'de', '', 0),
 (6, 'Testuser', '3cbabe7cfb4f29bc2816a7f8103b6889', 'mwernersbach@hotmail.de', 1474289215, 1474465669, 0, 'de', '', 0),
 (7, 'zorny', '67a2cb77f1d829b0add64bca764a895b', '', 1474290284, 0, 0, 'en', '', 0),
 (8, 'RCJax', '1984fe2c85b13f331105a4e528142954', '', 1474290445, 0, 0, 'en', '', 0),
@@ -7909,7 +7947,7 @@ ALTER TABLE `races`
 -- AUTO_INCREMENT für Tabelle `races_run`
 --
 ALTER TABLE `races_run`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT für Tabelle `sprit`
@@ -7951,7 +7989,7 @@ ALTER TABLE `storage_run`
 -- AUTO_INCREMENT für Tabelle `sys_log`
 --
 ALTER TABLE `sys_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT für Tabelle `upgrades`

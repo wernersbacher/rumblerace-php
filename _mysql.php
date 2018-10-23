@@ -492,7 +492,7 @@ function queryPartsBuildingDone() {
         }
         mysqli_autocommit($mysqli, TRUE);
     }
-    
+
     return $out;
 }
 
@@ -509,7 +509,7 @@ function queryStorage() {                                                       
 }
 
 function markPartsAsRead() {
-    $sql = "UPDATE storage SET new = 0 WHERE user_id = '".$_SESSION["user_id"]."'";
+    $sql = "UPDATE storage SET new = 0 WHERE user_id = '" . $_SESSION["user_id"] . "'";
     querySQL($sql);
 }
 
@@ -701,47 +701,48 @@ function queryRaceDone() {
     foreach ($data as $race) {
         $time_to_end = $race["time_end"] - time();
 
-        if ($time_to_end <= 0) {
+        if ($time_to_end > 0)
+            return;
 
-            //Rennen ist fertig
-            mysqli_autocommit($mysqli, FALSE);
 
-            $id = $race["id"];
-            $racePerformance = calcRacePerformance($race["pn"], $race["macc"], $race["mspeed"], $race["mhand"], $race["mdura"], $race["exp"], $race["car_id"], $race["driver_id"]);
-            $position = calcPosition($racePerformance); //Berechne Position, abhängig von der Platzierung
-            $rewardMulti = calcRewardMulti($position);
-            $reward = calcDollarReward($race["sprit_needed"]) * $rewardMulti;
-            $exp = $race["exp"] * $rewardMulti;
+        //Rennen ist fertig
+        mysqli_autocommit($mysqli, FALSE);
 
-            $reward_granted = mysqli_query($mysqli, "UPDATE stats 
+        $id = $race["id"];
+        $racePerformance = calcRacePerformance($race["pn"], $race["macc"], $race["mspeed"], $race["mhand"], $race["mdura"], $race["exp"], $race["car_id"], $race["driver_id"]);
+        $position = calcPosition($racePerformance); //Berechne Position, abhängig von der Performance
+        $rewardMulti = calcRewardMulti($position);
+        $reward = calcDollarReward($race["sprit_needed"]) * $rewardMulti;
+        $exp = $race["exp"] * $rewardMulti;
+
+        $reward_granted = mysqli_query($mysqli, "UPDATE stats 
                 SET money = money + '$reward', exp = exp + '$exp'
                 WHERE id = '" . $_SESSION["user_id"] . "'"
-            );
-            $sql_race_stats = "INSERT INTO stats_racing (user_id, run, sum_positions, sum_price)
+        );
+        $sql_race_stats = "INSERT INTO stats_racing (user_id, run, sum_positions, sum_price)
                 VALUES (" . $_SESSION["user_id"] . ", 1, $position, $reward) ON DUPLICATE KEY UPDATE run = run+1, sum_positions = sum_positions + $position, sum_price = sum_price + $reward
                 ";
-            $sql_deb = "UPDATE fahrer 
+        $sql_deb = "UPDATE fahrer 
                 SET skill = skill + '$exp'
                 WHERE user_id = '" . $_SESSION["user_id"] . "' AND id = '" . $race["driver_id"] . "'";
 
-            $driver_reward = mysqli_query($mysqli, $sql_deb);
-            $race_stats = mysqli_query($mysqli, $sql_race_stats);
+        $driver_reward = mysqli_query($mysqli, $sql_deb);
+        $race_stats = mysqli_query($mysqli, $sql_race_stats);
 
-            $deleteRace = mysqli_query($mysqli, "DELETE
+        $deleteRace = mysqli_query($mysqli, "DELETE
                 FROM races_run
                 WHERE id = '$id'"
-            );
+        );
 
-            if ($reward_granted && $deleteRace && $driver_reward && $race_stats) {
-                mysqli_commit($mysqli);
-                logRaceDone($race["name"], $position, $reward, $exp);
-                $out = "race_done";
-            } else {
-                mysqli_rollback($mysqli);
-                $out = "database_error";
-            }
-            mysqli_autocommit($mysqli, TRUE);
+        if ($reward_granted && $deleteRace && $driver_reward && $race_stats) {
+            mysqli_commit($mysqli);
+            logRaceDone($race["name"], $position, $reward, $exp);
+            $out = "race_done";
+        } else {
+            mysqli_rollback($mysqli);
+            $out = "database_error";
         }
+        mysqli_autocommit($mysqli, TRUE);
     }
 }
 

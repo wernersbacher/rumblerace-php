@@ -15,8 +15,9 @@ if (!$logs) {
 
 
 foreach ($logs as $key => $log) {
+    
     $type = $log["message_code"];
-    $date = $log["date"];
+   $date = $log["date"];
     $open = $log["open"];
     $props = json_decode($log["properties"], TRUE);
     //$logs[$key]["properties"] = $props;
@@ -41,7 +42,7 @@ foreach ($logs as $key => $log) {
             break;
     }
 
-    $log_output .= "<div class='sysDriver'>";
+    $log_output .= "<div class='sysDriver sys_$type'>";
     $log_output .= "<h2>" . put("log_" . $type, $l) . "</h2>";
     $log_output .= "<div class='sec_time'>".date("M, d |  H:i:s", $date)."</div>";
     $log_output .= $html;
@@ -49,8 +50,9 @@ foreach ($logs as $key => $log) {
 }
 
 
+$output .= "<div id='scroll_log'>";
 $output .= $log_output;
-
+$output .= "</div>";
 
 
 

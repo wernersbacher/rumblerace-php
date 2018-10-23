@@ -1082,6 +1082,11 @@ tr:nth-child(even) {
  LOG / SECRETARY
 */
 
+#scroll_log {
+    max-height:800px;
+    overflow: scroll;
+}
+
 .sec_time  {
     font-family: Roboto;
     color:rgb(42, 111, 185);

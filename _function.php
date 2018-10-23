@@ -207,6 +207,8 @@ function calcExpFactor($race, $skill) {
  * Berechnung des Fahrer-Faktors
  * pn: performance needed
  * 
+ * Ausgabe als Prozentwert
+ * 
  * Es wird berechnet, wie hoch der Strecken-Richtwert überhaupt ist.
  */
 
@@ -223,8 +225,11 @@ function calcRacePerformance($pneeded, $macc, $mspeed, $mhand, $mdura, $exp, $ca
     $reference_factor = ($macc + $mspeed + $mhand + $mdura) / 4;
     $pn = $reference_factor * $pneeded;
 
-    $track_perf = $carAttr["acc"] * $macc + $carAttr["speed"] * $mspeed + $carAttr["hand"] * $mhand + $carAttr["dura"] * $mdura;
-
+    $track_perf = ($carAttr["acc"] * $macc + 
+            $carAttr["speed"] * $mspeed + 
+            $carAttr["hand"] * $mhand + 
+            $carAttr["dura"] * $mdura) * rand(90,110)/100; //Zufallssmäßig
+    
     //Check, if perf über perf needed
     if ($track_perf < $pn) {
         $car_factor = ($track_perf / $pn);

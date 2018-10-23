@@ -8,6 +8,7 @@ USABILITY
 
 * wenn keine teile zum tunen -> nichts ausgeben
 
+* syslog: fahrerausgabe
 * zufall bei rennenauswertung
 * kauf bestätigung entfernen und modal
 * optionen: modal ausblenden
