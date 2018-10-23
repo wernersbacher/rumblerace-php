@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 23. Okt 2018 um 10:46
+-- Erstellungszeit: 23. Okt 2018 um 22:43
 -- Server-Version: 10.1.36-MariaDB
 -- PHP-Version: 7.2.10
 
@@ -39,7 +39,7 @@ CREATE TABLE `bonus` (
 --
 
 INSERT INTO `bonus` (`user_id`, `last`, `invested`) VALUES
-(1, 1540279853, '0.00'),
+(1, 1540326698, '0.00'),
 (10, 1474368356, '0.00'),
 (11, 1474290715, '0.00'),
 (12, 1474290678, '0.00'),
@@ -457,10 +457,10 @@ CREATE TABLE `fahrer` (
 --
 
 INSERT INTO `fahrer` (`id`, `driver_id`, `user_id`, `name`, `skill`, `liga`, `anteil`) VALUES
-(19, 140920161, 1, 'Renner 1', 1075.8633333333328, 2, 12),
-(20, 140920163, 1, 'Markusbacher', 1351.6116666666674, 4, 15),
-(21, 150920165, 1, 'Markus W', 3475.2060000000006, 5, 12),
-(23, 160920161, 1, 'Driver-ID#32081', 3246.3169444444466, 10, 15),
+(19, 140920161, 1, 'Renner 1', 1126.2633333333329, 2, 12),
+(20, 140920163, 1, 'Markusbacher', 1452.4116666666675, 4, 15),
+(21, 150920165, 1, 'Markus W', 3548.7060000000006, 5, 12),
+(23, 160920161, 1, 'Driver-ID#32081', 3466.7169444444467, 10, 15),
 (24, 190920164, 10, 'Steve', 9121.618, 1, 13),
 (25, 190920162, 12, 'Driver-ID#22983', 324, 1, 13),
 (26, 190920163, 19, 'Driver-ID#52796', 388, 1, 12),
@@ -963,7 +963,7 @@ INSERT INTO `fahrer` (`id`, `driver_id`, `user_id`, `name`, `skill`, `liga`, `an
 (527, 708, 708, 'Markus Werner', 150, 1, 5),
 (528, 709, 709, 'Markus Werner', 160.65, 2, 6),
 (529, 710, 710, 'Markus Werner', 150, 1, 5),
-(530, 240120171, 1, 'Driver-ID#31743', 1547.7500000000007, 4, 10),
+(530, 240120171, 1, 'Driver-ID#31743', 1648.5500000000009, 4, 10),
 (531, 711, 711, 'Markus Werner', 353.6725, 2, 6),
 (539, 719, 719, 'Markus Werner', 150, 1, 5),
 (540, 720, 720, 'Markus Werner', 150, 1, 5),
@@ -3960,6 +3960,15 @@ CREATE TABLE `races_run` (
   `driver_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Daten für Tabelle `races_run`
+--
+
+INSERT INTO `races_run` (`id`, `user_id`, `race_id`, `time_end`, `car_id`, `driver_id`) VALUES
+(43, 1, 2, 1540327451, 911, 21),
+(44, 1, 3, 1540328174, 895, 530),
+(45, 1, 1, 1540327306, 897, 20);
+
 -- --------------------------------------------------------
 
 --
@@ -4028,7 +4037,7 @@ CREATE TABLE `sprit_upt` (
 --
 
 INSERT INTO `sprit_upt` (`id`, `user_id`, `updated`) VALUES
-(1, 1, 1540284330),
+(1, 1, 1540327326),
 (6, 6, 1474465669),
 (7, 7, 1474290311),
 (8, 8, 1474290474),
@@ -5163,7 +5172,7 @@ CREATE TABLE `stats` (
 --
 
 INSERT INTO `stats` (`id`, `money`, `liga`, `exp`, `sprit`, `uppoints`, `chat_count`) VALUES
-(1, '10799716011.06', 10, 117555903, 405, 0, 27),
+(1, '10799316762.66', 10, 77046, 405, 0, 27),
 (6, '21031.89', 1, 27, 1577.66, 0, 0),
 (7, '25000.00', 1, 0, 50.225, 0, 0),
 (8, '25000.00', 1, 0, 50.2417, 0, 0),
@@ -5893,7 +5902,7 @@ CREATE TABLE `stats_racing` (
 --
 
 INSERT INTO `stats_racing` (`user_id`, `run`, `sum_positions`, `sum_price`) VALUES
-(1, 48, 143, '3977.10');
+(1, 58, 178, '4728.70');
 
 -- --------------------------------------------------------
 
@@ -6807,6 +6816,13 @@ CREATE TABLE `storage_run` (
   `dur` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Daten für Tabelle `storage_run`
+--
+
+INSERT INTO `storage_run` (`id`, `user_id`, `part_id`, `time_end`, `dur`) VALUES
+(4, 1, 27, 1540329351, 2550);
+
 -- --------------------------------------------------------
 
 --
@@ -6866,7 +6882,17 @@ INSERT INTO `sys_log` (`id`, `to_id`, `message_code`, `properties`, `date`, `ope
 (42, 1, 'race_done', '{\"name\":\"beginner_end\",\"position\":6,\"reward\":129.5,\"exp\":66.5}', 1540281711, 1),
 (43, 1, 'race_done', '{\"name\":\"beginner_end\",\"position\":3,\"reward\":266.4,\"exp\":136.79999999999998}', 1540281711, 1),
 (44, 1, 'race_done', '{\"name\":\"beginner_end\",\"position\":3,\"reward\":266.4,\"exp\":136.79999999999998}', 1540281712, 1),
-(45, 1, 'race_done', '{\"name\":\"beginner_end\",\"position\":3,\"reward\":266.4,\"exp\":136.79999999999998}', 1540281712, 1);
+(45, 1, 'race_done', '{\"name\":\"beginner_end\",\"position\":3,\"reward\":266.4,\"exp\":136.79999999999998}', 1540281712, 1),
+(46, 1, 'race_done', '{\"name\":\"beginner_master\",\"position\":5,\"reward\":142.6,\"exp\":119.60000000000001}', 1540327146, 1),
+(47, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":4,\"reward\":59,\"exp\":41.3}', 1540327146, 1),
+(48, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540327147, 1),
+(49, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540327147, 1),
+(50, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540327147, 1),
+(51, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540327226, 1),
+(52, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":5,\"reward\":46,\"exp\":32.2}', 1540327226, 1),
+(53, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540327226, 1),
+(54, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540327226, 1),
+(55, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540327326, 1);
 
 -- --------------------------------------------------------
 
@@ -7002,7 +7028,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `pass`, `email`, `regdate`, `activeTime`, `ads`, `lang`, `token`, `token_date`) VALUES
-(1, 'admin', '3cbabe7cfb4f29bc2816a7f8103b6889', 'mwernersbach@web.de', 1441866181, 1540284330, 0, 'de', '', 0),
+(1, 'admin', '3cbabe7cfb4f29bc2816a7f8103b6889', 'mwernersbach@web.de', 1441866181, 1540327325, 0, 'de', '', 0),
 (6, 'Testuser', '3cbabe7cfb4f29bc2816a7f8103b6889', 'mwernersbach@hotmail.de', 1474289215, 1474465669, 0, 'de', '', 0),
 (7, 'zorny', '67a2cb77f1d829b0add64bca764a895b', '', 1474290284, 0, 0, 'en', '', 0),
 (8, 'RCJax', '1984fe2c85b13f331105a4e528142954', '', 1474290445, 0, 0, 'en', '', 0),
@@ -7941,7 +7967,7 @@ ALTER TABLE `races`
 -- AUTO_INCREMENT für Tabelle `races_run`
 --
 ALTER TABLE `races_run`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT für Tabelle `sprit`
@@ -7977,13 +8003,13 @@ ALTER TABLE `storage`
 -- AUTO_INCREMENT für Tabelle `storage_run`
 --
 ALTER TABLE `storage_run`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT für Tabelle `sys_log`
 --
 ALTER TABLE `sys_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT für Tabelle `upgrades`

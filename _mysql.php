@@ -698,7 +698,7 @@ function queryRaceDone() {
     //geht jedes laufende rennen des users durch
     foreach ($data as $race) {
         $time_to_end = $race["time_end"] - time();
-
+        
         if ($time_to_end > 0)
             return;
 
@@ -731,7 +731,10 @@ function queryRaceDone() {
                 FROM races_run
                 WHERE id = '$id'"
         );
-
+//        var_dump($reward_granted);
+//        var_dump($deleteRace);
+//        var_dump($driver_reward);
+//        var_dump($race_stats);
         if ($reward_granted && $deleteRace && $driver_reward && $race_stats) {
             mysqli_commit($mysqli);
             logRaceDone($race["name"], $position, $reward, $exp);

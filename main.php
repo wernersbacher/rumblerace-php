@@ -246,7 +246,7 @@ Love for Meri
 
                         <div id="blackStats">
                             <div class='vertical-align'><img src="img/award.png"/>
-                                <span class="blackOutput"><?php echo $expForNewLevel ?></span>
+                                <span class="blackOutput"><?php echo format($expForNewLevel) ?></span>
                             </div>
                             <div class='vertical-align'><img src="img/money32.png"/>
                                 <span class="blackOutput"><?php echo format(getPlayerMoney()) ?></span>

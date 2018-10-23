@@ -1,11 +1,9 @@
 USABILITY
 
-* ligabegrenzung aufheben
-    -> level kurve anpassen
+* teile ab liga x bis y in db, generell teile hinzufügen (BALANCING)
 
-* teile ab liga x bis y in db
-
-* wenn keine teile zum tunen -> nichts ausgeben
+* wenn keine teile zum tunen -> nichts ausgeben in kat bei auto
+* not enough fuel -> is needed einfach roter button
 
 * syslog: fahrerausgabe
 * kauf bestätigung entfernen und modal
