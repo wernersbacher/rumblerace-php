@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 23. Okt 2018 um 09:48
+-- Erstellungszeit: 23. Okt 2018 um 10:46
 -- Server-Version: 10.1.36-MariaDB
 -- PHP-Version: 7.2.10
 
@@ -457,10 +457,10 @@ CREATE TABLE `fahrer` (
 --
 
 INSERT INTO `fahrer` (`id`, `driver_id`, `user_id`, `name`, `skill`, `liga`, `anteil`) VALUES
-(19, 140920161, 1, 'Renner 1', 939.0633333333328, 2, 12),
-(20, 140920163, 1, 'Markusbacher', 1214.8116666666674, 4, 15),
-(21, 150920165, 1, 'Markus W', 3408.7060000000006, 5, 12),
-(23, 160920161, 1, 'Driver-ID#32081', 3109.5169444444464, 10, 15),
+(19, 140920161, 1, 'Renner 1', 1075.8633333333328, 2, 12),
+(20, 140920163, 1, 'Markusbacher', 1351.6116666666674, 4, 15),
+(21, 150920165, 1, 'Markus W', 3475.2060000000006, 5, 12),
+(23, 160920161, 1, 'Driver-ID#32081', 3246.3169444444466, 10, 15),
 (24, 190920164, 10, 'Steve', 9121.618, 1, 13),
 (25, 190920162, 12, 'Driver-ID#22983', 324, 1, 13),
 (26, 190920163, 19, 'Driver-ID#52796', 388, 1, 12),
@@ -963,7 +963,7 @@ INSERT INTO `fahrer` (`id`, `driver_id`, `user_id`, `name`, `skill`, `liga`, `an
 (527, 708, 708, 'Markus Werner', 150, 1, 5),
 (528, 709, 709, 'Markus Werner', 160.65, 2, 6),
 (529, 710, 710, 'Markus Werner', 150, 1, 5),
-(530, 240120171, 1, 'Driver-ID#31743', 1410.9500000000007, 4, 10),
+(530, 240120171, 1, 'Driver-ID#31743', 1547.7500000000007, 4, 10),
 (531, 711, 711, 'Markus Werner', 353.6725, 2, 6),
 (539, 719, 719, 'Markus Werner', 150, 1, 5),
 (540, 720, 720, 'Markus Werner', 150, 1, 5),
@@ -3782,8 +3782,6 @@ CREATE TABLE `parts` (
   `part` tinytext NOT NULL,
   `liga` int(11) NOT NULL,
   `preis` int(11) NOT NULL,
-  `worst` int(11) NOT NULL,
-  `best` int(11) NOT NULL,
   `duration` int(11) NOT NULL,
   `acc` int(11) NOT NULL,
   `speed` int(11) NOT NULL,
@@ -3795,81 +3793,81 @@ CREATE TABLE `parts` (
 -- Daten für Tabelle `parts`
 --
 
-INSERT INTO `parts` (`id`, `kat`, `part`, `liga`, `preis`, `worst`, `best`, `duration`, `acc`, `speed`, `hand`, `dura`) VALUES
-(1, 'motor', 'nockenwelle', 1, 500, 2, 10, 60, 10, 10, 0, 50),
-(3, 'motor', 'kolben', 3, 4000, 8, 15, 1002, 20, 10, 0, 100),
-(4, 'auspuff', 'sportesd', 1, 200, 1, 5, 60, 20, 20, 0, 300),
-(5, 'auspuff', 'msd', 0, 1000, 2, 8, 200, 0, 0, 0, 0),
-(6, 'bremse', 'gelochte', 1, 1000, 5, 15, 10, 0, 0, 50, 50),
-(7, 'turbo', 'ladeluftkuehler', 0, 5000, 20, 50, 10, 0, 0, 0, 0),
-(8, 'schaltung', 'getriebe', 1, 1000, 7, 14, 100, 50, 50, 0, 100),
-(10, 'auspuff', 'kruemmer', 1, 500, 1, 4, 40, 20, 20, 0, 150),
-(12, 'motor', 'kolben', 1, 400, 3, 7, 120, 30, 30, 0, 100),
-(13, 'motor', 'kolben', 2, 1000, 5, 10, 300, 100, 100, 0, 150),
-(15, 'turbo', 'turbocharger', 1, 5000, 20, 50, 500, 100, 50, 0, 30),
-(16, 'auspuff', 'katalysator', 1, 300, 1, 3, 23, 20, 0, 0, 100),
-(17, 'auspuff', 'katalysator', 2, 1000, 2, 5, 123, 30, 0, 0, 200),
-(18, 'schaltung', 'doppelkupplung', 1, 1000, 5, 10, 300, 40, 40, 50, 100),
-(19, 'schaltung', 'doppelkupplung', 2, 3000, 8, 17, 700, 40, 70, 50, 100),
-(21, 'motor', 'nockenwelle', 2, 1500, 5, 15, 320, 50, 50, 0, 100),
-(22, 'motor', 'nockenwelle', 3, 3000, 8, 20, 800, 90, 100, 0, 150),
-(23, 'motor', 'nockenwelle', 4, 10000, 10, 20, 1800, 130, 150, 0, 200),
-(24, 'motor', 'nockenwelle', 5, 25000, 14, 25, 3600, 170, 150, 0, 270),
-(25, 'motor', 'nockenwelle', 6, 60000, 20, 29, 6000, 200, 200, 0, 320),
-(26, 'motor', 'nockenwelle', 7, 150000, 28, 32, 13000, 240, 280, 0, 400),
-(27, 'motor', 'nockenwelle', 8, 400000, 23, 40, 17000, 300, 300, 0, 500),
-(28, 'schaltung', 'doppelkupplung', 3, 10000, 12, 25, 600, 60, 100, 100, 100),
-(29, 'schaltung', 'doppelkupplung', 4, 19000, 18, 30, 1000, 100, 130, 200, 120),
-(30, 'schaltung', 'doppelkupplung', 5, 44000, 23, 38, 2000, 140, 200, 200, 120),
-(31, 'schaltung', 'doppelkupplung', 6, 100000, 30, 42, 3000, 200, 300, 300, 200),
-(32, 'schaltung', 'doppelkupplung', 7, 350000, 33, 45, 5000, 340, 450, 380, 300),
-(33, 'schaltung', 'doppelkupplung', 8, 440200, 40, 55, 11000, 500, 500, 400, 500),
-(34, 'bremse', 'gelochte', 2, 1500, 6, 18, 800, 0, 0, 100, 100),
-(35, 'bremse', 'gelochte', 3, 3000, 7, 20, 1200, 0, 0, 150, 100),
-(36, 'bremse', 'gelochte', 4, 6700, 10, 24, 1700, 0, 0, 200, 240),
-(37, 'bremse', 'gelochte', 5, 15000, 14, 30, 3600, 0, 0, 250, 350),
-(38, 'bremse', 'gelochte', 6, 44000, 18, 34, 6500, 0, 0, 300, 300),
-(39, 'bremse', 'gelochte', 7, 120000, 20, 38, 8000, 0, 0, 450, 300),
-(40, 'bremse', 'gelochte', 8, 299000, 30, 50, 25000, 0, 0, 500, 500),
-(41, 'turbo', 'turbocharger', 2, 12000, 30, 60, 2000, 100, 100, 0, 100),
-(42, 'turbo', 'turbocharger', 3, 30000, 70, 80, 7200, 150, 50, 0, 200),
-(43, 'turbo', 'turbocharger', 4, 70000, 75, 90, 12000, 150, 200, 0, 100),
-(44, 'turbo', 'turbocharger', 5, 12000, 100, 130, 20000, 250, 250, 0, 200),
-(45, 'turbo', 'turbocharger', 6, 400000, 130, 170, 25000, 500, 300, 0, 250),
-(46, 'turbo', 'turbocharger', 7, 775000, 200, 250, 40000, 700, 400, 0, 330),
-(47, 'turbo', 'turbocharger', 8, 820000, 300, 500, 80000, 1000, 500, 0, 500),
-(49, 'schaltung', 'getriebe', 2, 2000, 9, 18, 200, 100, 100, 0, 300),
-(50, 'schaltung', 'getriebe', 3, 3400, 10, 21, 400, 200, 150, 0, 150),
-(51, 'schaltung', 'getriebe', 4, 5000, 13, 25, 750, 200, 150, 0, 300),
-(52, 'schaltung', 'getriebe', 5, 12000, 20, 30, 1200, 350, 200, 0, 300),
-(53, 'schaltung', 'getriebe', 6, 40000, 25, 35, 2300, 400, 450, 0, 400),
-(54, 'schaltung', 'getriebe', 7, 100000, 30, 38, 4000, 450, 500, 0, 300),
-(55, 'schaltung', 'getriebe', 8, 225000, 35, 45, 7200, 500, 500, 100, 500),
-(56, 'auspuff', 'sportesd', 2, 600, 2, 10, 240, 40, 50, 0, 150),
-(57, 'auspuff', 'sportesd', 3, 1300, 4, 15, 600, 100, 50, 0, 200),
-(58, 'auspuff', 'sportesd', 4, 2500, 8, 18, 900, 150, 100, 0, 200),
-(59, 'auspuff', 'sportesd', 5, 6000, 10, 22, 1200, 200, 130, 0, 200),
-(60, 'auspuff', 'sportesd', 6, 11000, 13, 28, 2800, 250, 250, 0, 250),
-(61, 'auspuff', 'sportesd', 7, 30000, 17, 35, 3600, 250, 350, 0, 300),
-(62, 'auspuff', 'sportesd', 8, 99000, 25, 40, 5000, 400, 400, 0, 500),
-(65, 'auspuff', 'kruemmer', 2, 800, 3, 6, 70, 40, 20, 0, 100),
-(66, 'auspuff', 'kruemmer', 3, 1200, 5, 8, 140, 60, 40, 0, 150),
-(67, 'auspuff', 'kruemmer', 4, 2120, 7, 10, 200, 100, 100, 0, 180),
-(68, 'auspuff', 'kruemmer', 5, 2800, 10, 13, 540, 200, 160, 0, 200),
-(69, 'auspuff', 'kruemmer', 6, 6230, 12, 15, 840, 250, 250, 0, 300),
-(70, 'auspuff', 'kruemmer', 7, 18540, 15, 20, 1200, 300, 350, 0, 400),
-(71, 'auspuff', 'kruemmer', 8, 65000, 20, 25, 1600, 400, 400, 0, 500),
-(72, 'auspuff', 'katalysator', 3, 2000, 4, 8, 230, 60, 0, 0, 300),
-(73, 'auspuff', 'katalysator', 4, 4000, 8, 14, 360, 100, 0, 0, 400),
-(74, 'auspuff', 'katalysator', 5, 6000, 10, 18, 1200, 150, 0, 0, 500),
-(75, 'auspuff', 'katalysator', 6, 14900, 13, 21, 1500, 220, 0, 0, 0),
-(76, 'auspuff', 'katalysator', 7, 35000, 15, 24, 1800, 300, 0, 0, 0),
-(77, 'auspuff', 'katalysator', 8, 99500, 20, 35, 3600, 400, 0, 0, 0),
-(78, 'motor', 'kolben', 4, 10000, 12, 20, 1400, 200, 150, 0, 150),
-(79, 'motor', 'kolben', 5, 22000, 18, 25, 2200, 270, 220, 0, 200),
-(80, 'motor', 'kolben', 6, 74750, 22, 30, 3000, 350, 280, 0, 370),
-(81, 'motor', 'kolben', 7, 223000, 25, 35, 4300, 400, 350, 0, 500),
-(82, 'motor', 'kolben', 8, 480000, 32, 40, 7200, 500, 400, 0, 300);
+INSERT INTO `parts` (`id`, `kat`, `part`, `liga`, `preis`, `duration`, `acc`, `speed`, `hand`, `dura`) VALUES
+(1, 'motor', 'nockenwelle', 1, 500, 60, 10, 10, 0, 50),
+(3, 'motor', 'kolben', 3, 4000, 1002, 20, 10, 0, 100),
+(4, 'auspuff', 'sportesd', 1, 200, 60, 20, 20, 0, 300),
+(5, 'auspuff', 'msd', 0, 1000, 200, 0, 0, 0, 0),
+(6, 'bremse', 'gelochte', 1, 1000, 10, 0, 0, 50, 50),
+(7, 'turbo', 'ladeluftkuehler', 0, 5000, 10, 0, 0, 0, 0),
+(8, 'schaltung', 'getriebe', 1, 1000, 100, 50, 50, 0, 100),
+(10, 'auspuff', 'kruemmer', 1, 500, 40, 20, 20, 0, 150),
+(12, 'motor', 'kolben', 1, 400, 120, 30, 30, 0, 100),
+(13, 'motor', 'kolben', 2, 1000, 300, 100, 100, 0, 150),
+(15, 'turbo', 'turbocharger', 9, 100000, 500, 900, 600, 0, 450),
+(16, 'auspuff', 'katalysator', 1, 300, 23, 20, 0, 0, 100),
+(17, 'auspuff', 'katalysator', 2, 1000, 123, 30, 0, 0, 200),
+(18, 'schaltung', 'doppelkupplung', 1, 1000, 300, 40, 40, 50, 100),
+(19, 'schaltung', 'doppelkupplung', 2, 3000, 700, 40, 70, 50, 100),
+(21, 'motor', 'nockenwelle', 2, 1500, 320, 50, 50, 0, 100),
+(22, 'motor', 'nockenwelle', 3, 3000, 800, 90, 100, 0, 150),
+(23, 'motor', 'nockenwelle', 4, 10000, 1800, 130, 150, 0, 200),
+(24, 'motor', 'nockenwelle', 5, 25000, 3600, 170, 150, 0, 270),
+(25, 'motor', 'nockenwelle', 6, 60000, 6000, 200, 200, 0, 320),
+(26, 'motor', 'nockenwelle', 7, 150000, 13000, 240, 280, 0, 400),
+(27, 'motor', 'nockenwelle', 8, 400000, 17000, 300, 300, 0, 500),
+(28, 'schaltung', 'doppelkupplung', 3, 10000, 600, 60, 100, 100, 100),
+(29, 'schaltung', 'doppelkupplung', 4, 19000, 1000, 100, 130, 200, 120),
+(30, 'schaltung', 'doppelkupplung', 5, 44000, 2000, 140, 200, 200, 120),
+(31, 'schaltung', 'doppelkupplung', 6, 100000, 3000, 200, 300, 300, 200),
+(32, 'schaltung', 'doppelkupplung', 7, 350000, 5000, 340, 450, 380, 300),
+(33, 'schaltung', 'doppelkupplung', 8, 440200, 11000, 500, 500, 400, 500),
+(34, 'bremse', 'gelochte', 2, 1500, 800, 0, 0, 100, 100),
+(35, 'bremse', 'gelochte', 3, 3000, 1200, 0, 0, 150, 100),
+(36, 'bremse', 'gelochte', 4, 6700, 1700, 0, 0, 200, 240),
+(37, 'bremse', 'gelochte', 5, 15000, 3600, 0, 0, 250, 350),
+(38, 'bremse', 'gelochte', 6, 44000, 6500, 0, 0, 300, 300),
+(39, 'bremse', 'gelochte', 7, 120000, 8000, 0, 0, 450, 300),
+(40, 'bremse', 'gelochte', 8, 299000, 25000, 0, 0, 500, 500),
+(41, 'turbo', 'turbocharger', 2, 12000, 2000, 100, 100, 0, 100),
+(42, 'turbo', 'turbocharger', 3, 30000, 7200, 150, 50, 0, 200),
+(43, 'turbo', 'turbocharger', 4, 70000, 12000, 150, 200, 0, 100),
+(44, 'turbo', 'turbocharger', 5, 12000, 20000, 250, 250, 0, 200),
+(45, 'turbo', 'turbocharger', 6, 400000, 25000, 500, 300, 0, 250),
+(46, 'turbo', 'turbocharger', 7, 775000, 40000, 600, 400, 0, 330),
+(47, 'turbo', 'turbocharger', 8, 820000, 80000, 750, 500, 0, 500),
+(49, 'schaltung', 'getriebe', 2, 2000, 200, 100, 100, 0, 300),
+(50, 'schaltung', 'getriebe', 3, 3400, 400, 200, 150, 0, 150),
+(51, 'schaltung', 'getriebe', 4, 5000, 750, 200, 150, 0, 300),
+(52, 'schaltung', 'getriebe', 5, 12000, 1200, 350, 200, 0, 300),
+(53, 'schaltung', 'getriebe', 6, 40000, 2300, 400, 450, 0, 400),
+(54, 'schaltung', 'getriebe', 7, 100000, 4000, 450, 500, 0, 300),
+(55, 'schaltung', 'getriebe', 8, 225000, 7200, 500, 500, 100, 500),
+(56, 'auspuff', 'sportesd', 2, 600, 240, 40, 50, 0, 150),
+(57, 'auspuff', 'sportesd', 3, 1300, 600, 100, 50, 0, 200),
+(58, 'auspuff', 'sportesd', 4, 2500, 900, 150, 100, 0, 200),
+(59, 'auspuff', 'sportesd', 5, 6000, 1200, 200, 130, 0, 200),
+(60, 'auspuff', 'sportesd', 6, 11000, 2800, 250, 250, 0, 250),
+(61, 'auspuff', 'sportesd', 7, 30000, 3600, 250, 350, 0, 300),
+(62, 'auspuff', 'sportesd', 8, 99000, 5000, 400, 400, 0, 500),
+(65, 'auspuff', 'kruemmer', 2, 800, 70, 40, 20, 0, 100),
+(66, 'auspuff', 'kruemmer', 3, 1200, 140, 60, 40, 0, 150),
+(67, 'auspuff', 'kruemmer', 4, 2120, 200, 100, 100, 0, 180),
+(68, 'auspuff', 'kruemmer', 5, 2800, 540, 200, 160, 0, 200),
+(69, 'auspuff', 'kruemmer', 6, 6230, 840, 250, 250, 0, 300),
+(70, 'auspuff', 'kruemmer', 7, 18540, 1200, 300, 350, 0, 400),
+(71, 'auspuff', 'kruemmer', 8, 65000, 1600, 400, 400, 0, 500),
+(72, 'auspuff', 'katalysator', 3, 2000, 230, 60, 0, 0, 300),
+(73, 'auspuff', 'katalysator', 4, 4000, 360, 100, 0, 0, 400),
+(74, 'auspuff', 'katalysator', 5, 6000, 1200, 150, 0, 0, 500),
+(75, 'auspuff', 'katalysator', 6, 14900, 1500, 220, 0, 0, 0),
+(76, 'auspuff', 'katalysator', 7, 35000, 1800, 300, 0, 0, 0),
+(77, 'auspuff', 'katalysator', 8, 99500, 3600, 400, 0, 0, 0),
+(78, 'motor', 'kolben', 4, 10000, 1400, 200, 150, 0, 150),
+(79, 'motor', 'kolben', 5, 22000, 2200, 270, 220, 0, 200),
+(80, 'motor', 'kolben', 6, 74750, 3000, 350, 280, 0, 370),
+(81, 'motor', 'kolben', 7, 223000, 4300, 400, 350, 0, 500),
+(82, 'motor', 'kolben', 8, 480000, 7200, 500, 400, 0, 300);
 
 -- --------------------------------------------------------
 
@@ -3962,17 +3960,6 @@ CREATE TABLE `races_run` (
   `driver_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Daten für Tabelle `races_run`
---
-
-INSERT INTO `races_run` (`id`, `user_id`, `race_id`, `time_end`, `car_id`, `driver_id`) VALUES
-(28, 1, 3, 1540281634, 866, 23),
-(29, 1, 3, 1540281635, 911, 21),
-(30, 1, 3, 1540281636, 895, 530),
-(31, 1, 3, 1540281637, 897, 20),
-(32, 1, 3, 1540281638, 898, 19);
-
 -- --------------------------------------------------------
 
 --
@@ -4041,7 +4028,7 @@ CREATE TABLE `sprit_upt` (
 --
 
 INSERT INTO `sprit_upt` (`id`, `user_id`, `updated`) VALUES
-(1, 1, 1540280913),
+(1, 1, 1540284330),
 (6, 6, 1474465669),
 (7, 7, 1474290311),
 (8, 8, 1474290474),
@@ -5176,7 +5163,7 @@ CREATE TABLE `stats` (
 --
 
 INSERT INTO `stats` (`id`, `money`, `liga`, `exp`, `sprit`, `uppoints`, `chat_count`) VALUES
-(1, '10799813815.96', 8, 13482, 275, 2, 27),
+(1, '10799716011.06', 10, 117555903, 405, 0, 27),
 (6, '21031.89', 1, 27, 1577.66, 0, 0),
 (7, '25000.00', 1, 0, 50.225, 0, 0),
 (8, '25000.00', 1, 0, 50.2417, 0, 0),
@@ -5906,7 +5893,7 @@ CREATE TABLE `stats_racing` (
 --
 
 INSERT INTO `stats_racing` (`user_id`, `run`, `sum_positions`, `sum_price`) VALUES
-(1, 43, 125, '2782.00');
+(1, 48, 143, '3977.10');
 
 -- --------------------------------------------------------
 
@@ -6803,7 +6790,8 @@ INSERT INTO `storage` (`id`, `user_id`, `part_id`, `garage_id`, `new`, `liga`, `
 (956, 1, 1, 0, 0, 1, 'nockenwelle', 0, 0, 0, 6, 6, 0, 39),
 (957, 1, 1, 0, 0, 1, 'nockenwelle', 0, 0, 0, 6, 5, 0, 31),
 (958, 1, 26, 0, 0, 7, 'nockenwelle', 0, 0, 0, 142, 163, 0, 318),
-(959, 1, 21, 0, 0, 2, 'nockenwelle', 0, 0, 0, 31, 31, 0, 65);
+(959, 1, 21, 0, 0, 2, 'nockenwelle', 0, 0, 0, 31, 31, 0, 65),
+(960, 1, 62, 0, 0, 8, 'sportesd', 0, 100, 1540284226, 262, 249, 0, 324);
 
 -- --------------------------------------------------------
 
@@ -6873,7 +6861,12 @@ INSERT INTO `sys_log` (`id`, `to_id`, `message_code`, `properties`, `date`, `ope
 (37, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540280329, 1),
 (38, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540280405, 1),
 (39, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540280406, 1),
-(40, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540280429, 1);
+(40, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540280429, 1),
+(41, 1, 'race_done', '{\"name\":\"beginner_end\",\"position\":3,\"reward\":266.4,\"exp\":136.79999999999998}', 1540281711, 1),
+(42, 1, 'race_done', '{\"name\":\"beginner_end\",\"position\":6,\"reward\":129.5,\"exp\":66.5}', 1540281711, 1),
+(43, 1, 'race_done', '{\"name\":\"beginner_end\",\"position\":3,\"reward\":266.4,\"exp\":136.79999999999998}', 1540281711, 1),
+(44, 1, 'race_done', '{\"name\":\"beginner_end\",\"position\":3,\"reward\":266.4,\"exp\":136.79999999999998}', 1540281712, 1),
+(45, 1, 'race_done', '{\"name\":\"beginner_end\",\"position\":3,\"reward\":266.4,\"exp\":136.79999999999998}', 1540281712, 1);
 
 -- --------------------------------------------------------
 
@@ -6982,7 +6975,8 @@ INSERT INTO `upgrades_user` (`id`, `user_id`, `up_id`, `ups`) VALUES
 (27, 709, 1, 4),
 (28, 709, 3, 5),
 (29, 1, 7, 3),
-(32, 1, 8, 2);
+(32, 1, 8, 2),
+(33, 1, 9, 1);
 
 -- --------------------------------------------------------
 
@@ -7008,7 +7002,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `pass`, `email`, `regdate`, `activeTime`, `ads`, `lang`, `token`, `token_date`) VALUES
-(1, 'admin', '3cbabe7cfb4f29bc2816a7f8103b6889', 'mwernersbach@web.de', 1441866181, 1540280913, 0, 'de', '', 0),
+(1, 'admin', '3cbabe7cfb4f29bc2816a7f8103b6889', 'mwernersbach@web.de', 1441866181, 1540284330, 0, 'de', '', 0),
 (6, 'Testuser', '3cbabe7cfb4f29bc2816a7f8103b6889', 'mwernersbach@hotmail.de', 1474289215, 1474465669, 0, 'de', '', 0),
 (7, 'zorny', '67a2cb77f1d829b0add64bca764a895b', '', 1474290284, 0, 0, 'en', '', 0),
 (8, 'RCJax', '1984fe2c85b13f331105a4e528142954', '', 1474290445, 0, 0, 'en', '', 0),
@@ -7977,19 +7971,19 @@ ALTER TABLE `sprit_usr`
 -- AUTO_INCREMENT für Tabelle `storage`
 --
 ALTER TABLE `storage`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=960;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=961;
 
 --
 -- AUTO_INCREMENT für Tabelle `storage_run`
 --
 ALTER TABLE `storage_run`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT für Tabelle `sys_log`
 --
 ALTER TABLE `sys_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT für Tabelle `upgrades`
@@ -8007,7 +8001,7 @@ ALTER TABLE `upgrades_tree`
 -- AUTO_INCREMENT für Tabelle `upgrades_user`
 --
 ALTER TABLE `upgrades_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT für Tabelle `user`
