@@ -86,12 +86,13 @@ foreach ($partNames as $part) {
     $labels = "";
 
 
-
+    $i = 0;
+    $playerLiga = getPlayerLiga();
     //Die Ligen des Teiles durchgehen
-    foreach ($partsData as $data) {
+    foreach ($partsData as $key => $data) {
         $liga = $data["liga"];
 
-        if ($data["part"] === $part && $liga <= getPlayerLiga() && $liga > 0) {
+        if ($data["part"] === $part && $liga <= $playerLiga && $liga > 0) {
             $acc = $data["acc"];
             $speed = $data["speed"];
             $hand = $data["hand"];
@@ -99,8 +100,8 @@ foreach ($partNames as $part) {
 
             $preis = dollar($data["preis"]);
             $dur = getTuningDur($data["duration"]);
-
-            if ($liga == 1) { //nur beim ersten element ausgabe setzen (rest JS)
+            
+            if ($i++ == 0) { //nur beim ersten element ausgabe setzen (rest JS)
                 $checked = "checked";
                 $preis1 = $preis;
                 $dur1 = $dur;
@@ -115,7 +116,7 @@ foreach ($partNames as $part) {
 
             $labels .= "<label>
                         <input onclick='setTuneData(\"$part\", \"$preis\", \"$dur\", \"$acc\", \"$speed\", \"$hand\", \"$dura\");' class='tuneLigas' type='radio' name='liga' value='" . $liga . "' $checked>
-                        <img title='Cool!' style='width:23px;' src='img/liga/" . $data["liga"] . ".png'>
+                        ".levelImg($data["liga"])."
                     </label>";
         }
     } //foreach ende

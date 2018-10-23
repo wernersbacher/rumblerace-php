@@ -55,13 +55,13 @@ foreach ($cars as $car) {//$car["title"]
     $output .= "<div class='dealer'>
                     <div class='imgFlex'>
                         <img src='img/car/" . $car["name"] . ".jpg' />
-                            
                     </div>
 
                     <div class='infoFlex'>
                         <div class='dealTitle'>
                             " . $car["title"] . "
-                                <div class='driverLiga'><img src='img/liga/" . $liga . ".png' alt='Level " . $liga . "' title='Level " . $liga . "' /></div>
+                                <div class='driverLiga'>
+                            ".levelImg($liga)."</div>
                         </div>
                         
                         <div class='dealInfo'>

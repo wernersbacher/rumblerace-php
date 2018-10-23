@@ -40,7 +40,8 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
     $output .= "
             <div id='cartuning'>
                 <div class='carTuningTitle'>" . $car["title"] . "
-                    <img src='img/liga/" . $car["liga"] . ".png' />
+                    ".levelImg($car["liga"], true)."
+                         
                 </div>
                 <div class='carTuningInfo'>Nice car.</div>
                 <div id='car_sketch'>";
@@ -172,7 +173,8 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
                     <div class='infoFlex'>
                         <div class='dealTitle'>
                             " . $car["title"] . "
-                                <div class='driverLiga'><img src='img/liga/" . $carLiga . ".png' alt='Level " . $carLiga . "' title='Level " . $carLiga . "' /></div>
+                                <div class='driverLiga'>".levelImg($carLiga)."
+                                    </div>
                         </div>
 
                         <div class='dealInfo'>

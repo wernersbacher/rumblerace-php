@@ -12,6 +12,7 @@ $_config["vars"]["startMaxSprit"] = 100;
 $_config["vars"]["startSprit"] = 50;
 $_config["vars"]["startMaxCars"] = 2;
 $_config["vars"]["startMoney"] = 10000;
+$_config["vars"]["maxLiga"] = 20;
 
 $_config["bonus"]["wait"] = 3600;
 

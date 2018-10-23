@@ -43,7 +43,7 @@ if($races)
                        
                         <div class='tuneInfo'> 
                             <div class='tuneDesc'>".$car["title"]." ($carValueList)
-                                - ".$driver["name"]." (".showSkill($driver["skill"]).")
+                                - ".$driver["name"]." (".showSkill($driver["skill"])."%)
                                 - ".dollar($race["reward"])."
                             </div>
                             

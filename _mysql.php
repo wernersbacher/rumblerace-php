@@ -445,8 +445,6 @@ function queryPartsBuildingDone() {
                 pa.duration as duration,
                 sr.user_id as user_id,
                 sr.part_id as part_id,
-                pa.worst as worst,
-                pa.best as best,
                 pa.acc, pa.speed, pa.hand, pa.dura,
                 pa.liga as liga,
                 pa.part as part

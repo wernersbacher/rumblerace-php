@@ -72,3 +72,8 @@ function htmlLevelprogress($liga = -1, $exp = -1) {
 function formatLevelColor($lvl) {
     return "<span class='lvlOutput lvl_$lvl'>LEVEL$lvl</span>";
 }
+
+function levelImg($l, $big = false) {
+    $big_img = boolToParam($big, " liga-big");
+    return "<div class='liga_img$big_img'>$l</div>";
+}

@@ -6,7 +6,7 @@ require_once '_design_out.php';
 
 define("LIGA_MULTI", 5);
 define("LIGA_START", 400);
-define("LIGA_MAX", 8);
+define("LIGA_MAX", $_config["vars"]["maxLiga"]);
 
 /* Erst Diff ausrechnen
  * Gibt den Fortschritt zur nächsten Liga in % an.
@@ -344,6 +344,9 @@ function boolToDis($bool) {
     return $bool ? "" : "disabled";
 }
 
+function boolToParam($bool, $param) {
+    return !$bool ? "" : $param;
+}
 /*
  * für eingabe true: wird angezeigt
  */

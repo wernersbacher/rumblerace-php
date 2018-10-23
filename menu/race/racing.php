@@ -19,7 +19,8 @@ function showLigaList() {
     $ret = "<ul class='ligaList'>";
     for ($i = 1; $i <= $maxLiga; $i++) {
         if($i == $liga) $active = "class='active'"; else $active = "";
-        $ret .= "<li $active><a href='?page=race&sub=racing&liga=$i'><img src='img/liga/$i.png' /></a></li>";
+        $ret .= "<li $active><a href='?page=race&sub=racing&liga=$i'>
+                            ".levelImg($i, true)."</a></li>";
     }
     $ret .= "</ul>";
     return $ret;

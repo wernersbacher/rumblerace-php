@@ -51,7 +51,8 @@ foreach($drivers as $drv) {
         
     $driverPut .= " 
                 <div class='sysDriver'>
-                <h2>$name <div class='driverLiga'><img src='img/liga/" . $liga . ".png' alt='Level " . $liga . "' title='Level " . $liga . "' /></div></h2>
+                <h2>$name <div class='driverLiga'>
+                            ".levelImg($liga)."</div></h2>
                 Skill: <b>$skill%</b> [$drive_id]
                  
 

@@ -37,6 +37,27 @@ select {
     cursor:pointer;
 }
 
+
+.liga_img {
+    width: 23px;
+    height: 23px;
+    font-size: 18px;
+    background-color: #924646;
+    border-radius: 20px;
+    display: inline-block;
+    text-align: center;
+    font-family: Kodchasan;
+    color: white;
+    vertical-align: top;
+    font-weight: 400;
+}
+
+.liga-big {
+    width: 36px;
+    height: 36px;
+    font-size: 26px;
+}
+
 .hidden {
     display: none;
 }
@@ -219,14 +240,14 @@ select {
     visibility: hidden; /* Makes input not-clickable */
     position: absolute; /* Remove input from document flow */
 }
-.tuneFooter label > input + img{ /* IMAGE STYLES */
+.tuneFooter label > input + .liga_img{ /* IMAGE STYLES */
     cursor:pointer;
     border: 2px solid #B7B7B7;
-    border-radius: 4px;
     transition:0.15s;
 }
-.tuneFooter label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
-    border:2px solid #DC2121;
+.tuneFooter label > input:checked + .liga_img{ /* (RADIO CHECKED) IMAGE STYLES */
+    border: 2px solid #ffffff;
+    box-shadow: 0px 1px 8px -1px black;
 }
 
 .tuneBuildButton {

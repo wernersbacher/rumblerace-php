@@ -56,7 +56,8 @@ foreach ($fabrik as $teil) {
                     <div class='infoFlex'>
                         <div class='dealTitle'>
                             " . put($title, $l) . "
-                                <div class='driverLiga'><img src='img/liga/" . $liga . ".png' alt='Level " . $liga . "' title='Level " . $liga . "' /></div>
+                                <div class='driverLiga'>
+                            ".levelImg($liga)."</div>
                         </div>
 
                         <div class='dealInfo'>
@@ -67,7 +68,6 @@ foreach ($fabrik as $teil) {
 
                     </div>
 
-                    <!--<div class='dealLiga'><img src='img/liga/$liga.png' alt='Level $liga' title='Level $liga' /></div>-->
 
                     <div class='dealBuy'>
                         <span class='dealPrice'>" . dollar($preis) . "</span>
