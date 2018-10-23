@@ -2,10 +2,11 @@ USABILITY
 
 * ligabegrenzung aufheben
     -> level kurve anpassen
+    -> level img ersetzen
 
 * teile ab liga x bis y in db
 
-* wenn keine teile -> nichts ausgeben
+* wenn keine teile zum tunen -> nichts ausgeben
 
 * zufall bei rennenauswertung
 * kauf bestätigung entfernen und modal
