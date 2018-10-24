@@ -1130,6 +1130,10 @@ tr:nth-child(even) {
     font-size: 19px;
 }
 
+#sys_toggles .centerChildVertical {
+    margin: 3px 20px;
+}
+
 
 /*
     LEVELS, RARITYS

@@ -164,6 +164,43 @@ function setToggle() {
     });
 }
 
+function setSysToggles() {
+    console.log("test");
+    try {
+        var toggles = JSON.parse(store.get("sys-toggles-arr"));
+
+    } catch (err) {
+        var toggles = {};
+
+        $("#sys_toggles").find(".toggle_sys").each(function () {
+            var cat = $(this).data("cat");
+            toggles[cat] = true;
+        });
+    }
+
+    for (var cat in toggles) {
+        if (toggles[cat] === false) {
+            $("#toggle_" + cat).addClass("offTableTop");
+            $("#scroll_log").find(".sys_"+cat).hide();
+        }
+
+
+        $("#toggle_" + cat).on('click', function () {
+            
+            $(this).toggleClass("offTableTop");
+            var name = $(this).data("cat");
+            $("#scroll_log").find(".sys_"+name).toggle(200);
+            toggles[name] = !toggles[name];
+            store.set("sys-toggles-arr", JSON.stringify(toggles));
+            
+        });
+
+    }
+
+
+
+}
+
 /*
  * todo:
  *  hier drin den resize handler machen, und löschen on resize und direkt neue bauen?
@@ -228,6 +265,9 @@ $(document).ready(function () {
 
     //Tooglen der Systemnachrichten
     setToggle();
+
+    //Togglen der Sys infos
+    setSysToggles();
 
     //Abfrage der Dialoge
     $(document).on("click", ".dialog", function (e) {
