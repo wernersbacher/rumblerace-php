@@ -1,19 +1,20 @@
 USABILITY
 
-* teile ab liga x bis y in db, generell teile hinzufügen (BALANCING)
 
 * wenn keine teile zum tunen -> nichts ausgeben in kat bei auto
+-> guest acc testen
+
+*liga part ist null beim tuner?
+* tuner part im menü nur zeigen, wenn auch teile vorhanden sind
+
 * not enough fuel -> is needed einfach roter button
 
-* syslog: fahrerausgabe
+* syslog: fahrerausgabe ? neues level fahrer -> update funk?
 * kauf bestätigung entfernen und modal
 * optionen: modal ausblenden
 
-* log zusammenfassen, bzw nachrichten löschen -> MERI
-* syslog nach kategorien sortieren, mittels css durchschalten
 * drop down wieder hinzu? -> MERI
 
-* Markt auf unterseiten verschieben? -> weniger menüpunkte
 * redirects ausbauen:
     weiterleitung entfernen, dafür kann html schneller geladen werden
 
@@ -26,21 +27,19 @@ USABILITY
 * TUTORIAL/ ENTSCHLACKUNG
     - fahrzeug tuning offensichtlicer machen
 
-* mobile anpassung schwarzes menü
-
 * PERFORMANCE!!!
 
 
 2018
+* teile ab liga x bis y in db, generell teile hinzufügen (BALANCING)
 * select styles, msg stylen
 * news aus db lesen
 * getCurrentRunningRaces() verarbeiten
 * achievements
-* format auch zu käufen hinzu! -> in dollar rein? test mit komma und großen zahlen TESTEN
 * guest accounts verstecken
 * output funktionen auslagern
 * autos auslesen, etc für profil
-* user suche: tablle verschönern
+* user suche: tabelle verschönern
 * tuningteile erst mit höheren stufen freischalten
     
 Rennen:

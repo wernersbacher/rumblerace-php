@@ -88,11 +88,16 @@ foreach ($partNames as $part) {
 
     $i = 0;
     $playerLiga = getPlayerLiga();
+    $hide_flag = true;
     //Die Ligen des Teiles durchgehen
     foreach ($partsData as $key => $data) {
         $liga = $data["liga"];
-
-        if ($data["part"] === $part && $liga <= $playerLiga && $liga > 0) {
+        if($liga > getPlayerLiga() OR $liga < 1) {
+            continue;
+        }
+        $hide_flag = false;
+        
+        if ($data["part"] === $part) {
             $acc = $data["acc"];
             $speed = $data["speed"];
             $hand = $data["hand"];
@@ -121,6 +126,10 @@ foreach ($partNames as $part) {
         }
     } //foreach ende
 
+    //Check if any liga part can be showed
+    if($hide_flag)
+        continue;
+        
     $output .= "<div class='tuner' id='$part'>
                     <div class='imgFlex'>
                         <img class='tuningImage' src='img/parts/$kat.png' />
