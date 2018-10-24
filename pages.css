@@ -1,4 +1,4 @@
-#cardealer, #tuner, #settings, #storage, #cartuning, #settings, #market, #messageBox, #racing, #running_races {
+#cardealer, #tuner, #settings, #storage, #cartuning, #settings, #market, #messageBox, #racing, #running_races, #sysDriver {
     margin: 1px 0;
     font-size: 13px;
     font-family: Roboto;
@@ -664,20 +664,34 @@ tr:nth-child(even) {
     height: 23px;
     padding: 0px 3px;
 }
+/*
+    RACING
+*/
 
-.locked {
-    position:absolute;
-    width:100%;
-    height:100%;
-    top:0;
-    left:0;
-    background-color: rgba(1,1,1,0.85);
-    text-align:center;
-    font-size:40px;
+.whyBlock {
+    font-size: 16px;
+    background-color: #920000;
+    padding: 12px;
+    border-radius: 3px;
+    font-family: Kodchasan;
     color:white;
-    z-index:5;
+    border: 1px solid #e2e2e2;
+}
+.locked {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.59);
+    text-align: center;
+    font-size: 40px;
+    color: white;
+    z-index: 5;
     box-sizing: content-box;
-    border-radius:3px;
+    border-radius: 3px;
+    color: #000000b0;
+    flex-direction: column;
 }
 
 .ligaList, .tuningList {
@@ -1149,3 +1163,4 @@ tr:nth-child(even) {
 .lvl_1 {
     color:darkred;
 }
+

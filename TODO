@@ -1,13 +1,7 @@
 USABILITY
 
-
-* wenn keine teile zum tunen -> nichts ausgeben in kat bei auto
--> guest acc testen
-
-*liga part ist null beim tuner?
+* autos: haben level vorraussetzungen
 * tuner part im menü nur zeigen, wenn auch teile vorhanden sind
-
-* not enough fuel -> is needed einfach roter button
 
 * syslog: fahrerausgabe ? neues level fahrer -> update funk?
 * kauf bestätigung entfernen und modal
@@ -19,10 +13,8 @@ USABILITY
     weiterleitung entfernen, dafür kann html schneller geladen werden
 
 * anpassung mobile design
-* rennen fahren: Fahrer und fahrzeug auswählen, besse rdarstellen wenn keiner mehr da ist
+* rennen fahren: Fahrer und fahrzeug auswählen, besser darstellen wenn keiner mehr da ist
     - design fahrer select
-
-* badge am auto, wenn teil einbaubar ist
 
 * TUTORIAL/ ENTSCHLACKUNG
     - fahrzeug tuning offensichtlicer machen
@@ -53,6 +45,7 @@ DEBUG
 * joda apex: dura falsch? berechnung checken
 
 THIS RELEASE
+* rennen statt level, levelvorraussetzung für kategorie -> nicht so oft neue kats
 * leute starren
 * chat nochmal testen bzw pusher
 * sms cookie schon wieder kaputt

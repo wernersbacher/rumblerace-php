@@ -123,7 +123,7 @@ if($races)
     foreach($races as $race) {
     //Sperre berechnen
     $canRace = queryUserCanRace($race["id"], getPlayerExp(), getPlayerSprit());
-    $locked = "block";
+    $locked = "flex";
     $whyBlock = "";
     
     if($canRace === "exp") {
@@ -131,7 +131,8 @@ if($races)
         $whyBlock = "only ".ep($exp_needed-getPlayerExp())." left";
     } else if ($canRace === "sprit") {
         $whyBlock = "Not enough fuel. ".$race["sprit_needed"]."L is needed";
-    } else {
+    } 
+    else {
         $locked = "none";
     }
     
@@ -147,8 +148,8 @@ if($races)
     //Ausgabe einzelner Rennen
     $output .= "<div class='dealer'>
                     <div class='locked' style='display:$locked'>
-                        LOCKED <br/>
-                        <span style='font-size:15px;'>$whyBlock</span>
+                        
+                        <div class='whyBlock'>$whyBlock</div>
                     </div>
 
                     <div class='tuneInfoFlex' style='max-width:80%;  margin-bottom:45px;'>

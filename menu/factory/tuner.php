@@ -35,11 +35,11 @@ function showTunerKats($activeKat) {
             $active = "class='active'";
         else
             $active = "";
-        
+
         $ret .= "<li $active>
                 <a href='?page=factory&sub=tuner&mode=parts&kat=$kat'>
                     <img src='img/parts/$kat.png' />
-                        <span class='absTitle'>".put($kat,$l)."</span>
+                        <span class='absTitle'>" . put($kat, $l) . "</span>
                 </a>
                 </li>";
     }
@@ -92,11 +92,11 @@ foreach ($partNames as $part) {
     //Die Ligen des Teiles durchgehen
     foreach ($partsData as $key => $data) {
         $liga = $data["liga"];
-        if($liga > getPlayerLiga() OR $liga < 1) {
+        if ($liga > getPlayerLiga())
             continue;
-        }
+
         $hide_flag = false;
-        
+
         if ($data["part"] === $part) {
             $acc = $data["acc"];
             $speed = $data["speed"];
@@ -105,7 +105,7 @@ foreach ($partNames as $part) {
 
             $preis = dollar($data["preis"]);
             $dur = getTuningDur($data["duration"]);
-            
+
             if ($i++ == 0) { //nur beim ersten element ausgabe setzen (rest JS)
                 $checked = "checked";
                 $preis1 = $preis;
@@ -121,15 +121,14 @@ foreach ($partNames as $part) {
 
             $labels .= "<label>
                         <input onclick='setTuneData(\"$part\", \"$preis\", \"$dur\", \"$acc\", \"$speed\", \"$hand\", \"$dura\");' class='tuneLigas' type='radio' name='liga' value='" . $liga . "' $checked>
-                        ".levelImg($data["liga"])."
+                        " . levelImg($data["liga"]) . "
                     </label>";
         }
     } //foreach ende
-
     //Check if any liga part can be showed
-    if($hide_flag)
+    if ($hide_flag)
         continue;
-        
+
     $output .= "<div class='tuner' id='$part'>
                     <div class='imgFlex'>
                         <img class='tuningImage' src='img/parts/$kat.png' />
@@ -169,11 +168,11 @@ foreach ($partNames as $part) {
                                 <div class='tuneProgressBar' style='width:$width%'></div> 
                                 <div class='tuneProgressText'>" . $time_to_end . "s " . put("time_left", $l) . "</div>
                             </div>";
-    } else if($time_left > 0) {
+    } else if ($time_left > 0) {
         //Gibt die Wartezeit aus, solange man bei einem anderen Teil wartet
         $output .= "<span id='tunerWaitForOther' class='hidden'>$time_left</span>";
     }
-    
+
     $output .= "</div>
                         </div>
                     
