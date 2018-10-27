@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 27. Okt 2018 um 14:01
+-- Erstellungszeit: 27. Okt 2018 um 14:30
 -- Server-Version: 10.1.36-MariaDB
 -- PHP-Version: 7.2.10
 
@@ -461,7 +461,7 @@ INSERT INTO `fahrer` (`id`, `driver_id`, `user_id`, `name`, `skill`, `liga`, `an
 (19, 140920161, 1, 'Renner 1', 1126.2633333333329, 2, 12),
 (20, 140920163, 1, 'Markusbacher', 1502.8116666666676, 4, 15),
 (21, 150920165, 1, 'Markus W', 3631.5060000000008, 5, 12),
-(23, 160920161, 1, 'Driver-ID#32081', 3466.7169444444467, 10, 15),
+(23, 160920161, 1, 'Driver-ID#32081', 3517.1169444444467, 10, 15),
 (24, 190920164, 10, 'Steve', 9121.618, 1, 13),
 (25, 190920162, 12, 'Driver-ID#22983', 324, 1, 13),
 (26, 190920163, 19, 'Driver-ID#52796', 388, 1, 12),
@@ -3618,7 +3618,7 @@ CREATE TABLE `loggedin` (
 --
 
 INSERT INTO `loggedin` (`user_id`, `token`, `created`) VALUES
-(1, '', 1540280686),
+(1, 'zvV/iPrfNYOF+8DVb69WslBi6j8/OSa8J1JVXK@M2cPi@5KDIx8c5sd4halNEWxT', 1540642372),
 (2, '', 1474014885),
 (4, '', 1474028818),
 (5, '', 1474028849),
@@ -3718,7 +3718,7 @@ INSERT INTO `loggedin` (`user_id`, `token`, `created`) VALUES
 (720, '', 1539285080),
 (721, '9ItIdBK8k/yhwpnP/gvsK5CHY53jS6B9iXHhB@EYLv4Gt6tdABdWiSKiF@7zq/UI', 1539800838),
 (722, 'tK2m44fRK+AklOjgez+0t53fac72+QsXi86lZOgwOP1fCIfVKf+2caMtF@3bRJ6L', 1539803257),
-(723, 'FIgup5JwDP1usuB67TAIDUEIrj99FtUrwbppWHIVsX9YeruuuOgrPjlQILfSpHFZ', 1540411911);
+(723, '', 1540411911);
 
 -- --------------------------------------------------------
 
@@ -3750,7 +3750,7 @@ INSERT INTO `new_cars` (`id`, `name`, `title`, `acc`, `speed`, `hand`, `dura`, `
 (4, 'lmp_fxs', 'Lampadati FX-s.', 545, 460, 700, 500, 833000, 20, 8),
 (5, 'santini_figurati', 'Santini Figurati', 55, 40, 50, 45, 8000, 1, 1),
 (6, 'santini_azzuro', 'Santini Azzuro', 95, 100, 80, 150, 16000, 4, 2),
-(7, 'santini_scusi', 'Santini Scusi', 175, 130, 300, 150, 41000, 10, 4),
+(7, 'santini_scusi', 'Santini Scusi', 175, 130, 300, 150, 41000, 8, 4),
 (8, 'santini_dolciamaro', 'Santini Dolciamaro \'74', 220, 190, 300, 180, 59400, 12, 5),
 (9, 'santini_rubacuori', 'Santini Rubacuori', 420, 410, 650, 370, 320000, 17, 7),
 (10, 'lmp_g5s', 'Lampadati G5-s.', 370, 350, 400, 390, 145000, 14, 6),
@@ -3897,6 +3897,7 @@ CREATE TABLE `races` (
   `league` tinytext NOT NULL,
   `type` tinytext NOT NULL,
   `liga` tinyint(4) NOT NULL,
+  `level` int(11) NOT NULL,
   `perf_needed` smallint(6) NOT NULL,
   `dur` int(11) NOT NULL,
   `macc` float NOT NULL,
@@ -3913,42 +3914,65 @@ CREATE TABLE `races` (
 -- Daten für Tabelle `races`
 --
 
-INSERT INTO `races` (`id`, `league`, `type`, `liga`, `perf_needed`, `dur`, `macc`, `mspeed`, `mhand`, `mdura`, `reward`, `exp`, `exp_needed`, `sprit_needed`) VALUES
-(1, 'beginner', 'race', 1, 90, 30, 1, 1.5, 0.5, 1, 100, 70, '0.00', 10),
-(2, 'beginner', 'cup', 1, 100, 180, 1, 1, 1, 1, 500, 180, '1.00', 15),
-(3, 'beginner', 'end', 1, 140, 900, 1, 1, 1, 1, 2000, 190, '2.00', 23),
-(4, 'beginner', 'master', 1, 200, 300, 1, 1, 1, 1, 1000, 260, '2.50', 20),
-(5, 'amateur', 'race', 2, 150, 90, 1, 1, 1, 1, 250, 130, '1.00', 25),
-(6, 'amateur', 'cup', 2, 180, 1800, 1, 1, 1, 1, 1000, 180, '1.20', 40),
-(7, 'amateur', 'end', 2, 200, 36000, 1, 1, 1, 1, 4000, 250, '2.00', 70),
-(8, 'amateur', 'master', 2, 250, 7000, 1, 1, 1, 1, 2300, 500, '2.50', 50),
-(9, 'pro', 'race', 3, 200, 200, 1, 1, 1, 1, 500, 180, '1.00', 50),
-(10, 'pro', 'cup', 3, 270, 3000, 1, 1, 1, 1, 2400, 200, '2.00', 80),
-(11, 'pro', 'end', 3, 220, 30000, 1, 1, 1, 1, 10000, 700, '2.20', 170),
-(12, 'pro', 'master', 3, 350, 8000, 1, 1, 1, 1, 4500, 400, '3.00', 140),
-(13, 'exp', 'race', 4, 230, 2000, 1, 1, 1, 1, 1000, 300, '1.00', 90),
-(14, 'exp', 'cup', 4, 260, 8000, 1, 1, 1, 1, 3700, 450, '2.20', 160),
-(15, 'exp', 'end', 4, 310, 53240, 1, 1, 1, 1, 15000, 4000, '2.00', 430),
-(16, 'exp', 'master', 4, 380, 14437, 1, 1, 1, 1, 6200, 2000, '3.40', 290),
-(17, 'med', 'race', 5, 280, 3600, 1, 1, 1, 1, 2200, 500, '1.00', 200),
-(18, 'med', 'cup', 5, 320, 12000, 1, 1, 1, 1, 10000, 700, '1.50', 440),
-(19, 'med', 'end', 5, 380, 72000, 1, 1, 1, 1, 23500, 800, '2.40', 900),
-(20, 'med', 'master', 5, 430, 23210, 1, 1, 1, 1, 12500, 500, '3.00', 470),
-(21, 'int', 'race', 6, 400, 3600, 1, 1, 1, 1, 3420, 2500, '1.00', 300),
-(22, 'int', 'drag', 6, 500, 500, 1, 1, 1, 1, 1200, 130, '1.50', 150),
-(23, 'int', 'cup', 6, 430, 8000, 1, 1, 1, 1, 18300, 4500, '2.30', 500),
-(24, 'int', 'end', 6, 410, 86400, 1, 1, 1, 1, 34000, 5000, '3.00', 1600),
-(25, 'int', 'master', 6, 490, 33022, 1, 1, 1, 1, 27000, 3000, '3.50', 799),
-(26, 'exp', 'drag', 4, 400, 300, 1, 1, 1, 1, 650, 100, '1.25', 80),
-(27, 'eli', 'race', 7, 550, 3800, 1, 1, 1, 1, 5500, 4000, '1.00', 600),
-(28, 'eli', 'cup', 7, 600, 14000, 1, 1, 1, 1, 12000, 7000, '2.20', 1000),
-(29, 'eli', 'drag', 7, 730, 500, 1, 1, 1, 1, 2300, 600, '1.50', 260),
-(30, 'eli', 'end', 7, 640, 129600, 1, 1, 1, 1, 45000, 13000, '2.75', 3200),
-(31, 'eli', 'master', 7, 750, 34000, 1, 1, 1, 1, 26000, 10000, '3.40', 2600),
-(32, 'black', 'race', 8, 700, 3600, 1, 1, 1, 1, 10000, 9000, '1.00', 1100),
-(33, 'black', 'drag', 8, 900, 800, 1, 1, 1, 1, 3000, 3000, '2.00', 440),
-(34, 'black', 'end', 8, 850, 172800, 1, 1, 1, 1, 82000, 40000, '2.50', 8000),
-(35, 'black', 'master', 8, 1000, 12800, 1, 1, 1, 1, 44400, 20000, '3.50', 6700);
+INSERT INTO `races` (`id`, `league`, `type`, `liga`, `level`, `perf_needed`, `dur`, `macc`, `mspeed`, `mhand`, `mdura`, `reward`, `exp`, `exp_needed`, `sprit_needed`) VALUES
+(1, 'beginner', 'race', 1, 1, 90, 30, 1, 1.5, 0.5, 1, 100, 70, '0.00', 10),
+(2, 'beginner', 'cup', 1, 1, 100, 180, 1, 1, 1, 1, 500, 180, '1.00', 15),
+(3, 'beginner', 'end', 1, 1, 140, 900, 1, 1, 1, 1, 2000, 190, '2.00', 23),
+(4, 'beginner', 'master', 1, 1, 200, 300, 1, 1, 1, 1, 1000, 260, '2.50', 20),
+(5, 'amateur', 'race', 2, 3, 150, 90, 1, 1, 1, 1, 250, 130, '1.00', 25),
+(6, 'amateur', 'cup', 2, 3, 180, 1800, 1, 1, 1, 1, 1000, 180, '1.20', 40),
+(7, 'amateur', 'end', 2, 3, 200, 36000, 1, 1, 1, 1, 4000, 250, '2.00', 70),
+(8, 'amateur', 'master', 2, 3, 250, 7000, 1, 1, 1, 1, 2300, 500, '2.50', 50),
+(9, 'pro', 'race', 3, 6, 200, 200, 1, 1, 1, 1, 500, 180, '1.00', 50),
+(10, 'pro', 'cup', 3, 6, 270, 3000, 1, 1, 1, 1, 2400, 200, '2.00', 80),
+(11, 'pro', 'end', 3, 6, 220, 30000, 1, 1, 1, 1, 10000, 700, '2.20', 170),
+(12, 'pro', 'master', 3, 6, 350, 8000, 1, 1, 1, 1, 4500, 400, '3.00', 140),
+(13, 'exp', 'race', 4, 8, 230, 2000, 1, 1, 1, 1, 1000, 300, '1.00', 90),
+(14, 'exp', 'cup', 4, 8, 260, 8000, 1, 1, 1, 1, 3700, 450, '2.20', 160),
+(15, 'exp', 'end', 4, 8, 310, 53240, 1, 1, 1, 1, 15000, 4000, '2.00', 430),
+(16, 'exp', 'master', 4, 8, 380, 14437, 1, 1, 1, 1, 6200, 2000, '3.40', 290),
+(17, 'med', 'race', 5, 12, 280, 3600, 1, 1, 1, 1, 2200, 500, '1.00', 200),
+(18, 'med', 'cup', 5, 12, 320, 12000, 1, 1, 1, 1, 10000, 700, '1.50', 440),
+(19, 'med', 'end', 5, 12, 380, 72000, 1, 1, 1, 1, 23500, 800, '2.40', 900),
+(20, 'med', 'master', 5, 12, 430, 23210, 1, 1, 1, 1, 12500, 500, '3.00', 470),
+(21, 'int', 'race', 6, 15, 400, 3600, 1, 1, 1, 1, 3420, 2500, '1.00', 300),
+(22, 'int', 'drag', 6, 15, 500, 500, 1, 1, 1, 1, 1200, 130, '1.50', 150),
+(23, 'int', 'cup', 6, 15, 430, 8000, 1, 1, 1, 1, 18300, 4500, '2.30', 500),
+(24, 'int', 'end', 6, 15, 410, 86400, 1, 1, 1, 1, 34000, 5000, '3.00', 1600),
+(25, 'int', 'master', 6, 15, 490, 33022, 1, 1, 1, 1, 27000, 3000, '3.50', 799),
+(26, 'exp', 'drag', 4, 8, 400, 300, 1, 1, 1, 1, 650, 100, '1.25', 80),
+(27, 'eli', 'race', 7, 17, 550, 3800, 1, 1, 1, 1, 5500, 4000, '1.00', 600),
+(28, 'eli', 'cup', 7, 17, 600, 14000, 1, 1, 1, 1, 12000, 7000, '2.20', 1000),
+(29, 'eli', 'drag', 7, 17, 730, 500, 1, 1, 1, 1, 2300, 600, '1.50', 260),
+(30, 'eli', 'end', 7, 17, 640, 129600, 1, 1, 1, 1, 45000, 13000, '2.75', 3200),
+(31, 'eli', 'master', 7, 17, 750, 34000, 1, 1, 1, 1, 26000, 10000, '3.40', 2600),
+(32, 'black', 'race', 8, 20, 700, 3600, 1, 1, 1, 1, 10000, 9000, '1.00', 1100),
+(33, 'black', 'drag', 8, 20, 900, 800, 1, 1, 1, 1, 3000, 3000, '2.00', 440),
+(34, 'black', 'end', 8, 20, 850, 172800, 1, 1, 1, 1, 82000, 40000, '2.50', 8000),
+(35, 'black', 'master', 8, 20, 1000, 12800, 1, 1, 1, 1, 44400, 20000, '3.50', 6700);
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `races_lvls-old`
+--
+
+CREATE TABLE `races_lvls-old` (
+  `league` varchar(14) NOT NULL,
+  `level` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Daten für Tabelle `races_lvls-old`
+--
+
+INSERT INTO `races_lvls-old` (`league`, `level`) VALUES
+('amateur', 3),
+('beginner', 1),
+('exp', 8),
+('int', 14),
+('med', 12),
+('pro', 6);
 
 -- --------------------------------------------------------
 
@@ -4033,7 +4057,7 @@ CREATE TABLE `sprit_upt` (
 --
 
 INSERT INTO `sprit_upt` (`id`, `user_id`, `updated`) VALUES
-(1, 1, 1540411761),
+(1, 1, 1540643404),
 (6, 6, 1474465669),
 (7, 7, 1474290311),
 (8, 8, 1474290474),
@@ -4744,7 +4768,7 @@ INSERT INTO `sprit_upt` (`id`, `user_id`, `updated`) VALUES
 (720, 720, 1539285083),
 (721, 721, 1539802495),
 (722, 722, 1539803401),
-(723, 723, 1540641628);
+(723, 723, 1540642367);
 
 -- --------------------------------------------------------
 
@@ -5169,7 +5193,7 @@ CREATE TABLE `stats` (
 --
 
 INSERT INTO `stats` (`id`, `money`, `liga`, `exp`, `sprit`, `uppoints`, `chat_count`) VALUES
-(1, '10799317193.06', 10, 77466, 405, 0, 27),
+(1, '10799317265.06', 10, 77516, 405, 0, 27),
 (6, '21031.89', 1, 27, 1577.66, 0, 0),
 (7, '25000.00', 1, 0, 50.225, 0, 0),
 (8, '25000.00', 1, 0, 50.2417, 0, 0),
@@ -5880,7 +5904,7 @@ INSERT INTO `stats` (`id`, `money`, `liga`, `exp`, `sprit`, `uppoints`, `chat_co
 (720, '10000.00', 1, 0, 50.025, 0, 0),
 (721, '10198.00', 1, 0, 64.8002, 0, 0),
 (722, '10500.00', 1, 0, 51.1999, 0, 0),
-(723, '5297.50', 1, 107, 90.7749, 0, 0);
+(723, '5297.50', 1, 107, 96.9332, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -5900,7 +5924,7 @@ CREATE TABLE `stats_racing` (
 --
 
 INSERT INTO `stats_racing` (`user_id`, `run`, `sum_positions`, `sum_price`) VALUES
-(1, 61, 189, '5159.10'),
+(1, 62, 192, '5231.10'),
 (723, 2, 10, '188.50');
 
 -- --------------------------------------------------------
@@ -6837,7 +6861,9 @@ CREATE TABLE `sys_log` (
 
 INSERT INTO `sys_log` (`id`, `to_id`, `message_code`, `properties`, `date`, `open`) VALUES
 (1, 723, 'welcome', '{\"type\":\"welcome\"}', 1540641530, 1),
-(2, 723, 'race_done', '{\"league\":\"beginner\",\"type\":\"race\",\"position\":4,\"reward\":59,\"exp\":41.3}', 1540641573, 1);
+(2, 723, 'race_done', '{\"league\":\"beginner\",\"type\":\"race\",\"position\":4,\"reward\":59,\"exp\":41.3}', 1540641573, 1),
+(3, 1, 'welcome', '{\"type\":\"welcome\"}', 1540642372, 1),
+(4, 1, 'race_done', '{\"league\":\"beginner\",\"type\":\"race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540642989, 0);
 
 -- --------------------------------------------------------
 
@@ -6973,7 +6999,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `pass`, `email`, `regdate`, `activeTime`, `ads`, `lang`, `token`, `token_date`) VALUES
-(1, 'admin', '3cbabe7cfb4f29bc2816a7f8103b6889', 'mwernersbach@web.de', 1441866181, 1540411761, 0, 'de', '', 0),
+(1, 'admin', '3cbabe7cfb4f29bc2816a7f8103b6889', 'mwernersbach@web.de', 1441866181, 1540643404, 0, 'de', '', 0),
 (6, 'Testuser', '3cbabe7cfb4f29bc2816a7f8103b6889', 'mwernersbach@hotmail.de', 1474289215, 1474465669, 0, 'de', '', 0),
 (7, 'zorny', '67a2cb77f1d829b0add64bca764a895b', '', 1474290284, 0, 0, 'en', '', 0),
 (8, 'RCJax', '1984fe2c85b13f331105a4e528142954', '', 1474290445, 0, 0, 'en', '', 0),
@@ -7685,7 +7711,7 @@ INSERT INTO `user` (`id`, `username`, `pass`, `email`, `regdate`, `activeTime`, 
 (720, 'guest:ys52j', '57cfc735faf692af70cd3d0f63987516', '', 1539285080, 1539285082, 0, 'de', '', 0),
 (721, 'guest:vgh72', 'c8438edf0ac657650b6a4d57e08d8143', '', 1539800838, 1539802495, 0, 'de', '', 0),
 (722, 'guest:5777n', 'b601f678db3d078c0ac81b8a2ea1e77c', '', 1539803257, 1539803401, 0, 'de', '', 0),
-(723, 'guest:g1rao', 'c0594d0ca5d6a88c5ccfb6d98cfe56f5', '', 1540411911, 1540641627, 0, 'de', '', 0);
+(723, 'guest:g1rao', 'c0594d0ca5d6a88c5ccfb6d98cfe56f5', '', 1540411911, 1540642367, 0, 'de', '', 0);
 
 --
 -- Indizes der exportierten Tabellen
@@ -7763,6 +7789,12 @@ ALTER TABLE `quests_user`
 --
 ALTER TABLE `races`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indizes für die Tabelle `races_lvls-old`
+--
+ALTER TABLE `races_lvls-old`
+  ADD PRIMARY KEY (`league`);
 
 --
 -- Indizes für die Tabelle `races_run`
@@ -7913,7 +7945,7 @@ ALTER TABLE `races`
 -- AUTO_INCREMENT für Tabelle `races_run`
 --
 ALTER TABLE `races_run`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT für Tabelle `sprit`
@@ -7955,7 +7987,7 @@ ALTER TABLE `storage_run`
 -- AUTO_INCREMENT für Tabelle `sys_log`
 --
 ALTER TABLE `sys_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT für Tabelle `upgrades`

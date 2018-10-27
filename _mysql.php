@@ -526,9 +526,9 @@ function queryUserHasCarID($id) {
         return false;
 }
 
-function queryRaces($liga) {
+function queryRaces($league) {
     global $mysqli;
-    $sql = "SELECT * FROM races WHERE liga = '" . mysqli_real_escape_string($mysqli, $liga) . "' ORDER BY exp_needed asc";
+    $sql = "SELECT * FROM races WHERE league = '" . mysqli_real_escape_string($mysqli, $league) . "' ORDER BY exp_needed asc";
 
     return getArray($sql);
 }

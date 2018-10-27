@@ -1,23 +1,23 @@
 <?php
 
-$output = outputTut("race_info", $l);
+$info_out = "";
 
 //Spielerliga auslesen
-$maxLiga = getPlayerLiga();
+$maxLevel = getPlayerLiga();
 
-if (!isset($get["liga"]) OR $get["liga"] > $maxLiga)
-    $liga = 1;
+if (!isset($get["league"]))
+    $leagueOpen = "beginner";
 else
-    $liga = $get["liga"];
+    $leagueOpen = $get["league"];
 
-//LIgaliste generieren
+//Ligaliste generieren
 function showLigaList() {
-    global $maxLiga;
+    global $maxLevel;
     global $liga;
     
     //Liga Auswahl ausgeben
     $ret = "<ul class='ligaList'>";
-    for ($i = 1; $i <= $maxLiga; $i++) {
+    for ($i = 1; $i <= $maxLevel; $i++) {
         if($i == $liga) $active = "class='active'"; else $active = "";
         $ret .= "<li $active><a href='?page=race&sub=racing&liga=$i'>
                             ".levelImg($i, true)."</a></li>";
@@ -26,7 +26,7 @@ function showLigaList() {
     return $ret;
 }
 
-$races = queryRaces($liga);
+$races = queryRaces($leagueOpen);
 $cars = queryPlayerCars();
 $drivers = queryDrivers();
 
@@ -88,9 +88,7 @@ function raceNew($race_id, $car_id, $driver_id) {
 }
 
 
-$output .= showLigaList();
 
-$output .= "<div id='racing'>";
     
 //Rennen starten
 if (isset($post['send'])) { //Abgeschicktes Formular
@@ -100,9 +98,9 @@ if (isset($post['send'])) { //Abgeschicktes Formular
     
     $race = raceNew($race_id, $car_id, $driver_id);
 
-    $output .= "<span class='dealInfoText $race'>";
-    $output .= put($race, $l);
-    $output .= "</span>";
+    $info_out .= "<span class='dealInfoText $race'>";
+    $info_out .= put($race, $l);
+    $info_out .= "</span>";
 }
 
 $carSelect = returnCarSelect();
@@ -119,8 +117,17 @@ if(strlen($driverSelect) < 1) {
     $driverSelect = "<option>------</option>"; 
 }
 
+$race_output = "";
+$leagueList = "";
+
 if($races)
     foreach($races as $race) {
+    //level needed
+    $level = $race["level"];
+    $league = $race["league"];
+    $type = $race["type"];  
+       
+    
     //Sperre berechnen
     $canRace = queryUserCanRace($race["id"], getPlayerExp(), getPlayerSprit());
     $locked = "flex";
@@ -143,12 +150,10 @@ if($races)
     $mdura = outputToProcent($race["mdura"]);
     
     $dollar_reward = dollar(calcDollarReward($race["sprit_needed"]));
-    
-    $league = $race["league"];
-    $type = $race["type"];    
+      
 
     //Ausgabe einzelner Rennen
-    $output .= "<div class='dealer'>
+    $race_output .= "<div class='dealer'>
                     <div class='locked' style='display:$locked'>
                         
                         <div class='whyBlock'>$whyBlock</div>
@@ -197,7 +202,17 @@ if($races)
                 </div>";
     }
 
+    
+$output = outputTut("race_info", $l);
 
+$output .= showLigaList();
+//$output .= "<ul class='ligaList'>$leagueList</ul>";
+
+$output .= "<div id='racing'>";
+
+$output .= $info_out;
+    
+$output .= $race_output;
 
 $output .= "</div>";
 
