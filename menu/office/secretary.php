@@ -29,7 +29,7 @@ foreach ($logs as $key => $log) {
 
     switch ($type) {
         case "race_done":
-            $html = sprintf(put("log_race_done_sprintf", $l), getRaceName($props["name"], $l), $props["position"], dollar($props["reward"]), ep($props["exp"]));
+            $html = sprintf(put("log_race_done_sprintf", $l), getRaceName($props["league"], $props["type"]), $props["position"], dollar($props["reward"]), ep($props["exp"]));
             $css = "races";
 
             break;

@@ -144,6 +144,8 @@ if($races)
     
     $dollar_reward = dollar(calcDollarReward($race["sprit_needed"]));
     
+    $league = $race["league"];
+    $type = $race["type"];    
 
     //Ausgabe einzelner Rennen
     $output .= "<div class='dealer'>
@@ -154,7 +156,7 @@ if($races)
 
                     <div class='tuneInfoFlex' style='max-width:80%;  margin-bottom:45px;'>
                         <div class='tuneTitle'>
-                            ".getRaceName($race["name"])."
+                            ".getRaceName($league, $type)."
                         </div>
                        
                         <div class='tuneInfo'> 

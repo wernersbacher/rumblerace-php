@@ -8,14 +8,15 @@ if (isset($get['cancel'])) { //Abgeschicktes Formular, rennen abbrechen
     $info = "<span class='dealInfoText $cancel'>";
     $info .= put($cancel, $l);
     $info .= "</span>";
-} else $info = "";
+} else
+    $info = "";
 
 $races = queryRunningRaces();
 $rennen = "";
-$counter=1;
+$counter = 1;
 //Rennen ausgeben
-if($races)
-    foreach($races as $race) {
+if ($races)
+    foreach ($races as $race) {
         //rechne den fortschritt
         $time_to_end = $race["time_end"] - time();
         $duration = $race["duration"];
@@ -29,22 +30,24 @@ if($races)
             $width = 100;
         //Autodaten laden
         $car = queryPlayerCarID($race["car_id"]);
-        
+
         $carValueList = outputCarPartsSumList($race["car_id"]);
-        
+
         //Fahrerdaten
         $driver = getDriverByID($race["driver_id"]);
-        
+        $league = $race["league"];
+        $type = $race["type"];
+
         $rennen .= "<div class='dealer removeThis'>
                     <div class='tuneInfoFlex' style='max-width:100%;  margin-bottom:45px;'>
                         <div class='tuneTitle'>
-                            ".getRaceName($race["name"])."
+                            " . getRaceName($league, $type) . "
                         </div>
                        
                         <div class='tuneInfo'> 
-                            <div class='tuneDesc'>".$car["title"]." ($carValueList)
-                                - ".$driver["name"]." (".showSkill($driver["skill"])."%)
-                                - ".dollar($race["reward"])."
+                            <div class='tuneDesc'>" . $car["title"] . " ($carValueList)
+                                - " . $driver["name"] . " (" . showSkill($driver["skill"]) . "%)
+                                - " . dollar($race["reward"]) . "
                             </div>
                             
                             <div id='prog_$counter' class='tuneProgress' data-time-duration='$duration' data-time-toend='$time_to_end'>
@@ -59,15 +62,16 @@ if($races)
                     
                             <form data-dialog='Cancel race? You won't get any rewards.' method='POST' style='display:inline-block;' action='?page=race&sub=running&cancel=true'>
 
-                                <input type='hidden' name='race_id' value='".$race["id"]."'>
+                                <input type='hidden' name='race_id' value='" . $race["id"] . "'>
                                 <input class='tableTopButton dialog' name='send' type='submit' value='" . put("cancel", $l) . "'>
                             </form>
                         </div>
                    </div>";
-        
+
         $counter++;
-    } else $rennen = put("no_races_running",$l);
-    
+    } else
+    $rennen = put("no_races_running", $l);
+
 
 
 $output = outputTut("running_races", $l);

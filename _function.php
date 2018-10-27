@@ -533,10 +533,9 @@ function randomHeader() {
     return $head[$key];
 }
 
-function getRaceName($name) {
+function getRaceName($league, $type) {
     global $l;
-    $exp = explode("_", $name);
-    return put($exp[0], $l) . " " . put($exp[1], $l);
+    return put($league, $l) . " " . put($type, $l);
 }
 
 function calcSkillGain($liga, $ep) {

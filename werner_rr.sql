@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 24. Okt 2018 um 22:51
+-- Erstellungszeit: 27. Okt 2018 um 14:01
 -- Server-Version: 10.1.36-MariaDB
 -- PHP-Version: 7.2.10
 
@@ -971,7 +971,7 @@ INSERT INTO `fahrer` (`id`, `driver_id`, `user_id`, `name`, `skill`, `liga`, `an
 (541, 721, 721, 'Markus Werner', 150, 1, 5),
 (542, 722, 722, 'Markus Werner', 150, 1, 5),
 (543, 723, 723, 'Markus Werner', 216.5, 1, 5),
-(544, 241020183, 723, 'Driver-ID#42221', 824, 1, 14);
+(544, 241020183, 723, 'Driver-ID#42221', 865.3, 1, 14);
 
 -- --------------------------------------------------------
 
@@ -3894,7 +3894,8 @@ CREATE TABLE `quests_user` (
 
 CREATE TABLE `races` (
   `id` int(11) NOT NULL,
-  `name` tinytext NOT NULL,
+  `league` tinytext NOT NULL,
+  `type` tinytext NOT NULL,
   `liga` tinyint(4) NOT NULL,
   `perf_needed` smallint(6) NOT NULL,
   `dur` int(11) NOT NULL,
@@ -3912,42 +3913,42 @@ CREATE TABLE `races` (
 -- Daten für Tabelle `races`
 --
 
-INSERT INTO `races` (`id`, `name`, `liga`, `perf_needed`, `dur`, `macc`, `mspeed`, `mhand`, `mdura`, `reward`, `exp`, `exp_needed`, `sprit_needed`) VALUES
-(1, 'beginner_race', 1, 90, 30, 1, 1.5, 0.5, 1, 100, 70, '0.00', 10),
-(2, 'beginner_cup', 1, 100, 180, 1, 1, 1, 1, 500, 180, '1.00', 15),
-(3, 'beginner_end', 1, 140, 900, 1, 1, 1, 1, 2000, 190, '2.00', 23),
-(4, 'beginner_master', 1, 200, 300, 1, 1, 1, 1, 1000, 260, '2.50', 20),
-(5, 'amateur_race', 2, 150, 90, 1, 1, 1, 1, 250, 130, '1.00', 25),
-(6, 'amateur_cup', 2, 180, 1800, 1, 1, 1, 1, 1000, 180, '1.20', 40),
-(7, 'amateur_end', 2, 200, 36000, 1, 1, 1, 1, 4000, 250, '2.00', 70),
-(8, 'amateur_master', 2, 250, 7000, 1, 1, 1, 1, 2300, 500, '2.50', 50),
-(9, 'pro_race', 3, 200, 200, 1, 1, 1, 1, 500, 180, '1.00', 50),
-(10, 'pro_cup', 3, 270, 3000, 1, 1, 1, 1, 2400, 200, '2.00', 80),
-(11, 'pro_end', 3, 220, 30000, 1, 1, 1, 1, 10000, 700, '2.20', 170),
-(12, 'pro_master', 3, 350, 8000, 1, 1, 1, 1, 4500, 400, '3.00', 140),
-(13, 'exp_race', 4, 230, 2000, 1, 1, 1, 1, 1000, 300, '1.00', 90),
-(14, 'exp_cup', 4, 260, 8000, 1, 1, 1, 1, 3700, 450, '2.20', 160),
-(15, 'exp_end', 4, 310, 53240, 1, 1, 1, 1, 15000, 4000, '2.00', 430),
-(16, 'exp_master', 4, 380, 14437, 1, 1, 1, 1, 6200, 2000, '3.40', 290),
-(17, 'med_race', 5, 280, 3600, 1, 1, 1, 1, 2200, 500, '1.00', 200),
-(18, 'med_cup', 5, 320, 12000, 1, 1, 1, 1, 10000, 700, '1.50', 440),
-(19, 'med_end', 5, 380, 72000, 1, 1, 1, 1, 23500, 800, '2.40', 900),
-(20, 'med_master', 5, 430, 23210, 1, 1, 1, 1, 12500, 500, '3.00', 470),
-(21, 'int_race', 6, 400, 3600, 1, 1, 1, 1, 3420, 2500, '1.00', 300),
-(22, 'int_drag', 6, 500, 500, 1, 1, 1, 1, 1200, 130, '1.50', 150),
-(23, 'int_cup', 6, 430, 8000, 1, 1, 1, 1, 18300, 4500, '2.30', 500),
-(24, 'int_end', 6, 410, 86400, 1, 1, 1, 1, 34000, 5000, '3.00', 1600),
-(25, 'int_master', 6, 490, 33022, 1, 1, 1, 1, 27000, 3000, '3.50', 799),
-(26, 'exp_drag', 4, 400, 300, 1, 1, 1, 1, 650, 100, '1.25', 80),
-(27, 'eli_race', 7, 550, 3800, 1, 1, 1, 1, 5500, 4000, '1.00', 600),
-(28, 'eli_cup', 7, 600, 14000, 1, 1, 1, 1, 12000, 7000, '2.20', 1000),
-(29, 'eli_drag', 7, 730, 500, 1, 1, 1, 1, 2300, 600, '1.50', 260),
-(30, 'eli_end', 7, 640, 129600, 1, 1, 1, 1, 45000, 13000, '2.75', 3200),
-(31, 'eli_master', 7, 750, 34000, 1, 1, 1, 1, 26000, 10000, '3.40', 2600),
-(32, 'black_race', 8, 700, 3600, 1, 1, 1, 1, 10000, 9000, '1.00', 1100),
-(33, 'black_drag', 8, 900, 800, 1, 1, 1, 1, 3000, 3000, '2.00', 440),
-(34, 'black_end', 8, 850, 172800, 1, 1, 1, 1, 82000, 40000, '2.50', 8000),
-(35, 'black_master', 8, 1000, 12800, 1, 1, 1, 1, 44400, 20000, '3.50', 6700);
+INSERT INTO `races` (`id`, `league`, `type`, `liga`, `perf_needed`, `dur`, `macc`, `mspeed`, `mhand`, `mdura`, `reward`, `exp`, `exp_needed`, `sprit_needed`) VALUES
+(1, 'beginner', 'race', 1, 90, 30, 1, 1.5, 0.5, 1, 100, 70, '0.00', 10),
+(2, 'beginner', 'cup', 1, 100, 180, 1, 1, 1, 1, 500, 180, '1.00', 15),
+(3, 'beginner', 'end', 1, 140, 900, 1, 1, 1, 1, 2000, 190, '2.00', 23),
+(4, 'beginner', 'master', 1, 200, 300, 1, 1, 1, 1, 1000, 260, '2.50', 20),
+(5, 'amateur', 'race', 2, 150, 90, 1, 1, 1, 1, 250, 130, '1.00', 25),
+(6, 'amateur', 'cup', 2, 180, 1800, 1, 1, 1, 1, 1000, 180, '1.20', 40),
+(7, 'amateur', 'end', 2, 200, 36000, 1, 1, 1, 1, 4000, 250, '2.00', 70),
+(8, 'amateur', 'master', 2, 250, 7000, 1, 1, 1, 1, 2300, 500, '2.50', 50),
+(9, 'pro', 'race', 3, 200, 200, 1, 1, 1, 1, 500, 180, '1.00', 50),
+(10, 'pro', 'cup', 3, 270, 3000, 1, 1, 1, 1, 2400, 200, '2.00', 80),
+(11, 'pro', 'end', 3, 220, 30000, 1, 1, 1, 1, 10000, 700, '2.20', 170),
+(12, 'pro', 'master', 3, 350, 8000, 1, 1, 1, 1, 4500, 400, '3.00', 140),
+(13, 'exp', 'race', 4, 230, 2000, 1, 1, 1, 1, 1000, 300, '1.00', 90),
+(14, 'exp', 'cup', 4, 260, 8000, 1, 1, 1, 1, 3700, 450, '2.20', 160),
+(15, 'exp', 'end', 4, 310, 53240, 1, 1, 1, 1, 15000, 4000, '2.00', 430),
+(16, 'exp', 'master', 4, 380, 14437, 1, 1, 1, 1, 6200, 2000, '3.40', 290),
+(17, 'med', 'race', 5, 280, 3600, 1, 1, 1, 1, 2200, 500, '1.00', 200),
+(18, 'med', 'cup', 5, 320, 12000, 1, 1, 1, 1, 10000, 700, '1.50', 440),
+(19, 'med', 'end', 5, 380, 72000, 1, 1, 1, 1, 23500, 800, '2.40', 900),
+(20, 'med', 'master', 5, 430, 23210, 1, 1, 1, 1, 12500, 500, '3.00', 470),
+(21, 'int', 'race', 6, 400, 3600, 1, 1, 1, 1, 3420, 2500, '1.00', 300),
+(22, 'int', 'drag', 6, 500, 500, 1, 1, 1, 1, 1200, 130, '1.50', 150),
+(23, 'int', 'cup', 6, 430, 8000, 1, 1, 1, 1, 18300, 4500, '2.30', 500),
+(24, 'int', 'end', 6, 410, 86400, 1, 1, 1, 1, 34000, 5000, '3.00', 1600),
+(25, 'int', 'master', 6, 490, 33022, 1, 1, 1, 1, 27000, 3000, '3.50', 799),
+(26, 'exp', 'drag', 4, 400, 300, 1, 1, 1, 1, 650, 100, '1.25', 80),
+(27, 'eli', 'race', 7, 550, 3800, 1, 1, 1, 1, 5500, 4000, '1.00', 600),
+(28, 'eli', 'cup', 7, 600, 14000, 1, 1, 1, 1, 12000, 7000, '2.20', 1000),
+(29, 'eli', 'drag', 7, 730, 500, 1, 1, 1, 1, 2300, 600, '1.50', 260),
+(30, 'eli', 'end', 7, 640, 129600, 1, 1, 1, 1, 45000, 13000, '2.75', 3200),
+(31, 'eli', 'master', 7, 750, 34000, 1, 1, 1, 1, 26000, 10000, '3.40', 2600),
+(32, 'black', 'race', 8, 700, 3600, 1, 1, 1, 1, 10000, 9000, '1.00', 1100),
+(33, 'black', 'drag', 8, 900, 800, 1, 1, 1, 1, 3000, 3000, '2.00', 440),
+(34, 'black', 'end', 8, 850, 172800, 1, 1, 1, 1, 82000, 40000, '2.50', 8000),
+(35, 'black', 'master', 8, 1000, 12800, 1, 1, 1, 1, 44400, 20000, '3.50', 6700);
 
 -- --------------------------------------------------------
 
@@ -4743,7 +4744,7 @@ INSERT INTO `sprit_upt` (`id`, `user_id`, `updated`) VALUES
 (720, 720, 1539285083),
 (721, 721, 1539802495),
 (722, 722, 1539803401),
-(723, 723, 1540413849);
+(723, 723, 1540641628);
 
 -- --------------------------------------------------------
 
@@ -5879,7 +5880,7 @@ INSERT INTO `stats` (`id`, `money`, `liga`, `exp`, `sprit`, `uppoints`, `chat_co
 (720, '10000.00', 1, 0, 50.025, 0, 0),
 (721, '10198.00', 1, 0, 64.8002, 0, 0),
 (722, '10500.00', 1, 0, 51.1999, 0, 0),
-(723, '5238.50', 1, 66, 7.13321, 0, 0);
+(723, '5297.50', 1, 107, 90.7749, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -5900,7 +5901,7 @@ CREATE TABLE `stats_racing` (
 
 INSERT INTO `stats_racing` (`user_id`, `run`, `sum_positions`, `sum_price`) VALUES
 (1, 61, 189, '5159.10'),
-(723, 1, 6, '129.50');
+(723, 2, 10, '188.50');
 
 -- --------------------------------------------------------
 
@@ -6835,61 +6836,8 @@ CREATE TABLE `sys_log` (
 --
 
 INSERT INTO `sys_log` (`id`, `to_id`, `message_code`, `properties`, `date`, `open`) VALUES
-(3, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1539774063, 1),
-(4, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1539800384, 1),
-(7, 1, 'part_sold', '{\"name\":\"part_sold\",\"part\":\"kolben\",\"price\":\"100\"}', 1539802178, 1),
-(8, 1, 'sprit_sold', '{\"name\":\"sprit_sold\",\"price\":\"2.00\",\"amount\":1,\"cost\":2}', 1539802495, 1),
-(10, 722, 'welcome', '{\"name\":\"welcome\"}', 1539803395, 1),
-(11, 1, 'race_done', '{\"type\":\"race_done\",\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1539847651, 1),
-(12, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1539847828, 1),
-(13, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1539847955, 1),
-(14, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540279515, 1),
-(15, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540279515, 1),
-(16, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540279516, 1),
-(17, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540279516, 1),
-(18, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540279516, 1),
-(19, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540279966, 1),
-(20, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540279966, 1),
-(21, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540279967, 1),
-(22, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540279967, 1),
-(23, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540279967, 1),
-(24, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540280005, 1),
-(25, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540280005, 1),
-(26, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540280042, 1),
-(27, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540280042, 1),
-(28, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540280248, 1),
-(29, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":4,\"reward\":59,\"exp\":41.3}', 1540280248, 1),
-(30, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540280248, 1),
-(31, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540280248, 1),
-(32, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540280248, 1),
-(33, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540280329, 1),
-(34, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":4,\"reward\":59,\"exp\":41.3}', 1540280329, 1),
-(35, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540280329, 1),
-(36, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540280329, 1),
-(37, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540280329, 1),
-(38, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540280405, 1),
-(39, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540280406, 1),
-(40, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540280429, 1),
-(41, 1, 'race_done', '{\"name\":\"beginner_end\",\"position\":3,\"reward\":266.4,\"exp\":136.79999999999998}', 1540281711, 1),
-(42, 1, 'race_done', '{\"name\":\"beginner_end\",\"position\":6,\"reward\":129.5,\"exp\":66.5}', 1540281711, 1),
-(43, 1, 'race_done', '{\"name\":\"beginner_end\",\"position\":3,\"reward\":266.4,\"exp\":136.79999999999998}', 1540281711, 1),
-(44, 1, 'race_done', '{\"name\":\"beginner_end\",\"position\":3,\"reward\":266.4,\"exp\":136.79999999999998}', 1540281712, 1),
-(45, 1, 'race_done', '{\"name\":\"beginner_end\",\"position\":3,\"reward\":266.4,\"exp\":136.79999999999998}', 1540281712, 1),
-(46, 1, 'race_done', '{\"name\":\"beginner_master\",\"position\":5,\"reward\":142.6,\"exp\":119.60000000000001}', 1540327146, 1),
-(47, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":4,\"reward\":59,\"exp\":41.3}', 1540327146, 1),
-(48, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540327147, 1),
-(49, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540327147, 1),
-(50, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540327147, 1),
-(51, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540327226, 1),
-(52, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":5,\"reward\":46,\"exp\":32.2}', 1540327226, 1),
-(53, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540327226, 1),
-(54, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540327226, 1),
-(55, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540327326, 1),
-(56, 1, 'race_done', '{\"name\":\"beginner_cup\",\"position\":5,\"reward\":92,\"exp\":82.8}', 1540378278, 1),
-(57, 1, 'race_done', '{\"name\":\"beginner_end\",\"position\":3,\"reward\":266.4,\"exp\":136.79999999999998}', 1540378278, 1),
-(58, 1, 'race_done', '{\"name\":\"beginner_race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540378279, 1),
-(59, 723, 'welcome', '{\"type\":\"welcome\"}', 1540411912, 1),
-(60, 723, 'race_done', '{\"name\":\"beginner_end\",\"position\":6,\"reward\":129.5,\"exp\":66.5}', 1540413667, 0);
+(1, 723, 'welcome', '{\"type\":\"welcome\"}', 1540641530, 1),
+(2, 723, 'race_done', '{\"league\":\"beginner\",\"type\":\"race\",\"position\":4,\"reward\":59,\"exp\":41.3}', 1540641573, 1);
 
 -- --------------------------------------------------------
 
@@ -7737,7 +7685,7 @@ INSERT INTO `user` (`id`, `username`, `pass`, `email`, `regdate`, `activeTime`, 
 (720, 'guest:ys52j', '57cfc735faf692af70cd3d0f63987516', '', 1539285080, 1539285082, 0, 'de', '', 0),
 (721, 'guest:vgh72', 'c8438edf0ac657650b6a4d57e08d8143', '', 1539800838, 1539802495, 0, 'de', '', 0),
 (722, 'guest:5777n', 'b601f678db3d078c0ac81b8a2ea1e77c', '', 1539803257, 1539803401, 0, 'de', '', 0),
-(723, 'guest:g1rao', 'c0594d0ca5d6a88c5ccfb6d98cfe56f5', '', 1540411911, 1540413849, 0, 'de', '', 0);
+(723, 'guest:g1rao', 'c0594d0ca5d6a88c5ccfb6d98cfe56f5', '', 1540411911, 1540641627, 0, 'de', '', 0);
 
 --
 -- Indizes der exportierten Tabellen
@@ -8007,7 +7955,7 @@ ALTER TABLE `storage_run`
 -- AUTO_INCREMENT für Tabelle `sys_log`
 --
 ALTER TABLE `sys_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT für Tabelle `upgrades`

@@ -41,9 +41,10 @@ function logNewLevel($liga) {
     return queryNewLog("new_level", $obj);
 }
 
-function logRaceDone($name, $position, $reward, $exp) {
+function logRaceDone($league, $type, $position, $reward, $exp) {
     $obj = [
-        "name" => $name,
+        "league" => $league,
+        "type" => $type,
         "position" => $position,
         "reward" => $reward,
         "exp" => $exp

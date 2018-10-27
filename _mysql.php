@@ -647,7 +647,8 @@ function queryRunningRaces() {
     $sql = "SELECT rc.reward as reward,
                     rr.time_end as time_end,
                     rr.car_id as car_id,
-                    rc.name as name,
+                    rc.league as league,
+                    rc.type as type,
                     rc.dur as duration,
                     rr.id as id,
                     rr.driver_id
@@ -678,7 +679,8 @@ function queryRaceDone() {
                     rr.id as id,
                     rr.time_end as time_end,
                     rr.car_id as car_id,
-                    rc.name as name,
+                    rc.league as league,
+                    rc.type as type,
                     rr.driver_id
             FROM races_run rr
             INNER JOIN races rc
@@ -737,7 +739,7 @@ function queryRaceDone() {
 //        var_dump($race_stats);
         if ($reward_granted && $deleteRace && $driver_reward && $race_stats) {
             mysqli_commit($mysqli);
-            logRaceDone($race["name"], $position, $reward, $exp);
+            logRaceDone($race["league"], $race["type"], $position, $reward, $exp);
             $out = "race_done";
         } else {
             mysqli_rollback($mysqli);
