@@ -29,21 +29,21 @@ function showTunerKats($activeKat) {
     global $l;
     $kats = queryTuningKats();
     //Tuning Kategorien ausgeben
-    $ret = "<ul class='ligaList'>";
+    $ret = "<div class='ligaList'>";
     foreach ($kats as $kat) {
         if ($kat == $activeKat)
             $active = "class='active'";
         else
             $active = "";
 
-        $ret .= "<li $active>
-                <a href='?page=factory&sub=tuner&mode=parts&kat=$kat'>
+        $ret .= "<a class='flex-item-list' href='?page=factory&sub=tuner&mode=parts&kat=$kat'><div $active>
+                
                     <img src='img/parts/$kat.png' />
                         <span class='absTitle'>" . put($kat, $l) . "</span>
-                </a>
-                </li>";
+                
+                </div></a>";
     }
-    $ret .= "</ul>";
+    $ret .= "</div>";
     return $ret;
 }
 

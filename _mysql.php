@@ -526,6 +526,21 @@ function queryUserHasCarID($id) {
         return false;
 }
 
+function queryRaceLeagues() {
+    $sql = "SELECT DISTINCT league, level FROM races";
+
+    $entry = querySQL($sql);
+    if (!$entry)
+        return false;
+    while ($row = mysqli_fetch_assoc($entry)) {
+        $data[] = $row;
+    }
+    if (!isset($data))
+        return false;
+
+    return $data;
+}
+
 function queryRaces($league) {
     global $mysqli;
     $sql = "SELECT * FROM races WHERE league = '" . mysqli_real_escape_string($mysqli, $league) . "' ORDER BY exp_needed asc";
@@ -700,7 +715,7 @@ function queryRaceDone() {
     //geht jedes laufende rennen des users durch
     foreach ($data as $race) {
         $time_to_end = $race["time_end"] - time();
-        
+
         if ($time_to_end > 0)
             return;
 

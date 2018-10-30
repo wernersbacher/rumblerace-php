@@ -1,6 +1,5 @@
 <?php
 
-
 //TODO
 // Salt + in DB speichern
 
@@ -63,13 +62,13 @@ function getCount($sql) {
 function getArray($sql) {
 
     $entry = querySQL($sql);
-    if ($entry) {
-        while ($row = mysqli_fetch_assoc($entry)) {
-            $data[] = $row;
-        }
-        if (isset($data))
-            return $data;
-    } else {
+    if (!$entry)
         return false;
+    while ($row = mysqli_fetch_assoc($entry)) {
+        $data[] = $row;
     }
+    if (!isset($data))
+        return false;
+
+    return $data;
 }

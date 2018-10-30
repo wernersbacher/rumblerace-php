@@ -12,17 +12,30 @@ else
 
 //Ligaliste generieren
 function showLigaList() {
-    global $maxLevel;
-    global $liga;
+    global $leagueOpen, $l, $maxLevel;
+    $leagues = queryRaceLeagues();
     
     //Liga Auswahl ausgeben
-    $ret = "<ul class='ligaList'>";
-    for ($i = 1; $i <= $maxLevel; $i++) {
-        if($i == $liga) $active = "class='active'"; else $active = "";
-        $ret .= "<li $active><a href='?page=race&sub=racing&liga=$i'>
-                            ".levelImg($i, true)."</a></li>";
+    $ret = "<div class='ligaList'>";
+    foreach($leagues as $race_league) {
+        $name = $race_league["league"];
+        $level = $race_league["level"];
+        $href = "href='?page=race&sub=racing&league=$name'";
+        
+        if($name == $leagueOpen) $active = "active"; else $active = "";
+        if($level > $maxLevel) { $href = ""; $locked = "race_locked"; } else $locked = "";
+        //$ret .= "<li $active><a href='?page=race&sub=racing&league=$race_league'>
+        //                    ".levelImg($race_league, true)."</a></li>";
+        
+        $ret .= "<a class='flex-item-list $locked' $href><div class='$active'>
+                
+                    
+                        <span class='absTitle'>" . put($name, $l) . "</span>
+                            <span>".formatLevelColor($level)."</span>
+                </div></a>";
+        
     }
-    $ret .= "</ul>";
+    $ret .= "</div>";
     return $ret;
 }
 
