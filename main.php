@@ -54,7 +54,7 @@ queryRaceDone();
 //Sprit hinzufügen
 querySpritAdd();
 //Überprüfen om Liga Aufstieg
-if (getPlayerLiga() < 8)
+if (getPlayerLiga() < $_config["liga"]["maxLiga"])
     queryLigaChange();
 
 
