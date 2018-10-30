@@ -14,26 +14,32 @@ else
 function showLigaList() {
     global $leagueOpen, $l, $maxLevel;
     $leagues = queryRaceLeagues();
-    
+
     //Liga Auswahl ausgeben
     $ret = "<div class='ligaList'>";
-    foreach($leagues as $race_league) {
+    foreach ($leagues as $race_league) {
         $name = $race_league["league"];
         $level = $race_league["level"];
         $href = "href='?page=race&sub=racing&league=$name'";
-        
-        if($name == $leagueOpen) $active = "active"; else $active = "";
-        if($level > $maxLevel) { $href = ""; $locked = "race_locked"; } else $locked = "";
+
+        if ($name == $leagueOpen)
+            $active = "active";
+        else
+            $active = "";
+        if ($level > $maxLevel) {
+            $href = "";
+            $locked = "race_locked";
+        } else
+            $locked = "";
         //$ret .= "<li $active><a href='?page=race&sub=racing&league=$race_league'>
         //                    ".levelImg($race_league, true)."</a></li>";
-        
+
         $ret .= "<a class='flex-item-list $locked' $href><div class='$active'>
                 
                     
                         <span class='absTitle'>" . put($name, $l) . "</span>
-                            <span>".formatLevelColor($level)."</span>
+                            <span>" . formatLevelColor($level) . "</span>
                 </div></a>";
-        
     }
     $ret .= "</div>";
     return $ret;
@@ -49,22 +55,22 @@ function returnCarSelect() {
     global $liga;
     global $l;
     $carselect = "";
-if($cars)
-    foreach ($cars as $car) {
-        $carLiga = $car["carLiga"];
-        $car_id = $car["garage_id"];
+    if ($cars)
+        foreach ($cars as $car) {
+            $carLiga = $car["carLiga"];
+            $car_id = $car["garage_id"];
 //        $acc = $car["acc"];
 //        $speed = $car["speed"] + calcCarAttribute("speed");
 //        $hand = $car["hand"];
 //        $dura = $car["dura"];
-        $name = $car["title"];
-        
-        $carValueList = outputCarPartsSumList($car_id);
-        
-        if($carLiga <= $liga && queryCarIsNotRacing($car_id))
-            $carselect .= "<option value='$car_id'>$name ($carValueList)</option>";
-    }
-    return $carselect; 
+            $name = $car["title"];
+
+            $carValueList = outputCarPartsSumList($car_id);
+
+            if ($carLiga <= $liga && queryCarIsNotRacing($car_id))
+                $carselect .= "<option value='$car_id'>$name ($carValueList)</option>";
+        }
+    return $carselect;
 }
 
 //Fahrerliste gen
@@ -72,24 +78,23 @@ function returnDriverSelect() {
     global $drivers;
     global $liga;
     $carselect = "";
-    
-if($drivers)
-    foreach ($drivers as $drv) {
-        $driver_liga = $drv["liga"];
-        $name = $drv["name"];
-        $skill = showSkill($drv["skill"]);
-        $id = $drv["id"];
-        
-        if($driver_liga >= $liga && queryDriverIsNotRacing($id))
-            $carselect .= "<option value='$id'>$name (Skill: $skill%)</option>";
-    }
+
+    if ($drivers)
+        foreach ($drivers as $drv) {
+            $driver_liga = $drv["liga"];
+            $name = $drv["name"];
+            $skill = showSkill($drv["skill"]);
+            $id = $drv["id"];
+
+            if ($driver_liga >= $liga && queryDriverIsNotRacing($id))
+                $carselect .= "<option value='$id'>$name (Skill: $skill%)</option>";
+        }
     return $carselect;
 }
 
-
 function raceNew($race_id, $car_id, $driver_id) {
     $data = queryRaceData($race_id);
-    
+
     //checkt ob das auto gerade verfügbar ist, und das rennen freigeschaltet ist
     if (queryDriverIsNotRacing($driver_id) && queryCarIsNotRacing($car_id) && queryUserCanRace($race_id, getPlayerExp(), getPlayerSprit()) == true) {
         return queryRacing($car_id, $data["id"], $data["dur"], $data["sprit_needed"], $driver_id);
@@ -100,15 +105,12 @@ function raceNew($race_id, $car_id, $driver_id) {
     }
 }
 
-
-
-    
 //Rennen starten
 if (isset($post['send'])) { //Abgeschicktes Formular
     $race_id = $post["race_id"];
     $car_id = $post["car_id"];
     $driver_id = $post["driver_id"];
-    
+
     $race = raceNew($race_id, $car_id, $driver_id);
 
     $info_out .= "<span class='dealInfoText $race'>";
@@ -121,52 +123,51 @@ $driverSelect = returnDriverSelect();
 
 $disabled = "";
 
-if(strlen($carSelect) < 1) {
+if (strlen($carSelect) < 1) {
     $disabled = "disabled";
     $carSelect = "<option>------</option>";
-} 
-if(strlen($driverSelect) < 1) {
-   $disabled = "disabled";
-    $driverSelect = "<option>------</option>"; 
+}
+if (strlen($driverSelect) < 1) {
+    $disabled = "disabled";
+    $driverSelect = "<option>------</option>";
 }
 
 $race_output = "";
 $leagueList = "";
 
-if($races)
-    foreach($races as $race) {
-    //level needed
-    $level = $race["level"];
-    $league = $race["league"];
-    $type = $race["type"];  
-       
-    
-    //Sperre berechnen
-    $canRace = queryUserCanRace($race["id"], getPlayerExp(), getPlayerSprit());
-    $locked = "flex";
-    $whyBlock = "";
-    
-    if($canRace === "exp") {
-        $exp_needed = levelExp($liga)*$race["exp_needed"]* getLigaQuot();
-        $whyBlock = "only ".ep($exp_needed-getPlayerExp())." left";
-    } else if ($canRace === "sprit") {
-        $whyBlock = "Not enough fuel. ".$race["sprit_needed"]."L is needed";
-    } 
-    else {
-        $locked = "none";
-    }
-    
-    //Einzelne Gewichtungen ausrechnen
-    $macc = outputToProcent($race["macc"]);
-    $mspeed = outputToProcent($race["mspeed"]);
-    $mhand = outputToProcent($race["mhand"]);
-    $mdura = outputToProcent($race["mdura"]);
-    
-    $dollar_reward = dollar(calcDollarReward($race["sprit_needed"]));
-      
+if ($races)
+    foreach ($races as $race) {
+        //level needed
+        $level = $race["level"];
+        $league = $race["league"];
+        $type = $race["type"];
 
-    //Ausgabe einzelner Rennen
-    $race_output .= "<div class='dealer'>
+
+        //Sperre berechnen
+        $canRace = queryUserCanRace($race["id"], getPlayerExp(), getPlayerSprit());
+        $locked = "flex";
+        $whyBlock = "";
+
+        if ($canRace === "exp") {
+            $exp_needed = levelExp($liga) * $race["exp_needed"] * getLigaQuot();
+            $whyBlock = "only " . ep($exp_needed - getPlayerExp()) . " left";
+        } else if ($canRace === "sprit") {
+            $whyBlock = "Not enough fuel. " . $race["sprit_needed"] . "L is needed";
+        } else {
+            $locked = "none";
+        }
+
+        //Einzelne Gewichtungen ausrechnen
+        $macc = outputToProcent($race["macc"]);
+        $mspeed = outputToProcent($race["mspeed"]);
+        $mhand = outputToProcent($race["mhand"]);
+        $mdura = outputToProcent($race["mdura"]);
+
+        $dollar_reward = dollar(calcDollarReward($race["sprit_needed"]));
+
+
+        //Ausgabe einzelner Rennen
+        $race_output .= "<div class='dealer'>
                     <div class='locked' style='display:$locked'>
                         
                         <div class='whyBlock'>$whyBlock</div>
@@ -174,25 +175,24 @@ if($races)
 
                     <div class='tuneInfoFlex' style='max-width:100%;  margin-bottom:45px;'>
                         <div class='tuneTitle'>
-                            ".getRaceName($league, $type)."
+                            " . getRaceName($league, $type) . "
                         </div>
                        
                         <div class='tuneInfo'> 
                             <div class='tuneDesc'>\"" . put("desc_" . "race", $l) . "\"</div>
                             
                             <div class='racingDetails flex'>
-                                <div class='stat_wrapper'><div class='stat_image_wrapper_tuner'><img src='img/fuel.png' alt='Sprit'/></div> <span class='tune_acc'>".gas($race["sprit_needed"])."</span></div> 
-                                <div class='stat_wrapper'><div class='stat_image_wrapper_tuner'><img src='img/stats/clock1.png' alt='Time'/></div> <span class='tune_acc'>".formatSeconds($race["dur"])."</span></div> 
-                                <div class='stat_wrapper'><div class='stat_image_wrapper_tuner'><img src='img/money32.png' alt='Money'/></div> <span class='tune_acc'>max. $dollar_reward</span></div> 
-                                <div class='stat_wrapper'><div class='stat_image_wrapper_tuner'><img src='img/stats/exp.png' alt='exp'/></div> <span class='tune_acc'>max. ".ep($race["exp"])."</span></div> 
-
-                                
+                                " . racingDetail("fuel", gas($race["sprit_needed"])) . "
+                                " . racingDetail("time", formatSeconds($race["dur"])) . "
+                                " . racingDetail("money", "max. " . $dollar_reward) . "
+                                " . racingDetail("exp", "max. " . ep($race["exp"])) . "
                             </div>
                             <div class='racingDetails flex'>
-                                <div class='stat_wrapper'><div class='stat_image_wrapper_tuner'><img src='img/stats/acc1.png' alt='Acc'/></div> <span class='tune_acc'>$macc</span></div> 
-                                <div class='stat_wrapper'><div class='stat_image_wrapper_tuner'><img src='img/stats/speed1.png' alt='speed'/></div> <span class='tune_speed'>$mspeed</span></div> 
-                                <div class='stat_wrapper'><div class='stat_image_wrapper_tuner'><img src='img/stats/hand1.png' alt='hand'/></div> <span class='tune_speed'>$mhand</span></div> 
-                                <div class='stat_wrapper'><div class='stat_image_wrapper_tuner'><img src='img/stats/dura1.png' alt='str'/></div> <span class='tune_speed'>$mdura</span></div> 
+                            
+                                " . racingDetail("acc1", $macc) . "
+                                " . racingDetail("speed1", $mspeed) . "
+                                " . racingDetail("hand1", $mhand) . "
+                                " . racingDetail("dura1", $mdura) . "
                             </div>
                             
 
@@ -204,20 +204,20 @@ if($races)
                     
                         <form method='POST' style='display:inline-block;' action='?page=race&sub=racing&liga=$liga'>   
                         <select name='driver_id' class='select_car'>
-                            ".$driverSelect."
+                            " . $driverSelect . "
                         </select>
                         <select name='car_id' class='select_car'>
-                            ".$carSelect."
+                            " . $carSelect . "
                         </select>
 
-                            <input type='hidden' name='race_id' value='".$race["id"]."'>
+                            <input type='hidden' name='race_id' value='" . $race["id"] . "'>
                             <input class='tableTopButton saveScroll' name='send' type='submit' value='" . put("race_now", $l) . "' $disabled>
                         </form>
                     </div>
                 </div>";
     }
 
-    
+
 $output = outputTut("race_info", $l);
 
 $output .= showLigaList();
@@ -226,7 +226,7 @@ $output .= showLigaList();
 $output .= "<div id='racing'>";
 
 $output .= $info_out;
-    
+
 $output .= $race_output;
 
 $output .= "</div>";

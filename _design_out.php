@@ -77,3 +77,7 @@ function levelImg($l, $big = false) {
     $big_img = boolToParam($big, " liga-big");
     return "<div class='liga_img$big_img'>$l</div>";
 }
+
+function racingDetail($type, $value) {
+    return "<div class='stat_wrapper'><div class='stat_image_wrapper_tuner'><img src='img/stats/$type.png' alt='$type'/></div> <span class='tune_$type'>$value</span></div> ";
+}

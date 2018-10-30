@@ -130,27 +130,48 @@ foreach ($partNames as $part) {
         continue;
 
     $output .= "<div class='tuner' id='$part'>
-                    <div class='imgFlex'>
-                        <img class='tuningImage' src='img/parts/$kat.png' />
-                    </div>
+                    
 
                     <div class='tuneInfoFlex tuneInfoFlex150'>
-                        <div class='tuneTitle'>
-                            " . put($part, $l) . "
+                        <div class='tuneHeader'>
+                            <div class='imgFlex'>
+                                <img class='tuningImage' src='img/parts/$kat.png' />
+                            </div>
+                            <div class='tuneTitle'>
+                                " . put($part, $l) . "
+                                    <div class='tuneDesc'>\"" . put("desc_" . $part, $l) . "\"</div>
+                            </div>
                         </div>
-
                         <div class='tuneInfo'> 
-                            <div class='tuneDesc'>\"" . put("desc_" . $part, $l) . "\"</div>";
+                            ";
 
 
     //falls gerade kein Teil gebaut wird, darf alles ausgegeben werden
-    $output .= "        <div class='tuneBuyDetails'>
-                                <span class='tuneCost'>$preis1</span> | 
-                                <span class='tuneDur'>" . formatSeconds($dur1) . "s</span>
-                            </div>";
-    $output .= "        <div class='tuneBuyDetails'>
-                                " . outputAttributesList($acc1, $speed1, $hand1, $dura1) . "
-                            </div>";
+//    $output .= "        <div class='tuneBuyDetails'>
+//                                <span class='tuneCost'>$preis1</span> | 
+//                                <span class='tuneDur'>" . formatSeconds($dur1) . "s</span>
+//                            </div>";
+//    $output .= "        <div class='tuneBuyDetails'>
+//                                " . outputAttributesList($acc1, $speed1, $hand1, $dura1) . "
+//                            </div>";
+
+    $output .= "<div class='racingDetails flex'>
+                                " . racingDetail("time", formatSeconds($dur1)) . "
+                                " . racingDetail("money", $preis1) . "
+                            </div>
+                            <div class='racingDetails flex'>
+                            
+                                " . racingDetail("acc1", $acc1) . "
+                                " . racingDetail("speed1", $speed1) . "
+                                " . racingDetail("hand1", $hand1) . "
+                                " . racingDetail("dura1", $dura1) . "
+                            </div>
+                            ";
+
+
+
+
+
 
     if ($isPartRunningNow === $part) {
         $durData = queryRunningPartTime($part);
