@@ -172,7 +172,7 @@ if($races)
                         <div class='whyBlock'>$whyBlock</div>
                     </div>
 
-                    <div class='tuneInfoFlex' style='max-width:80%;  margin-bottom:45px;'>
+                    <div class='tuneInfoFlex' style='max-width:100%;  margin-bottom:45px;'>
                         <div class='tuneTitle'>
                             ".getRaceName($league, $type)."
                         </div>
@@ -180,17 +180,19 @@ if($races)
                         <div class='tuneInfo'> 
                             <div class='tuneDesc'>\"" . put("desc_" . "race", $l) . "\"</div>
                             
-                            <div class='tuneBuyDetails' style=''>
-                                ".$race["sprit_needed"]."L, 
-                                ".formatSeconds($race["dur"])."s, 
-                                " . put("reward", $l) . ": max. $dollar_reward, 
-                                " . put("erfahrung", $l) . ": max. ".ep($race["exp"])." 
+                            <div class='racingDetails flex'>
+                                <div class='stat_wrapper'><div class='stat_image_wrapper_tuner'><img src='img/fuel.png' alt='Sprit'/></div> <span class='tune_acc'>".gas($race["sprit_needed"])."</span></div> 
+                                <div class='stat_wrapper'><div class='stat_image_wrapper_tuner'><img src='img/stats/clock1.png' alt='Time'/></div> <span class='tune_acc'>".formatSeconds($race["dur"])."</span></div> 
+                                <div class='stat_wrapper'><div class='stat_image_wrapper_tuner'><img src='img/money32.png' alt='Money'/></div> <span class='tune_acc'>max. $dollar_reward</span></div> 
+                                <div class='stat_wrapper'><div class='stat_image_wrapper_tuner'><img src='img/stats/exp.png' alt='exp'/></div> <span class='tune_acc'>max. ".ep($race["exp"])."</span></div> 
+
+                                
                             </div>
-                            <div class='tuneBuyDetails'>
-                                <div class='stat_image_wrapper_tuner'><img src='img/stats/acc1.png' alt='Acc'/></div> <span class='tune_acc'>$macc</span> |
-                                <div class='stat_image_wrapper_tuner'><img src='img/stats/speed1.png' alt='speed'/></div> <span class='tune_speed'>$mspeed</span> | 
-                                <div class='stat_image_wrapper_tuner'><img src='img/stats/hand1.png' alt='hand'/></div> <span class='tune_speed'>$mhand</span> |
-                                <div class='stat_image_wrapper_tuner'><img src='img/stats/dura1.png' alt='str'/></div> <span class='tune_speed'>$mdura</span> 
+                            <div class='racingDetails flex'>
+                                <div class='stat_wrapper'><div class='stat_image_wrapper_tuner'><img src='img/stats/acc1.png' alt='Acc'/></div> <span class='tune_acc'>$macc</span></div> 
+                                <div class='stat_wrapper'><div class='stat_image_wrapper_tuner'><img src='img/stats/speed1.png' alt='speed'/></div> <span class='tune_speed'>$mspeed</span></div> 
+                                <div class='stat_wrapper'><div class='stat_image_wrapper_tuner'><img src='img/stats/hand1.png' alt='hand'/></div> <span class='tune_speed'>$mhand</span></div> 
+                                <div class='stat_wrapper'><div class='stat_image_wrapper_tuner'><img src='img/stats/dura1.png' alt='str'/></div> <span class='tune_speed'>$mdura</span></div> 
                             </div>
                             
 

@@ -459,8 +459,8 @@ TABS FOR SUB MENU + some for main menu
 }
 
 .blackOutput {
-    background-color: #9b4646;
-    box-shadow: 2px 2px 11px -4px inset black;
+    background: linear-gradient(to bottom, #a90329 0%,#8f0222 44%,#6d0019 100%);
+    box-shadow: 3px 3px 8px -4px inset black;
     font-family: Kodchasan;
     font-size: 15px;
     overflow: hidden;
@@ -468,7 +468,7 @@ TABS FOR SUB MENU + some for main menu
     border-radius: 7px;
     margin: 0 5px;
     width: 100%;
-    text-align:right;
+    text-align: right;
 }
 
 
