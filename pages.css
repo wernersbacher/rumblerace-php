@@ -245,9 +245,8 @@ select {
 }
 
 .tuneFooter {
-    position:absolute;
-    right:10px;
-    bottom:10px;
+    text-align: center;
+    margin-top: 10px;
 }
 
 .tuneFooter label > input{ /* HIDE RADIO */
@@ -258,6 +257,7 @@ select {
     cursor:pointer;
     border: 2px solid #B7B7B7;
     transition:0.15s;
+    margin-top: 3px;
 }
 .tuneFooter label > input:checked + .liga_img{ /* (RADIO CHECKED) IMAGE STYLES */
     border: 2px solid #ffffff;

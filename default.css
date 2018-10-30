@@ -41,6 +41,14 @@ h2 {
     font-family: Kodchasan;
 }
 
+p.cool-text {
+    margin: 2px;
+    font-family: Kodchasan;
+    /* font-size: 13px; */
+    font-weight: bold;
+    color: #633d05;
+}
+
 #whiteBGWrapper {
     width:850px;
     margin:15px auto;

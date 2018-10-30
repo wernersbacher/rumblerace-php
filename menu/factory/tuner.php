@@ -129,50 +129,7 @@ foreach ($partNames as $part) {
     if ($hide_flag)
         continue;
 
-    $output .= "<div class='tuner' id='$part'>
-                    
-
-                    <div class='tuneInfoFlex tuneInfoFlex150'>
-                        <div class='tuneHeader'>
-                            <div class='imgFlex'>
-                                <img class='tuningImage' src='img/parts/$kat.png' />
-                            </div>
-                            <div class='tuneTitle'>
-                                " . put($part, $l) . "
-                                    <div class='tuneDesc'>\"" . put("desc_" . $part, $l) . "\"</div>
-                            </div>
-                        </div>
-                        <div class='tuneInfo'> 
-                            ";
-
-
-    //falls gerade kein Teil gebaut wird, darf alles ausgegeben werden
-//    $output .= "        <div class='tuneBuyDetails'>
-//                                <span class='tuneCost'>$preis1</span> | 
-//                                <span class='tuneDur'>" . formatSeconds($dur1) . "s</span>
-//                            </div>";
-//    $output .= "        <div class='tuneBuyDetails'>
-//                                " . outputAttributesList($acc1, $speed1, $hand1, $dura1) . "
-//                            </div>";
-
-    $output .= "<div class='racingDetails flex'>
-                                " . racingDetail("time", formatSeconds($dur1)) . "
-                                " . racingDetail("money", $preis1) . "
-                            </div>
-                            <div class='racingDetails flex'>
-                            
-                                " . racingDetail("acc1", $acc1) . "
-                                " . racingDetail("speed1", $speed1) . "
-                                " . racingDetail("hand1", $hand1) . "
-                                " . racingDetail("dura1", $dura1) . "
-                            </div>
-                            ";
-
-
-
-
-
-
+    $progress = "";
     if ($isPartRunningNow === $part) {
         $durData = queryRunningPartTime($part);
         $time_to_end = $durData["time_end"] - time();
@@ -185,25 +142,57 @@ foreach ($partNames as $part) {
             $width = 0;
         if ($width > 100)
             $width = 100;
-        $output .= "    <div id='prog_$counter' class='tuneProgress' data-time-duration='$duration' data-time-toend='$time_to_end'>
+        $progress .= "    <div id='prog_$counter' class='tuneProgress' data-time-duration='$duration' data-time-toend='$time_to_end'>
                                 <div class='tuneProgressBar' style='width:$width%'></div> 
                                 <div class='tuneProgressText'>" . $time_to_end . "s " . put("time_left", $l) . "</div>
                             </div>";
     } else if ($time_left > 0) {
         //Gibt die Wartezeit aus, solange man bei einem anderen Teil wartet
-        $output .= "<span id='tunerWaitForOther' class='hidden'>$time_left</span>";
+        $progress .= "<span id='tunerWaitForOther' class='hidden'>$time_left</span>";
     }
 
-    $output .= "</div>
-                        </div>
+
+    $output .= "<div class='tuner' id='$part'>
                     
-                    <div class='tuneFooter'>
-                        <form method='POST' action='?page=factory&sub=tuner&mode=parts&kat=$kat'>
-                        $labels
-                            <input type='hidden' name='part' value='$part'>
-                            <input style='vertical-align: bottom;' class='tableTopButton saveScroll' name='send' type='submit' value='" . put("build", $l) . "' $disabled>
-                        </form>
-                    </div>                    
+
+                    <div class='tuneInfoFlex'> <!-- tuneInfoFlex150 -->
+                        <div class='tuneHeader'>
+                            <div class='imgFlex'>
+                                <img class='tuningImage' src='img/parts/$kat.png' />
+                            </div>
+                            <div class='tuneTitle'>
+                                " . put($part, $l) . "
+                                    <div class='tuneDesc'>\"" . put("desc_" . $part, $l) . "\"</div>
+                            </div>
+                        </div>
+                        <div class='tuneInfo'> 
+                            <div class='racingDetails flex'>
+                                " . racingDetail("time", formatSeconds($dur1)) . "
+                                " . racingDetail("money", $preis1) . "
+                            </div>
+                                <div class='racingDetails flex'>
+
+                                    " . racingDetail("acc1", $acc1) . "
+                                    " . racingDetail("speed1", $speed1) . "
+                                    " . racingDetail("hand1", $hand1) . "
+                                    " . racingDetail("dura1", $dura1) . "
+                                </div>
+                        </div>
+                        $progress                    
+                            
+                        <div class='tuneFooter'>
+                            <p class='cool-text'>CHOOSE LEVEL</p>
+                            <form method='POST' action='?page=factory&sub=tuner&mode=parts&kat=$kat'>
+                            $labels
+                                <input type='hidden' name='part' value='$part'>
+                                <input style='vertical-align: bottom;' class='tableTopButton saveScroll' name='send' type='submit' value='" . put("build", $l) . "' $disabled>
+                            </form>
+                        </div> 
+
+                    </div>
+                    
+                    
+                    
                </div>";
 
     $counter++;
