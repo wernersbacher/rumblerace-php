@@ -96,6 +96,10 @@ select {
     /* background: white; */
 }
 
+.carImgFlex {
+    height:200%;
+}
+
 .smallFlex {
     height: 100px;
     min-width: 154px;
@@ -247,6 +251,13 @@ select {
 .tuneFooter {
     text-align: center;
     margin-top: 10px;
+}
+
+.tuneFooter.absolute{
+    position:absolute;
+    margin:0;
+    bottom: 10px;
+    right:10px;
 }
 
 .tuneFooter label > input{ /* HIDE RADIO */

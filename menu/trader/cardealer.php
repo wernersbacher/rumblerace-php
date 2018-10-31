@@ -54,7 +54,7 @@ foreach ($cars as $car) {//$car["title"]
 
     $output .= "<div class='dealer'>
                     <div class='imgFlex'>
-                        <img src='img/car/" . $car["name"] . ".jpg' />
+                        <img class='carImgFlex' src='img/car/" . $car["name"] . ".jpg' />
                     </div>
 
                     <div class='infoFlex'>

@@ -200,7 +200,7 @@ if ($races)
                     
                     </div>
                     
-                    <div class='tuneFooter'>
+                    <div class='tuneFooter absolute'>
                     
                         <form method='POST' style='display:inline-block;' action='?page=race&sub=racing&liga=$liga'>   
                         <select name='driver_id' class='select_car'>

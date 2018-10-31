@@ -58,7 +58,7 @@ if ($races)
                     
                     </div>
                         
-                        <div class='tuneFooter'>
+                        <div class='tuneFooter absolute'>
                     
                             <form data-dialog='Cancel race? You won't get any rewards.' method='POST' style='display:inline-block;' action='?page=race&sub=running&cancel=true'>
 

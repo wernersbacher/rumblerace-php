@@ -167,7 +167,7 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
            
             $output .= "<div class='dealer'>
                     <div class='imgFlex'>
-                        <img src='img/car/" . $car["name"] . ".jpg' />
+                        <img class='carImgFlex' src='img/car/" . $car["name"] . ".jpg' />
                     </div>
 
                     <div class='infoFlex'>

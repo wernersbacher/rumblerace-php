@@ -131,7 +131,7 @@ if ($mode == "manage" && $driver) {
                  
 
                 
-                <div class='tuneFooter'>
+                <div class='tuneFooter absolute'>
               
                 ";
 
