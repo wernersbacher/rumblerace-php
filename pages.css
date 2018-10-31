@@ -262,6 +262,7 @@ select {
 .tuneFooter label > input:checked + .liga_img{ /* (RADIO CHECKED) IMAGE STYLES */
     border: 2px solid #ffffff;
     box-shadow: 0px 1px 8px -1px black;
+    background-color: #395f94;
 }
 
 .tuneBuildButton {

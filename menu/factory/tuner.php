@@ -119,10 +119,10 @@ foreach ($partNames as $part) {
                 $checked = "";
             }
 
-            $labels .= "<label>
+            $labels = "<label>
                         <input onclick='setTuneData(\"$part\", \"$preis\", \"$dur\", \"$acc\", \"$speed\", \"$hand\", \"$dura\");' class='tuneLigas' type='radio' name='liga' value='" . $liga . "' $checked>
                         " . levelImg($data["liga"]) . "
-                    </label>";
+                    </label> " . $labels;
         }
     } //foreach ende
     //Check if any liga part can be showed
