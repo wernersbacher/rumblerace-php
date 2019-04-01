@@ -21,7 +21,7 @@ function setTuneData(part, preis, dur, acc, speed, hand, dura) {
 function nwc(x) {
     if (x === undefined)
         return "unknown";
-    x = precise_round(x, 2);
+    x = precise_round(x, 2).toFixed(2);
     var save = $("#langForm").data("lang");
     var komma = ".";
     var tausend = ",";

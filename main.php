@@ -261,8 +261,12 @@ Love for Meri
 
                 </div>
 
+                
                 <div id="contentWindow">
 
+                    <div id="mainFrame">
+                        
+                    
                     <div id="tabsWrapper"> <!-- submenu -->
                         <div id="tabs">
 
@@ -273,10 +277,14 @@ Love for Meri
                         </div>
                         <div class="bottomLine"></div>   
                     </div>
+                    
+                    
 
                     <?php echo $content ?>
                     <?php echo getBannerAd(); ?>
+                    </div>
                 </div>
+                
             </div>
 
 
