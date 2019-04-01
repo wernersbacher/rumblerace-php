@@ -125,6 +125,7 @@ Love for Meri
         <link rel="stylesheet" href="mobile.css">
         <link rel="stylesheet" href="default.css">
         <link rel="stylesheet" href="pages.css">
+        <link rel="stylesheet" href="css/tutorial.css">
         <link rel="stylesheet" href="pages.colors.css">
         <link rel="stylesheet" href="lib/jquery-ui.css">
         <link rel="stylesheet" href="lib/tooltipster.bundle.min.css" />
@@ -264,24 +265,31 @@ Love for Meri
                 
                 <div id="contentWindow">
 
-                    <div id="mainFrame">
+                    <div id="tutorialInfoBox">
                         
-                    
-                    <div id="tabsWrapper"> <!-- submenu -->
-                        <div id="tabs">
-
-                            <?php
-                            echo outputSubmenu($page, $sub);
-                            ?>
-
-                        </div>
-                        <div class="bottomLine"></div>   
+                        <img src="img/tut.png" class="tutImg" />
+                        
                     </div>
                     
                     
+                    <div id="mainFrame">
+                        
+                    
+                        <div id="tabsWrapper"> <!-- submenu -->
+                            <div id="tabs">
 
-                    <?php echo $content ?>
-                    <?php echo getBannerAd(); ?>
+                                <?php
+                                echo outputSubmenu($page, $sub);
+                                ?>
+
+                            </div>
+                            <div class="bottomLine"></div>   
+                        </div>
+
+
+
+                        <?php echo $content ?>
+                        <?php echo getBannerAd(); ?>
                     </div>
                 </div>
                 

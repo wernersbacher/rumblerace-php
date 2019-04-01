@@ -368,18 +368,22 @@ TABS FOR SUB MENU + some for main menu
     text-decoration: underline;
 }
 
-#contentWindow {
-    flex: 1;
-    min-width: 573px;
-    min-height: 100px;
-    margin-top: 10px;
-    background-color: #fbfbfb;
+#mainFrame {
+     background-color: #fbfbfb;
     /* border: 1px solid white; */
     padding: 10px;
     font-family: Kodchasan;
     font-size: 16px;
     box-shadow: inset 1px 1px 13px -9px black;
     border-radius: 2px;
+}
+
+#contentWindow {
+    flex: 1;
+    min-width: 573px;
+    min-height: 100px;
+    margin-top: 10px;
+   
 }
 
 #blackLeftInfo {
