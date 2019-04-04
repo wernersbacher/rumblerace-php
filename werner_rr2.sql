@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 04. Apr 2019 um 17:43
+-- Erstellungszeit: 27. Okt 2018 um 14:30
 -- Server-Version: 10.1.36-MariaDB
 -- PHP-Version: 7.2.10
 
@@ -39,7 +39,7 @@ CREATE TABLE `bonus` (
 --
 
 INSERT INTO `bonus` (`user_id`, `last`, `invested`) VALUES
-(1, 1554131065, '0.00'),
+(1, 1540378324, '0.00'),
 (10, 1474368356, '0.00'),
 (11, 1474290715, '0.00'),
 (12, 1474290678, '0.00'),
@@ -368,8 +368,7 @@ INSERT INTO `bonus` (`user_id`, `last`, `invested`) VALUES
 (720, 0, '0.00'),
 (721, 1539801170, '0.00'),
 (722, 1539803400, '0.00'),
-(723, 0, '0.00'),
-(724, 0, '0.00');
+(723, 0, '0.00');
 
 -- --------------------------------------------------------
 
@@ -972,8 +971,7 @@ INSERT INTO `fahrer` (`id`, `driver_id`, `user_id`, `name`, `skill`, `liga`, `an
 (541, 721, 721, 'Markus Werner', 150, 1, 5),
 (542, 722, 722, 'Markus Werner', 150, 1, 5),
 (543, 723, 723, 'Markus Werner', 216.5, 1, 5),
-(544, 241020183, 723, 'Driver-ID#42221', 865.3, 1, 14),
-(545, 724, 724, 'Markus Werner', 150, 1, 5);
+(544, 241020183, 723, 'Driver-ID#42221', 865.3, 1, 14);
 
 -- --------------------------------------------------------
 
@@ -3582,8 +3580,7 @@ INSERT INTO `garage` (`id`, `user_id`, `car_id`, `sell`) VALUES
 (911, 1, 'beamer_pole', 0),
 (912, 721, 'beamer_pole', 0),
 (913, 722, 'beamer_pole', 0),
-(914, 723, 'beamer_pole', 0),
-(915, 724, 'beamer_pole', 0);
+(914, 723, 'beamer_pole', 0);
 
 -- --------------------------------------------------------
 
@@ -3621,7 +3618,7 @@ CREATE TABLE `loggedin` (
 --
 
 INSERT INTO `loggedin` (`user_id`, `token`, `created`) VALUES
-(1, '', 1554130231),
+(1, 'zvV/iPrfNYOF+8DVb69WslBi6j8/OSa8J1JVXK@M2cPi@5KDIx8c5sd4halNEWxT', 1540642372),
 (2, '', 1474014885),
 (4, '', 1474028818),
 (5, '', 1474028849),
@@ -3721,8 +3718,7 @@ INSERT INTO `loggedin` (`user_id`, `token`, `created`) VALUES
 (720, '', 1539285080),
 (721, '9ItIdBK8k/yhwpnP/gvsK5CHY53jS6B9iXHhB@EYLv4Gt6tdABdWiSKiF@7zq/UI', 1539800838),
 (722, 'tK2m44fRK+AklOjgez+0t53fac72+QsXi86lZOgwOP1fCIfVKf+2caMtF@3bRJ6L', 1539803257),
-(723, '', 1540411911),
-(724, 'Emi5QSIPjG5JcQoN+fXMkAXF+rKMNYTxZgnALvqXKr96gEGGUV8PXQqIq1Tf7lU1', 1554131370);
+(723, '', 1540411911);
 
 -- --------------------------------------------------------
 
@@ -4061,7 +4057,7 @@ CREATE TABLE `sprit_upt` (
 --
 
 INSERT INTO `sprit_upt` (`id`, `user_id`, `updated`) VALUES
-(1, 1, 1554131348),
+(1, 1, 1540643404),
 (6, 6, 1474465669),
 (7, 7, 1474290311),
 (8, 8, 1474290474),
@@ -4772,8 +4768,7 @@ INSERT INTO `sprit_upt` (`id`, `user_id`, `updated`) VALUES
 (720, 720, 1539285083),
 (721, 721, 1539802495),
 (722, 722, 1539803401),
-(723, 723, 1540642367),
-(724, 724, 1554392457);
+(723, 723, 1540642367);
 
 -- --------------------------------------------------------
 
@@ -5198,7 +5193,7 @@ CREATE TABLE `stats` (
 --
 
 INSERT INTO `stats` (`id`, `money`, `liga`, `exp`, `sprit`, `uppoints`, `chat_count`) VALUES
-(1, '10798765265.06', 11, 77831, 405, 0, 27),
+(1, '10799317265.06', 10, 77516, 405, 0, 27),
 (6, '21031.89', 1, 27, 1577.66, 0, 0),
 (7, '25000.00', 1, 0, 50.225, 0, 0),
 (8, '25000.00', 1, 0, 50.2417, 0, 0),
@@ -5909,8 +5904,7 @@ INSERT INTO `stats` (`id`, `money`, `liga`, `exp`, `sprit`, `uppoints`, `chat_co
 (720, '10000.00', 1, 0, 50.025, 0, 0),
 (721, '10198.00', 1, 0, 64.8002, 0, 0),
 (722, '10500.00', 1, 0, 51.1999, 0, 0),
-(723, '5297.50', 1, 107, 96.9332, 0, 0),
-(724, '10000.00', 1, 0, 100, 0, 0);
+(723, '5297.50', 1, 107, 96.9332, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -6830,11 +6824,7 @@ INSERT INTO `storage` (`id`, `user_id`, `part_id`, `garage_id`, `new`, `liga`, `
 (958, 1, 26, 0, 0, 7, 'nockenwelle', 0, 0, 0, 142, 163, 0, 318),
 (959, 1, 21, 0, 0, 2, 'nockenwelle', 0, 0, 0, 31, 31, 0, 65),
 (960, 1, 62, 0, 0, 8, 'sportesd', 0, 100, 1540284226, 262, 249, 0, 324),
-(961, 1, 27, 0, 0, 8, 'nockenwelle', 0, 0, 0, 215, 282, 0, 384),
-(962, 1, 8, 0, 0, 1, 'getriebe', 0, 0, 0, 30, 31, 0, 64),
-(963, 1, 1, 0, 0, 1, 'nockenwelle', 0, 0, 0, 6, 5, 0, 35),
-(964, 1, 1, 0, 0, 1, 'nockenwelle', 0, 0, 0, 5, 5, 0, 31),
-(965, 1, 27, 0, 0, 8, 'nockenwelle', 0, 0, 0, 194, 181, 0, 375);
+(961, 1, 27, 0, 0, 8, 'nockenwelle', 0, 0, 0, 215, 282, 0, 384);
 
 -- --------------------------------------------------------
 
@@ -6849,13 +6839,6 @@ CREATE TABLE `storage_run` (
   `time_end` int(11) NOT NULL,
   `dur` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Daten für Tabelle `storage_run`
---
-
-INSERT INTO `storage_run` (`id`, `user_id`, `part_id`, `time_end`, `dur`) VALUES
-(1, 1, 26, 1554133020, 1950);
 
 -- --------------------------------------------------------
 
@@ -6880,9 +6863,7 @@ INSERT INTO `sys_log` (`id`, `to_id`, `message_code`, `properties`, `date`, `ope
 (1, 723, 'welcome', '{\"type\":\"welcome\"}', 1540641530, 1),
 (2, 723, 'race_done', '{\"league\":\"beginner\",\"type\":\"race\",\"position\":4,\"reward\":59,\"exp\":41.3}', 1540641573, 1),
 (3, 1, 'welcome', '{\"type\":\"welcome\"}', 1540642372, 1),
-(4, 1, 'race_done', '{\"league\":\"beginner\",\"type\":\"race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540642989, 1),
-(5, 1, 'new_level', '{\"liga\":11}', 1540888512, 1),
-(6, 724, 'welcome', '{\"type\":\"welcome\"}', 1554131370, 1);
+(4, 1, 'race_done', '{\"league\":\"beginner\",\"type\":\"race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540642989, 0);
 
 -- --------------------------------------------------------
 
@@ -7018,7 +6999,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `pass`, `email`, `regdate`, `activeTime`, `ads`, `lang`, `token`, `token_date`) VALUES
-(1, 'admin', '3cbabe7cfb4f29bc2816a7f8103b6889', 'mwernersbach@web.de', 1441866181, 1554131348, 0, 'de', '', 0),
+(1, 'admin', '3cbabe7cfb4f29bc2816a7f8103b6889', 'mwernersbach@web.de', 1441866181, 1540643404, 0, 'de', '', 0),
 (6, 'Testuser', '3cbabe7cfb4f29bc2816a7f8103b6889', 'mwernersbach@hotmail.de', 1474289215, 1474465669, 0, 'de', '', 0),
 (7, 'zorny', '67a2cb77f1d829b0add64bca764a895b', '', 1474290284, 0, 0, 'en', '', 0),
 (8, 'RCJax', '1984fe2c85b13f331105a4e528142954', '', 1474290445, 0, 0, 'en', '', 0),
@@ -7730,19 +7711,7 @@ INSERT INTO `user` (`id`, `username`, `pass`, `email`, `regdate`, `activeTime`, 
 (720, 'guest:ys52j', '57cfc735faf692af70cd3d0f63987516', '', 1539285080, 1539285082, 0, 'de', '', 0),
 (721, 'guest:vgh72', 'c8438edf0ac657650b6a4d57e08d8143', '', 1539800838, 1539802495, 0, 'de', '', 0),
 (722, 'guest:5777n', 'b601f678db3d078c0ac81b8a2ea1e77c', '', 1539803257, 1539803401, 0, 'de', '', 0),
-(723, 'guest:g1rao', 'c0594d0ca5d6a88c5ccfb6d98cfe56f5', '', 1540411911, 1540642367, 0, 'de', '', 0),
-(724, 'guest:q6xdj', '6f8eb915d3051fefdce4db09a68f3d74', '', 1554131370, 1554139477, 0, 'de', '', 0);
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `user_tut`
---
-
-CREATE TABLE `user_tut` (
-  `user_id` int(11) NOT NULL,
-  `tut_state` tinytext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+(723, 'guest:g1rao', 'c0594d0ca5d6a88c5ccfb6d98cfe56f5', '', 1540411911, 1540642367, 0, 'de', '', 0);
 
 --
 -- Indizes der exportierten Tabellen
@@ -7921,12 +7890,6 @@ ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indizes für die Tabelle `user_tut`
---
-ALTER TABLE `user_tut`
-  ADD PRIMARY KEY (`user_id`);
-
---
 -- AUTO_INCREMENT für exportierte Tabellen
 --
 
@@ -7946,7 +7909,7 @@ ALTER TABLE `chat_msg`
 -- AUTO_INCREMENT für Tabelle `fahrer`
 --
 ALTER TABLE `fahrer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=546;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=545;
 
 --
 -- AUTO_INCREMENT für Tabelle `faxes`
@@ -7958,7 +7921,7 @@ ALTER TABLE `faxes`
 -- AUTO_INCREMENT für Tabelle `garage`
 --
 ALTER TABLE `garage`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=916;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=915;
 
 --
 -- AUTO_INCREMENT für Tabelle `new_cars`
@@ -7982,7 +7945,7 @@ ALTER TABLE `races`
 -- AUTO_INCREMENT für Tabelle `races_run`
 --
 ALTER TABLE `races_run`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT für Tabelle `sprit`
@@ -8000,7 +7963,7 @@ ALTER TABLE `sprit_market`
 -- AUTO_INCREMENT für Tabelle `sprit_upt`
 --
 ALTER TABLE `sprit_upt`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=725;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=724;
 
 --
 -- AUTO_INCREMENT für Tabelle `sprit_usr`
@@ -8012,19 +7975,19 @@ ALTER TABLE `sprit_usr`
 -- AUTO_INCREMENT für Tabelle `storage`
 --
 ALTER TABLE `storage`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=966;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=962;
 
 --
 -- AUTO_INCREMENT für Tabelle `storage_run`
 --
 ALTER TABLE `storage_run`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT für Tabelle `sys_log`
 --
 ALTER TABLE `sys_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT für Tabelle `upgrades`
@@ -8048,7 +8011,7 @@ ALTER TABLE `upgrades_user`
 -- AUTO_INCREMENT für Tabelle `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=725;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=724;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
