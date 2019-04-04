@@ -19,15 +19,15 @@ class Tutorial {
      
     public function __construct($user, $mysqle) {
         echo $user;
-        $this->$user_id = $user;
-        $this->$mysql = $mysqle;
+        $this->user_id = $user;
+        $this->mysql = $mysqle;
         
        // $this->$user_state = $this->getState();
     }
-/*
+
     public function getState() {
         
-        $sql = "SELECT tut_state WHERE user_id = '" . mysqli_real_escape_string($this->$mysql, $this->$user_id)."'";
+        $sql = "SELECT tut_state WHERE user_id = '" . mysqli_real_escape_string($this->mysql, $this->user_id)."'";
        
         $entry = querySQL($sql);
 
@@ -38,20 +38,20 @@ class Tutorial {
 
             return $row["tut_state"];
         } else {
-            return $this->$tut_states[0];
+            return $this->tut_states[0];
         }
         
-        return $this->$state;
-    }*/
+        return $this->state;
+    }
     
     public function setState($state) {
-        $this->$user_state = $state;
+        $this->user_state = $state;
     }
 
     public function saveStateDB() {
-        $save = $this->$user_state;
+        $save = $this->user_state;
 
-        $sql = "INSERT INTO user_tut (user_id, tut_state) VALUES ('$this->$user_id','$save')
+        $sql = "INSERT INTO user_tut (user_id, tut_state) VALUES ('$this->user_id','$save')
         ON DUPLICATE KEY UPDATE tut_state = '$save'";
         querySQL($sql);
     }
