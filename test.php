@@ -3,6 +3,7 @@
 session_start();
 
 include("_mysql.php");
+include("_overwrite.php");
 include("_function.php");
 //
 //$tree = getUpgradeTree();
@@ -22,4 +23,10 @@ include("_function.php");
 
 include("_tutorial.php");
 
-$tutorial->setState("TUT_STATE_BUYCAR");
+echo $tutorial->getState();
+
+$tutorial->saveStateDB();
+$tutorial->setState("TUT_STATE_DRIVE");
+
+
+echo $tutorial->getState();

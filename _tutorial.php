@@ -18,7 +18,7 @@ class Tutorial {
     private $mysql;
      
     public function __construct($user, $mysqle) {
-        echo $user;
+        
         $this->user_id = $user;
         $this->mysql = $mysqle;
         
@@ -27,21 +27,21 @@ class Tutorial {
 
     public function getState() {
         
-        $sql = "SELECT tut_state WHERE user_id = '" . mysqli_real_escape_string($this->mysql, $this->user_id)."'";
+        $sql = "SELECT tut_state FROM user_tut WHERE user_id = " . mysqli_real_escape_string($this->mysql, $this->user_id)."";
        
         $entry = querySQL($sql);
 
         $row = mysqli_fetch_array($entry, MYSQLI_ASSOC);
 
-        if (__count($row) >= 1) {
+        if (__count($row) >= 1 && $this->isState($row["tut_state"])) {
             //Falls User gefunden wurde
 
-            return $row["tut_state"];
+            $this->user_state = $row["tut_state"];
         } else {
-            return $this->tut_states[0];
+            $this->user_state = $this->tut_states[0];
         }
         
-        return $this->state;
+        return $this->user_state;
     }
     
     public function setState($state) {
@@ -50,12 +50,17 @@ class Tutorial {
 
     public function saveStateDB() {
         $save = $this->user_state;
-
+        echo "TRY TO SAVE: $save";
+        
         $sql = "INSERT INTO user_tut (user_id, tut_state) VALUES ('$this->user_id','$save')
         ON DUPLICATE KEY UPDATE tut_state = '$save'";
         querySQL($sql);
     }
 
+    
+    private function isState($st)  {
+        return in_array($st, $this->tut_states);
+    }
 }
 
 
