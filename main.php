@@ -33,12 +33,12 @@ $l = getPlayerLang();
 
 //Holen der aktuellen Seite
 
-if (!isset($get["page"]))
+if (!isset($get["page"]) OR !$tutorial->isAtState(getMainReq($get["page"])))
     $page = "office";
 else
     $page = $get["page"];
 
-if (!isset($get["sub"]))
+if (!isset($get["sub"]) OR !$tutorial->isAtState(getMainReq($get["page"])) OR !$tutorial->isAtState(getSubReq($get["sub"])))
     $sub = getFirstSubmenu($page);
 else
     $sub = $get["sub"];

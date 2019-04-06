@@ -9,12 +9,12 @@ function getMenuListTabs($current) {
     $out = "";
 
     foreach ($m as $page => $page_inf) {
-        if($page_inf["main"] == false)
+        if ($page_inf["main"] == false)
             continue;
-        
-        if(!$tutorial->isAtState($page_inf["minTutorial"]))
+
+        if (!$tutorial->isAtState($page_inf["minTutorial"]))
             continue;
-        
+
         //active showing
         if ($page === $current) {
             $active = " class='sub_active'";
@@ -63,16 +63,16 @@ function getMenuList() {
 }
 
 function outputSubmenu($page, $sub) {
-    global $l, $notify, $tutorial, $subReq;
+    global $l, $notify, $tutorial;
     //Adding Submenu for page
     $subarray = getSubMenu($page);
     $submenu = "";
 
     foreach ($subarray as $kat) {
 
-        if(array_key_exists($kat, $subReq) && !$tutorial->isAtState($subReq[$kat]))
+        if (!$tutorial->isAtState(getSubReq($kat)))
             continue;
-        
+
         if ($sub === $kat) {
             $active = " class='sub_active'";
         } else {
@@ -84,7 +84,7 @@ function outputSubmenu($page, $sub) {
         if ($num > 0)
             $badge = "<div class='tab_badge'>$num</div>";
 
-        $submenu .= '<a href="main.php?page=' . $page . '&sub=' . $kat . '"><span' . $active . '>' . put("s_" . $kat, $l) . ' '.$badge.'</span></a>';
+        $submenu .= '<a href="main.php?page=' . $page . '&sub=' . $kat . '"><span' . $active . '>' . put("s_" . $kat, $l) . ' ' . $badge . '</span></a>';
     }
     return $submenu;
 }
@@ -109,55 +109,64 @@ function getFirstSubmenu($page) {
 
 $m = array();
 
-$m["office"] = ["subs" => 
-    ["secretary", "news", "bonus", "messages"], 
+$m["office"] = ["subs" =>
+    ["secretary", "news", "bonus", "messages"],
     "icon" => "office40", "main" => true, "minTutorial" => ""];
 
-$m["garage"] = ["subs" => 
+$m["garage"] = ["subs" =>
     ["cars", "storage"],
     "icon" => "car40", "main" => true, "minTutorial" => "TUT_STATE_STORAGE"];
 
-$m["factory"] = ["subs" => 
+$m["factory"] = ["subs" =>
     ["tuner", "upgrades"],
     "icon" => "factory", "main" => true, "minTutorial" => "TUT_STATE_PARTS"];
 
-$m["trader"] = ["subs" => 
+$m["trader"] = ["subs" =>
     ["cardealer", "partmarket"],
     "icon" => "tools40", "main" => true, "minTutorial" => ""];
 
-$m["drivers"] = ["subs" => 
+$m["drivers"] = ["subs" =>
     ["paddock", "sysDrivers"],
     "icon" => "man40", "main" => true, "minTutorial" => "TUT_STATE_BUYDRIVER"];
 
-$m["race"] = ["subs" => 
+$m["race"] = ["subs" =>
     ["racing", "running"],
     "icon" => "race40", "main" => true, "minTutorial" => "TUT_STATE_DRIVE"];
 
-$m["sprit"] = ["subs" => 
+$m["sprit"] = ["subs" =>
     ["produce", "spritmarket", "sell"],
     "icon" => "fuel40", "main" => true, "minTutorial" => "TUT_STATE_SPRIT"];
 
 //$m["market"] = ["subs" => ["partmarket", "spritmarket"], "icon" => "store40", "main" => true];
 //$m["special"] = ["subs" => ["upgrades"], "icon" => "special"];
 
-$m["world"] = ["subs" => 
+$m["world"] = ["subs" =>
     ["profiles", "chat", "globalstats"],
     "icon" => "world", "main" => true, "minTutorial" => "TUT_STATE_END"];
 
-$m["options"] = ["subs" => 
+$m["options"] = ["subs" =>
     ["settings", "faq", "newbie"],
     "icon" => "setting40", "main" => false, "minTutorial" => ""];
 
+function getMainReq($page) {
+    global $m;
+    return $m[$page]["minTutorial"];
+}
 
-$subReq = [
-    "partmarket" => "TUT_STATE_END",
-    "spritmarket" => "TUT_STATE_END",
-    "sell"  => "TUT_STATE_END",
-    "bonus" => "TUT_STATE_END",
-    "messages" => "TUT_STATE_END"
-    
-    
-];
+function getSubReq($sub) {
+    $subReq = [
+        "partmarket" => "TUT_STATE_END",
+        "spritmarket" => "TUT_STATE_END",
+        "sell" => "TUT_STATE_END",
+        "bonus" => "TUT_STATE_END",
+        "messages" => "TUT_STATE_END"
+    ];
+    if (array_key_exists($sub, $subReq))
+        return $subReq[$sub];
+    else
+        return "";
+}
+
 //$m["special"] = ["chat", "upgrades", "achievements", "mainstats", "globalstats"];
 //$m["logout"] = [""];
 
