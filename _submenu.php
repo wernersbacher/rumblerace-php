@@ -5,11 +5,14 @@
  */
 
 function getMenuListTabs($current) {
-    global $l, $m, $notify;
+    global $l, $m, $notify, $tutorial;
     $out = "";
 
     foreach ($m as $page => $page_inf) {
         if($page_inf["main"] == false)
+            continue;
+        
+        if(!$tutorial->isAtState($page_inf["minTutorial"]))
             continue;
         
         //active showing
@@ -24,8 +27,6 @@ function getMenuListTabs($current) {
         $badge = "";
         if ($num > 0)
             $badge = "<div class='tab_badge'>$num</div>";
-
-
 
         $out .= '<a href="main.php?page=' . $page . '"><span' . $active . '><img src="img/' . $page_inf["icon"] . '.png">' . put($page, $l) . ' ' . $badge . '</span></a>';
     }
@@ -62,13 +63,16 @@ function getMenuList() {
 }
 
 function outputSubmenu($page, $sub) {
-    global $l, $notify;
+    global $l, $notify, $tutorial, $subReq;
     //Adding Submenu for page
     $subarray = getSubMenu($page);
     $submenu = "";
 
     foreach ($subarray as $kat) {
 
+        if(array_key_exists($kat, $subReq) && !$tutorial->isAtState($subReq[$kat]))
+            continue;
+        
         if ($sub === $kat) {
             $active = " class='sub_active'";
         } else {
@@ -105,18 +109,55 @@ function getFirstSubmenu($page) {
 
 $m = array();
 
-$m["office"] = ["subs" => ["secretary", "news", "bonus", "messages"], "icon" => "office40", "main" => true, "minTutorial" => ""];
-$m["garage"] = ["subs" => ["cars", "storage"], "icon" => "car40", "main" => true, "minTutorial" => "TUT_STATE_STORAGE"];
-$m["factory"] = ["subs" => ["tuner", "upgrades"], "icon" => "factory", "main" => true, "minTutorial" => "TUT_STATE_PARTS"];
-$m["trader"] = ["subs" => ["cardealer", "partmarket"], "icon" => "tools40", "main" => true, "minTutorial" => ""];
-$m["drivers"] = ["subs" => ["paddock", "sysDrivers"], "icon" => "man40", "main" => true, "minTutorial" => "TUT_STATE_BUYDRIVER"];
-$m["race"] = ["subs" => ["racing", "running"], "icon" => "race40", "main" => true, "minTutorial" => "TUT_STATE_DRIVE"];
-$m["sprit"] = ["subs" => ["produce", "spritmarket", "sell"], "icon" => "fuel40", "main" => true, "minTutorial" => "TUT_STATE_SPRIT"];
+$m["office"] = ["subs" => 
+    ["secretary", "news", "bonus", "messages"], 
+    "icon" => "office40", "main" => true, "minTutorial" => ""];
+
+$m["garage"] = ["subs" => 
+    ["cars", "storage"],
+    "icon" => "car40", "main" => true, "minTutorial" => "TUT_STATE_STORAGE"];
+
+$m["factory"] = ["subs" => 
+    ["tuner", "upgrades"],
+    "icon" => "factory", "main" => true, "minTutorial" => "TUT_STATE_PARTS"];
+
+$m["trader"] = ["subs" => 
+    ["cardealer", "partmarket"],
+    "icon" => "tools40", "main" => true, "minTutorial" => ""];
+
+$m["drivers"] = ["subs" => 
+    ["paddock", "sysDrivers"],
+    "icon" => "man40", "main" => true, "minTutorial" => "TUT_STATE_BUYDRIVER"];
+
+$m["race"] = ["subs" => 
+    ["racing", "running"],
+    "icon" => "race40", "main" => true, "minTutorial" => "TUT_STATE_DRIVE"];
+
+$m["sprit"] = ["subs" => 
+    ["produce", "spritmarket", "sell"],
+    "icon" => "fuel40", "main" => true, "minTutorial" => "TUT_STATE_SPRIT"];
+
 //$m["market"] = ["subs" => ["partmarket", "spritmarket"], "icon" => "store40", "main" => true];
 //$m["special"] = ["subs" => ["upgrades"], "icon" => "special"];
-$m["world"] = ["subs" => ["profiles", "chat", "globalstats"], "icon" => "world", "main" => true, "minTutorial" => "TUT_STATE_END"];
-$m["options"] = ["subs" => ["settings", "faq", "newbie"], "icon" => "setting40", "main" => false, "minTutorial" => ""];
 
+$m["world"] = ["subs" => 
+    ["profiles", "chat", "globalstats"],
+    "icon" => "world", "main" => true, "minTutorial" => "TUT_STATE_END"];
+
+$m["options"] = ["subs" => 
+    ["settings", "faq", "newbie"],
+    "icon" => "setting40", "main" => false, "minTutorial" => ""];
+
+
+$subReq = [
+    "partmarket" => "TUT_STATE_END",
+    "spritmarket" => "TUT_STATE_END",
+    "sell"  => "TUT_STATE_END",
+    "bonus" => "TUT_STATE_END",
+    "messages" => "TUT_STATE_END"
+    
+    
+];
 //$m["special"] = ["chat", "upgrades", "achievements", "mainstats", "globalstats"];
 //$m["logout"] = [""];
 

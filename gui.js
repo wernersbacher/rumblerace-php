@@ -38,8 +38,8 @@ function startSprit() {
     var max = parseFloat($("#spritTags").data("spritmax"));
     var spm = parseFloat($("#spritTags").data("promin"));
     var sps = spm / 60;
-    var old = parseFloat($("#playerSprit").html());
-
+    var old = parseFloat($("#playerSprit").html().replace(',', '.'));
+    
     function setSprit(x) {
         $("#playerSprit").html(nwc(x) + " &#8467;").attr("data-sprit-float", x);
 

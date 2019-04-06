@@ -8,6 +8,7 @@ require_once('_checkuser.php');
 require_once('_overwrite.php');
 require_once('_function.php');
 require_once('_mysql.php');
+require_once('_tutorial.php');
 require_once('_upgrades.php');
 require_once('_rewards.php');
 require_once('_lang.php');
