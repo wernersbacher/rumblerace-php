@@ -105,17 +105,17 @@ function getFirstSubmenu($page) {
 
 $m = array();
 
-$m["office"] = ["subs" => ["secretary", "news", "bonus", "messages"], "icon" => "office40", "main" => true];
-$m["garage"] = ["subs" => ["cars", "storage"], "icon" => "car40", "main" => true];
-$m["factory"] = ["subs" => ["tuner", "upgrades"], "icon" => "factory", "main" => true];
-$m["trader"] = ["subs" => ["cardealer", "partmarket"], "icon" => "tools40", "main" => true];
-$m["drivers"] = ["subs" => ["paddock", "sysDrivers"], "icon" => "man40", "main" => true];
-$m["race"] = ["subs" => ["racing", "running"], "icon" => "race40", "main" => true];
-$m["sprit"] = ["subs" => ["produce", "spritmarket", "sell"], "icon" => "fuel40", "main" => true];
+$m["office"] = ["subs" => ["secretary", "news", "bonus", "messages"], "icon" => "office40", "main" => true, "minTutorial" => ""];
+$m["garage"] = ["subs" => ["cars", "storage"], "icon" => "car40", "main" => true, "minTutorial" => "TUT_STATE_STORAGE"];
+$m["factory"] = ["subs" => ["tuner", "upgrades"], "icon" => "factory", "main" => true, "minTutorial" => "TUT_STATE_PARTS"];
+$m["trader"] = ["subs" => ["cardealer", "partmarket"], "icon" => "tools40", "main" => true, "minTutorial" => ""];
+$m["drivers"] = ["subs" => ["paddock", "sysDrivers"], "icon" => "man40", "main" => true, "minTutorial" => "TUT_STATE_BUYDRIVER"];
+$m["race"] = ["subs" => ["racing", "running"], "icon" => "race40", "main" => true, "minTutorial" => "TUT_STATE_DRIVE"];
+$m["sprit"] = ["subs" => ["produce", "spritmarket", "sell"], "icon" => "fuel40", "main" => true, "minTutorial" => "TUT_STATE_SPRIT"];
 //$m["market"] = ["subs" => ["partmarket", "spritmarket"], "icon" => "store40", "main" => true];
 //$m["special"] = ["subs" => ["upgrades"], "icon" => "special"];
-$m["world"] = ["subs" => ["profiles", "chat", "globalstats"], "icon" => "world", "main" => true];
-$m["options"] = ["subs" => ["settings", "faq", "newbie"], "icon" => "setting40", "main" => false];
+$m["world"] = ["subs" => ["profiles", "chat", "globalstats"], "icon" => "world", "main" => true, "minTutorial" => "TUT_STATE_END"];
+$m["options"] = ["subs" => ["settings", "faq", "newbie"], "icon" => "setting40", "main" => false, "minTutorial" => ""];
 
 //$m["special"] = ["chat", "upgrades", "achievements", "mainstats", "globalstats"];
 //$m["logout"] = [""];

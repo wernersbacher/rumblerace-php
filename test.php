@@ -23,10 +23,5 @@ include("_function.php");
 
 include("_tutorial.php");
 
-echo $tutorial->getState();
-
-$tutorial->saveStateDB();
-$tutorial->setState("TUT_STATE_DRIVE");
-
-
 echo $tutorial->getState(); 
+var_dump($tutorial->hasStateDone(""));

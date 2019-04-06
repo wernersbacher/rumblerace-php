@@ -52,11 +52,12 @@ $drivers = queryDrivers();
 //Autoliste generieren
 function returnCarSelect() {
     global $cars;
-    global $liga;
-    global $l;
+    $liga = getPlayerLiga();
+    //global $l;
     $carselect = "";
     if ($cars)
         foreach ($cars as $car) {
+            console($car);
             $carLiga = $car["carLiga"];
             $car_id = $car["garage_id"];
 //        $acc = $car["acc"];
@@ -69,6 +70,9 @@ function returnCarSelect() {
 
             if ($carLiga <= $liga && queryCarIsNotRacing($car_id))
                 $carselect .= "<option value='$car_id'>$name ($carValueList)</option>";
+            
+            
+                console($liga);
         }
     return $carselect;
 }
