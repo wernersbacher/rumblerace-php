@@ -21,6 +21,12 @@ if (isset($post['send'])) { //Abgeschicktes Formular
     $model = $post["model"];
 
     $purchase = buyNewCar($model);
+    
+    /*
+     * #TUTORIAL
+     */
+    if($purchase == "car_bought")
+        $tutorial->tickOff("TUT_STATE_BUYCAR");
 
     $output .= "<span class='dealInfoText $purchase'>";
     $output .= put($purchase, $l);

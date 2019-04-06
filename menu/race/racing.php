@@ -71,8 +71,6 @@ function returnCarSelect() {
             if ($carLiga <= $liga && queryCarIsNotRacing($car_id))
                 $carselect .= "<option value='$car_id'>$name ($carValueList)</option>";
             
-            
-                console($liga);
         }
     return $carselect;
 }
@@ -116,6 +114,8 @@ if (isset($post['send'])) { //Abgeschicktes Formular
     $driver_id = $post["driver_id"];
 
     $race = raceNew($race_id, $car_id, $driver_id);
+    if($race == "race_started")
+        $tutorial->tickOff("TUT_STATE_SPRIT");
 
     $info_out .= "<span class='dealInfoText $race'>";
     $info_out .= put($race, $l);

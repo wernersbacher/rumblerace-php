@@ -29,6 +29,9 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
             }
         }
         $tuning = queryTuningTheCar($changeParts, $id);
+        if($tuning == "car_updated")
+            $tutorial->tickOff("TUT_STATE_EQUIP");
+        
         $output .= "<span class='dealInfoText $tuning'>";
         $output .= put($tuning, $l);
         $output .= "</span>";
@@ -141,9 +144,9 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
     }
 
     $cars = queryPlayerCars(); // Autos auslesen
-    $nowCars = __count($cars);
+    $nowCars = intval(__count($cars));
     $maxCars = getMaxCars();
-    $left = $maxCars - $nowCars;
+    $left = intval($maxCars - $nowCars);
 
     $output .= "<div class='settings'>
             " . put("garage_full_1", $l) . " <b>$left</b> " . put("garage_full_2", $l) . " ($nowCars/$maxCars) <br/>

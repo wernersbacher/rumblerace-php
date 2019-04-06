@@ -54,6 +54,9 @@ if (isset($post['send'])) { //Abgeschicktes Formular
 
     $build = buildNewPart($part, $liga);
 
+    if($build == "part_built")
+        $tutorial->tickOff("TUT_STATE_PARTS");
+    
     $output .= "<span class='dealInfoText $build'>";
     $output .= put($build, $l);
     $output .= "</span>";

@@ -49,6 +49,10 @@ foreach ($logs as $key => $log) {
             $html = put("log_welcome_msg", $l);
             $css = "other";
             break;
+        case "tut_done":
+            $html = put("log_tut_done_msg", $l);
+            $css = "other";
+            break;
     }
 
     $log_output .= "<div class='sysDriver sys_$css'>";

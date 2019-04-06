@@ -1,7 +1,7 @@
 <?php
 
 function getUpgradePointCost($add = 0) {
-    return 1000 * pow(1.2, getAllUpgradePoints() + $add);
+    return 1000 * pow(1.2, getAllUpgradePoints() + $add + getPlayerUpPoints());
 }
 
 function getNodeByName($tree, $name) {

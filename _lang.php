@@ -341,6 +341,8 @@ $lg["manager"] = ["Top Manager", "Top Manager"];
 $lg["invest"] = ["Investors", "Investoren"]; 
 $lg["place"] = ["New Building", "Neues Gebäude"]; 
 $lg["sprit_prod_sum"] = ["Current production rate", "Aktuelle Produktionrate"]; 
+$lg["sprit_max_storage"] = ["Maximum sprit storage", "Maximaler Platz für Sprit"]; 
+
 
 $lg["produce_gas"] = ["Produce your own fuel here! Buy upgrade to produce faster.", 
     "Hier kannst Du Deinen eigenen Sprit produzieren! Kauf Upgrades, um die Produktion zu beschleunigen."];
@@ -504,6 +506,12 @@ $lg["log_sprit_sold_sprintf"] = ['You sold %1$s for %2$s (= %3$s).', 'Du hast %1
 $lg["log_welcome"] = ['WELCOME!', 'WILLKOMMEN!'];
 $lg["log_welcome_msg"] = ['Welcome to Racing Inc! Have fun playing!', 'Willkommen bei Racing Inc! Viel Spaß beim Spielen!'];
 
+$lg["log_tut_done"] = ["TUTORIAL DONE!", "TUTORIAL ABGESCHLOSSEN"];
+$lg["log_tut_done_msg"] = ["Congratulations, you completed the Tutorial. Some more game options have been unlocked. Explore them and have fun!",
+    "Herzlichen Glückwunsch, du hast das Tutorial beendet! Neue Spielfunktion wurden freigeschaltet. Erforsche ein bisschen die neuen Funktionen (z.B. den Markt). Viel Spaß!"];
+
+
+
 $lg["toggle_races"] = ["Races", "Rennen"];
 $lg["toggle_sold"] = ["Sales", "Verkäufe"];
 $lg["toggle_other"] = ["Other", "Andere"];
@@ -516,3 +524,41 @@ $lg["average"] = ["average", "durchschnitt"];
 $lg["good"] = ["good", "gut"];
 $lg["rare"] = ["rare", "selten"];
 $lg["legendary"] = ["legendary", "legendär"];
+
+
+/*
+ * Tutorial
+ *     private $tut_states = [
+        0 => "TUT_STATE_BUYCAR",
+        10 => "TUT_STATE_BUYDRIVER",
+        20 => "TUT_STATE_DRIVE",
+        30 => "TUT_STATE_SPRIT",
+        40 => "TUT_STATE_PARTS",
+        50 => "TUT_STATE_STORAGE",
+        60 => "TUT_STATE_EQUIP",
+        80 => "TUT_STATE_END"
+    ];
+    
+ */
+$lg["TUT_HEADER"] = ["TUTORIAL","TUTORIAL"];
+
+$lg["TUT_STATE_BUYCAR"] = ["Buy a car! TRADER -> BUY NOW.<br/><br/>Every car has base values in acceleration, speed, handling and strength. Cars can be tuned later on.", 
+    "Kaufe ein Auto! Händler -> Jetzt kaufen.<br/><br/>Jedes Auto hat Basiswerte. Diese kannst du später durch Tuning noch aufwerten."];
+
+$lg["TUT_STATE_BUYDRIVER"] = ["Hire a driver for your team! DRIVERS -> HIRE DRIVER.<br/><br/>The higher the skill, the better the driver. Note that every driver wants a part of your income. There will be new drivers on the market daily. Choose wisely!", 
+    "Stelle einen Fahrer ein! Fahrer -> Fahrer einstellen.<br/><br/>Umso höher der Skill, desto besser der Fahrer. Beachte jedoch, dass jeder Fahrer einen Teil des Gewinns abhaben möchte. Jeden Tag sind neue Fahrer auf dem Markt zu haben."];
+
+$lg["TUT_STATE_DRIVE"] = ["Start a race! RACE -> RACES.<br/><br/> Choose your hired driver and your new car. Note: There are several leagues, which have level requirements. Furthermore, every race has different characteristics, so not every car is good on every track.", 
+    "Starte ein Rennnen! Rennen -> Rennen.<br/><br/>Wähle dein Auto und dein Fahrer für ein beliebiges Rennen aus. Es gibt verschiedene Ligen, welche erst ab bestimmten Spieler-Level gefahren werden können. Außerdem hat jedes Rennen unterschiedliche Charakteristika. Nicht jedes Auto ist auf jeder Strecke gleich gut."];
+
+$lg["TUT_STATE_SPRIT"] = ["Let's get your sprit production high! FUEL -> PRODUCING.<br/><br/>You need fuel to race, so make sure you always have enough. Buy some facilities to produce at a higher rate. (Can also be bought on the player market later)", 
+    "Erhöhe deine Spritproduktion! Sprit -> Produktion.<br/><br/>Du brauchst Sprit zum Rennen fahre, also stell sicher, dass du genug davon hast. Kaufe ein paar Einrichtungen, um schneller zu produzieren. (Sprit kann später auch auf dem Spielermarkt gekauft werden)"];
+
+$lg["TUT_STATE_PARTS"] = ["Build some tuning parts! FACTORY -> PARTS PRODUCTION.<br/><br/>Every car can fit several parts. You can build them here. Note that the part stats are the maximum value - only rare parts will be that good in the end, so keep producing in search for the best parts. (Can be bought on the market later on)", 
+    "Bau ein paar Tuningteile! Fabrik -> teileproduktion.<br/><br/>Jedes Auto kann einige Teile ausrüsten. Diese kannst du hier bauen lassen. Beachte dass die Stats nur maximale Werte sind - nur sehr selten wird deine Farbik die beste Teile bauen können. Also bleib am Ball, um deine Autos so schnell wie möglich zu machen!"];
+
+$lg["TUT_STATE_STORAGE"] = ["Check your new parts! HQ -> Parts.<br/><br/> Take a look on your new part. You can see the actual part stats your factory team was able to build.", 
+    "Sieh dir dein neues Teil an! HQ -> Lager.<br/><br/>Sieh dir dein neues Teil an. Du kannst auch sehen, welche Leistungstats das teil nun wirklich hat!"];
+
+$lg["TUT_STATE_EQUIP"] = ["Tune your car now! HQ -> CARS.<br/><br/> Choose your car and click on 'TUNE NOW'. Select your new part and equip it.", 
+    "Tune dein Auto jetzt! HQ -> Autos.<br/><br/>Wähle dein Auto und klicke auf 'Jetzt tunen'. Suche dein neues Teil und rüste es aus!"];

@@ -86,6 +86,11 @@ function getNewLogNum() {
         return 0;
 }
 
+/*
+ * $type can be:
+ * ?
+ */
+
 function queryNewLog($type, $properties, $id = null) {
     //check if $id is there
     $id = isset($id) ? $id : $_SESSION["user_id"];

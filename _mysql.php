@@ -247,6 +247,7 @@ function queryCarBuy($model, $cost) {
     if ($addCar && $spend) {
         mysqli_commit($mysqli);
         $out = "car_bought";
+        
     } else {
         mysqli_rollback($mysqli);
         $out = "database_error";
@@ -1613,7 +1614,7 @@ function getAllUpgradePoints() {
 
     if ($entry) {
         $row = mysqli_fetch_assoc($entry);
-        return $row["ups"];
+        return intval($row["ups"]);
     } else {
         return false;
     }

@@ -25,6 +25,8 @@ if(isset($post["driver_nr"]) AND $post["driver_nr"] >=1 AND $post["driver_nr"]<=
     $anteil = $drivers[$nr]->anteil;
     
     $new = newDriver($money, $kosten, $driver_id, $nr, $anteil);
+    if($new == "driver_added")
+        $tutorial->tickOff("TUT_STATE_BUYDRIVER");
     
     $output .= "<span class='dealInfoText $new'>";
     $output .= put($new, $l);

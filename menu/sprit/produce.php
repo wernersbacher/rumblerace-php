@@ -18,6 +18,9 @@ if (isset($post["teil_id"])) { //Beim Kauf eines Objektes (Sprit)
 
     //Umleitung, um korrekten Sprit anzuzeugen
     $purch = buySpritTeil($teil_id);
+    if($purch == "teil_bought")
+        $tutorial->tickOff("TUT_STATE_SPRIT");
+    
     header("Location: main.php?page=sprit&status=".$purch);
     
 } else if(isset($get["status"])) {
@@ -86,8 +89,10 @@ $output .= "$bought
             <div id='produce'>
                 
                 <h3>
-                " . put("sprit_prod_sum", $l) . ": " . gas(calcSpritMin()) . "/min
+                " . put("sprit_prod_sum", $l) . ": " . gas(calcSpritMin()) . "/min<br/>
+                    " . put("sprit_max_storage", $l) . ": ".gas(getMaxSprit())."
                 </h3>
+                
 
                 $ausgabe
                 

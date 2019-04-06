@@ -2,6 +2,8 @@
 
 $output = outputTut("st_info", $l);
 
+$tutorial->tickOff("TUT_STATE_STORAGE");
+
 $output .= "<div id='storage'>";
 
 if ($mode == "sell" && isset($post['sell'])) { //Teil verkaufen

@@ -25,7 +25,7 @@ function getMenuListTabs($current) {
         //notify showing
         $num = $notify[$page];
         $badge = "";
-        if ($num > 0)
+        if ($num > 0 AND $tutorial->isDone())
             $badge = "<div class='tab_badge'>$num</div>";
 
         $out .= '<a href="main.php?page=' . $page . '"><span' . $active . '><img src="img/' . $page_inf["icon"] . '.png">' . put($page, $l) . ' ' . $badge . '</span></a>';
@@ -126,7 +126,7 @@ $m["trader"] = ["subs" =>
     "icon" => "tools40", "main" => true, "minTutorial" => ""];
 
 $m["drivers"] = ["subs" =>
-    ["paddock", "sysDrivers"],
+    ["sysDrivers", "paddock"],
     "icon" => "man40", "main" => true, "minTutorial" => "TUT_STATE_BUYDRIVER"];
 
 $m["race"] = ["subs" =>

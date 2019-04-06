@@ -87,7 +87,7 @@ if (!isset($htmlTooltips))
 $spm = calcSpritMin();
 $max = getMaxSprit();
 //$sprit = "<span title='" . gas(nwc($spm / 60)) . "/sec' id='spritTags' data-spritmax='$max' data-promin='$spm'><span id='playerSprit'>" . gas(round(getPlayerSprit(), 2)) . "</span>/" . gas(nwc($max)) . "</span>";
-$sprit2 = "<span title='" . gas(nwc($spm / 60)) . "/sec' id='spritTags' data-spritmax='$max' data-promin='$spm'>
+$sprit2 = "<span title='" . gas(nwc($spm / 60)) . "/sec, MAX: ".gas(getMaxSprit())."' id='spritTags' data-spritmax='$max' data-promin='$spm'>
     <span id='playerSprit'>" . gas(round(getPlayerSprit(), 2)) . "</span>
         </span>";
 
@@ -266,11 +266,10 @@ Love for Meri
                 
                 <div id="contentWindow">
 
-                    <div id="tutorialInfoBox">
-                        
-                        <img src="img/tut.png" class="tutImg" />
-                        
-                    </div>
+                    <?php
+                        if(!$tutorial->isDone())
+                            echo getTutorialBox();
+                    ?>
                     
                     
                     <div id="mainFrame">
