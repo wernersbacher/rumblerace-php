@@ -12,7 +12,7 @@ if ($mode == "sell" && isset($post['sell'])) { //Teil verkaufen
 
     if ($str_data) {
         $part = $str_data["part"];
-        $liga = $str_data["liga"];
+        $tier = $str_data["tier"];
 
         $acc = $str_data["acc"];
         $speed = $str_data["speed"];
@@ -21,7 +21,7 @@ if ($mode == "sell" && isset($post['sell'])) { //Teil verkaufen
 
 
         $output .= "<div class='textCenter'>";
-        $output .= "<b>$part (" . outputDetails($acc, $speed, $hand, $dura) . ") ($liga)</b><br/>";
+        $output .= "<b>$part (" . outputDetails($acc, $speed, $hand, $dura) . ") ($tier)</b><br/>";
         $output .= put("market_sell", $l) . ":";
 
         $output .= "<form method='POST' action='?page=$page&sub=storage'>
@@ -94,7 +94,7 @@ if ($mode == "sell" && isset($post['sell'])) { //Teil verkaufen
                     <span class='tune_rarity' style='color:" . $part_rarity["color"] . "'>
                         " . put($part_rarity["name"], $l) . "
                     </span>
-                    <div>" . formatLevelColor($item["liga"]) . "</div>
+                    <div>" . formatLevelColor($item["tier"]) . "</div>
                 </td>
                 <td class='partPerf'>
                     $html
@@ -103,7 +103,7 @@ if ($mode == "sell" && isset($post['sell'])) { //Teil verkaufen
                     <form class='inline-form' method='POST' action='?page=$page&sub=storage&mode=sell'>
                         <input type='hidden' name='storage_id' value='" . $item["id"] . "'>
                         <input type='hidden' name='part' value='" . put($item["part"], $l) . "'>
-                        <input type='hidden' name='liga' value='" . put("liga", $l) . " " . $item["liga"] . "'>
+                        <input type='hidden' name='liga' value='" . put("liga", $l) . " " . $item["tier"] . "'>
                         <input class='sellButton tableTopButton' name='sell' type='submit' value='" . put("sell_it", $l) . "'>
                     </form>
                     <form class='inline-form' method='POST' data-dialog='Do you want to delete this part?' action='?page=tuner&sub=storage&mode=trash'>

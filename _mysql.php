@@ -257,19 +257,19 @@ function queryCarBuy($model, $cost) {
 }
 
 function queryPlayerCars() {
-    $sql = "SELECT nc.id, gr.id as garage_id, gr.car_id, nc.title, nc.liga as carLiga, nc.name, preis, nc.acc, nc.speed, nc.hand, nc.dura
+    $sql = "SELECT nc.id, gr.id as garage_id, gr.car_id, nc.title, nc.tier as carTier, nc.name, preis, nc.acc, nc.speed, nc.hand, nc.dura
             FROM garage gr
                 INNER JOIN new_cars nc 
                     ON gr.car_id = nc.name 
             WHERE gr.user_id = '" . $_SESSION["user_id"] . "' AND gr.sell = '0'
-            ORDER BY nc.liga DESC, nc.acc, nc.speed, nc.hand DESC";
+            ORDER BY nc.tier DESC, nc.acc, nc.speed, nc.hand DESC";
 
     return getArray($sql);
 }
 
 function queryPlayerCarID($id) {
     global $mysqli;
-    $sql = "SELECT gr.id as garage_id, gr.car_id, nc.title, nc.liga, preis, nc.acc, nc.speed, nc.hand, nc.dura
+    $sql = "SELECT gr.id as garage_id, gr.car_id, nc.title, nc.tier, preis, nc.acc, nc.speed, nc.hand, nc.dura
             FROM garage gr
                 INNER JOIN new_cars nc 
                     ON gr.car_id = nc.name 
@@ -280,7 +280,7 @@ function queryPlayerCarID($id) {
 
 function queryPlayerPartsID($id) {
     global $mysqli;
-    $sql = "SELECT sr.part, sr.liga, pa.kat, sr.acc, sr.speed, sr.hand, sr.dura
+    $sql = "SELECT sr.part, sr.tier, pa.kat, sr.acc, sr.speed, sr.hand, sr.dura
             FROM storage sr
                 INNER JOIN parts pa
                     ON pa.part = sr.part
@@ -289,7 +289,7 @@ function queryPlayerPartsID($id) {
 
     if ($entry) {
         while ($row = mysqli_fetch_assoc($entry)) {
-            $data[$row["part"]] = array("kat" => $row["kat"], "liga" => $row["liga"], "acc" => $row["acc"], "speed" => $row["speed"], "hand" => $row["hand"], "dura" => $row["dura"]);
+            $data[$row["part"]] = array("kat" => $row["kat"], "tier" => $row["tier"], "acc" => $row["acc"], "speed" => $row["speed"], "hand" => $row["hand"], "dura" => $row["dura"]);
         }
     }
     if (isset($data)) {
@@ -331,7 +331,7 @@ function queryTuningPartsAll() {
 
 function queryTuningParts($kat) {
     global $mysqli;
-    $sql = "SELECT part FROM parts WHERE kat = '" . mysqli_real_escape_string($mysqli, $kat) . "' AND liga > '0'";
+    $sql = "SELECT part FROM parts WHERE kat = '" . mysqli_real_escape_string($mysqli, $kat) . "' AND tier > '0'";
     $entry = querySQL($sql);
 
     if ($entry) {
@@ -347,14 +347,14 @@ function queryTuningParts($kat) {
 function queryTuningPartsData($kat) {
     global $mysqli;
     //Gibt nur die Namen zurück.
-    $sql = "SELECT * FROM parts WHERE kat = '" . mysqli_real_escape_string($mysqli, $kat) . "' ORDER BY liga desc";
+    $sql = "SELECT * FROM parts WHERE kat = '" . mysqli_real_escape_string($mysqli, $kat) . "' ORDER BY tier desc";
 
     return getArray($sql);
 }
 
 function queryPartData($part, $liga) {
     global $mysqli;
-    $sql = "SELECT id, preis, duration FROM parts WHERE part = '" . mysqli_real_escape_string($mysqli, $part) . "' AND liga = '" . mysqli_real_escape_string($mysqli, $liga) . "'";
+    $sql = "SELECT id, preis, duration FROM parts WHERE part = '" . mysqli_real_escape_string($mysqli, $part) . "' AND tier = '" . mysqli_real_escape_string($mysqli, $liga) . "'";
 
     return getColumn($sql);
 }
@@ -447,7 +447,7 @@ function queryPartsBuildingDone() {
                 sr.user_id as user_id,
                 sr.part_id as part_id,
                 pa.acc, pa.speed, pa.hand, pa.dura,
-                pa.liga as liga,
+                pa.tier as tier,
                 pa.part as part
             FROM storage_run sr
             LEFT JOIN parts pa
@@ -475,8 +475,8 @@ function queryPartsBuildingDone() {
         $storage_id = $part["storage_id"];
         $values = getValues(array("acc" => $part["acc"], "speed" => $part["speed"], "hand" => $part["hand"], "dura" => $part["dura"]));
 
-        $addBuiltPart = mysqli_query($mysqli, "INSERT INTO storage (user_id, part_id, liga, part, acc, speed, hand, dura) 
-                values ('" . $_SESSION["user_id"] . "', '" . mysqli_real_escape_string($mysqli, $part_id) . "',  '" . $part["liga"] . "', '" . $part["part"] . "', '" . $values["acc"] . "', '" . $values["speed"] . "', '" . $values["hand"] . "', '" . $values["dura"] . "')"
+        $addBuiltPart = mysqli_query($mysqli, "INSERT INTO storage (user_id, part_id, tier, part, acc, speed, hand, dura) 
+                values ('" . $_SESSION["user_id"] . "', '" . mysqli_real_escape_string($mysqli, $part_id) . "',  '" . $part["tier"] . "', '" . $part["part"] . "', '" . $values["acc"] . "', '" . $values["speed"] . "', '" . $values["hand"] . "', '" . $values["dura"] . "')"
         );
         $deleteProgress = mysqli_query($mysqli, "DELETE
                 FROM storage_run
@@ -496,7 +496,7 @@ function queryPartsBuildingDone() {
 }
 
 function queryStorage() {                                                                                                           //Max values for colors
-    $sql = "SELECT sr.id as id, pa.liga as liga, pa.part as part, pa.kat as kat, sr.new as new,
+    $sql = "SELECT sr.id as id, pa.tier as tier, pa.part as part, pa.kat as kat, sr.new as new,
         sr.garage_id, sr.acc, sr.speed, sr.hand, sr.dura, pa.acc as m_acc, pa.speed as m_speed, pa.hand as m_hand, pa.dura as m_dura
             FROM storage sr
             LEFT JOIN parts pa
@@ -528,7 +528,7 @@ function queryUserHasCarID($id) {
 }
 
 function queryRaceLeagues() {
-    $sql = "SELECT DISTINCT league, level FROM races";
+    $sql = "SELECT DISTINCT league, tier FROM races";
 
     $entry = querySQL($sql);
     if (!$entry)
@@ -621,10 +621,12 @@ function queryUserCanRace($race_id, $exp, $sprit) {
     //var_dump($row);
     if ($entry) {
         $row = mysqli_fetch_assoc($entry);
-        $liga = intval($row["liga"]);
+        // Benötigt für Liga/Level Anforderungen
+        /*$liga = intval($row["liga"]);
         if (levelExp($liga) * $row["exp_needed"] * getLigaQuot() > $exp) {
             return "exp";
-        } else if ($row["sprit_needed"] > $sprit) {
+        } else */
+            if ($row["sprit_needed"] > $sprit) {
             return "sprit";
         } else
             return true;
@@ -864,14 +866,14 @@ function queryMarketParts($s, $getAll, $partFilter, $ligaFilter) {
     else
         $limit = " LIMIT $start, $max";
 
-    $sql = "SELECT DISTINCT sr.id, sr.part_id, sr.part, sr.liga, sr.sell, us.username, pa.kat, sr.acc, sr.speed, sr.hand, sr.dura,
+    $sql = "SELECT DISTINCT sr.id, sr.part_id, sr.part, sr.tier, sr.sell, us.username, pa.kat, sr.acc, sr.speed, sr.hand, sr.dura,
         pa.acc as m_acc, pa.speed as m_speed, pa.hand as m_hand, pa.dura as m_dura
             FROM storage sr
             INNER JOIN user us
                 ON us.id = sr.user_id
             INNER  JOIN parts pa
-                ON pa.part = sr.part  AND pa.liga = sr.liga
-            WHERE sr.sell > 0 AND sr.part LIKE '" . mysqli_real_escape_string($mysqli, $partFilter) . "' AND sr.liga LIKE '" . mysqli_real_escape_string($mysqli, $ligaFilter) . "'
+                ON pa.part = sr.part  AND pa.tier = sr.tier
+            WHERE sr.sell > 0 AND sr.part LIKE '" . mysqli_real_escape_string($mysqli, $partFilter) . "' AND sr.tier LIKE '" . mysqli_real_escape_string($mysqli, $ligaFilter) . "'
             ORDER BY sr.sell_date DESC";
     $entry = querySQL($sql . $limit);
 
@@ -982,7 +984,7 @@ function queryMarketSprit($s, $getAll) {
 
 function queryMarketPartData($id) {
     global $mysqli;
-    $sql = "SELECT sr.user_id, sr.part_id, sr.part, sr.liga, sr.sell, pa.kat, sr.acc, sr.speed, sr.hand, sr.dura
+    $sql = "SELECT sr.user_id, sr.part_id, sr.part, sr.tier, sr.sell, pa.kat, sr.acc, sr.speed, sr.hand, sr.dura
             FROM storage sr
             LEFT JOIN parts pa
                 ON pa.id = sr.part_id
@@ -1230,11 +1232,11 @@ function upgradeLiga($liga) {
 }
 
 function queryFabrikTeile() {
-    $sql = "SELECT sp.id, usr.count, sp.title, sp.lit, sp.liga, sp.cost
+    $sql = "SELECT sp.id, usr.count, sp.title, sp.lit, sp.tier, sp.cost
             FROM sprit sp
             LEFT JOIN sprit_usr usr
             ON sp.id = usr.sprit_id AND usr.user_id = '" . $_SESSION["user_id"] . "' 
-            ORDER BY liga, lit ASC";
+            ORDER BY tier, lit ASC";
 
     return getArray($sql);
 }

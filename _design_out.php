@@ -70,7 +70,7 @@ function htmlLevelprogress($liga = -1, $exp = -1) {
 }
 
 function formatLevelColor($lvl) {
-    return "<span class='lvlOutput lvl_$lvl'>LEVEL$lvl</span>";
+    return "<span class='lvlOutput lvl_$lvl'>TIER $lvl</span>";
 }
 
 function levelImg($l, $big = false) {

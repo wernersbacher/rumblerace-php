@@ -1,10 +1,32 @@
+-- phpMyAdmin SQL Dump
+-- version 4.8.3
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Erstellungszeit: 08. Apr 2019 um 18:33
+-- Server-Version: 10.1.36-MariaDB
+-- PHP-Version: 7.2.10
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
+--
+-- Datenbank: `werner_rr`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `bonus`
+--
 
 CREATE TABLE `bonus` (
   `user_id` int(11) NOT NULL,
@@ -12,8 +34,12 @@ CREATE TABLE `bonus` (
   `invested` decimal(30,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Daten für Tabelle `bonus`
+--
+
 INSERT INTO `bonus` (`user_id`, `last`, `invested`) VALUES
-(1, 1487939862, '0.00'),
+(1, 1554131065, '0.00'),
 (10, 1474368356, '0.00'),
 (11, 1474290715, '0.00'),
 (12, 1474290678, '0.00'),
@@ -336,7 +362,20 @@ INSERT INTO `bonus` (`user_id`, `last`, `invested`) VALUES
 (707, 0, '0.00'),
 (708, 0, '0.00'),
 (709, 1485246771, '0.00'),
-(710, 0, '0.00');
+(710, 0, '0.00'),
+(711, 1539110260, '0.00'),
+(719, 0, '0.00'),
+(720, 0, '0.00'),
+(721, 1539801170, '0.00'),
+(722, 1539803400, '0.00'),
+(723, 0, '0.00'),
+(724, 1554553914, '0.00');
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `bugs`
+--
 
 CREATE TABLE `bugs` (
   `id` int(11) NOT NULL,
@@ -345,8 +384,19 @@ CREATE TABLE `bugs` (
   `time` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Daten für Tabelle `bugs`
+--
+
 INSERT INTO `bugs` (`id`, `user_id`, `text`, `time`) VALUES
-(1, 70, 'In the header banner I see the text &#34;&#34;. It doesn&#39;t seem like that should be there.', 1474300602);
+(1, 70, 'In the header banner I see the text &#34;&#34;. It doesn&#39;t seem like that should be there.', 1474300602),
+(2, 1, 'Good, but you need a map ?', 1539705613);
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `chat_msg`
+--
 
 CREATE TABLE `chat_msg` (
   `id` int(11) NOT NULL,
@@ -354,6 +404,10 @@ CREATE TABLE `chat_msg` (
   `msg` tinytext NOT NULL,
   `timestamp` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Daten für Tabelle `chat_msg`
+--
 
 INSERT INTO `chat_msg` (`id`, `user`, `msg`, `timestamp`) VALUES
 (1, 'admin', 'hello', 1485245252),
@@ -381,7 +435,14 @@ INSERT INTO `chat_msg` (`id`, `user`, `msg`, `timestamp`) VALUES
 (23, 'admin', 'hm', 1488265882),
 (24, 'admin', 'ok', 1488265923),
 (25, 'admin', 'hhm', 1488265930),
-(26, 'admin', 'hello', 1488266024);
+(26, 'admin', 'hello', 1488266024),
+(27, 'admin', 'hallo', 1538583711);
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `fahrer`
+--
 
 CREATE TABLE `fahrer` (
   `id` int(11) NOT NULL,
@@ -393,12 +454,14 @@ CREATE TABLE `fahrer` (
   `anteil` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Daten für Tabelle `fahrer`
+--
+
 INSERT INTO `fahrer` (`id`, `driver_id`, `user_id`, `name`, `skill`, `liga`, `anteil`) VALUES
-(17, 140920162, 1, 'Driver-ID#81126', 256.646, 1, 15),
-(19, 140920161, 1, 'Renner 1', 520.913333333333, 2, 12),
-(20, 140920163, 1, 'Markusbacher', 321.826666666667, 4, 15),
-(21, 150920165, 1, 'Markus W', 885.487, 4, 11),
-(23, 160920161, 1, 'Driver-ID#32081', 1043.2766666666669, 5, 10),
+(20, 140920163, 1, 'Markusbacher', 1502.8116666666676, 4, 15),
+(21, 150920165, 1, 'Markus W', 7263.0120000000015, 6, 13),
+(23, 160920161, 1, 'BesterMann', 3571.1169444444467, 10, 15),
 (24, 190920164, 10, 'Steve', 9121.618, 1, 13),
 (25, 190920162, 12, 'Driver-ID#22983', 324, 1, 13),
 (26, 190920163, 19, 'Driver-ID#52796', 388, 1, 12),
@@ -901,7 +964,25 @@ INSERT INTO `fahrer` (`id`, `driver_id`, `user_id`, `name`, `skill`, `liga`, `an
 (527, 708, 708, 'Markus Werner', 150, 1, 5),
 (528, 709, 709, 'Markus Werner', 160.65, 2, 6),
 (529, 710, 710, 'Markus Werner', 150, 1, 5),
-(530, 240120171, 1, 'Driver-ID#31743', 577, 4, 10);
+(530, 240120171, 1, 'Driver-ID#31743', 1785.3500000000008, 4, 10),
+(531, 711, 711, 'Markus Werner', 353.6725, 2, 6),
+(539, 719, 719, 'Markus Werner', 150, 1, 5),
+(540, 720, 720, 'Markus Werner', 150, 1, 5),
+(541, 721, 721, 'Markus Werner', 150, 1, 5),
+(542, 722, 722, 'Markus Werner', 150, 1, 5),
+(543, 723, 723, 'Markus Werner', 216.5, 1, 5),
+(544, 241020183, 723, 'Driver-ID#42221', 865.3, 1, 14),
+(545, 724, 724, 'Markus Werner', 191.3, 1, 5),
+(546, 40420191, 724, 'Driver-ID#50890', 386, 1, 15),
+(547, 60420191, 724, 'Driver-ID#41316', 1374.7, 1, 12),
+(548, 80420191, 1, 'Driver-ID#63205', 966, 3, 13),
+(549, 80420192, 1, 'Driver-ID#74780', 1005, 3, 13);
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `faxes`
+--
 
 CREATE TABLE `faxes` (
   `id` int(11) NOT NULL,
@@ -912,6 +993,10 @@ CREATE TABLE `faxes` (
   `betreff` tinytext NOT NULL,
   `message` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Daten für Tabelle `faxes`
+--
 
 INSERT INTO `faxes` (`id`, `to_id`, `from_id`, `open`, `date`, `betreff`, `message`) VALUES
 (25, 1, 2, 1, 1442411884, '<i>No title</i>', 'dfefef'),
@@ -2627,8 +2712,33 @@ INSERT INTO `faxes` (`id`, `to_id`, `from_id`, `open`, `date`, `betreff`, `messa
 (3128, 0, 0, 0, 1481207489, 'New League', 'Congratulations, you advanced to league 1!'),
 (3129, 0, 0, 0, 1481207837, 'New League', 'Congratulations, you advanced to league 1!'),
 (3130, 0, 0, 0, 1481207875, 'New League', 'Congratulations, you advanced to league 1!'),
-(3131, 1, 0, 1, 1485178315, 'Anfänger Rennen finished.', 'You made 16,47€ and 11,53 EP!'),
-(3132, 709, 0, 0, 1485246972, 'Anfänger Rennen finished.', 'You made 15,21€ and 10,65 EP!');
+(3132, 709, 0, 0, 1485246972, 'Anfänger Rennen finished.', 'You made 15,21€ and 10,65 EP!'),
+(3133, 6, 0, 0, 1489662436, 'Part sold on market', 'Your part was sold on the market for 100,00€.'),
+(3134, 2, 0, 0, 1538581608, 'New League', 'Congratulations, you advanced to league 1!'),
+(3135, 2, 0, 0, 1538581609, 'New League', 'Congratulations, you advanced to league 1!'),
+(3136, 2, 0, 0, 1538581611, 'New League', 'Congratulations, you advanced to league 1!'),
+(3137, 2, 0, 0, 1538581613, 'New League', 'Congratulations, you advanced to league 1!'),
+(3138, 2, 0, 0, 1538581614, 'New League', 'Congratulations, you advanced to league 1!'),
+(3139, 2, 0, 0, 1538581625, 'New League', 'Congratulations, you advanced to league 1!'),
+(3140, 2, 0, 0, 1538581627, 'New League', 'Congratulations, you advanced to league 1!'),
+(3141, 2, 0, 0, 1538581630, 'New League', 'Congratulations, you advanced to league 1!'),
+(3142, 2, 0, 0, 1538581633, 'New League', 'Congratulations, you advanced to league 1!'),
+(3143, 2, 0, 0, 1538582088, 'New League', 'Congratulations, you advanced to league 1!'),
+(3144, 2, 0, 0, 1538582091, 'New League', 'Congratulations, you advanced to league 1!'),
+(3145, 2, 0, 0, 1538582291, 'New League', 'Congratulations, you advanced to league 1!'),
+(3146, 2, 0, 0, 1538583316, 'New League', 'Congratulations, you advanced to league 1!'),
+(3147, 2, 0, 0, 1538583356, 'New League', 'Congratulations, you advanced to league 1!'),
+(3148, 2, 0, 0, 1538583415, 'New League', 'Congratulations, you advanced to league 1!'),
+(3149, 2, 0, 0, 1538583451, 'New League', 'Congratulations, you advanced to league 1!'),
+(3150, 2, 0, 0, 1538583499, 'New League', 'Congratulations, you advanced to league 1!'),
+(3151, 2, 0, 0, 1538583500, 'New League', 'Congratulations, you advanced to league 1!'),
+(3161, 6, 0, 0, 1538831295, 'Sprit sold on market', 'You sold sprit on the market for 18,40€.');
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `garage`
+--
 
 CREATE TABLE `garage` (
   `id` int(11) NOT NULL,
@@ -2636,6 +2746,10 @@ CREATE TABLE `garage` (
   `car_id` tinytext NOT NULL,
   `sell` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Daten für Tabelle `garage`
+--
 
 INSERT INTO `garage` (`id`, `user_id`, `car_id`, `sell`) VALUES
 (59, 6, 'beamer_pole', 0),
@@ -3434,7 +3548,6 @@ INSERT INTO `garage` (`id`, `user_id`, `car_id`, `sell`) VALUES
 (852, 684, 'beamer_pole', 0),
 (853, 685, 'beamer_pole', 0),
 (854, 686, 'beamer_pole', 0),
-(862, 1, 'lmp_g7', 0),
 (866, 1, 'beamer_pole', 0),
 (867, 687, 'beamer_pole', 0),
 (868, 688, 'beamer_pole', 0),
@@ -3461,7 +3574,44 @@ INSERT INTO `garage` (`id`, `user_id`, `car_id`, `sell`) VALUES
 (889, 708, 'beamer_pole', 0),
 (890, 709, 'beamer_pole', 0),
 (891, 710, 'beamer_pole', 0),
-(892, 1, 'beamer_pole', 0);
+(895, 1, 'santini_figurati', 0),
+(897, 1, 'santini_figurati', 0),
+(898, 1, 'santini_figurati', 0),
+(899, 1, 'santini_figurati', 0),
+(900, 1, 'lmp_g7', 0),
+(901, 711, 'beamer_pole', 0),
+(909, 719, 'beamer_pole', 0),
+(910, 720, 'beamer_pole', 0),
+(911, 1, 'beamer_pole', 0),
+(912, 721, 'beamer_pole', 0),
+(913, 722, 'beamer_pole', 0),
+(914, 723, 'beamer_pole', 0),
+(915, 1, 'hatcher_crusader', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `items`
+--
+
+CREATE TABLE `items` (
+  `user_id` int(11) NOT NULL,
+  `item_id` varchar(20) NOT NULL,
+  `count` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Daten für Tabelle `items`
+--
+
+INSERT INTO `items` (`user_id`, `item_id`, `count`) VALUES
+(1, 'car_fig', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `loggedin`
+--
 
 CREATE TABLE `loggedin` (
   `user_id` int(11) NOT NULL,
@@ -3469,8 +3619,12 @@ CREATE TABLE `loggedin` (
   `created` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Daten für Tabelle `loggedin`
+--
+
 INSERT INTO `loggedin` (`user_id`, `token`, `created`) VALUES
-(1, 'DQNt/IsA6u6S0Q4PafjUcWMU157UoxEBWuebsVik@E5i/Jbyq7bgIEwrSiP9Djq/', 1487849788),
+(1, 'Yk7qcuqjgEAn7BJgIb8QvdgePDBNfE1WY8pg7IMqVM4KUfPt04yeLRG5FYLKt2J9', 1554555712),
 (2, '', 1474014885),
 (4, '', 1474028818),
 (5, '', 1474028849),
@@ -3564,137 +3718,173 @@ INSERT INTO `loggedin` (`user_id`, `token`, `created`) VALUES
 (707, '', 1481284879),
 (708, 'zcny71YmtqRWWQ1paz35jNbD@Iqj57yD6vm4o@pv2G6upoiGQj1@a5@KFKpNM3Fo', 1481285001),
 (709, '', 1485252616),
-(710, '', 1485247095);
+(710, '', 1485247095),
+(711, '', 1539346881),
+(719, '', 1539284989),
+(720, '', 1539285080),
+(721, '9ItIdBK8k/yhwpnP/gvsK5CHY53jS6B9iXHhB@EYLv4Gt6tdABdWiSKiF@7zq/UI', 1539800838),
+(722, 'tK2m44fRK+AklOjgez+0t53fac72+QsXi86lZOgwOP1fCIfVKf+2caMtF@3bRJ6L', 1539803257),
+(723, '', 1540411911),
+(724, '', 1554131370);
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `new_cars`
+--
 
 CREATE TABLE `new_cars` (
   `id` int(11) NOT NULL,
   `name` text NOT NULL,
   `title` text NOT NULL,
-  `ps` int(11) NOT NULL,
-  `perf` int(11) NOT NULL,
+  `acc` int(11) NOT NULL,
+  `speed` int(11) NOT NULL,
+  `hand` int(11) NOT NULL,
+  `dura` int(11) NOT NULL,
   `preis` int(11) NOT NULL,
-  `liga` tinyint(4) NOT NULL
+  `liga` int(11) NOT NULL,
+  `tier` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `new_cars` (`id`, `name`, `title`, `ps`, `perf`, `preis`, `liga`) VALUES
-(1, 'beamer_pole', 'Beamer Pole', 20, 20, 2400, 1),
-(2, 'beamer_gulf', 'Beamer Gulf', 80, 70, 12000, 2),
-(3, 'lmp_fx1', 'Lampadati FX1', 450, 700, 320000, 7),
-(4, 'lmp_fxs', 'Lampadati FX-s.', 645, 800, 833000, 8),
-(5, 'santini_figurati', 'Santini Figurati', 55, 50, 8000, 1),
-(6, 'santini_azzuro', 'Santini Azzuro', 85, 100, 16000, 2),
-(7, 'santini_scusi', 'Santini Scusi', 160, 300, 41000, 4),
-(8, 'santini_dolciamaro', 'Santini Dolciamaro \'74', 220, 400, 59400, 5),
-(9, 'santini_rubacuori', 'Santini Rubacuori', 420, 650, 320000, 7),
-(10, 'lmp_g5s', 'Lampadati G5-s.', 370, 400, 125000, 6),
-(11, 'lmp_g6', 'Lampadati G6', 500, 620, 412499, 7),
-(12, 'lmp_g7', 'Lampadati G7', 600, 750, 900000, 8),
-(13, 'beamer_adler', 'Beamer Adler ', 135, 120, 27000, 3),
-(14, 'beamer_gulfr', 'Beamer Gulf R', 200, 200, 55000, 5),
-(15, 'beamer_adlerm', 'Beamer Adler (M)', 300, 300, 85000, 6),
-(17, 'hatcher_vision', 'Hatcher Vision', 45, 40, 7800, 1),
-(18, 'hatcher_legend', 'Hatcher Legend', 90, 70, 13000, 2),
-(20, 'hatcher_crusader', 'Hatcher Crusader', 110, 130, 20000, 3),
-(21, 'hatcher_fires', 'Hatcher Fire S', 190, 200, 40000, 4),
-(22, 'hatcher_firem', 'Hatcher Fire M', 222, 320, 64000, 5),
-(23, 'hatcher_legendr', 'Hatcher Legend R', 250, 270, 69000, 5),
-(24, 'hatcher_firel', 'Hatcher Fire L', 300, 400, 97340, 6),
-(25, 'hatcher_centurion', 'Hatcher Centurion', 400, 490, 235000, 7),
-(26, 'hatcher_conq', 'Hatcher Conquerer', 700, 720, 850000, 8),
-(27, 'jonda_apex', 'Jõnda Apex', 65, 30, 8000, 1),
-(29, 'jonda_aura', 'Jõnda Aura', 100, 60, 13300, 2),
-(30, 'jonda_nightline', 'Jõnda Nightline', 130, 120, 21000, 3),
-(31, 'jonda_legacy', 'Jõnda Legacy', 210, 120, 44000, 4),
-(32, 'jonda_motion', 'Jõnda Motion', 270, 180, 72000, 5),
-(33, 'jonda_legacyst', 'Jõnda Legacy ST', 350, 300, 159000, 6),
-(34, 'jonda_realm', 'Jõnda Realm', 320, 315, 115000, 6);
+--
+-- Daten für Tabelle `new_cars`
+--
+
+INSERT INTO `new_cars` (`id`, `name`, `title`, `acc`, `speed`, `hand`, `dura`, `preis`, `liga`, `tier`) VALUES
+(1, 'beamer_pole', 'Beamer Pole', 20, 20, 20, 20, 6400, 1, 1),
+(2, 'beamer_gulf', 'Beamer Gulf', 80, 50, 70, 60, 12000, 3, 2),
+(3, 'lmp_fx1', 'Lampadati FX1', 450, 380, 700, 400, 320000, 17, 7),
+(4, 'lmp_fxs', 'Lampadati FX-s.', 545, 460, 700, 500, 833000, 20, 8),
+(5, 'santini_figurati', 'Santini Figurati', 55, 40, 50, 45, 8000, 1, 1),
+(6, 'santini_azzuro', 'Santini Azzuro', 95, 100, 80, 150, 16000, 4, 2),
+(7, 'santini_scusi', 'Santini Scusi', 175, 130, 300, 150, 41000, 8, 4),
+(8, 'santini_dolciamaro', 'Santini Dolciamaro \'74', 220, 190, 300, 180, 59400, 12, 5),
+(9, 'santini_rubacuori', 'Santini Rubacuori', 420, 410, 650, 370, 320000, 17, 7),
+(10, 'lmp_g5s', 'Lampadati G5-s.', 370, 350, 400, 390, 145000, 14, 6),
+(11, 'lmp_g6', 'Lampadati G6', 500, 490, 620, 300, 412499, 18, 7),
+(12, 'lmp_g7', 'Lampadati G7', 500, 650, 650, 400, 900000, 21, 8),
+(13, 'beamer_adler', 'Beamer Adler ', 135, 85, 120, 220, 27000, 6, 3),
+(14, 'beamer_gulfr', 'Beamer Gulf R', 200, 200, 200, 200, 55000, 13, 5),
+(15, 'beamer_adlerm', 'Beamer Adler (M)', 300, 300, 300, 300, 85000, 15, 6),
+(17, 'hatcher_vision', 'Hatcher Vision', 45, 55, 40, 50, 7800, 2, 1),
+(18, 'hatcher_legend', 'Hatcher Legend', 90, 90, 70, 130, 13000, 4, 2),
+(20, 'hatcher_crusader', 'Hatcher Crusader', 110, 110, 100, 195, 20000, 6, 3),
+(21, 'hatcher_fires', 'Hatcher Fire S', 190, 118, 200, 180, 40000, 10, 4),
+(22, 'hatcher_firem', 'Hatcher Fire M', 222, 220, 270, 250, 64000, 13, 5),
+(23, 'hatcher_legendr', 'Hatcher Legend R', 250, 200, 270, 270, 69000, 13, 5),
+(24, 'hatcher_firel', 'Hatcher Fire L', 300, 290, 450, 200, 97340, 16, 6),
+(25, 'hatcher_centurion', 'Hatcher Centurion', 400, 500, 490, 500, 235000, 19, 7),
+(26, 'hatcher_conq', 'Hatcher Conquerer', 600, 500, 620, 380, 850000, 22, 8),
+(27, 'jonda_apex', 'Jõnda Apex', 65, 60, 30, 77, 8000, 3, 1),
+(29, 'jonda_aura', 'Jõnda Aura', 100, 95, 60, 100, 13300, 5, 2),
+(30, 'jonda_nightline', 'Jõnda Nightline', 130, 115, 120, 100, 21000, 6, 3),
+(31, 'jonda_legacy', 'Jõnda Legacy', 210, 170, 120, 120, 59000, 11, 4),
+(32, 'jonda_motion', 'Jõnda Motion', 270, 240, 180, 230, 72000, 14, 5),
+(33, 'jonda_legacyst', 'Jõnda Legacy ST', 350, 380, 300, 350, 159000, 16, 6),
+(34, 'jonda_realm', 'Jõnda Realm', 320, 350, 315, 280, 105000, 17, 6);
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `parts`
+--
 
 CREATE TABLE `parts` (
   `id` int(11) NOT NULL,
   `kat` tinytext NOT NULL,
   `part` tinytext NOT NULL,
-  `liga` int(11) NOT NULL,
+  `tier` tinyint(11) NOT NULL,
   `preis` int(11) NOT NULL,
-  `worst` int(11) NOT NULL,
-  `best` int(11) NOT NULL,
-  `duration` int(11) NOT NULL
+  `duration` int(11) NOT NULL,
+  `acc` int(11) NOT NULL,
+  `speed` int(11) NOT NULL,
+  `hand` int(11) NOT NULL,
+  `dura` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `parts` (`id`, `kat`, `part`, `liga`, `preis`, `worst`, `best`, `duration`) VALUES
-(1, 'motor', 'nockenwelle', 1, 500, 2, 10, 60),
-(3, 'motor', 'kolben', 3, 4000, 8, 15, 1002),
-(4, 'auspuff', 'sportesd', 1, 200, 1, 5, 60),
-(5, 'auspuff', 'msd', 0, 1000, 2, 8, 200),
-(6, 'bremse', 'gelochte', 1, 1000, 5, 15, 10),
-(7, 'turbo', 'ladeluftkuehler', 0, 5000, 20, 50, 10),
-(8, 'schaltung', 'getriebe', 1, 1000, 7, 14, 100),
-(10, 'auspuff', 'kruemmer', 1, 500, 1, 4, 40),
-(12, 'motor', 'kolben', 1, 400, 3, 7, 120),
-(13, 'motor', 'kolben', 2, 1000, 5, 10, 300),
-(15, 'turbo', 'turbocharger', 1, 5000, 20, 50, 500),
-(16, 'auspuff', 'katalysator', 1, 300, 1, 3, 23),
-(17, 'auspuff', 'katalysator', 2, 1000, 2, 5, 123),
-(18, 'schaltung', 'doppelkupplung', 1, 1000, 5, 10, 300),
-(19, 'schaltung', 'doppelkupplung', 2, 3000, 8, 17, 700),
-(21, 'motor', 'nockenwelle', 2, 1500, 5, 15, 320),
-(22, 'motor', 'nockenwelle', 3, 3000, 8, 20, 800),
-(23, 'motor', 'nockenwelle', 4, 10000, 10, 20, 1800),
-(24, 'motor', 'nockenwelle', 5, 25000, 14, 25, 3600),
-(25, 'motor', 'nockenwelle', 6, 60000, 20, 29, 6000),
-(26, 'motor', 'nockenwelle', 7, 150000, 28, 32, 13000),
-(27, 'motor', 'nockenwelle', 8, 400000, 23, 40, 17000),
-(28, 'schaltung', 'doppelkupplung', 3, 10000, 12, 25, 600),
-(29, 'schaltung', 'doppelkupplung', 4, 19000, 18, 30, 1000),
-(30, 'schaltung', 'doppelkupplung', 5, 44000, 23, 38, 2000),
-(31, 'schaltung', 'doppelkupplung', 6, 100000, 30, 42, 3000),
-(32, 'schaltung', 'doppelkupplung', 7, 350000, 33, 45, 5000),
-(33, 'schaltung', 'doppelkupplung', 8, 440200, 40, 55, 11000),
-(34, 'bremse', 'gelochte', 2, 1500, 6, 18, 800),
-(35, 'bremse', 'gelochte', 3, 3000, 7, 20, 1200),
-(36, 'bremse', 'gelochte', 4, 6700, 10, 24, 1700),
-(37, 'bremse', 'gelochte', 5, 15000, 14, 30, 3600),
-(38, 'bremse', 'gelochte', 6, 44000, 18, 34, 6500),
-(39, 'bremse', 'gelochte', 7, 120000, 20, 38, 8000),
-(40, 'bremse', 'gelochte', 8, 299000, 30, 50, 25000),
-(41, 'turbo', 'turbocharger', 2, 12000, 30, 60, 2000),
-(42, 'turbo', 'turbocharger', 3, 30000, 70, 80, 7200),
-(43, 'turbo', 'turbocharger', 4, 70000, 75, 90, 12000),
-(44, 'turbo', 'turbocharger', 5, 12000, 100, 130, 20000),
-(45, 'turbo', 'turbocharger', 6, 400000, 130, 170, 25000),
-(46, 'turbo', 'turbocharger', 7, 775000, 200, 250, 40000),
-(47, 'turbo', 'turbocharger', 8, 820000, 300, 500, 80000),
-(49, 'schaltung', 'getriebe', 2, 2000, 9, 18, 200),
-(50, 'schaltung', 'getriebe', 3, 3400, 10, 21, 400),
-(51, 'schaltung', 'getriebe', 4, 5000, 13, 25, 750),
-(52, 'schaltung', 'getriebe', 5, 12000, 20, 30, 1200),
-(53, 'schaltung', 'getriebe', 6, 40000, 25, 35, 2300),
-(54, 'schaltung', 'getriebe', 7, 100000, 30, 38, 4000),
-(55, 'schaltung', 'getriebe', 8, 225000, 35, 45, 7200),
-(56, 'auspuff', 'sportesd', 2, 600, 2, 10, 240),
-(57, 'auspuff', 'sportesd', 3, 1300, 4, 15, 600),
-(58, 'auspuff', 'sportesd', 4, 2500, 8, 18, 900),
-(59, 'auspuff', 'sportesd', 5, 6000, 10, 22, 1200),
-(60, 'auspuff', 'sportesd', 6, 11000, 13, 28, 2800),
-(61, 'auspuff', 'sportesd', 7, 30000, 17, 35, 3600),
-(62, 'auspuff', 'sportesd', 8, 99000, 25, 40, 5000),
-(65, 'auspuff', 'kruemmer', 2, 800, 3, 6, 70),
-(66, 'auspuff', 'kruemmer', 3, 1200, 5, 8, 140),
-(67, 'auspuff', 'kruemmer', 4, 2120, 7, 10, 200),
-(68, 'auspuff', 'kruemmer', 5, 2800, 10, 13, 540),
-(69, 'auspuff', 'kruemmer', 6, 6230, 12, 15, 840),
-(70, 'auspuff', 'kruemmer', 7, 18540, 15, 20, 1200),
-(71, 'auspuff', 'kruemmer', 8, 65000, 20, 25, 1600),
-(72, 'auspuff', 'katalysator', 3, 2000, 4, 8, 230),
-(73, 'auspuff', 'katalysator', 4, 4000, 8, 14, 360),
-(74, 'auspuff', 'katalysator', 5, 6000, 10, 18, 1200),
-(75, 'auspuff', 'katalysator', 6, 14900, 13, 21, 1500),
-(76, 'auspuff', 'katalysator', 7, 35000, 15, 24, 1800),
-(77, 'auspuff', 'katalysator', 8, 99500, 20, 35, 3600),
-(78, 'motor', 'kolben', 4, 10000, 12, 20, 1400),
-(79, 'motor', 'kolben', 5, 22000, 18, 25, 2200),
-(80, 'motor', 'kolben', 6, 74750, 22, 30, 3000),
-(81, 'motor', 'kolben', 7, 223000, 25, 35, 4300),
-(82, 'motor', 'kolben', 8, 480000, 32, 40, 7200);
+--
+-- Daten für Tabelle `parts`
+--
+
+INSERT INTO `parts` (`id`, `kat`, `part`, `tier`, `preis`, `duration`, `acc`, `speed`, `hand`, `dura`) VALUES
+(1, 'motor', 'nockenwelle', 1, 500, 60, 10, 10, 0, 50),
+(3, 'motor', 'kolben', 3, 4000, 1002, 20, 10, 0, 100),
+(4, 'auspuff', 'sportesd', 1, 200, 60, 20, 20, 0, 300),
+(6, 'bremse', 'gelochte', 1, 1000, 10, 0, 0, 50, 50),
+(8, 'schaltung', 'getriebe', 1, 1000, 100, 50, 50, 0, 100),
+(10, 'auspuff', 'kruemmer', 1, 500, 40, 20, 20, 0, 150),
+(12, 'motor', 'kolben', 1, 400, 120, 30, 30, 0, 100),
+(13, 'motor', 'kolben', 2, 1000, 300, 100, 100, 0, 150),
+(15, 'turbo', 'turbocharger', 9, 100000, 500, 900, 600, 0, 450),
+(16, 'auspuff', 'katalysator', 1, 300, 23, 20, 0, 0, 100),
+(17, 'auspuff', 'katalysator', 2, 1000, 123, 30, 0, 0, 200),
+(18, 'schaltung', 'doppelkupplung', 1, 1000, 300, 40, 40, 50, 100),
+(19, 'schaltung', 'doppelkupplung', 2, 3000, 700, 40, 70, 50, 100),
+(21, 'motor', 'nockenwelle', 2, 1500, 320, 50, 50, 0, 100),
+(22, 'motor', 'nockenwelle', 3, 3000, 800, 90, 100, 0, 150),
+(23, 'motor', 'nockenwelle', 4, 10000, 1800, 130, 150, 0, 200),
+(24, 'motor', 'nockenwelle', 5, 25000, 3600, 170, 150, 0, 270),
+(25, 'motor', 'nockenwelle', 6, 60000, 6000, 200, 200, 0, 320),
+(26, 'motor', 'nockenwelle', 7, 150000, 13000, 240, 280, 0, 400),
+(27, 'motor', 'nockenwelle', 8, 400000, 17000, 300, 300, 0, 500),
+(28, 'schaltung', 'doppelkupplung', 3, 10000, 600, 60, 100, 100, 100),
+(29, 'schaltung', 'doppelkupplung', 4, 19000, 1000, 100, 130, 200, 120),
+(30, 'schaltung', 'doppelkupplung', 5, 44000, 2000, 140, 200, 200, 120),
+(31, 'schaltung', 'doppelkupplung', 6, 100000, 3000, 200, 300, 300, 200),
+(32, 'schaltung', 'doppelkupplung', 7, 350000, 5000, 340, 450, 380, 300),
+(33, 'schaltung', 'doppelkupplung', 8, 440200, 11000, 500, 500, 400, 500),
+(34, 'bremse', 'gelochte', 2, 1500, 800, 0, 0, 100, 100),
+(35, 'bremse', 'gelochte', 3, 3000, 1200, 0, 0, 150, 100),
+(36, 'bremse', 'gelochte', 4, 6700, 1700, 0, 0, 200, 240),
+(37, 'bremse', 'gelochte', 5, 15000, 3600, 0, 0, 250, 350),
+(38, 'bremse', 'gelochte', 6, 44000, 6500, 0, 0, 300, 300),
+(39, 'bremse', 'gelochte', 7, 120000, 8000, 0, 0, 450, 300),
+(40, 'bremse', 'gelochte', 8, 299000, 25000, 0, 0, 500, 500),
+(41, 'turbo', 'turbocharger', 2, 12000, 2000, 100, 100, 0, 100),
+(42, 'turbo', 'turbocharger', 3, 30000, 7200, 150, 50, 0, 200),
+(43, 'turbo', 'turbocharger', 4, 70000, 12000, 150, 200, 0, 100),
+(44, 'turbo', 'turbocharger', 5, 12000, 20000, 250, 250, 0, 200),
+(45, 'turbo', 'turbocharger', 6, 400000, 25000, 500, 300, 0, 250),
+(46, 'turbo', 'turbocharger', 7, 775000, 40000, 600, 400, 0, 330),
+(47, 'turbo', 'turbocharger', 8, 820000, 80000, 750, 500, 0, 500),
+(49, 'schaltung', 'getriebe', 2, 2000, 200, 100, 100, 0, 300),
+(50, 'schaltung', 'getriebe', 3, 3400, 400, 200, 150, 0, 150),
+(51, 'schaltung', 'getriebe', 4, 5000, 750, 200, 150, 0, 300),
+(52, 'schaltung', 'getriebe', 5, 12000, 1200, 350, 200, 0, 300),
+(53, 'schaltung', 'getriebe', 6, 40000, 2300, 400, 450, 0, 400),
+(54, 'schaltung', 'getriebe', 7, 100000, 4000, 450, 500, 0, 300),
+(55, 'schaltung', 'getriebe', 8, 225000, 7200, 500, 500, 100, 500),
+(56, 'auspuff', 'sportesd', 2, 600, 240, 40, 50, 0, 150),
+(57, 'auspuff', 'sportesd', 3, 1300, 600, 100, 50, 0, 200),
+(58, 'auspuff', 'sportesd', 4, 2500, 900, 150, 100, 0, 200),
+(59, 'auspuff', 'sportesd', 5, 6000, 1200, 200, 130, 0, 200),
+(60, 'auspuff', 'sportesd', 6, 11000, 2800, 250, 250, 0, 250),
+(61, 'auspuff', 'sportesd', 7, 30000, 3600, 250, 350, 0, 300),
+(62, 'auspuff', 'sportesd', 8, 99000, 5000, 400, 400, 0, 500),
+(65, 'auspuff', 'kruemmer', 2, 800, 70, 40, 20, 0, 100),
+(66, 'auspuff', 'kruemmer', 3, 1200, 140, 60, 40, 0, 150),
+(67, 'auspuff', 'kruemmer', 4, 2120, 200, 100, 100, 0, 180),
+(68, 'auspuff', 'kruemmer', 5, 2800, 540, 200, 160, 0, 200),
+(69, 'auspuff', 'kruemmer', 6, 6230, 840, 250, 250, 0, 300),
+(70, 'auspuff', 'kruemmer', 7, 18540, 1200, 300, 350, 0, 400),
+(71, 'auspuff', 'kruemmer', 8, 65000, 1600, 400, 400, 0, 500),
+(72, 'auspuff', 'katalysator', 3, 2000, 230, 60, 0, 0, 300),
+(73, 'auspuff', 'katalysator', 4, 4000, 360, 100, 0, 0, 400),
+(74, 'auspuff', 'katalysator', 5, 6000, 1200, 150, 0, 0, 500),
+(75, 'auspuff', 'katalysator', 6, 14900, 1500, 220, 0, 0, 0),
+(76, 'auspuff', 'katalysator', 7, 35000, 1800, 300, 0, 0, 0),
+(77, 'auspuff', 'katalysator', 8, 99500, 3600, 400, 0, 0, 0),
+(78, 'motor', 'kolben', 4, 10000, 1400, 200, 150, 0, 150),
+(79, 'motor', 'kolben', 5, 22000, 2200, 270, 220, 0, 200),
+(80, 'motor', 'kolben', 6, 74750, 3000, 350, 280, 0, 370),
+(81, 'motor', 'kolben', 7, 223000, 4300, 400, 350, 0, 500),
+(82, 'motor', 'kolben', 8, 480000, 7200, 500, 400, 0, 300);
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `quests_user`
+--
 
 CREATE TABLE `quests_user` (
   `user_id` int(11) NOT NULL,
@@ -3703,54 +3893,99 @@ CREATE TABLE `quests_user` (
   `timestamp` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `races`
+--
+
 CREATE TABLE `races` (
   `id` int(11) NOT NULL,
-  `name` tinytext NOT NULL,
-  `liga` tinyint(4) NOT NULL,
-  `ps` smallint(6) NOT NULL,
+  `league` tinytext NOT NULL,
+  `type` tinytext NOT NULL,
+  `tier` tinyint(4) NOT NULL,
+  `level` int(11) NOT NULL,
+  `perf_needed` smallint(6) NOT NULL,
   `dur` int(11) NOT NULL,
+  `macc` float NOT NULL,
+  `mspeed` float NOT NULL,
+  `mhand` float NOT NULL,
+  `mdura` float NOT NULL,
   `reward` int(11) NOT NULL,
   `exp` mediumint(9) NOT NULL,
   `exp_needed` decimal(3,2) NOT NULL,
   `sprit_needed` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `races` (`id`, `name`, `liga`, `ps`, `dur`, `reward`, `exp`, `exp_needed`, `sprit_needed`) VALUES
-(1, 'beginner_race', 1, 90, 30, 100, 70, '0.00', 3),
-(2, 'beginner_cup', 1, 100, 180, 500, 180, '1.00', 5),
-(3, 'beginner_end', 1, 140, 900, 2000, 190, '2.00', 20),
-(4, 'beginner_master', 1, 200, 300, 1000, 260, '2.50', 14),
-(5, 'amateur_race', 2, 150, 90, 250, 130, '1.00', 25),
-(6, 'amateur_cup', 2, 180, 1800, 1000, 180, '1.20', 40),
-(7, 'amateur_end', 2, 200, 36000, 4000, 250, '2.00', 70),
-(8, 'amateur_master', 2, 250, 7000, 2300, 500, '2.50', 50),
-(9, 'pro_race', 3, 200, 200, 500, 180, '1.00', 50),
-(10, 'pro_cup', 3, 270, 3000, 2400, 200, '2.00', 80),
-(11, 'pro_end', 3, 220, 30000, 10000, 700, '2.20', 170),
-(12, 'pro_master', 3, 350, 8000, 4500, 400, '3.00', 140),
-(13, 'exp_race', 4, 230, 2000, 1000, 300, '1.00', 90),
-(14, 'exp_cup', 4, 260, 8000, 3700, 450, '2.20', 160),
-(15, 'exp_end', 4, 310, 53240, 15000, 4000, '2.00', 430),
-(16, 'exp_master', 4, 380, 14437, 6200, 2000, '3.40', 290),
-(17, 'med_race', 5, 280, 3600, 2200, 500, '1.00', 200),
-(18, 'med_cup', 5, 320, 12000, 10000, 700, '1.50', 440),
-(19, 'med_end', 5, 380, 72000, 23500, 800, '2.40', 900),
-(20, 'med_master', 5, 430, 23210, 12500, 500, '3.00', 470),
-(21, 'int_race', 6, 400, 3600, 3420, 2500, '1.00', 300),
-(22, 'int_drag', 6, 500, 500, 1200, 130, '1.50', 150),
-(23, 'int_cup', 6, 430, 8000, 18300, 4500, '2.30', 500),
-(24, 'int_end', 6, 410, 86400, 34000, 5000, '3.00', 1600),
-(25, 'int_master', 6, 490, 33022, 27000, 3000, '3.50', 799),
-(26, 'exp_drag', 4, 400, 300, 650, 100, '1.25', 80),
-(27, 'eli_race', 7, 550, 3800, 5500, 4000, '1.00', 600),
-(28, 'eli_cup', 7, 600, 14000, 12000, 7000, '2.20', 1000),
-(29, 'eli_drag', 7, 730, 500, 2300, 600, '1.50', 260),
-(30, 'eli_end', 7, 640, 129600, 45000, 13000, '2.75', 3200),
-(31, 'eli_master', 7, 750, 34000, 26000, 10000, '3.40', 2600),
-(32, 'black_race', 8, 700, 3600, 10000, 9000, '1.00', 1100),
-(33, 'black_drag', 8, 900, 800, 3000, 3000, '2.00', 440),
-(34, 'black_end', 8, 850, 172800, 82000, 40000, '2.50', 8000),
-(35, 'black_master', 8, 1000, 12800, 44400, 20000, '3.50', 6700);
+--
+-- Daten für Tabelle `races`
+--
+
+INSERT INTO `races` (`id`, `league`, `type`, `tier`, `level`, `perf_needed`, `dur`, `macc`, `mspeed`, `mhand`, `mdura`, `reward`, `exp`, `exp_needed`, `sprit_needed`) VALUES
+(1, 'beginner', 'race', 1, 1, 90, 30, 1, 1.5, 0.5, 1, 100, 70, '0.00', 10),
+(2, 'beginner', 'cup', 1, 1, 100, 180, 1, 1, 1, 1, 500, 180, '1.00', 15),
+(3, 'beginner', 'end', 1, 1, 140, 900, 1, 1, 1, 1, 2000, 190, '2.00', 23),
+(4, 'beginner', 'master', 1, 1, 200, 300, 1, 1, 1, 1, 1000, 260, '2.50', 20),
+(5, 'amateur', 'race', 2, 3, 150, 90, 1, 1, 1, 1, 250, 130, '1.00', 25),
+(6, 'amateur', 'cup', 2, 3, 180, 1800, 1, 1, 1, 1, 1000, 180, '1.20', 40),
+(7, 'amateur', 'end', 2, 3, 200, 36000, 1, 1, 1, 1, 4000, 250, '2.00', 70),
+(8, 'amateur', 'master', 2, 3, 250, 7000, 1, 1, 1, 1, 2300, 500, '2.50', 50),
+(9, 'pro', 'race', 3, 6, 200, 200, 1, 1, 1, 1, 500, 180, '1.00', 50),
+(10, 'pro', 'cup', 3, 6, 270, 3000, 1, 1, 1, 1, 2400, 200, '2.00', 80),
+(11, 'pro', 'end', 3, 6, 220, 30000, 1, 1, 1, 1, 10000, 700, '2.20', 170),
+(12, 'pro', 'master', 3, 6, 350, 8000, 1, 1, 1, 1, 4500, 400, '3.00', 140),
+(13, 'exp', 'race', 4, 8, 230, 2000, 1, 1, 1, 1, 1000, 300, '1.00', 90),
+(14, 'exp', 'cup', 4, 8, 260, 8000, 1, 1, 1, 1, 3700, 450, '2.20', 160),
+(15, 'exp', 'end', 4, 8, 310, 53240, 1, 1, 1, 1, 15000, 4000, '2.00', 430),
+(16, 'exp', 'master', 4, 8, 380, 14437, 1, 1, 1, 1, 6200, 2000, '3.40', 290),
+(17, 'med', 'race', 5, 12, 280, 3600, 1, 1, 1, 1, 2200, 500, '1.00', 200),
+(18, 'med', 'cup', 5, 12, 320, 12000, 1, 1, 1, 1, 10000, 700, '1.50', 440),
+(19, 'med', 'end', 5, 12, 380, 72000, 1, 1, 1, 1, 23500, 800, '2.40', 900),
+(20, 'med', 'master', 5, 12, 430, 23210, 1, 1, 1, 1, 12500, 500, '3.00', 470),
+(21, 'int', 'race', 6, 15, 400, 3600, 1, 1, 1, 1, 3420, 2500, '1.00', 300),
+(22, 'int', 'drag', 6, 15, 500, 500, 1, 1, 1, 1, 1200, 130, '1.50', 150),
+(23, 'int', 'cup', 6, 15, 430, 8000, 1, 1, 1, 1, 18300, 4500, '2.30', 500),
+(24, 'int', 'end', 6, 15, 410, 86400, 1, 1, 1, 1, 34000, 5000, '3.00', 1600),
+(25, 'int', 'master', 6, 15, 490, 33022, 1, 1, 1, 1, 27000, 3000, '3.50', 799),
+(26, 'exp', 'drag', 4, 8, 400, 300, 1, 1, 1, 1, 650, 100, '1.25', 80),
+(27, 'eli', 'race', 7, 17, 550, 3800, 1, 1, 1, 1, 5500, 4000, '1.00', 600),
+(28, 'eli', 'cup', 7, 17, 600, 14000, 1, 1, 1, 1, 12000, 7000, '2.20', 1000),
+(29, 'eli', 'drag', 7, 17, 730, 500, 1, 1, 1, 1, 2300, 600, '1.50', 260),
+(30, 'eli', 'end', 7, 17, 640, 129600, 1, 1, 1, 1, 45000, 13000, '2.75', 3200),
+(31, 'eli', 'master', 7, 17, 750, 34000, 1, 1, 1, 1, 26000, 10000, '3.40', 2600),
+(32, 'black', 'race', 8, 20, 700, 3600, 1, 1, 1, 1, 10000, 9000, '1.00', 1100),
+(33, 'black', 'drag', 8, 20, 900, 800, 1, 1, 1, 1, 3000, 3000, '2.00', 440),
+(34, 'black', 'end', 8, 20, 850, 172800, 1, 1, 1, 1, 82000, 40000, '2.50', 8000),
+(35, 'black', 'master', 8, 20, 1000, 12800, 1, 1, 1, 1, 44400, 20000, '3.50', 6700);
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `races_lvls-old`
+--
+
+CREATE TABLE `races_lvls-old` (
+  `league` varchar(14) NOT NULL,
+  `level` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Daten für Tabelle `races_lvls-old`
+--
+
+INSERT INTO `races_lvls-old` (`league`, `level`) VALUES
+('amateur', 3),
+('beginner', 1),
+('exp', 8),
+('int', 14),
+('med', 12),
+('pro', 6);
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `races_run`
+--
 
 CREATE TABLE `races_run` (
   `id` int(11) NOT NULL,
@@ -3761,277 +3996,18 @@ CREATE TABLE `races_run` (
   `driver_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Daten für Tabelle `races_run`
+--
+
 INSERT INTO `races_run` (`id`, `user_id`, `race_id`, `time_end`, `car_id`, `driver_id`) VALUES
-(25, 39, 1, 1474292644, 94, 40),
-(58, 55, 1, 1474293238, 113, 44),
-(78, 61, 1, 1474293574, 119, 48),
-(97, 74, 1, 1474294200, 133, 52),
-(113, 76, 1, 1474294469, 136, 57),
-(116, 78, 1, 1474294574, 138, 59),
-(122, 80, 1, 1474294674, 142, 61),
-(134, 72, 2, 1474295174, 135, 55),
-(138, 77, 4, 1474295431, 137, 58),
-(183, 68, 1, 1474296127, 127, 50),
-(188, 98, 1, 1474296224, 160, 70),
-(194, 99, 2, 1474296566, 162, 72),
-(196, 79, 2, 1474296620, 141, 60),
-(201, 101, 1, 1474296734, 164, 73),
-(213, 103, 1, 1474297148, 166, 78),
-(226, 14, 1, 1474297536, 67, 30),
-(269, 125, 1, 1474299528, 190, 87),
-(270, 126, 1, 1474299533, 191, 88),
-(276, 120, 1, 1474299973, 185, 84),
-(280, 130, 2, 1474300307, 196, 92),
-(286, 134, 1, 1474300409, 200, 94),
-(294, 132, 2, 1474300706, 198, 93),
-(312, 144, 1, 1474301023, 210, 100),
-(319, 111, 2, 1474301379, 175, 80),
-(352, 151, 2, 1474302621, 217, 108),
-(356, 158, 2, 1474302897, 225, 107),
-(360, 164, 1, 1474303219, 231, 109),
-(363, 26, 2, 1474303411, 80, 33),
-(379, 170, 1, 1474303864, 237, 113),
-(383, 165, 4, 1474304198, 232, 110),
-(384, 171, 2, 1474304108, 238, 112),
-(398, 87, 4, 1474305084, 149, 63),
-(402, 43, 2, 1474305020, 98, 39),
-(430, 190, 1, 1474305984, 258, 120),
-(442, 195, 2, 1474306784, 264, 123),
-(455, 203, 1, 1474307493, 273, 127),
-(464, 208, 2, 1474308196, 278, 130),
-(477, 210, 4, 1474308817, 280, 131),
-(486, 138, 4, 1474309116, 204, 99),
-(489, 224, 1, 1474308950, 294, 138),
-(491, 228, 1, 1474309009, 298, 140),
-(492, 228, 1, 1474309013, 301, 141),
-(507, 219, 1, 1474309562, 289, 134),
-(536, 230, 2, 1474310656, 302, 142),
-(571, 247, 1, 1474311571, 320, 150),
-(581, 242, 1, 1474311829, 315, 148),
-(592, 253, 2, 1474312398, 326, 153),
-(609, 229, 4, 1474312920, 299, 146),
-(625, 256, 1, 1474313051, 329, 155),
-(634, 265, 1, 1474313381, 338, 161),
-(637, 266, 1, 1474313405, 339, 162),
-(677, 278, 2, 1474314963, 351, 167),
-(703, 286, 1, 1474315397, 359, 172),
-(708, 258, 2, 1474315593, 331, 156),
-(711, 284, 1, 1474315559, 357, 169),
-(725, 231, 4, 1474316439, 303, 143),
-(741, 215, 4, 1474317091, 285, 136),
-(743, 292, 2, 1474317143, 365, 174),
-(782, 304, 1, 1474319195, 378, 184),
-(795, 306, 4, 1474320030, 380, 186),
-(809, 322, 1, 1474320441, 396, 192),
-(815, 318, 1, 1474320594, 392, 191),
-(816, 323, 1, 1474320594, 397, 195),
-(817, 323, 2, 1474320749, 400, 194),
-(819, 305, 1, 1474320615, 379, 185),
-(835, 331, 4, 1474321463, 406, 197),
-(843, 319, 2, 1474321753, 393, 193),
-(847, 335, 1, 1474321813, 410, 198),
-(852, 204, 4, 1474322409, 274, 128),
-(868, 340, 1, 1474322639, 415, 201),
-(882, 346, 2, 1474323055, 421, 203),
-(890, 338, 1, 1474322988, 413, 205),
-(895, 352, 1, 1474323146, 427, 210),
-(910, 321, 4, 1474323842, 395, 190),
-(915, 355, 2, 1474323880, 430, 211),
-(916, 22, 3, 1474324789, 75, 29),
-(918, 347, 2, 1474324279, 422, 204),
-(922, 30, 1, 1474324544, 84, 34),
-(927, 361, 2, 1474324921, 436, 212),
-(933, 370, 1, 1474325253, 445, 214),
-(936, 367, 2, 1474325669, 442, 215),
-(942, 368, 1, 1474325696, 443, 217),
-(943, 372, 2, 1474326067, 447, 216),
-(945, 376, 1, 1474326097, 454, 218),
-(953, 332, 4, 1474327270, 407, 207),
-(958, 380, 1, 1474327467, 459, 222),
-(972, 387, 2, 1474328245, 466, 225),
-(974, 221, 4, 1474328447, 291, 137),
-(979, 272, 4, 1474329254, 345, 163),
-(982, 393, 2, 1474329350, 473, 228),
-(984, 366, 4, 1474329512, 441, 226),
-(987, 264, 4, 1474329530, 337, 160),
-(991, 399, 1, 1474329442, 480, 229),
-(999, 82, 3, 1474330931, 144, 62),
-(1000, 82, 3, 1474330933, 457, 230),
-(1011, 407, 1, 1474331210, 490, 232),
-(1017, 345, 4, 1474331764, 420, 202),
-(1024, 410, 1, 1474331748, 493, 235),
-(1027, 392, 2, 1474331974, 472, 227),
-(1029, 413, 1, 1474331884, 496, 237),
-(1031, 412, 2, 1474332109, 495, 236),
-(1039, 414, 1, 1474332602, 497, 238),
-(1042, 113, 1, 1474332763, 177, 239),
-(1051, 416, 1, 1474333556, 499, 243),
-(1053, 420, 2, 1474333735, 503, 241),
-(1060, 89, 3, 1474335096, 151, 65),
-(1076, 434, 2, 1474335868, 517, 248),
-(1083, 441, 1, 1474337154, 525, 253),
-(1098, 451, 1, 1474339019, 536, 258),
-(1100, 446, 2, 1474339414, 530, 254),
-(1104, 453, 4, 1474340021, 538, 259),
-(1105, 454, 1, 1474339848, 539, 260),
-(1111, 444, 1, 1474341029, 528, 262),
-(1119, 462, 2, 1474342224, 548, 263),
-(1126, 468, 1, 1474344521, 555, 264),
-(1129, 471, 1, 1474345002, 559, 267),
-(1130, 470, 1, 1474345129, 558, 265),
-(1133, 474, 2, 1474345811, 562, 268),
-(1153, 479, 1, 1474348599, 568, 272),
-(1192, 490, 4, 1474353754, 580, 278),
-(1202, 496, 4, 1474354673, 587, 282),
-(1218, 504, 1, 1474356322, 596, 284),
-(1240, 509, 2, 1474357331, 601, 286),
-(1242, 514, 1, 1474357227, 606, 290),
-(1264, 516, 1, 1474358193, 611, 293),
-(1268, 492, 3, 1474359236, 583, 279),
-(1276, 508, 4, 1474358996, 607, 297),
-(1309, 523, 2, 1474360251, 621, 302),
-(1321, 521, 4, 1474360720, 618, 299),
-(1327, 296, 1, 1474360534, 625, 304),
-(1346, 526, 2, 1474361078, 626, 307),
-(1347, 528, 1, 1474360987, 628, 309),
-(1349, 515, 2, 1474361174, 610, 291),
-(1364, 63, 2, 1474361490, 122, 310),
-(1375, 429, 3, 1474362584, 619, 245),
-(1376, 429, 3, 1474362586, 512, 308),
-(1396, 529, 4, 1474363037, 630, 311),
-(1401, 531, 4, 1474363165, 632, 312),
-(1417, 535, 4, 1474363821, 637, 316),
-(1419, 536, 1, 1474363570, 638, 317),
-(1440, 532, 1, 1474364485, 633, 314),
-(1443, 539, 1, 1474364613, 642, 320),
-(1451, 530, 4, 1474365215, 635, 313),
-(1462, 543, 1, 1474365377, 646, 323),
-(1465, 542, 4, 1474365839, 645, 322),
-(1492, 533, 2, 1474367371, 634, 328),
-(1528, 551, 2, 1474369455, 662, 332),
-(1533, 553, 1, 1474369554, 663, 334),
-(1557, 556, 1, 1474371456, 667, 337),
-(1558, 555, 1, 1474371540, 666, 336),
-(1574, 155, 1, 1474372357, 221, 104),
-(1575, 155, 1, 1474372359, 223, 106),
-(1577, 513, 4, 1474372727, 605, 338),
-(1578, 489, 2, 1474372650, 579, 276),
-(1579, 489, 2, 1474372651, 581, 277),
-(1580, 489, 2, 1474372653, 668, 340),
-(1596, 560, 1, 1474373753, 675, 345),
-(1614, 561, 4, 1474375017, 677, 348),
-(1615, 561, 2, 1474374904, 676, 346),
-(1639, 476, 1, 1474375897, 564, 271),
-(1640, 476, 1, 1474375898, 565, 270),
-(1642, 565, 4, 1474376205, 683, 352),
-(1661, 566, 1, 1474376424, 689, 353),
-(1682, 424, 3, 1474378425, 507, 240),
-(1689, 571, 1, 1474378017, 697, 361),
-(1722, 558, 1, 1474379166, 673, 342),
-(1730, 117, 2, 1474379478, 181, 364),
-(1733, 117, 1, 1474379402, 702, 83),
-(1777, 574, 2, 1474381328, 705, 366),
-(1787, 576, 1, 1474381457, 708, 370),
-(1797, 578, 1, 1474381982, 711, 372),
-(1813, 579, 1, 1474382657, 713, 374),
-(1821, 580, 4, 1474383266, 714, 375),
-(1834, 582, 1, 1474383439, 716, 377),
-(1836, 583, 1, 1474383641, 717, 378),
-(1837, 150, 4, 1474383983, 657, 330),
-(1838, 150, 4, 1474383985, 656, 103),
-(1839, 150, 4, 1474383986, 216, 329),
-(1849, 584, 1, 1474384084, 718, 379),
-(1876, 586, 1, 1474384748, 721, 381),
-(1897, 175, 2, 1474385875, 724, 116),
-(1918, 590, 2, 1474386313, 730, 387),
-(1919, 589, 1, 1474386180, 726, 386),
-(1920, 587, 1, 1474386214, 722, 382),
-(1948, 592, 2, 1474387087, 731, 390),
-(1972, 600, 1, 1474388115, 741, 399),
-(2008, 473, 2, 1474390193, 727, 269),
-(2021, 249, 8, 1474397648, 664, 343),
-(2024, 249, 4, 1474391146, 322, 152),
-(2037, 137, 8, 1474398799, 712, 373),
-(2043, 608, 1, 1474391964, 752, 409),
-(2046, 606, 2, 1474392217, 754, 411),
-(2050, 606, 1, 1474392128, 750, 407),
-(2055, 65, 6, 1474394167, 703, 406),
-(2078, 611, 1, 1474393401, 761, 417),
-(2079, 65, 4, 1474393729, 629, 79),
-(2083, 612, 2, 1474393830, 762, 418),
-(2084, 596, 2, 1474393892, 736, 394),
-(2091, 519, 4, 1474394630, 616, 298),
-(2106, 617, 2, 1474394859, 767, 423),
-(2116, 616, 2, 1474395586, 766, 422),
-(2118, 619, 1, 1474395547, 769, 425),
-(2129, 622, 1, 1474396502, 772, 428),
-(2133, 137, 4, 1474397246, 203, 97),
-(2134, 623, 1, 1474397021, 773, 430),
-(2136, 624, 1, 1474397211, 774, 431),
-(2139, 625, 1, 1474397258, 775, 432),
-(2144, 627, 1, 1474397893, 778, 434),
-(2150, 585, 1, 1474398166, 719, 395),
-(2151, 585, 4, 1474398446, 737, 380),
-(2161, 628, 1, 1474398647, 779, 436),
-(2168, 275, 3, 1474399759, 348, 435),
-(2185, 632, 1, 1474399722, 784, 441),
-(2194, 633, 1, 1474400064, 787, 442),
-(2219, 636, 4, 1474401527, 790, 445),
-(2249, 638, 3, 1474404926, 793, 447),
-(2262, 640, 1, 1474405059, 796, 449),
-(2264, 193, 4, 1474405630, 261, 122),
-(2296, 641, 3, 1474409017, 798, 454),
-(2333, 637, 2, 1474410343, 806, 460),
-(2336, 648, 2, 1474410433, 807, 461),
-(2343, 650, 1, 1474410920, 809, 463),
-(2350, 649, 1, 1474411196, 808, 462),
-(2352, 133, 4, 1474411472, 199, 96),
-(2361, 643, 3, 1474412521, 801, 453),
-(2362, 646, 2, 1474412000, 804, 459),
-(2379, 657, 4, 1474413709, 818, 471),
-(2392, 658, 4, 1474414103, 823, 472),
-(2405, 660, 1, 1474414199, 824, 474),
-(2406, 166, 4, 1474414484, 233, 111),
-(2412, 662, 4, 1474414933, 826, 476),
-(2422, 663, 2, 1474415293, 828, 477),
-(2438, 664, 2, 1474415895, 829, 478),
-(2448, 527, 7, 1474452633, 745, 305),
-(2470, 666, 4, 1474418382, 831, 480),
-(2474, 389, 4, 1474418590, 660, 306),
-(2475, 389, 4, 1474418591, 469, 333),
-(2476, 389, 4, 1474418592, 756, 415),
-(2477, 389, 4, 1474418593, 757, 414),
-(2492, 672, 1, 1474420106, 838, 486),
-(2498, 670, 1, 1474420451, 839, 487),
-(2499, 670, 1, 1474420455, 836, 484),
-(2502, 287, 4, 1474420957, 799, 451),
-(2503, 659, 3, 1474421786, 822, 473),
-(2515, 673, 1, 1474424476, 840, 488),
-(2521, 432, 2, 1474426005, 515, 247),
-(2526, 675, 2, 1474426312, 842, 490),
-(2532, 674, 2, 1474426759, 841, 489),
-(2567, 678, 1, 1474429744, 845, 493),
-(2572, 481, 1, 1474430373, 570, 497),
-(2585, 683, 1, 1474432099, 851, 501),
-(2591, 665, 3, 1474433981, 830, 479),
-(2593, 677, 4, 1474433546, 844, 492),
-(2596, 271, 3, 1474434994, 344, 164),
-(2607, 684, 1, 1474437084, 852, 502),
-(2611, 339, 1, 1474437186, 414, 503),
-(2645, 512, 2, 1474439570, 640, 318),
-(2646, 512, 2, 1474439574, 604, 289),
-(2655, 233, 3, 1474440972, 791, 144),
-(2656, 233, 4, 1474440376, 700, 365),
-(2657, 233, 4, 1474440377, 305, 384),
-(2668, 495, 4, 1474441053, 783, 280),
-(2669, 495, 4, 1474441054, 586, 440),
-(2671, 477, 3, 1474441757, 608, 273),
-(2675, 564, 2, 1474441286, 693, 351),
-(2679, 505, 3, 1474442528, 612, 287),
-(2680, 505, 3, 1474442535, 671, 296),
-(2681, 505, 3, 1474442539, 597, 339),
-(2682, 575, 3, 1474442674, 707, 368),
-(2683, 575, 3, 1474442677, 706, 367);
+(2, 1, 21, 1554744726, 915, 530);
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `sprit`
+--
 
 CREATE TABLE `sprit` (
   `id` int(11) NOT NULL,
@@ -4040,6 +4016,10 @@ CREATE TABLE `sprit` (
   `lit` float NOT NULL,
   `cost` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Daten für Tabelle `sprit`
+--
 
 INSERT INTO `sprit` (`id`, `title`, `liga`, `lit`, `cost`) VALUES
 (1, 'arbeiter', 1, 1, 1500),
@@ -4051,27 +4031,47 @@ INSERT INTO `sprit` (`id`, `title`, `liga`, `lit`, `cost`) VALUES
 (7, 'invest', 7, 60, 475630),
 (8, 'place', 8, 100, 1000000);
 
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `sprit_market`
+--
+
 CREATE TABLE `sprit_market` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `amount` int(11) NOT NULL,
+  `amount` decimal(20,2) NOT NULL,
   `price` decimal(20,2) NOT NULL,
   `timestamp` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Daten für Tabelle `sprit_market`
+--
+
 INSERT INTO `sprit_market` (`id`, `user_id`, `amount`, `price`, `timestamp`) VALUES
-(5, 6, 122, '115.00', 1474465079),
-(6, 1, 2, '2.00', 1474528749),
-(7, 1, 1000, '5.00', 1485254380);
+(5, 6, '122.00', '115.00', 1474465079),
+(6, 1, '0.67', '2.00', 1474528749),
+(8, 711, '206.93', '2.00', 1539105730);
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `sprit_upt`
+--
 
 CREATE TABLE `sprit_upt` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `updated` int(11) NOT NULL
+  `updated` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Daten für Tabelle `sprit_upt`
+--
+
 INSERT INTO `sprit_upt` (`id`, `user_id`, `updated`) VALUES
-(1, 1, 1488266385),
+(1, 1, 1554741126),
 (6, 6, 1474465669),
 (7, 7, 1474290311),
 (8, 8, 1474290474),
@@ -4776,7 +4776,20 @@ INSERT INTO `sprit_upt` (`id`, `user_id`, `updated`) VALUES
 (707, 707, 1481284885),
 (708, 708, 1481286748),
 (709, 709, 1485254049),
-(710, 710, 1485247197);
+(710, 710, 1485247197),
+(711, 711, 1539358475),
+(719, 719, 1539285077),
+(720, 720, 1539285083),
+(721, 721, 1539802495),
+(722, 722, 1539803401),
+(723, 723, 1540642367),
+(724, 724, 1554555669);
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `sprit_usr`
+--
 
 CREATE TABLE `sprit_usr` (
   `id` int(11) NOT NULL,
@@ -4785,15 +4798,19 @@ CREATE TABLE `sprit_usr` (
   `count` smallint(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Daten für Tabelle `sprit_usr`
+--
+
 INSERT INTO `sprit_usr` (`id`, `user_id`, `sprit_id`, `count`) VALUES
-(1, 1, 1, 57),
+(1, 1, 1, 62),
 (2, 1, 4, 13),
-(3, 1, 2, 19),
-(4, 1, 3, 14),
+(3, 1, 2, 23),
+(4, 1, 3, 16),
 (5, 1, 7, 11),
-(6, 1, 8, 12),
+(6, 1, 8, 14),
 (7, 1, 6, 11),
-(8, 1, 5, 5),
+(8, 1, 5, 6),
 (13, 11, 1, 2),
 (14, 15, 1, 2),
 (15, 10, 1, 1),
@@ -5168,7 +5185,15 @@ INSERT INTO `sprit_usr` (`id`, `user_id`, `sprit_id`, `count`) VALUES
 (384, 680, 1, 1),
 (385, 683, 2, 1),
 (386, 708, 3, 1),
-(387, 708, 1, 3);
+(387, 708, 1, 3),
+(388, 724, 1, 4),
+(389, 724, 6, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `stats`
+--
 
 CREATE TABLE `stats` (
   `id` int(11) NOT NULL,
@@ -5180,9 +5205,13 @@ CREATE TABLE `stats` (
   `chat_count` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Daten für Tabelle `stats`
+--
+
 INSERT INTO `stats` (`id`, `money`, `liga`, `exp`, `sprit`, `uppoints`, `chat_count`) VALUES
-(1, '11016846008.32', 8, 7129, 10000, 0, 26),
-(6, '20913.49', 1, 27, 1577.66, 0, 0),
+(1, '10798247975.46', 11, 77885, 105, 0, 27),
+(6, '21031.89', 1, 27, 1577.66, 0, 0),
 (7, '25000.00', 1, 0, 50.225, 0, 0),
 (8, '25000.00', 1, 0, 50.2417, 0, 0),
 (9, '25000.00', 1, 0, 50.15, 0, 0),
@@ -5886,895 +5915,949 @@ INSERT INTO `stats` (`id`, `money`, `liga`, `exp`, `sprit`, `uppoints`, `chat_co
 (707, '25000.00', 1, 0, 50.1083, 0, 0),
 (708, '291.01', 1, 0, 144.75, 0, 0),
 (709, '2416.31', 1, 11, 131.181, 0, 0),
-(710, '25000.00', 1, 0, 50.85, 0, 0);
+(710, '25000.00', 1, 0, 50.85, 0, 0),
+(711, '17676.02', 1, 54, 3.75834, 0, 0),
+(719, '10000.00', 1, 0, 50.7334, 0, 0),
+(720, '10000.00', 1, 0, 50.025, 0, 0),
+(721, '10198.00', 1, 0, 64.8002, 0, 0),
+(722, '10500.00', 1, 0, 51.1999, 0, 0),
+(723, '5297.50', 1, 107, 96.9332, 0, 0),
+(724, '302540.36', 2, 162, 505, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `stats_racing`
+--
+
+CREATE TABLE `stats_racing` (
+  `user_id` mediumint(9) NOT NULL,
+  `run` mediumint(9) NOT NULL,
+  `sum_positions` int(11) NOT NULL,
+  `sum_price` decimal(10,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Daten für Tabelle `stats_racing`
+--
+
+INSERT INTO `stats_racing` (`user_id`, `run`, `sum_positions`, `sum_price`) VALUES
+(1, 63, 201, '5992.50'),
+(723, 2, 10, '188.50'),
+(724, 3, 11, '190.00');
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `storage`
+--
 
 CREATE TABLE `storage` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `part_id` int(11) NOT NULL,
   `garage_id` int(11) NOT NULL,
-  `liga` int(11) NOT NULL,
+  `new` tinyint(1) NOT NULL DEFAULT '1',
+  `tier` tinyint(11) NOT NULL,
   `part` tinytext NOT NULL,
   `value` int(11) NOT NULL,
   `sell` double NOT NULL,
-  `sell_date` int(11) NOT NULL
+  `sell_date` int(11) NOT NULL,
+  `acc` int(11) NOT NULL,
+  `speed` int(11) NOT NULL,
+  `hand` int(11) NOT NULL,
+  `dura` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `storage` (`id`, `user_id`, `part_id`, `garage_id`, `liga`, `part`, `value`, `sell`, `sell_date`) VALUES
-(46, 17, 1, 70, 1, 'nockenwelle', 8, 0, 0),
-(47, 10, 8, 592, 1, 'getriebe', 376, 0, 0),
-(48, 342, 11, 0, 1, 'schwungrad', 2, 0, 0),
-(49, 1, 4, 0, 1, 'sportesd', 2, 0, 0),
-(50, 89, 1, 151, 1, 'nockenwelle', 6, 0, 0),
-(51, 43, 1, 98, 1, 'nockenwelle', 6, 0, 0),
-(52, 12, 1, 65, 1, 'nockenwelle', 10, 0, 0),
-(53, 18, 1, 71, 1, 'nockenwelle', 10, 0, 0),
-(54, 11, 1, 64, 1, 'nockenwelle', 7, 0, 0),
-(56, 34, 1, 89, 1, 'nockenwelle', 11, 0, 0),
-(57, 22, 1, 75, 1, 'nockenwelle', 10, 0, 0),
-(58, 29, 11, 0, 1, 'schwungrad', 3, 0, 0),
-(59, 1, 3, 0, 3, 'kolben', 22, 0, 0),
-(60, 1, 2, 0, 2, 'schwungrad', 12, 0, 0),
-(61, 29, 13, 0, 2, 'kolben', 3, 0, 0),
-(62, 1, 12, 0, 1, 'kolben', 2, 0, 0),
-(63, 1, 19, 0, 2, 'doppelkupplung', 91, 0, 0),
-(64, 1, 19, 0, 2, 'doppelkupplung', 14, 0, 0),
-(65, 1, 11, 0, 1, 'schwungrad', 3, 0, 0),
-(66, 1, 1, 0, 1, 'nockenwelle', 13, 0, 0),
-(67, 65, 1, 629, 1, 'nockenwelle', 7, 0, 0),
-(68, 1, 15, 0, 1, 'turbocharger', 60, 0, 0),
-(69, 1, 15, 0, 1, 'turbocharger', 80, 0, 0),
-(70, 17, 3, 0, 3, 'kolben', 20, 0, 0),
-(71, 18, 2, 0, 2, 'schwungrad', 9, 0, 0),
-(72, 12, 3, 0, 3, 'kolben', 29, 0, 0),
-(73, 1, 17, 0, 2, 'katalysator', 2, 0, 0),
-(74, 1, 41, 0, 2, 'turbocharger', 49, 0, 0),
-(75, 1, 27, 862, 8, 'nockenwelle', 38, 0, 0),
-(76, 1, 2, 0, 2, 'schwungrad', 14, 0, 0),
-(77, 1, 13, 0, 2, 'kolben', 3, 0, 0),
-(78, 534, 21, 0, 2, 'nockenwelle', 5, 0, 0),
-(79, 1, 19, 0, 2, 'doppelkupplung', 12, 0, 0),
-(80, 1, 1, 0, 1, 'nockenwelle', 6, 0, 0),
-(83, 1, 10, 0, 1, 'kruemmer', 3, 0, 0),
-(84, 1, 10, 0, 1, 'kruemmer', 2, 0, 0),
-(85, 1, 10, 0, 1, 'kruemmer', 2, 0, 0),
-(86, 1, 4, 0, 1, 'sportesd', 1, 0, 0),
-(87, 1, 10, 0, 1, 'kruemmer', 1, 0, 0),
-(88, 10, 1, 592, 1, 'nockenwelle', 5, 0, 0),
-(89, 1, 1, 0, 1, 'nockenwelle', 4, 0, 0),
-(91, 515, 21, 0, 2, 'nockenwelle', 9, 0, 0),
-(93, 1, 66, 0, 3, 'kruemmer', 5, 0, 0),
-(94, 515, 1, 610, 1, 'nockenwelle', 9, 0, 0),
-(95, 505, 42, 0, 3, 'turbocharger', 72, 0, 0),
-(97, 1, 35, 0, 3, 'gelochte', 10, 0, 0),
-(98, 532, 47, 0, 8, 'turbocharger', 347, 0, 0),
-(99, 11, 1, 0, 1, 'nockenwelle', 9, 0, 0),
-(100, 43, 1, 0, 1, 'nockenwelle', 3, 0, 0),
-(101, 14, 1, 67, 1, 'nockenwelle', 3, 0, 0),
-(102, 65, 12, 0, 1, 'kolben', 3, 0, 0),
-(103, 14, 10, 0, 1, 'kruemmer', 3, 0, 0),
-(104, 19, 1, 72, 1, 'nockenwelle', 4, 0, 0),
-(105, 10, 16, 592, 1, 'katalysator', 1, 0, 0),
-(106, 10, 10, 592, 1, 'kruemmer', 2, 0, 0),
-(107, 10, 4, 592, 1, 'sportesd', 3, 0, 0),
-(108, 22, 12, 75, 1, 'kolben', 3, 0, 0),
-(109, 26, 1, 80, 1, 'nockenwelle', 2, 0, 0),
-(110, 22, 16, 75, 1, 'katalysator', 0, 0, 0),
-(111, 33, 1, 87, 1, 'nockenwelle', 3, 0, 0),
-(112, 26, 6, 80, 1, 'gelochte', 6, 0, 0),
-(113, 22, 10, 75, 1, 'kruemmer', 1, 0, 0),
-(114, 30, 1, 84, 1, 'nockenwelle', 3, 0, 0),
-(115, 22, 4, 75, 1, 'sportesd', 1, 0, 0),
-(116, 522, 1, 620, 1, 'nockenwelle', 4, 0, 0),
-(117, 26, 8, 80, 1, 'getriebe', 6, 0, 0),
-(118, 30, 12, 84, 1, 'kolben', 3, 0, 0),
-(119, 29, 12, 83, 1, 'kolben', 3, 0, 0),
-(120, 34, 8, 89, 1, 'getriebe', 8, 0, 0),
-(121, 30, 4, 84, 1, 'sportesd', 3, 0, 0),
-(122, 22, 8, 75, 1, 'getriebe', 8, 0, 0),
-(123, 30, 10, 84, 1, 'kruemmer', 1, 0, 0),
-(124, 26, 4, 80, 1, 'sportesd', 2, 0, 0),
-(125, 61, 12, 119, 1, 'kolben', 3, 0, 0),
-(126, 38, 1, 93, 1, 'nockenwelle', 3, 0, 0),
-(127, 42, 1, 97, 1, 'nockenwelle', 3, 0, 0),
-(128, 39, 1, 0, 1, 'nockenwelle', 5, 0, 0),
-(129, 38, 12, 93, 1, 'kolben', 3, 0, 0),
-(130, 30, 16, 84, 1, 'katalysator', 2, 0, 0),
-(131, 61, 1, 119, 1, 'nockenwelle', 3, 0, 0),
-(132, 30, 6, 84, 1, 'gelochte', 12, 0, 0),
-(133, 38, 4, 93, 1, 'sportesd', 1, 0, 0),
-(134, 38, 10, 93, 1, 'kruemmer', 0, 0, 0),
-(135, 42, 12, 97, 1, 'kolben', 3, 0, 0),
-(136, 26, 12, 80, 1, 'kolben', 3, 0, 0),
-(137, 38, 16, 93, 1, 'katalysator', 0, 0, 0),
-(138, 10, 12, 592, 1, 'kolben', 6, 0, 0),
-(139, 58, 1, 0, 1, 'nockenwelle', 3, 0, 0),
-(140, 34, 16, 89, 1, 'katalysator', 2, 0, 0),
-(141, 63, 12, 122, 1, 'kolben', 6, 0, 0),
-(142, 64, 1, 123, 1, 'nockenwelle', 9, 0, 0),
-(143, 63, 4, 122, 1, 'sportesd', 1, 0, 0),
-(144, 63, 6, 122, 1, 'gelochte', 7, 0, 0),
-(145, 65, 1, 124, 1, 'nockenwelle', 3, 0, 0),
-(146, 65, 16, 629, 1, 'katalysator', 1, 0, 0),
-(147, 64, 12, 123, 1, 'kolben', 2, 0, 0),
-(148, 65, 10, 124, 1, 'kruemmer', 1, 0, 0),
-(149, 63, 8, 122, 1, 'getriebe', 10, 0, 0),
-(150, 64, 4, 123, 1, 'sportesd', 1, 0, 0),
-(151, 65, 4, 124, 1, 'sportesd', 1, 0, 0),
-(152, 65, 6, 629, 1, 'gelochte', 7, 0, 0),
-(153, 63, 1, 122, 1, 'nockenwelle', 3, 0, 0),
-(154, 63, 16, 122, 1, 'katalysator', 1, 0, 0),
-(155, 50, 1, 106, 1, 'nockenwelle', 3, 0, 0),
-(156, 64, 10, 123, 1, 'kruemmer', 1, 0, 0),
-(157, 64, 16, 123, 1, 'katalysator', 0, 0, 0),
-(158, 65, 8, 629, 1, 'getriebe', 7, 0, 0),
-(159, 64, 6, 123, 1, 'gelochte', 9, 0, 0),
-(160, 76, 1, 136, 1, 'nockenwelle', 6, 0, 0),
-(161, 69, 1, 128, 1, 'nockenwelle', 3, 0, 0),
-(163, 87, 1, 149, 1, 'nockenwelle', 3, 0, 0),
-(164, 87, 8, 149, 1, 'getriebe', 9, 0, 0),
-(165, 88, 1, 150, 1, 'nockenwelle', 6, 0, 0),
-(166, 88, 12, 150, 1, 'kolben', 4, 0, 0),
-(167, 10, 6, 592, 1, 'gelochte', 7, 0, 0),
-(168, 87, 12, 149, 1, 'kolben', 2, 0, 0),
-(169, 87, 4, 149, 1, 'sportesd', 3, 0, 0),
-(170, 87, 16, 149, 1, 'katalysator', 0, 0, 0),
-(171, 96, 1, 158, 1, 'nockenwelle', 4, 0, 0),
-(172, 29, 4, 83, 1, 'sportesd', 1, 0, 0),
-(173, 96, 12, 158, 1, 'kolben', 3, 0, 0),
-(174, 96, 4, 158, 1, 'sportesd', 3, 0, 0),
-(175, 96, 10, 158, 1, 'kruemmer', 1, 0, 0),
-(176, 96, 16, 158, 1, 'katalysator', 0, 0, 0),
-(177, 96, 6, 158, 1, 'gelochte', 7, 0, 0),
-(178, 96, 8, 158, 1, 'getriebe', 10, 0, 0),
-(179, 101, 1, 164, 1, 'nockenwelle', 3, 0, 0),
-(180, 101, 8, 164, 1, 'getriebe', 8, 0, 0),
-(181, 104, 1, 167, 1, 'nockenwelle', 7, 0, 0),
-(182, 106, 1, 170, 1, 'nockenwelle', 3, 0, 0),
-(183, 103, 1, 166, 1, 'nockenwelle', 7, 0, 0),
-(184, 94, 1, 156, 1, 'nockenwelle', 3, 0, 0),
-(185, 103, 4, 166, 1, 'sportesd', 3, 0, 0),
-(186, 103, 6, 166, 1, 'gelochte', 6, 0, 0),
-(187, 38, 6, 0, 1, 'gelochte', 7, 0, 0),
-(188, 104, 12, 167, 1, 'kolben', 3, 0, 0),
-(189, 104, 6, 167, 1, 'gelochte', 6, 0, 0),
-(190, 34, 1, 0, 1, 'nockenwelle', 2, 0, 0),
-(191, 14, 8, 67, 1, 'getriebe', 12, 0, 0),
-(192, 107, 1, 171, 1, 'nockenwelle', 3, 0, 0),
-(193, 14, 10, 67, 1, 'kruemmer', 3, 0, 0),
-(194, 107, 4, 171, 1, 'sportesd', 0, 0, 0),
-(195, 107, 12, 171, 1, 'kolben', 3, 0, 0),
-(196, 107, 10, 171, 1, 'kruemmer', 1, 0, 0),
-(197, 107, 16, 171, 1, 'katalysator', 0, 0, 0),
-(198, 107, 6, 171, 1, 'gelochte', 7, 0, 0),
-(199, 114, 1, 178, 1, 'nockenwelle', 3, 0, 0),
-(200, 107, 8, 171, 1, 'getriebe', 8, 0, 0),
-(201, 114, 12, 178, 1, 'kolben', 3, 0, 0),
-(202, 114, 4, 178, 1, 'sportesd', 3, 0, 0),
-(203, 114, 10, 178, 1, 'kruemmer', 3, 0, 0),
-(204, 114, 16, 0, 1, 'katalysator', 0, 0, 0),
-(205, 69, 4, 0, 1, 'sportesd', 0, 0, 0),
-(206, 69, 12, 128, 1, 'kolben', 3, 0, 0),
-(207, 159, 16, 0, 1, 'katalysator', 0, 0, 0),
-(208, 111, 10, 175, 1, 'kruemmer', 1, 0, 0),
-(209, 111, 4, 175, 1, 'sportesd', 1, 0, 0),
-(210, 120, 1, 185, 1, 'nockenwelle', 3, 0, 0),
-(211, 111, 8, 175, 1, 'getriebe', 11, 0, 0),
-(212, 122, 1, 187, 1, 'nockenwelle', 2, 0, 0),
-(213, 122, 4, 187, 1, 'sportesd', 1, 0, 0),
-(214, 70, 4, 129, 1, 'sportesd', 1, 0, 0),
-(215, 69, 4, 128, 1, 'sportesd', 1, 0, 0),
-(216, 122, 12, 187, 1, 'kolben', 3, 0, 0),
-(217, 128, 1, 194, 1, 'nockenwelle', 5, 0, 0),
-(218, 128, 12, 194, 1, 'kolben', 3, 0, 0),
-(219, 128, 4, 194, 1, 'sportesd', 3, 0, 0),
-(220, 128, 16, 194, 1, 'katalysator', 0, 0, 0),
-(221, 128, 10, 194, 1, 'kruemmer', 1, 0, 0),
-(222, 132, 1, 0, 1, 'nockenwelle', 4, 0, 0),
-(223, 111, 12, 175, 1, 'kolben', 3, 0, 0),
-(224, 137, 1, 203, 1, 'nockenwelle', 3, 0, 0),
-(225, 135, 1, 201, 1, 'nockenwelle', 3, 0, 0),
-(226, 117, 1, 181, 1, 'nockenwelle', 3, 0, 0),
-(227, 137, 12, 203, 1, 'kolben', 3, 0, 0),
-(228, 122, 10, 187, 1, 'kruemmer', 1, 0, 0),
-(229, 135, 12, 201, 1, 'kolben', 3, 0, 0),
-(230, 135, 6, 201, 1, 'gelochte', 7, 0, 0),
-(231, 135, 16, 201, 1, 'katalysator', 0, 0, 0),
-(232, 135, 10, 201, 1, 'kruemmer', 2, 0, 0),
-(233, 137, 4, 203, 1, 'sportesd', 1, 0, 0),
-(234, 137, 10, 203, 1, 'kruemmer', 2, 0, 0),
-(235, 137, 16, 203, 1, 'katalysator', 1, 0, 0),
-(236, 117, 12, 702, 1, 'kolben', 2, 0, 0),
-(237, 147, 1, 213, 1, 'nockenwelle', 3, 0, 0),
-(238, 122, 16, 187, 1, 'katalysator', 2, 0, 0),
-(239, 122, 6, 187, 1, 'gelochte', 13, 0, 0),
-(240, 122, 8, 187, 1, 'getriebe', 10, 0, 0),
-(241, 122, 18, 187, 1, 'doppelkupplung', 5, 0, 0),
-(242, 158, 1, 225, 1, 'nockenwelle', 3, 0, 0),
-(243, 133, 10, 199, 1, 'kruemmer', 1, 0, 0),
-(244, 133, 16, 199, 1, 'katalysator', 0, 0, 0),
-(245, 158, 12, 225, 1, 'kolben', 3, 0, 0),
-(246, 69, 10, 128, 1, 'kruemmer', 1, 0, 0),
-(247, 158, 4, 225, 1, 'sportesd', 4, 0, 0),
-(248, 158, 10, 0, 1, 'kruemmer', 1, 0, 0),
-(249, 70, 12, 129, 1, 'kolben', 5, 0, 0),
-(250, 70, 1, 129, 1, 'nockenwelle', 3, 0, 0),
-(251, 133, 12, 199, 1, 'kolben', 4, 0, 0),
-(252, 165, 1, 232, 1, 'nockenwelle', 3, 0, 0),
-(253, 166, 4, 233, 1, 'sportesd', 3, 0, 0),
-(254, 166, 10, 233, 1, 'kruemmer', 3, 0, 0),
-(255, 166, 16, 0, 1, 'katalysator', 0, 0, 0),
-(256, 166, 16, 0, 1, 'katalysator', 0, 0, 0),
-(257, 165, 12, 232, 1, 'kolben', 5, 0, 0),
-(258, 166, 1, 233, 1, 'nockenwelle', 5, 0, 0),
-(259, 165, 8, 232, 1, 'getriebe', 8, 0, 0),
-(260, 165, 4, 0, 1, 'sportesd', 1, 0, 0),
-(261, 153, 1, 219, 1, 'nockenwelle', 3, 0, 0),
-(262, 166, 12, 233, 1, 'kolben', 3, 0, 0),
-(263, 10, 8, 0, 1, 'getriebe', 8, 0, 0),
-(264, 87, 10, 0, 1, 'kruemmer', 1, 0, 0),
-(265, 69, 16, 128, 1, 'katalysator', 2, 0, 0),
-(266, 137, 8, 203, 1, 'getriebe', 8, 0, 0),
-(267, 179, 1, 246, 1, 'nockenwelle', 3, 0, 0),
-(268, 175, 1, 242, 1, 'nockenwelle', 9, 0, 0),
-(269, 133, 1, 199, 1, 'nockenwelle', 9, 0, 0),
-(270, 133, 4, 199, 1, 'sportesd', 1, 0, 0),
-(271, 191, 1, 259, 1, 'nockenwelle', 3, 0, 0),
-(272, 191, 12, 259, 1, 'kolben', 3, 0, 0),
-(273, 193, 12, 261, 1, 'kolben', 3, 0, 0),
-(274, 192, 1, 260, 1, 'nockenwelle', 4, 0, 0),
-(275, 191, 4, 259, 1, 'sportesd', 1, 0, 0),
-(276, 192, 12, 260, 1, 'kolben', 2, 0, 0),
-(277, 193, 4, 261, 1, 'sportesd', 2, 0, 0),
-(278, 10, 18, 592, 1, 'doppelkupplung', 5, 0, 0),
-(279, 193, 16, 261, 1, 'katalysator', 2, 0, 0),
-(280, 199, 1, 269, 1, 'nockenwelle', 2, 0, 0),
-(281, 199, 1, 268, 1, 'nockenwelle', 7, 0, 0),
-(282, 203, 12, 273, 1, 'kolben', 3, 0, 0),
-(283, 230, 21, 0, 2, 'nockenwelle', 7, 0, 0),
-(284, 206, 1, 276, 1, 'nockenwelle', 3, 0, 0),
-(285, 197, 1, 266, 1, 'nockenwelle', 3, 0, 0),
-(286, 197, 10, 266, 1, 'kruemmer', 1, 0, 0),
-(287, 197, 6, 266, 1, 'gelochte', 11, 0, 0),
-(288, 208, 1, 0, 1, 'nockenwelle', 4, 0, 0),
-(289, 534, 13, 0, 2, 'kolben', 6, 0, 0),
-(290, 213, 1, 283, 1, 'nockenwelle', 3, 0, 0),
-(291, 210, 8, 280, 1, 'getriebe', 8, 0, 0),
-(292, 197, 12, 266, 1, 'kolben', 2, 0, 0),
-(293, 197, 16, 266, 1, 'katalysator', 1, 0, 0),
-(294, 215, 1, 0, 1, 'nockenwelle', 3, 0, 0),
-(295, 215, 12, 0, 1, 'kolben', 3, 0, 0),
-(296, 213, 12, 283, 1, 'kolben', 3, 0, 0),
-(297, 217, 1, 0, 1, 'nockenwelle', 6, 0, 0),
-(298, 215, 4, 0, 1, 'sportesd', 1, 0, 0),
-(299, 221, 1, 291, 1, 'nockenwelle', 9, 0, 0),
-(300, 215, 10, 0, 1, 'kruemmer', 1, 0, 0),
-(301, 215, 16, 0, 1, 'katalysator', 2, 0, 0),
-(302, 217, 12, 0, 1, 'kolben', 4, 0, 0),
-(303, 219, 1, 289, 1, 'nockenwelle', 3, 0, 0),
-(304, 213, 4, 283, 1, 'sportesd', 1, 0, 0),
-(305, 213, 10, 283, 1, 'kruemmer', 3, 0, 0),
-(306, 215, 8, 0, 1, 'getriebe', 8, 0, 0),
-(307, 213, 16, 283, 1, 'katalysator', 0, 0, 0),
-(308, 219, 12, 289, 1, 'kolben', 3, 0, 0),
-(309, 230, 1, 302, 1, 'nockenwelle', 3, 0, 0),
-(310, 229, 1, 299, 1, 'nockenwelle', 3, 0, 0),
-(311, 229, 4, 299, 1, 'sportesd', 1, 0, 0),
-(312, 219, 4, 289, 1, 'sportesd', 1, 0, 0),
-(313, 219, 16, 289, 1, 'katalysator', 1, 0, 0),
-(314, 221, 12, 291, 1, 'kolben', 4, 0, 0),
-(315, 219, 10, 289, 1, 'kruemmer', 1, 0, 0),
-(316, 221, 10, 291, 1, 'kruemmer', 1, 0, 0),
-(317, 229, 12, 299, 1, 'kolben', 3, 0, 0),
-(318, 231, 1, 303, 1, 'nockenwelle', 5, 0, 0),
-(319, 229, 10, 299, 1, 'kruemmer', 1, 0, 0),
-(320, 229, 16, 299, 1, 'katalysator', 0, 0, 0),
-(321, 229, 6, 299, 1, 'gelochte', 7, 0, 0),
-(322, 231, 12, 303, 1, 'kolben', 4, 0, 0),
-(323, 153, 4, 219, 1, 'sportesd', 0, 0, 0),
-(324, 229, 8, 299, 1, 'getriebe', 8, 0, 0),
-(325, 237, 1, 0, 1, 'nockenwelle', 3, 0, 0),
-(326, 237, 1, 0, 1, 'nockenwelle', 2, 0, 0),
-(327, 230, 1, 0, 1, 'nockenwelle', 3, 0, 0),
-(328, 114, 16, 178, 1, 'katalysator', 1, 0, 0),
-(329, 147, 12, 213, 1, 'kolben', 5, 0, 0),
-(330, 197, 4, 266, 1, 'sportesd', 1, 0, 0),
-(331, 114, 6, 178, 1, 'gelochte', 5, 0, 0),
-(332, 147, 4, 0, 1, 'sportesd', 1, 0, 0),
-(333, 114, 8, 178, 1, 'getriebe', 8, 0, 0),
-(334, 241, 1, 314, 1, 'nockenwelle', 8, 0, 0),
-(335, 241, 10, 314, 1, 'kruemmer', 1, 0, 0),
-(336, 241, 6, 314, 1, 'gelochte', 8, 0, 0),
-(337, 175, 12, 242, 1, 'kolben', 7, 0, 0),
-(338, 114, 18, 178, 1, 'doppelkupplung', 6, 0, 0),
-(339, 258, 4, 331, 1, 'sportesd', 1, 0, 0),
-(340, 249, 1, 322, 1, 'nockenwelle', 4, 0, 0),
-(341, 166, 6, 233, 1, 'gelochte', 7, 0, 0),
-(342, 229, 18, 299, 1, 'doppelkupplung', 5, 0, 0),
-(343, 175, 4, 242, 1, 'sportesd', 1, 0, 0),
-(344, 258, 4, 0, 1, 'sportesd', 1, 0, 0),
-(345, 175, 10, 242, 1, 'kruemmer', 1, 0, 0),
-(346, 175, 16, 242, 1, 'katalysator', 0, 0, 0),
-(347, 249, 12, 322, 1, 'kolben', 3, 0, 0),
-(348, 175, 6, 242, 1, 'gelochte', 7, 0, 0),
-(349, 249, 8, 322, 1, 'getriebe', 8, 0, 0),
-(350, 246, 1, 0, 1, 'nockenwelle', 3, 0, 0),
-(351, 253, 1, 0, 1, 'nockenwelle', 3, 0, 0),
-(352, 249, 18, 322, 1, 'doppelkupplung', 5, 0, 0),
-(353, 258, 1, 331, 1, 'nockenwelle', 4, 0, 0),
-(354, 258, 8, 331, 1, 'getriebe', 8, 0, 0),
-(355, 70, 8, 129, 1, 'getriebe', 8, 0, 0),
-(356, 258, 6, 331, 1, 'gelochte', 7, 0, 0),
-(357, 256, 12, 329, 1, 'kolben', 5, 0, 0),
-(358, 254, 4, 654, 1, 'sportesd', 1, 0, 0),
-(359, 263, 12, 336, 1, 'kolben', 4, 0, 0),
-(360, 263, 6, 336, 1, 'gelochte', 7, 0, 0),
-(361, 221, 4, 291, 1, 'sportesd', 1, 0, 0),
-(362, 258, 10, 331, 1, 'kruemmer', 3, 0, 0),
-(363, 264, 1, 337, 1, 'nockenwelle', 7, 0, 0),
-(364, 221, 6, 291, 1, 'gelochte', 9, 0, 0),
-(365, 264, 12, 337, 1, 'kolben', 3, 0, 0),
-(366, 264, 4, 337, 1, 'sportesd', 1, 0, 0),
-(367, 264, 10, 337, 1, 'kruemmer', 1, 0, 0),
-(368, 264, 16, 337, 1, 'katalysator', 0, 0, 0),
-(369, 269, 1, 342, 1, 'nockenwelle', 4, 0, 0),
-(370, 275, 1, 348, 1, 'nockenwelle', 3, 0, 0),
-(371, 271, 1, 344, 1, 'nockenwelle', 4, 0, 0),
-(372, 271, 12, 344, 1, 'kolben', 3, 0, 0),
-(373, 271, 4, 344, 1, 'sportesd', 3, 0, 0),
-(374, 271, 6, 344, 1, 'gelochte', 6, 0, 0),
-(375, 264, 6, 337, 1, 'gelochte', 11, 0, 0),
-(376, 271, 8, 344, 1, 'getriebe', 8, 0, 0),
-(377, 272, 1, 345, 1, 'nockenwelle', 2, 0, 0),
-(378, 280, 1, 353, 1, 'nockenwelle', 5, 0, 0),
-(379, 275, 15, 348, 1, 'turbocharger', 49, 0, 0),
-(380, 272, 12, 345, 1, 'kolben', 3, 0, 0),
-(381, 272, 16, 345, 1, 'katalysator', 2, 0, 0),
-(382, 272, 10, 345, 1, 'kruemmer', 0, 0, 0),
-(383, 275, 8, 348, 1, 'getriebe', 7, 0, 0),
-(384, 272, 4, 345, 1, 'sportesd', 1, 0, 0),
-(385, 290, 12, 363, 1, 'kolben', 3, 0, 0),
-(386, 284, 1, 357, 1, 'nockenwelle', 6, 0, 0),
-(387, 284, 10, 357, 1, 'kruemmer', 0, 0, 0),
-(389, 284, 6, 357, 1, 'gelochte', 7, 0, 0),
-(390, 287, 12, 360, 1, 'kolben', 3, 0, 0),
-(391, 204, 1, 274, 1, 'nockenwelle', 3, 0, 0),
-(392, 65, 4, 629, 1, 'sportesd', 3, 0, 0),
-(393, 287, 1, 799, 1, 'nockenwelle', 3, 0, 0),
-(394, 291, 1, 0, 1, 'nockenwelle', 2, 0, 0),
-(395, 70, 10, 129, 1, 'kruemmer', 1, 0, 0),
-(396, 304, 4, 378, 1, 'sportesd', 3, 0, 0),
-(397, 166, 8, 233, 1, 'getriebe', 7, 0, 0),
-(398, 292, 1, 0, 1, 'nockenwelle', 7, 0, 0),
-(399, 65, 10, 629, 1, 'kruemmer', 3, 0, 0),
-(400, 204, 4, 274, 1, 'sportesd', 1, 0, 0),
-(401, 65, 16, 124, 1, 'katalysator', 0, 0, 0),
-(405, 65, 1, 0, 1, 'nockenwelle', 6, 0, 0),
-(406, 299, 4, 372, 1, 'sportesd', 4, 0, 0),
-(407, 233, 1, 791, 1, 'nockenwelle', 4, 0, 0),
-(408, 175, 8, 242, 1, 'getriebe', 8, 0, 0),
-(409, 204, 12, 274, 1, 'kolben', 6, 0, 0),
-(410, 304, 6, 378, 1, 'gelochte', 6, 0, 0),
-(411, 301, 1, 374, 1, 'nockenwelle', 5, 0, 0),
-(412, 69, 1, 140, 1, 'nockenwelle', 4, 0, 0),
-(413, 301, 1, 0, 1, 'nockenwelle', 2, 0, 0),
-(414, 133, 8, 199, 1, 'getriebe', 13, 0, 0),
-(415, 175, 18, 242, 1, 'doppelkupplung', 5, 0, 0),
-(416, 133, 6, 199, 1, 'gelochte', 7, 0, 0),
-(417, 301, 6, 374, 1, 'gelochte', 5, 0, 0),
-(418, 69, 12, 140, 1, 'kolben', 5, 0, 0),
-(419, 301, 4, 374, 1, 'sportesd', 2, 0, 0),
-(420, 69, 4, 140, 1, 'sportesd', 1, 0, 0),
-(421, 69, 10, 140, 1, 'kruemmer', 3, 0, 0),
-(422, 204, 16, 274, 1, 'katalysator', 1, 0, 0),
-(423, 308, 1, 382, 1, 'nockenwelle', 3, 0, 0),
-(424, 221, 8, 291, 1, 'getriebe', 8, 0, 0),
-(425, 308, 4, 382, 1, 'sportesd', 1, 0, 0),
-(426, 308, 12, 382, 1, 'kolben', 3, 0, 0),
-(427, 315, 1, 389, 1, 'nockenwelle', 3, 0, 0),
-(428, 321, 1, 395, 1, 'nockenwelle', 3, 0, 0),
-(429, 315, 4, 389, 1, 'sportesd', 1, 0, 0),
-(430, 315, 6, 389, 1, 'gelochte', 5, 0, 0),
-(431, 318, 1, 0, 1, 'nockenwelle', 6, 0, 0),
-(432, 323, 1, 0, 1, 'nockenwelle', 4, 0, 0),
-(433, 315, 8, 389, 1, 'getriebe', 8, 0, 0),
-(434, 321, 12, 395, 1, 'kolben', 3, 0, 0),
-(435, 332, 18, 407, 1, 'doppelkupplung', 4, 0, 0),
-(436, 321, 4, 395, 1, 'sportesd', 2, 0, 0),
-(437, 321, 10, 395, 1, 'kruemmer', 1, 0, 0),
-(438, 321, 16, 395, 1, 'katalysator', 0, 0, 0),
-(439, 329, 1, 404, 1, 'nockenwelle', 2, 0, 0),
-(440, 319, 1, 393, 1, 'nockenwelle', 2, 0, 0),
-(441, 336, 8, 0, 1, 'getriebe', 6, 0, 0),
-(442, 329, 12, 404, 1, 'kolben', 3, 0, 0),
-(443, 329, 4, 404, 1, 'sportesd', 0, 0, 0),
-(444, 329, 10, 404, 1, 'kruemmer', 3, 0, 0),
-(445, 329, 16, 404, 1, 'katalysator', 0, 0, 0),
-(446, 321, 6, 395, 1, 'gelochte', 6, 0, 0),
-(447, 336, 18, 0, 1, 'doppelkupplung', 8, 0, 0),
-(448, 319, 12, 393, 1, 'kolben', 3, 0, 0),
-(449, 336, 1, 0, 1, 'nockenwelle', 9, 0, 0),
-(450, 315, 18, 389, 1, 'doppelkupplung', 5, 0, 0),
-(451, 211, 1, 281, 1, 'nockenwelle', 3, 0, 0),
-(452, 22, 6, 75, 1, 'gelochte', 7, 0, 0),
-(453, 315, 10, 389, 1, 'kruemmer', 3, 0, 0),
-(454, 315, 16, 389, 1, 'katalysator', 2, 0, 0),
-(455, 204, 10, 0, 1, 'kruemmer', 0, 0, 0),
-(456, 204, 10, 274, 1, 'kruemmer', 1, 0, 0),
-(457, 342, 8, 0, 1, 'getriebe', 8, 0, 0),
-(458, 347, 8, 422, 1, 'getriebe', 8, 0, 0),
-(459, 315, 12, 389, 1, 'kolben', 4, 0, 0),
-(460, 367, 8, 442, 1, 'getriebe', 11, 0, 0),
-(461, 211, 12, 281, 1, 'kolben', 3, 0, 0),
-(462, 371, 8, 0, 1, 'getriebe', 7, 0, 0),
-(463, 233, 4, 791, 1, 'sportesd', 1, 0, 0),
-(464, 179, 12, 246, 1, 'kolben', 5, 0, 0),
-(465, 342, 1, 0, 1, 'nockenwelle', 3, 0, 0),
-(466, 211, 4, 281, 1, 'sportesd', 1, 0, 0),
-(467, 345, 8, 420, 1, 'getriebe', 12, 0, 0),
-(468, 179, 4, 246, 1, 'sportesd', 1, 0, 0),
-(469, 340, 1, 415, 1, 'nockenwelle', 4, 0, 0),
-(470, 179, 10, 246, 1, 'kruemmer', 2, 0, 0),
-(471, 179, 16, 246, 1, 'katalysator', 0, 0, 0),
-(472, 358, 8, 433, 1, 'getriebe', 10, 0, 0),
-(473, 358, 6, 433, 1, 'gelochte', 10, 0, 0),
-(474, 179, 6, 246, 1, 'gelochte', 7, 0, 0),
-(475, 22, 18, 75, 1, 'doppelkupplung', 5, 0, 0),
-(476, 378, 6, 456, 1, 'gelochte', 6, 0, 0),
-(477, 386, 6, 0, 1, 'gelochte', 7, 0, 0),
-(478, 349, 1, 424, 1, 'nockenwelle', 3, 0, 0),
-(479, 347, 1, 422, 1, 'nockenwelle', 3, 0, 0),
-(480, 349, 12, 424, 1, 'kolben', 4, 0, 0),
-(481, 347, 12, 422, 1, 'kolben', 3, 0, 0),
-(482, 233, 12, 791, 1, 'kolben', 3, 0, 0),
-(483, 233, 16, 791, 1, 'katalysator', 2, 0, 0),
-(484, 347, 4, 422, 1, 'sportesd', 1, 0, 0),
-(485, 332, 4, 407, 1, 'sportesd', 1, 0, 0),
-(486, 355, 1, 430, 1, 'nockenwelle', 3, 0, 0),
-(487, 355, 4, 0, 1, 'sportesd', 3, 0, 0),
-(488, 349, 4, 424, 1, 'sportesd', 0, 0, 0),
-(489, 349, 10, 424, 1, 'kruemmer', 2, 0, 0),
-(490, 349, 16, 424, 1, 'katalysator', 0, 0, 0),
-(491, 264, 8, 337, 1, 'getriebe', 8, 0, 0),
-(492, 357, 1, 432, 1, 'nockenwelle', 4, 0, 0),
-(493, 357, 12, 432, 1, 'kolben', 3, 0, 0),
-(494, 367, 1, 0, 1, 'nockenwelle', 3, 0, 0),
-(495, 377, 1, 455, 1, 'nockenwelle', 3, 0, 0),
-(496, 377, 12, 455, 1, 'kolben', 3, 0, 0),
-(497, 264, 18, 337, 1, 'doppelkupplung', 5, 0, 0),
-(498, 379, 4, 458, 1, 'sportesd', 3, 0, 0),
-(499, 272, 6, 345, 1, 'gelochte', 7, 0, 0),
-(500, 387, 12, 0, 1, 'kolben', 3, 0, 0),
-(501, 393, 1, 473, 1, 'nockenwelle', 9, 0, 0),
-(502, 389, 1, 660, 1, 'nockenwelle', 3, 0, 0),
-(503, 393, 12, 473, 1, 'kolben', 3, 0, 0),
-(504, 254, 1, 654, 1, 'nockenwelle', 9, 0, 0),
-(505, 233, 10, 791, 1, 'kruemmer', 3, 0, 0),
-(506, 402, 1, 484, 1, 'nockenwelle', 4, 0, 0),
-(507, 402, 4, 484, 1, 'sportesd', 1, 0, 0),
-(508, 402, 6, 484, 1, 'gelochte', 6, 0, 0),
-(509, 345, 1, 420, 1, 'nockenwelle', 3, 0, 0),
-(510, 406, 1, 489, 1, 'nockenwelle', 3, 0, 0),
-(511, 345, 4, 0, 1, 'sportesd', 1, 0, 0),
-(512, 345, 16, 420, 1, 'katalysator', 1, 0, 0),
-(513, 345, 4, 420, 1, 'sportesd', 2, 0, 0),
-(514, 406, 12, 489, 1, 'kolben', 3, 0, 0),
-(515, 406, 4, 489, 1, 'sportesd', 1, 0, 0),
-(516, 406, 16, 0, 1, 'katalysator', 0, 0, 0),
-(517, 406, 8, 489, 1, 'getriebe', 8, 0, 0),
-(518, 406, 10, 489, 1, 'kruemmer', 2, 0, 0),
-(519, 416, 1, 499, 1, 'nockenwelle', 7, 0, 0),
-(520, 416, 12, 499, 1, 'kolben', 3, 0, 0),
-(521, 211, 10, 281, 1, 'kruemmer', 1, 0, 0),
-(522, 424, 1, 507, 1, 'nockenwelle', 2, 0, 0),
-(523, 89, 10, 151, 1, 'kruemmer', 1, 0, 0),
-(524, 211, 16, 281, 1, 'katalysator', 2, 0, 0),
-(525, 211, 6, 281, 1, 'gelochte', 7, 0, 0),
-(526, 211, 8, 281, 1, 'getriebe', 7, 0, 0),
-(527, 429, 1, 619, 1, 'nockenwelle', 3, 0, 0),
-(528, 429, 12, 512, 1, 'kolben', 3, 0, 0),
-(529, 429, 8, 619, 1, 'getriebe', 8, 0, 0),
-(530, 429, 16, 619, 1, 'katalysator', 0, 0, 0),
-(531, 429, 4, 619, 1, 'sportesd', 1, 0, 0),
-(532, 436, 1, 519, 1, 'nockenwelle', 3, 0, 0),
-(533, 437, 1, 0, 1, 'nockenwelle', 3, 0, 0),
-(534, 429, 1, 512, 1, 'nockenwelle', 3, 0, 0),
-(535, 461, 12, 547, 1, 'kolben', 2, 0, 0),
-(536, 438, 1, 821, 1, 'nockenwelle', 4, 0, 0),
-(537, 438, 12, 821, 1, 'kolben', 2, 0, 0),
-(538, 666, 16, 831, 1, 'katalysator', 0, 0, 0),
-(539, 666, 10, 831, 1, 'kruemmer', 0, 0, 0),
-(540, 211, 18, 281, 1, 'doppelkupplung', 5, 0, 0),
-(541, 211, 6, 0, 1, 'gelochte', 7, 0, 0),
-(542, 448, 1, 532, 1, 'nockenwelle', 3, 0, 0),
-(543, 446, 1, 530, 1, 'nockenwelle', 3, 0, 0),
-(544, 448, 12, 532, 1, 'kolben', 3, 0, 0),
-(545, 448, 4, 532, 1, 'sportesd', 1, 0, 0),
-(546, 448, 10, 532, 1, 'kruemmer', 0, 0, 0),
-(547, 448, 16, 532, 1, 'katalysator', 1, 0, 0),
-(548, 461, 6, 547, 1, 'gelochte', 7, 0, 0),
-(549, 448, 6, 532, 1, 'gelochte', 7, 0, 0),
-(550, 446, 8, 0, 1, 'getriebe', 8, 0, 0),
-(551, 448, 8, 532, 1, 'getriebe', 6, 0, 0),
-(552, 459, 1, 544, 1, 'nockenwelle', 3, 0, 0),
-(553, 459, 16, 544, 1, 'katalysator', 1, 0, 0),
-(554, 459, 10, 544, 1, 'kruemmer', 0, 0, 0),
-(555, 459, 4, 544, 1, 'sportesd', 1, 0, 0),
-(556, 464, 1, 0, 1, 'nockenwelle', 3, 0, 0),
-(557, 469, 8, 557, 1, 'getriebe', 8, 0, 0),
-(558, 474, 1, 0, 1, 'nockenwelle', 3, 0, 0),
-(559, 473, 8, 0, 1, 'getriebe', 8, 0, 0),
-(560, 473, 1, 0, 1, 'nockenwelle', 3, 0, 0),
-(561, 476, 1, 564, 1, 'nockenwelle', 5, 0, 0),
-(562, 485, 1, 574, 1, 'nockenwelle', 8, 0, 0),
-(563, 485, 16, 574, 1, 'katalysator', 0, 0, 0),
-(564, 485, 10, 574, 1, 'kruemmer', 0, 0, 0),
-(565, 485, 4, 574, 1, 'sportesd', 1, 0, 0),
-(566, 485, 12, 574, 1, 'kolben', 3, 0, 0),
-(567, 485, 8, 574, 1, 'getriebe', 8, 0, 0),
-(568, 505, 12, 671, 1, 'kolben', 5, 0, 0),
-(569, 485, 18, 574, 1, 'doppelkupplung', 6, 0, 0),
-(570, 490, 12, 580, 1, 'kolben', 4, 0, 0),
-(571, 94, 12, 0, 1, 'kolben', 3, 0, 0),
-(572, 495, 1, 586, 1, 'nockenwelle', 3, 0, 0),
-(573, 495, 4, 586, 1, 'sportesd', 1, 0, 0),
-(574, 495, 8, 586, 1, 'getriebe', 8, 0, 0),
-(575, 495, 12, 586, 1, 'kolben', 4, 0, 0),
-(576, 506, 1, 598, 1, 'nockenwelle', 4, 0, 0),
-(577, 513, 1, 0, 1, 'nockenwelle', 2, 0, 0),
-(578, 513, 1, 605, 1, 'nockenwelle', 3, 0, 0),
-(579, 502, 1, 594, 1, 'nockenwelle', 2, 0, 0),
-(580, 502, 4, 594, 1, 'sportesd', 0, 0, 0),
-(581, 504, 6, 596, 1, 'gelochte', 7, 0, 0),
-(582, 504, 6, 0, 1, 'gelochte', 6, 0, 0),
-(583, 522, 8, 620, 1, 'getriebe', 7, 0, 0),
-(584, 505, 1, 612, 1, 'nockenwelle', 5, 0, 0),
-(585, 505, 12, 612, 1, 'kolben', 3, 0, 0),
-(586, 505, 16, 612, 1, 'katalysator', 0, 0, 0),
-(587, 506, 1, 0, 1, 'nockenwelle', 3, 0, 0),
-(588, 505, 10, 612, 1, 'kruemmer', 1, 0, 0),
-(589, 506, 12, 598, 1, 'kolben', 3, 0, 0),
-(590, 505, 4, 612, 1, 'sportesd', 4, 0, 0),
-(591, 505, 6, 612, 1, 'gelochte', 7, 0, 0),
-(592, 506, 8, 0, 1, 'getriebe', 8, 0, 0),
-(593, 271, 16, 344, 1, 'katalysator', 2, 0, 0),
-(594, 508, 1, 607, 1, 'nockenwelle', 8, 0, 0),
-(595, 495, 10, 586, 1, 'kruemmer', 1, 0, 0),
-(596, 495, 16, 586, 1, 'katalysator', 1, 0, 0),
-(597, 508, 4, 607, 1, 'sportesd', 1, 0, 0),
-(598, 508, 6, 607, 1, 'gelochte', 7, 0, 0),
-(599, 515, 12, 610, 1, 'kolben', 5, 0, 0),
-(600, 505, 15, 597, 1, 'turbocharger', 25, 0, 0),
-(601, 515, 4, 610, 1, 'sportesd', 1, 0, 0),
-(602, 505, 8, 612, 1, 'getriebe', 9, 0, 0),
-(603, 516, 1, 611, 1, 'nockenwelle', 3, 0, 0),
-(604, 515, 10, 610, 1, 'kruemmer', 1, 0, 0),
-(605, 495, 6, 586, 1, 'gelochte', 6, 0, 0),
-(606, 515, 16, 610, 1, 'katalysator', 1, 0, 0),
-(607, 515, 6, 610, 1, 'gelochte', 8, 0, 0),
-(608, 515, 8, 610, 1, 'getriebe', 11, 0, 0),
-(609, 517, 1, 613, 1, 'nockenwelle', 1, 0, 0),
-(610, 508, 15, 607, 1, 'turbocharger', 25, 0, 0),
-(611, 508, 8, 607, 1, 'getriebe', 8, 0, 0),
-(612, 505, 18, 612, 1, 'doppelkupplung', 5, 0, 0),
-(613, 510, 12, 602, 1, 'kolben', 4, 0, 0),
-(614, 429, 10, 619, 1, 'kruemmer', 2, 0, 0),
-(615, 429, 6, 619, 1, 'gelochte', 7, 0, 0),
-(616, 429, 12, 619, 1, 'kolben', 4, 0, 0),
-(617, 522, 12, 0, 1, 'kolben', 3, 0, 0),
-(618, 523, 1, 621, 1, 'nockenwelle', 3, 0, 0),
-(619, 521, 1, 618, 1, 'nockenwelle', 4, 0, 0),
-(620, 155, 12, 221, 1, 'kolben', 2, 0, 0),
-(621, 521, 4, 618, 1, 'sportesd', 2, 0, 0),
-(622, 505, 1, 671, 1, 'nockenwelle', 4, 0, 0),
-(623, 523, 12, 621, 1, 'kolben', 3, 0, 0),
-(624, 523, 16, 621, 1, 'katalysator', 1, 0, 0),
-(625, 523, 10, 621, 1, 'kruemmer', 3, 0, 0),
-(626, 521, 12, 618, 1, 'kolben', 4, 0, 0),
-(627, 523, 4, 621, 1, 'sportesd', 1, 0, 0),
-(628, 523, 6, 621, 1, 'gelochte', 6, 0, 0),
-(629, 429, 15, 619, 1, 'turbocharger', 28, 0, 0),
-(630, 524, 1, 623, 1, 'nockenwelle', 3, 0, 0),
-(631, 505, 12, 597, 1, 'kolben', 3, 0, 0),
-(632, 526, 1, 626, 1, 'nockenwelle', 3, 0, 0),
-(633, 526, 12, 626, 1, 'kolben', 5, 0, 0),
-(634, 429, 18, 619, 1, 'doppelkupplung', 7, 0, 0),
-(635, 521, 10, 0, 1, 'kruemmer', 1, 0, 0),
-(636, 526, 16, 626, 1, 'katalysator', 1, 0, 0),
-(637, 526, 6, 626, 1, 'gelochte', 9, 0, 0),
-(638, 532, 1, 633, 1, 'nockenwelle', 3, 0, 0),
-(639, 526, 4, 626, 1, 'sportesd', 1, 0, 0),
-(640, 526, 10, 626, 1, 'kruemmer', 1, 0, 0),
-(641, 63, 10, 122, 1, 'kruemmer', 2, 0, 0),
-(642, 527, 1, 627, 1, 'nockenwelle', 4, 0, 0),
-(643, 527, 4, 627, 1, 'sportesd', 1, 0, 0),
-(644, 527, 12, 627, 1, 'kolben', 6, 0, 0),
-(645, 527, 16, 627, 1, 'katalysator', 1, 0, 0),
-(646, 529, 1, 0, 1, 'nockenwelle', 4, 0, 0),
-(647, 505, 8, 671, 1, 'getriebe', 8, 0, 0),
-(648, 505, 6, 671, 1, 'gelochte', 6, 0, 0),
-(649, 530, 1, 635, 1, 'nockenwelle', 4, 0, 0),
-(650, 530, 12, 635, 1, 'kolben', 2, 0, 0),
-(651, 535, 1, 637, 1, 'nockenwelle', 2, 0, 0),
-(652, 530, 4, 635, 1, 'sportesd', 1, 0, 0),
-(653, 530, 10, 635, 1, 'kruemmer', 1, 0, 0),
-(654, 535, 12, 637, 1, 'kolben', 3, 0, 0),
-(655, 530, 16, 635, 1, 'katalysator', 3, 0, 0),
-(656, 530, 6, 635, 1, 'gelochte', 6, 0, 0),
-(657, 530, 8, 635, 1, 'getriebe', 8, 0, 0),
-(658, 527, 10, 627, 1, 'kruemmer', 1, 0, 0),
-(659, 530, 18, 635, 1, 'doppelkupplung', 7, 0, 0),
-(660, 542, 1, 645, 1, 'nockenwelle', 3, 0, 0),
-(661, 542, 4, 645, 1, 'sportesd', 1, 0, 0),
-(662, 543, 1, 646, 1, 'nockenwelle', 3, 0, 0),
-(663, 543, 4, 646, 1, 'sportesd', 1, 0, 0),
-(664, 542, 12, 645, 1, 'kolben', 3, 0, 0),
-(665, 542, 16, 645, 1, 'katalysator', 1, 0, 0),
-(666, 542, 10, 645, 1, 'kruemmer', 3, 0, 0),
-(667, 542, 6, 645, 1, 'gelochte', 9, 0, 0),
-(668, 542, 6, 0, 1, 'gelochte', 10, 0, 0),
-(669, 533, 1, 634, 1, 'nockenwelle', 3, 0, 0),
-(670, 541, 1, 644, 1, 'nockenwelle', 4, 0, 0),
-(671, 533, 12, 634, 1, 'kolben', 3, 0, 0),
-(672, 477, 21, 649, 2, 'nockenwelle', 12, 0, 0),
-(673, 541, 12, 644, 1, 'kolben', 3, 0, 0),
-(674, 547, 1, 0, 1, 'nockenwelle', 3, 0, 0),
-(675, 254, 8, 654, 1, 'getriebe', 13, 0, 0),
-(676, 1, 15, 0, 1, 'turbocharger', 28, 0, 0),
-(677, 533, 4, 634, 1, 'sportesd', 2, 0, 0),
-(678, 254, 18, 654, 1, 'doppelkupplung', 8, 0, 0),
-(679, 254, 6, 654, 1, 'gelochte', 7, 0, 0),
-(680, 533, 10, 634, 1, 'kruemmer', 1, 0, 0),
-(681, 533, 16, 634, 1, 'katalysator', 1, 0, 0),
-(682, 477, 13, 649, 2, 'kolben', 8, 0, 0),
-(683, 533, 6, 634, 1, 'gelochte', 7, 0, 0),
-(684, 254, 65, 0, 2, 'kruemmer', 2, 0, 0),
-(685, 254, 10, 654, 1, 'kruemmer', 1, 0, 0),
-(686, 254, 16, 654, 1, 'katalysator', 1, 0, 0),
-(687, 29, 15, 0, 1, 'turbocharger', 47, 0, 0),
-(688, 551, 1, 662, 1, 'nockenwelle', 3, 0, 0),
-(689, 389, 12, 660, 1, 'kolben', 3, 0, 0),
-(690, 551, 8, 662, 1, 'getriebe', 8, 0, 0),
-(691, 389, 4, 660, 1, 'sportesd', 1, 0, 0),
-(692, 389, 10, 660, 1, 'kruemmer', 1, 0, 0),
-(693, 389, 16, 660, 1, 'katalysator', 1, 0, 0),
-(694, 551, 12, 0, 1, 'kolben', 3, 0, 0),
-(695, 524, 12, 0, 1, 'kolben', 3, 0, 0),
-(696, 513, 1, 0, 1, 'nockenwelle', 8, 0, 0),
-(697, 513, 12, 605, 1, 'kolben', 3, 0, 0),
-(698, 513, 4, 605, 1, 'sportesd', 1, 0, 0),
-(699, 513, 10, 605, 1, 'kruemmer', 1, 0, 0),
-(700, 513, 16, 605, 1, 'katalysator', 1, 0, 0),
-(701, 489, 1, 579, 1, 'nockenwelle', 3, 0, 0),
-(702, 489, 4, 0, 1, 'sportesd', 1, 0, 0),
-(703, 519, 6, 616, 1, 'gelochte', 13, 0, 0),
-(704, 476, 6, 564, 1, 'gelochte', 5, 0, 0),
-(705, 566, 1, 689, 1, 'nockenwelle', 1, 0, 0),
-(706, 564, 1, 693, 1, 'nockenwelle', 9, 0, 0),
-(707, 568, 1, 688, 1, 'nockenwelle', 5, 0, 0),
-(708, 564, 12, 693, 1, 'kolben', 3, 0, 0),
-(709, 568, 4, 688, 1, 'sportesd', 4, 0, 0),
-(710, 566, 12, 689, 1, 'kolben', 3, 0, 0),
-(711, 568, 12, 690, 1, 'kolben', 3, 0, 0),
-(712, 568, 8, 690, 1, 'getriebe', 12, 0, 0),
-(713, 568, 1, 690, 1, 'nockenwelle', 4, 0, 0),
-(714, 280, 1, 0, 1, 'nockenwelle', 3, 0, 0),
-(715, 33, 4, 87, 1, 'sportesd', 1, 0, 0),
-(716, 564, 15, 693, 1, 'turbocharger', 26, 0, 0),
-(717, 302, 1, 678, 1, 'nockenwelle', 3, 0, 0),
-(718, 570, 1, 698, 1, 'nockenwelle', 3, 0, 0),
-(719, 564, 4, 693, 1, 'sportesd', 4, 0, 0),
-(720, 564, 10, 693, 1, 'kruemmer', 1, 0, 0),
-(721, 570, 12, 698, 1, 'kolben', 3, 0, 0),
-(722, 33, 12, 0, 1, 'kolben', 3, 0, 0),
-(723, 558, 1, 673, 1, 'nockenwelle', 4, 0, 0),
-(724, 117, 4, 702, 1, 'sportesd', 2, 0, 0),
-(725, 558, 12, 673, 1, 'kolben', 4, 0, 0),
-(726, 576, 6, 708, 1, 'gelochte', 6, 0, 0),
-(727, 558, 6, 673, 1, 'gelochte', 8, 0, 0),
-(728, 564, 16, 693, 1, 'katalysator', 1, 0, 0),
-(729, 117, 8, 702, 1, 'getriebe', 8, 0, 0),
-(730, 389, 15, 469, 1, 'turbocharger', 27, 0, 0),
-(731, 519, 8, 616, 1, 'getriebe', 8, 0, 0),
-(732, 564, 8, 693, 1, 'getriebe', 7, 0, 0),
-(733, 575, 12, 707, 1, 'kolben', 6, 0, 0),
-(734, 564, 18, 693, 1, 'doppelkupplung', 5, 0, 0),
-(735, 575, 1, 707, 1, 'nockenwelle', 2, 0, 0),
-(736, 564, 6, 693, 1, 'gelochte', 6, 0, 0),
-(737, 570, 15, 698, 1, 'turbocharger', 28, 0, 0),
-(738, 575, 16, 707, 1, 'katalysator', 1, 0, 0),
-(739, 572, 12, 0, 1, 'kolben', 3, 0, 0),
-(740, 575, 6, 707, 1, 'gelochte', 8, 0, 0),
-(741, 133, 56, 704, 2, 'sportesd', 3, 0, 0),
-(742, 575, 8, 707, 1, 'getriebe', 8, 0, 0),
-(743, 199, 12, 0, 1, 'kolben', 3, 0, 0),
-(744, 199, 4, 0, 1, 'sportesd', 4, 0, 0),
-(745, 133, 65, 704, 2, 'kruemmer', 2, 0, 0),
-(746, 519, 1, 616, 1, 'nockenwelle', 2, 0, 0),
-(747, 133, 17, 704, 2, 'katalysator', 2, 0, 0),
-(748, 133, 49, 704, 2, 'getriebe', 11, 0, 0),
-(749, 137, 21, 712, 2, 'nockenwelle', 7, 0, 0),
-(750, 137, 13, 712, 2, 'kolben', 8, 0, 0),
-(751, 133, 34, 704, 2, 'gelochte', 14, 0, 0),
-(752, 137, 56, 712, 2, 'sportesd', 2, 0, 0),
-(753, 137, 65, 712, 2, 'kruemmer', 3, 0, 0),
-(754, 473, 1, 727, 1, 'nockenwelle', 5, 0, 0),
-(755, 473, 6, 727, 1, 'gelochte', 7, 0, 0),
-(756, 233, 1, 700, 1, 'nockenwelle', 3, 0, 0),
-(757, 233, 12, 700, 1, 'kolben', 3, 0, 0),
-(758, 592, 1, 731, 1, 'nockenwelle', 3, 0, 0),
-(759, 592, 6, 731, 1, 'gelochte', 7, 0, 0),
-(760, 592, 16, 731, 1, 'katalysator', 1, 0, 0),
-(761, 592, 8, 731, 1, 'getriebe', 7, 0, 0),
-(762, 233, 16, 700, 1, 'katalysator', 1, 0, 0),
-(763, 592, 10, 0, 1, 'kruemmer', 1, 0, 0),
-(764, 233, 10, 700, 1, 'kruemmer', 2, 0, 0),
-(765, 233, 4, 700, 1, 'sportesd', 1, 0, 0),
-(766, 596, 1, 736, 1, 'nockenwelle', 7, 0, 0),
-(767, 585, 1, 737, 1, 'nockenwelle', 3, 0, 0),
-(768, 596, 12, 736, 1, 'kolben', 3, 0, 0),
-(769, 596, 4, 736, 1, 'sportesd', 3, 0, 0),
-(770, 596, 10, 736, 1, 'kruemmer', 2, 0, 0),
-(771, 596, 16, 736, 1, 'katalysator', 1, 0, 0),
-(772, 596, 6, 736, 1, 'gelochte', 14, 0, 0),
-(773, 597, 1, 738, 1, 'nockenwelle', 3, 0, 0),
-(774, 233, 8, 791, 1, 'getriebe', 12, 0, 0),
-(775, 597, 12, 738, 1, 'kolben', 3, 0, 0),
-(776, 596, 8, 736, 1, 'getriebe', 8, 0, 0),
-(777, 597, 4, 738, 1, 'sportesd', 1, 0, 0),
-(778, 233, 18, 791, 1, 'doppelkupplung', 5, 0, 0),
-(779, 597, 10, 738, 1, 'kruemmer', 1, 0, 0),
-(780, 597, 16, 738, 1, 'katalysator', 1, 0, 0),
-(781, 599, 12, 0, 1, 'kolben', 3, 0, 0),
-(782, 233, 6, 791, 1, 'gelochte', 14, 0, 0),
-(783, 597, 6, 738, 1, 'gelochte', 7, 0, 0),
-(784, 599, 4, 0, 1, 'sportesd', 1, 0, 0),
-(785, 65, 21, 703, 2, 'nockenwelle', 7, 0, 0),
-(786, 172, 12, 0, 1, 'kolben', 3, 0, 0),
-(787, 585, 8, 0, 1, 'getriebe', 8, 0, 0),
-(788, 473, 8, 727, 1, 'getriebe', 13, 0, 0),
-(789, 605, 1, 748, 1, 'nockenwelle', 3, 0, 0),
-(790, 605, 12, 0, 1, 'kolben', 3, 0, 0),
-(791, 65, 12, 629, 1, 'kolben', 4, 0, 0),
-(792, 605, 8, 0, 1, 'getriebe', 8, 0, 0),
-(793, 570, 18, 698, 1, 'doppelkupplung', 6, 0, 0),
-(794, 65, 21, 0, 2, 'nockenwelle', 7, 0, 0),
-(795, 606, 1, 750, 1, 'nockenwelle', 6, 0, 0),
-(796, 570, 8, 698, 1, 'getriebe', 10, 0, 0),
-(797, 570, 6, 698, 1, 'gelochte', 5, 0, 0),
-(798, 193, 21, 0, 2, 'nockenwelle', 9, 0, 0),
-(799, 570, 4, 698, 1, 'sportesd', 1, 0, 0),
-(800, 596, 18, 736, 1, 'doppelkupplung', 5, 0, 0),
-(801, 570, 10, 698, 1, 'kruemmer', 1, 0, 0),
-(802, 233, 15, 791, 1, 'turbocharger', 28, 0, 0),
-(803, 570, 16, 698, 1, 'katalysator', 1, 0, 0),
-(804, 609, 1, 0, 1, 'nockenwelle', 3, 0, 0),
-(805, 70, 1, 694, 1, 'nockenwelle', 3, 0, 0),
-(806, 626, 1, 777, 1, 'nockenwelle', 3, 0, 0),
-(807, 626, 12, 777, 1, 'kolben', 5, 0, 0),
-(808, 626, 4, 777, 1, 'sportesd', 1, 0, 0),
-(809, 626, 10, 777, 1, 'kruemmer', 1, 0, 0),
-(810, 275, 4, 348, 1, 'sportesd', 1, 0, 0),
-(811, 626, 16, 0, 1, 'katalysator', 2, 0, 0),
-(812, 626, 6, 0, 1, 'gelochte', 6, 0, 0),
-(813, 275, 18, 348, 1, 'doppelkupplung', 5, 0, 0),
-(814, 275, 12, 0, 1, 'kolben', 3, 0, 0),
-(815, 629, 1, 788, 1, 'nockenwelle', 3, 0, 0),
-(816, 629, 4, 788, 1, 'sportesd', 1, 0, 0),
-(817, 629, 6, 788, 1, 'gelochte', 7, 0, 0),
-(818, 633, 1, 0, 1, 'nockenwelle', 2, 0, 0),
-(819, 629, 15, 788, 1, 'turbocharger', 26, 0, 0),
-(820, 629, 12, 788, 1, 'kolben', 3, 0, 0),
-(821, 629, 16, 788, 1, 'katalysator', 2, 0, 0),
-(822, 629, 10, 788, 1, 'kruemmer', 2, 0, 0),
-(823, 629, 8, 788, 1, 'getriebe', 8, 0, 0),
-(824, 629, 18, 788, 1, 'doppelkupplung', 5, 0, 0),
-(825, 637, 1, 806, 1, 'nockenwelle', 3, 0, 0),
-(826, 637, 10, 806, 1, 'kruemmer', 1, 0, 0),
-(827, 637, 6, 806, 1, 'gelochte', 5, 0, 0),
-(828, 133, 15, 199, 1, 'turbocharger', 30, 0, 0),
-(829, 638, 12, 793, 1, 'kolben', 3, 0, 0),
-(830, 638, 1, 793, 1, 'nockenwelle', 5, 0, 0),
-(831, 271, 15, 344, 1, 'turbocharger', 28, 0, 0),
-(832, 637, 4, 806, 1, 'sportesd', 1, 0, 0),
-(833, 638, 4, 793, 1, 'sportesd', 1, 0, 0),
-(834, 638, 10, 793, 1, 'kruemmer', 1, 0, 0),
-(835, 638, 16, 793, 1, 'katalysator', 1, 0, 0),
-(836, 638, 6, 793, 1, 'gelochte', 13, 0, 0),
-(837, 637, 12, 806, 1, 'kolben', 4, 0, 0),
-(838, 643, 49, 0, 2, 'getriebe', 8, 0, 0),
-(839, 287, 1, 360, 1, 'nockenwelle', 4, 0, 0),
-(840, 287, 8, 799, 1, 'getriebe', 8, 0, 0),
-(841, 287, 6, 799, 1, 'gelochte', 6, 0, 0),
-(842, 287, 4, 799, 1, 'sportesd', 1, 0, 0),
-(843, 643, 1, 0, 1, 'nockenwelle', 3, 0, 0),
-(844, 643, 16, 0, 1, 'katalysator', 1, 0, 0),
-(845, 643, 6, 0, 1, 'gelochte', 7, 0, 0),
-(846, 646, 1, 804, 1, 'nockenwelle', 8, 0, 0),
-(847, 637, 15, 806, 1, 'turbocharger', 27, 0, 0),
-(848, 643, 18, 0, 1, 'doppelkupplung', 5, 0, 0),
-(849, 646, 12, 804, 1, 'kolben', 5, 0, 0),
-(850, 287, 12, 799, 1, 'kolben', 5, 0, 0),
-(851, 646, 8, 804, 1, 'getriebe', 9, 0, 0),
-(852, 287, 10, 799, 1, 'kruemmer', 2, 0, 0),
-(853, 287, 16, 799, 1, 'katalysator', 1, 0, 0),
-(854, 637, 8, 806, 1, 'getriebe', 13, 0, 0),
-(855, 389, 15, 756, 1, 'turbocharger', 28, 0, 0),
-(856, 646, 15, 804, 1, 'turbocharger', 28, 0, 0),
-(857, 637, 18, 806, 1, 'doppelkupplung', 6, 0, 0),
-(858, 646, 6, 804, 1, 'gelochte', 7, 0, 0),
-(859, 646, 4, 804, 1, 'sportesd', 2, 0, 0),
-(860, 637, 16, 806, 1, 'katalysator', 1, 0, 0),
-(861, 654, 1, 815, 1, 'nockenwelle', 9, 0, 0),
-(862, 166, 18, 233, 1, 'doppelkupplung', 9, 0, 0),
-(863, 166, 16, 233, 1, 'katalysator', 1, 0, 0),
-(864, 389, 15, 757, 1, 'turbocharger', 28, 0, 0),
-(865, 197, 34, 720, 2, 'gelochte', 8, 0, 0),
-(866, 659, 15, 822, 1, 'turbocharger', 43, 0, 0),
-(867, 438, 8, 821, 1, 'getriebe', 8, 0, 0),
-(868, 438, 18, 821, 1, 'doppelkupplung', 5, 0, 0),
-(869, 438, 6, 821, 1, 'gelochte', 8, 0, 0),
-(870, 438, 16, 821, 1, 'katalysator', 1, 0, 0),
-(871, 438, 10, 821, 1, 'kruemmer', 3, 0, 0),
-(872, 438, 4, 821, 1, 'sportesd', 4, 0, 0),
-(874, 664, 1, 829, 1, 'nockenwelle', 7, 0, 0),
-(875, 665, 1, 830, 1, 'nockenwelle', 5, 0, 0),
-(876, 665, 12, 830, 1, 'kolben', 6, 0, 0),
-(877, 667, 1, 833, 1, 'nockenwelle', 6, 0, 0),
-(878, 667, 8, 833, 1, 'getriebe', 7, 0, 0),
-(879, 667, 6, 833, 1, 'gelochte', 7, 0, 0),
-(880, 666, 4, 831, 1, 'sportesd', 1, 0, 0),
-(881, 666, 6, 831, 1, 'gelochte', 11, 0, 0),
-(882, 666, 15, 831, 1, 'turbocharger', 28, 0, 0),
-(883, 369, 1, 687, 1, 'nockenwelle', 4, 0, 0),
-(884, 666, 8, 831, 1, 'getriebe', 7, 0, 0),
-(885, 665, 8, 830, 1, 'getriebe', 8, 0, 0),
-(886, 477, 15, 608, 1, 'turbocharger', 32, 0, 0),
-(887, 477, 1, 608, 1, 'nockenwelle', 2, 0, 0),
-(888, 477, 12, 608, 1, 'kolben', 3, 0, 0),
-(889, 665, 18, 830, 1, 'doppelkupplung', 9, 0, 0),
-(890, 659, 1, 822, 1, 'nockenwelle', 2, 0, 0),
-(891, 659, 16, 0, 1, 'katalysator', 1, 0, 0),
-(892, 432, 1, 515, 1, 'nockenwelle', 3, 0, 0),
-(893, 477, 8, 0, 1, 'getriebe', 8, 0, 0),
-(894, 673, 1, 840, 1, 'nockenwelle', 3, 0, 0),
-(895, 432, 12, 515, 1, 'kolben', 5, 0, 0),
-(897, 432, 4, 0, 1, 'sportesd', 1, 0, 0),
-(898, 665, 4, 830, 1, 'sportesd', 2, 0, 0),
-(899, 665, 10, 830, 1, 'kruemmer', 1, 0, 0),
-(900, 665, 16, 830, 1, 'katalysator', 1, 0, 0),
-(901, 665, 6, 830, 1, 'gelochte', 7, 0, 0),
-(902, 674, 1, 841, 1, 'nockenwelle', 3, 0, 0),
-(903, 674, 4, 841, 1, 'sportesd', 4, 0, 0),
-(904, 674, 8, 841, 1, 'getriebe', 8, 0, 0),
-(905, 678, 1, 845, 1, 'nockenwelle', 3, 0, 0),
-(906, 197, 1, 0, 1, 'nockenwelle', 7, 0, 0),
-(907, 679, 1, 0, 1, 'nockenwelle', 7, 0, 0),
-(908, 679, 6, 847, 1, 'gelochte', 9, 0, 0),
-(909, 679, 6, 0, 1, 'gelochte', 7, 0, 0),
-(910, 678, 15, 845, 1, 'turbocharger', 23, 0, 0),
-(911, 678, 12, 845, 1, 'kolben', 3, 0, 0),
-(912, 678, 8, 845, 1, 'getriebe', 9, 0, 0),
-(913, 677, 12, 844, 1, 'kolben', 3, 0, 0),
-(914, 677, 1, 844, 1, 'nockenwelle', 3, 0, 0),
-(915, 677, 16, 844, 1, 'katalysator', 1, 0, 0),
-(916, 677, 10, 844, 1, 'kruemmer', 1, 0, 0),
-(917, 677, 4, 844, 1, 'sportesd', 1, 0, 0),
-(918, 683, 1, 0, 1, 'nockenwelle', 3, 0, 0),
-(919, 677, 4, 0, 1, 'sportesd', 1, 0, 0),
-(920, 665, 15, 830, 1, 'turbocharger', 42, 0, 0),
-(921, 505, 15, 671, 1, 'turbocharger', 28, 0, 0),
-(922, 505, 15, 612, 1, 'turbocharger', 26, 0, 0),
-(923, 6, 1, 0, 1, 'nockenwelle', 5, 100, 1474443749),
-(925, 1, 1, 0, 1, 'nockenwelle', 2, 0, 0),
-(926, 1, 1, 0, 1, 'nockenwelle', 3, 0, 0),
-(927, 1, 1, 0, 1, 'nockenwelle', 3, 0, 0),
-(928, 1, 1, 0, 1, 'nockenwelle', 3, 0, 0),
-(929, 709, 1, 0, 1, 'nockenwelle', 7, 0, 0),
-(930, 709, 12, 0, 1, 'kolben', 4, 0, 0),
-(931, 709, 1, 0, 1, 'nockenwelle', 3, 0, 0),
-(932, 1, 47, 0, 8, 'turbocharger', 390, 0, 0),
-(933, 1, 47, 0, 8, 'turbocharger', 357, 0, 0);
+--
+-- Daten für Tabelle `storage`
+--
+
+INSERT INTO `storage` (`id`, `user_id`, `part_id`, `garage_id`, `new`, `tier`, `part`, `value`, `sell`, `sell_date`, `acc`, `speed`, `hand`, `dura`) VALUES
+(46, 17, 1, 70, 0, 1, 'nockenwelle', 8, 0, 0, 0, 0, 0, 0),
+(47, 10, 8, 592, 0, 1, 'getriebe', 376, 0, 0, 0, 0, 0, 0),
+(48, 342, 11, 0, 0, 1, 'schwungrad', 2, 0, 0, 0, 0, 0, 0),
+(50, 89, 1, 151, 0, 1, 'nockenwelle', 6, 0, 0, 0, 0, 0, 0),
+(51, 43, 1, 98, 0, 1, 'nockenwelle', 6, 0, 0, 0, 0, 0, 0),
+(52, 12, 1, 65, 0, 1, 'nockenwelle', 10, 0, 0, 0, 0, 0, 0),
+(53, 18, 1, 71, 0, 1, 'nockenwelle', 10, 0, 0, 0, 0, 0, 0),
+(54, 11, 1, 64, 0, 1, 'nockenwelle', 7, 0, 0, 0, 0, 0, 0),
+(56, 34, 1, 89, 0, 1, 'nockenwelle', 11, 0, 0, 0, 0, 0, 0),
+(57, 22, 1, 75, 0, 1, 'nockenwelle', 10, 0, 0, 0, 0, 0, 0),
+(58, 29, 11, 0, 0, 1, 'schwungrad', 3, 0, 0, 0, 0, 0, 0),
+(60, 1, 2, 0, 0, 2, 'schwungrad', 12, 0, 0, 0, 0, 0, 0),
+(61, 29, 13, 0, 0, 2, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(65, 1, 11, 0, 0, 1, 'schwungrad', 3, 0, 0, 0, 0, 0, 0),
+(67, 65, 1, 629, 0, 1, 'nockenwelle', 7, 0, 0, 0, 0, 0, 0),
+(70, 17, 3, 0, 0, 3, 'kolben', 20, 0, 0, 0, 0, 0, 0),
+(71, 18, 2, 0, 0, 2, 'schwungrad', 9, 0, 0, 0, 0, 0, 0),
+(72, 12, 3, 0, 0, 3, 'kolben', 29, 0, 0, 0, 0, 0, 0),
+(76, 1, 2, 0, 0, 2, 'schwungrad', 14, 0, 0, 0, 0, 0, 0),
+(78, 534, 21, 0, 0, 2, 'nockenwelle', 5, 0, 0, 0, 0, 0, 0),
+(88, 10, 1, 592, 0, 1, 'nockenwelle', 5, 0, 0, 0, 0, 0, 0),
+(91, 515, 21, 0, 0, 2, 'nockenwelle', 9, 0, 0, 0, 0, 0, 0),
+(94, 515, 1, 610, 0, 1, 'nockenwelle', 9, 0, 0, 0, 0, 0, 0),
+(95, 505, 42, 0, 0, 3, 'turbocharger', 72, 0, 0, 0, 0, 0, 0),
+(98, 532, 47, 0, 0, 8, 'turbocharger', 347, 0, 0, 0, 0, 0, 0),
+(99, 11, 1, 0, 0, 1, 'nockenwelle', 9, 0, 0, 0, 0, 0, 0),
+(100, 43, 1, 0, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(101, 14, 1, 67, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(102, 65, 12, 0, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(103, 14, 10, 0, 0, 1, 'kruemmer', 3, 0, 0, 0, 0, 0, 0),
+(104, 19, 1, 72, 0, 1, 'nockenwelle', 4, 0, 0, 0, 0, 0, 0),
+(105, 10, 16, 592, 0, 1, 'katalysator', 1, 0, 0, 0, 0, 0, 0),
+(106, 10, 10, 592, 0, 1, 'kruemmer', 2, 0, 0, 0, 0, 0, 0),
+(107, 10, 4, 592, 0, 1, 'sportesd', 3, 0, 0, 0, 0, 0, 0),
+(108, 22, 12, 75, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(109, 26, 1, 80, 0, 1, 'nockenwelle', 2, 0, 0, 0, 0, 0, 0),
+(110, 22, 16, 75, 0, 1, 'katalysator', 0, 0, 0, 0, 0, 0, 0),
+(111, 33, 1, 87, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(112, 26, 6, 80, 0, 1, 'gelochte', 6, 0, 0, 0, 0, 0, 0),
+(113, 22, 10, 75, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(114, 30, 1, 84, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(115, 22, 4, 75, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(116, 522, 1, 620, 0, 1, 'nockenwelle', 4, 0, 0, 0, 0, 0, 0),
+(117, 26, 8, 80, 0, 1, 'getriebe', 6, 0, 0, 0, 0, 0, 0),
+(118, 30, 12, 84, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(119, 29, 12, 83, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(120, 34, 8, 89, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(121, 30, 4, 84, 0, 1, 'sportesd', 3, 0, 0, 0, 0, 0, 0),
+(122, 22, 8, 75, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(123, 30, 10, 84, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(124, 26, 4, 80, 0, 1, 'sportesd', 2, 0, 0, 0, 0, 0, 0),
+(125, 61, 12, 119, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(126, 38, 1, 93, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(127, 42, 1, 97, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(128, 39, 1, 0, 0, 1, 'nockenwelle', 5, 0, 0, 0, 0, 0, 0),
+(129, 38, 12, 93, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(130, 30, 16, 84, 0, 1, 'katalysator', 2, 0, 0, 0, 0, 0, 0),
+(131, 61, 1, 119, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(132, 30, 6, 84, 0, 1, 'gelochte', 12, 0, 0, 0, 0, 0, 0),
+(133, 38, 4, 93, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(134, 38, 10, 93, 0, 1, 'kruemmer', 0, 0, 0, 0, 0, 0, 0),
+(135, 42, 12, 97, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(136, 26, 12, 80, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(137, 38, 16, 93, 0, 1, 'katalysator', 0, 0, 0, 0, 0, 0, 0),
+(138, 10, 12, 592, 0, 1, 'kolben', 6, 0, 0, 0, 0, 0, 0),
+(139, 58, 1, 0, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(140, 34, 16, 89, 0, 1, 'katalysator', 2, 0, 0, 0, 0, 0, 0),
+(141, 63, 12, 122, 0, 1, 'kolben', 6, 0, 0, 0, 0, 0, 0),
+(142, 64, 1, 123, 0, 1, 'nockenwelle', 9, 0, 0, 0, 0, 0, 0),
+(143, 63, 4, 122, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(144, 63, 6, 122, 0, 1, 'gelochte', 7, 0, 0, 0, 0, 0, 0),
+(145, 65, 1, 124, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(146, 65, 16, 629, 0, 1, 'katalysator', 1, 0, 0, 0, 0, 0, 0),
+(147, 64, 12, 123, 0, 1, 'kolben', 2, 0, 0, 0, 0, 0, 0),
+(148, 65, 10, 124, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(149, 63, 8, 122, 0, 1, 'getriebe', 10, 0, 0, 0, 0, 0, 0),
+(150, 64, 4, 123, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(151, 65, 4, 124, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(152, 65, 6, 629, 0, 1, 'gelochte', 7, 0, 0, 0, 0, 0, 0),
+(153, 63, 1, 122, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(154, 63, 16, 122, 0, 1, 'katalysator', 1, 0, 0, 0, 0, 0, 0),
+(155, 50, 1, 106, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(156, 64, 10, 123, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(157, 64, 16, 123, 0, 1, 'katalysator', 0, 0, 0, 0, 0, 0, 0),
+(158, 65, 8, 629, 0, 1, 'getriebe', 7, 0, 0, 0, 0, 0, 0),
+(159, 64, 6, 123, 0, 1, 'gelochte', 9, 0, 0, 0, 0, 0, 0),
+(160, 76, 1, 136, 0, 1, 'nockenwelle', 6, 0, 0, 0, 0, 0, 0),
+(161, 69, 1, 128, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(163, 87, 1, 149, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(164, 87, 8, 149, 0, 1, 'getriebe', 9, 0, 0, 0, 0, 0, 0),
+(165, 88, 1, 150, 0, 1, 'nockenwelle', 6, 0, 0, 0, 0, 0, 0),
+(166, 88, 12, 150, 0, 1, 'kolben', 4, 0, 0, 0, 0, 0, 0),
+(167, 10, 6, 592, 0, 1, 'gelochte', 7, 0, 0, 0, 0, 0, 0),
+(168, 87, 12, 149, 0, 1, 'kolben', 2, 0, 0, 0, 0, 0, 0),
+(169, 87, 4, 149, 0, 1, 'sportesd', 3, 0, 0, 0, 0, 0, 0),
+(170, 87, 16, 149, 0, 1, 'katalysator', 0, 0, 0, 0, 0, 0, 0),
+(171, 96, 1, 158, 0, 1, 'nockenwelle', 4, 0, 0, 0, 0, 0, 0),
+(172, 29, 4, 83, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(173, 96, 12, 158, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(174, 96, 4, 158, 0, 1, 'sportesd', 3, 0, 0, 0, 0, 0, 0),
+(175, 96, 10, 158, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(176, 96, 16, 158, 0, 1, 'katalysator', 0, 0, 0, 0, 0, 0, 0),
+(177, 96, 6, 158, 0, 1, 'gelochte', 7, 0, 0, 0, 0, 0, 0),
+(178, 96, 8, 158, 0, 1, 'getriebe', 10, 0, 0, 0, 0, 0, 0),
+(179, 101, 1, 164, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(180, 101, 8, 164, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(181, 104, 1, 167, 0, 1, 'nockenwelle', 7, 0, 0, 0, 0, 0, 0),
+(182, 106, 1, 170, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(183, 103, 1, 166, 0, 1, 'nockenwelle', 7, 0, 0, 0, 0, 0, 0),
+(184, 94, 1, 156, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(185, 103, 4, 166, 0, 1, 'sportesd', 3, 0, 0, 0, 0, 0, 0),
+(186, 103, 6, 166, 0, 1, 'gelochte', 6, 0, 0, 0, 0, 0, 0),
+(187, 38, 6, 0, 0, 1, 'gelochte', 7, 0, 0, 0, 0, 0, 0),
+(188, 104, 12, 167, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(189, 104, 6, 167, 0, 1, 'gelochte', 6, 0, 0, 0, 0, 0, 0),
+(190, 34, 1, 0, 0, 1, 'nockenwelle', 2, 0, 0, 0, 0, 0, 0),
+(191, 14, 8, 67, 0, 1, 'getriebe', 12, 0, 0, 0, 0, 0, 0),
+(192, 107, 1, 171, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(193, 14, 10, 67, 0, 1, 'kruemmer', 3, 0, 0, 0, 0, 0, 0),
+(194, 107, 4, 171, 0, 1, 'sportesd', 0, 0, 0, 0, 0, 0, 0),
+(195, 107, 12, 171, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(196, 107, 10, 171, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(197, 107, 16, 171, 0, 1, 'katalysator', 0, 0, 0, 0, 0, 0, 0),
+(198, 107, 6, 171, 0, 1, 'gelochte', 7, 0, 0, 0, 0, 0, 0),
+(199, 114, 1, 178, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(200, 107, 8, 171, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(201, 114, 12, 178, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(202, 114, 4, 178, 0, 1, 'sportesd', 3, 0, 0, 0, 0, 0, 0),
+(203, 114, 10, 178, 0, 1, 'kruemmer', 3, 0, 0, 0, 0, 0, 0),
+(204, 114, 16, 0, 0, 1, 'katalysator', 0, 0, 0, 0, 0, 0, 0),
+(205, 69, 4, 0, 0, 1, 'sportesd', 0, 0, 0, 0, 0, 0, 0),
+(206, 69, 12, 128, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(207, 159, 16, 0, 0, 1, 'katalysator', 0, 0, 0, 0, 0, 0, 0),
+(208, 111, 10, 175, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(209, 111, 4, 175, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(210, 120, 1, 185, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(211, 111, 8, 175, 0, 1, 'getriebe', 11, 0, 0, 0, 0, 0, 0),
+(212, 122, 1, 187, 0, 1, 'nockenwelle', 2, 0, 0, 0, 0, 0, 0),
+(213, 122, 4, 187, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(214, 70, 4, 129, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(215, 69, 4, 128, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(216, 122, 12, 187, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(217, 128, 1, 194, 0, 1, 'nockenwelle', 5, 0, 0, 0, 0, 0, 0),
+(218, 128, 12, 194, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(219, 128, 4, 194, 0, 1, 'sportesd', 3, 0, 0, 0, 0, 0, 0),
+(220, 128, 16, 194, 0, 1, 'katalysator', 0, 0, 0, 0, 0, 0, 0),
+(221, 128, 10, 194, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(222, 132, 1, 0, 0, 1, 'nockenwelle', 4, 0, 0, 0, 0, 0, 0),
+(223, 111, 12, 175, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(224, 137, 1, 203, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(225, 135, 1, 201, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(226, 117, 1, 181, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(227, 137, 12, 203, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(228, 122, 10, 187, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(229, 135, 12, 201, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(230, 135, 6, 201, 0, 1, 'gelochte', 7, 0, 0, 0, 0, 0, 0),
+(231, 135, 16, 201, 0, 1, 'katalysator', 0, 0, 0, 0, 0, 0, 0),
+(232, 135, 10, 201, 0, 1, 'kruemmer', 2, 0, 0, 0, 0, 0, 0),
+(233, 137, 4, 203, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(234, 137, 10, 203, 0, 1, 'kruemmer', 2, 0, 0, 0, 0, 0, 0),
+(235, 137, 16, 203, 0, 1, 'katalysator', 1, 0, 0, 0, 0, 0, 0),
+(236, 117, 12, 702, 0, 1, 'kolben', 2, 0, 0, 0, 0, 0, 0),
+(237, 147, 1, 213, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(238, 122, 16, 187, 0, 1, 'katalysator', 2, 0, 0, 0, 0, 0, 0),
+(239, 122, 6, 187, 0, 1, 'gelochte', 13, 0, 0, 0, 0, 0, 0),
+(240, 122, 8, 187, 0, 1, 'getriebe', 10, 0, 0, 0, 0, 0, 0),
+(241, 122, 18, 187, 0, 1, 'doppelkupplung', 5, 0, 0, 0, 0, 0, 0),
+(242, 158, 1, 225, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(243, 133, 10, 199, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(244, 133, 16, 199, 0, 1, 'katalysator', 0, 0, 0, 0, 0, 0, 0),
+(245, 158, 12, 225, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(246, 69, 10, 128, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(247, 158, 4, 225, 0, 1, 'sportesd', 4, 0, 0, 0, 0, 0, 0),
+(248, 158, 10, 0, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(249, 70, 12, 129, 0, 1, 'kolben', 5, 0, 0, 0, 0, 0, 0),
+(250, 70, 1, 129, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(251, 133, 12, 199, 0, 1, 'kolben', 4, 0, 0, 0, 0, 0, 0),
+(252, 165, 1, 232, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(253, 166, 4, 233, 0, 1, 'sportesd', 3, 0, 0, 0, 0, 0, 0),
+(254, 166, 10, 233, 0, 1, 'kruemmer', 3, 0, 0, 0, 0, 0, 0),
+(255, 166, 16, 0, 0, 1, 'katalysator', 0, 0, 0, 0, 0, 0, 0),
+(256, 166, 16, 0, 0, 1, 'katalysator', 0, 0, 0, 0, 0, 0, 0),
+(257, 165, 12, 232, 0, 1, 'kolben', 5, 0, 0, 0, 0, 0, 0),
+(258, 166, 1, 233, 0, 1, 'nockenwelle', 5, 0, 0, 0, 0, 0, 0),
+(259, 165, 8, 232, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(260, 165, 4, 0, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(261, 153, 1, 219, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(262, 166, 12, 233, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(263, 10, 8, 0, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(264, 87, 10, 0, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(265, 69, 16, 128, 0, 1, 'katalysator', 2, 0, 0, 0, 0, 0, 0),
+(266, 137, 8, 203, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(267, 179, 1, 246, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(268, 175, 1, 242, 0, 1, 'nockenwelle', 9, 0, 0, 0, 0, 0, 0),
+(269, 133, 1, 199, 0, 1, 'nockenwelle', 9, 0, 0, 0, 0, 0, 0),
+(270, 133, 4, 199, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(271, 191, 1, 259, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(272, 191, 12, 259, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(273, 193, 12, 261, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(274, 192, 1, 260, 0, 1, 'nockenwelle', 4, 0, 0, 0, 0, 0, 0),
+(275, 191, 4, 259, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(276, 192, 12, 260, 0, 1, 'kolben', 2, 0, 0, 0, 0, 0, 0),
+(277, 193, 4, 261, 0, 1, 'sportesd', 2, 0, 0, 0, 0, 0, 0),
+(278, 10, 18, 592, 0, 1, 'doppelkupplung', 5, 0, 0, 0, 0, 0, 0),
+(279, 193, 16, 261, 0, 1, 'katalysator', 2, 0, 0, 0, 0, 0, 0),
+(280, 199, 1, 269, 0, 1, 'nockenwelle', 2, 0, 0, 0, 0, 0, 0),
+(281, 199, 1, 268, 0, 1, 'nockenwelle', 7, 0, 0, 0, 0, 0, 0),
+(282, 203, 12, 273, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(283, 230, 21, 0, 0, 2, 'nockenwelle', 7, 0, 0, 0, 0, 0, 0),
+(284, 206, 1, 276, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(285, 197, 1, 266, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(286, 197, 10, 266, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(287, 197, 6, 266, 0, 1, 'gelochte', 11, 0, 0, 0, 0, 0, 0),
+(288, 208, 1, 0, 0, 1, 'nockenwelle', 4, 0, 0, 0, 0, 0, 0),
+(289, 534, 13, 0, 0, 2, 'kolben', 6, 0, 0, 0, 0, 0, 0),
+(290, 213, 1, 283, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(291, 210, 8, 280, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(292, 197, 12, 266, 0, 1, 'kolben', 2, 0, 0, 0, 0, 0, 0),
+(293, 197, 16, 266, 0, 1, 'katalysator', 1, 0, 0, 0, 0, 0, 0),
+(294, 215, 1, 0, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(295, 215, 12, 0, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(296, 213, 12, 283, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(297, 217, 1, 0, 0, 1, 'nockenwelle', 6, 0, 0, 0, 0, 0, 0),
+(298, 215, 4, 0, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(299, 221, 1, 291, 0, 1, 'nockenwelle', 9, 0, 0, 0, 0, 0, 0),
+(300, 215, 10, 0, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(301, 215, 16, 0, 0, 1, 'katalysator', 2, 0, 0, 0, 0, 0, 0),
+(302, 217, 12, 0, 0, 1, 'kolben', 4, 0, 0, 0, 0, 0, 0),
+(303, 219, 1, 289, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(304, 213, 4, 283, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(305, 213, 10, 283, 0, 1, 'kruemmer', 3, 0, 0, 0, 0, 0, 0),
+(306, 215, 8, 0, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(307, 213, 16, 283, 0, 1, 'katalysator', 0, 0, 0, 0, 0, 0, 0),
+(308, 219, 12, 289, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(309, 230, 1, 302, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(310, 229, 1, 299, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(311, 229, 4, 299, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(312, 219, 4, 289, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(313, 219, 16, 289, 0, 1, 'katalysator', 1, 0, 0, 0, 0, 0, 0),
+(314, 221, 12, 291, 0, 1, 'kolben', 4, 0, 0, 0, 0, 0, 0),
+(315, 219, 10, 289, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(316, 221, 10, 291, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(317, 229, 12, 299, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(318, 231, 1, 303, 0, 1, 'nockenwelle', 5, 0, 0, 0, 0, 0, 0),
+(319, 229, 10, 299, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(320, 229, 16, 299, 0, 1, 'katalysator', 0, 0, 0, 0, 0, 0, 0),
+(321, 229, 6, 299, 0, 1, 'gelochte', 7, 0, 0, 0, 0, 0, 0),
+(322, 231, 12, 303, 0, 1, 'kolben', 4, 0, 0, 0, 0, 0, 0),
+(323, 153, 4, 219, 0, 1, 'sportesd', 0, 0, 0, 0, 0, 0, 0),
+(324, 229, 8, 299, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(325, 237, 1, 0, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(326, 237, 1, 0, 0, 1, 'nockenwelle', 2, 0, 0, 0, 0, 0, 0),
+(327, 230, 1, 0, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(328, 114, 16, 178, 0, 1, 'katalysator', 1, 0, 0, 0, 0, 0, 0),
+(329, 147, 12, 213, 0, 1, 'kolben', 5, 0, 0, 0, 0, 0, 0),
+(330, 197, 4, 266, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(331, 114, 6, 178, 0, 1, 'gelochte', 5, 0, 0, 0, 0, 0, 0),
+(332, 147, 4, 0, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(333, 114, 8, 178, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(334, 241, 1, 314, 0, 1, 'nockenwelle', 8, 0, 0, 0, 0, 0, 0),
+(335, 241, 10, 314, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(336, 241, 6, 314, 0, 1, 'gelochte', 8, 0, 0, 0, 0, 0, 0),
+(337, 175, 12, 242, 0, 1, 'kolben', 7, 0, 0, 0, 0, 0, 0),
+(338, 114, 18, 178, 0, 1, 'doppelkupplung', 6, 0, 0, 0, 0, 0, 0),
+(339, 258, 4, 331, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(340, 249, 1, 322, 0, 1, 'nockenwelle', 4, 0, 0, 0, 0, 0, 0),
+(341, 166, 6, 233, 0, 1, 'gelochte', 7, 0, 0, 0, 0, 0, 0),
+(342, 229, 18, 299, 0, 1, 'doppelkupplung', 5, 0, 0, 0, 0, 0, 0),
+(343, 175, 4, 242, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(344, 258, 4, 0, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(345, 175, 10, 242, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(346, 175, 16, 242, 0, 1, 'katalysator', 0, 0, 0, 0, 0, 0, 0),
+(347, 249, 12, 322, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(348, 175, 6, 242, 0, 1, 'gelochte', 7, 0, 0, 0, 0, 0, 0),
+(349, 249, 8, 322, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(350, 246, 1, 0, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(351, 253, 1, 0, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(352, 249, 18, 322, 0, 1, 'doppelkupplung', 5, 0, 0, 0, 0, 0, 0),
+(353, 258, 1, 331, 0, 1, 'nockenwelle', 4, 0, 0, 0, 0, 0, 0),
+(354, 258, 8, 331, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(355, 70, 8, 129, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(356, 258, 6, 331, 0, 1, 'gelochte', 7, 0, 0, 0, 0, 0, 0),
+(357, 256, 12, 329, 0, 1, 'kolben', 5, 0, 0, 0, 0, 0, 0),
+(358, 254, 4, 654, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(359, 263, 12, 336, 0, 1, 'kolben', 4, 0, 0, 0, 0, 0, 0),
+(360, 263, 6, 336, 0, 1, 'gelochte', 7, 0, 0, 0, 0, 0, 0),
+(361, 221, 4, 291, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(362, 258, 10, 331, 0, 1, 'kruemmer', 3, 0, 0, 0, 0, 0, 0),
+(363, 264, 1, 337, 0, 1, 'nockenwelle', 7, 0, 0, 0, 0, 0, 0),
+(364, 221, 6, 291, 0, 1, 'gelochte', 9, 0, 0, 0, 0, 0, 0),
+(365, 264, 12, 337, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(366, 264, 4, 337, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(367, 264, 10, 337, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(368, 264, 16, 337, 0, 1, 'katalysator', 0, 0, 0, 0, 0, 0, 0),
+(369, 269, 1, 342, 0, 1, 'nockenwelle', 4, 0, 0, 0, 0, 0, 0),
+(370, 275, 1, 348, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(371, 271, 1, 344, 0, 1, 'nockenwelle', 4, 0, 0, 0, 0, 0, 0),
+(372, 271, 12, 344, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(373, 271, 4, 344, 0, 1, 'sportesd', 3, 0, 0, 0, 0, 0, 0),
+(374, 271, 6, 344, 0, 1, 'gelochte', 6, 0, 0, 0, 0, 0, 0),
+(375, 264, 6, 337, 0, 1, 'gelochte', 11, 0, 0, 0, 0, 0, 0),
+(376, 271, 8, 344, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(377, 272, 1, 345, 0, 1, 'nockenwelle', 2, 0, 0, 0, 0, 0, 0),
+(378, 280, 1, 353, 0, 1, 'nockenwelle', 5, 0, 0, 0, 0, 0, 0),
+(379, 275, 15, 348, 0, 1, 'turbocharger', 49, 0, 0, 0, 0, 0, 0),
+(380, 272, 12, 345, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(381, 272, 16, 345, 0, 1, 'katalysator', 2, 0, 0, 0, 0, 0, 0),
+(382, 272, 10, 345, 0, 1, 'kruemmer', 0, 0, 0, 0, 0, 0, 0),
+(383, 275, 8, 348, 0, 1, 'getriebe', 7, 0, 0, 0, 0, 0, 0),
+(384, 272, 4, 345, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(385, 290, 12, 363, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(386, 284, 1, 357, 0, 1, 'nockenwelle', 6, 0, 0, 0, 0, 0, 0),
+(387, 284, 10, 357, 0, 1, 'kruemmer', 0, 0, 0, 0, 0, 0, 0),
+(389, 284, 6, 357, 0, 1, 'gelochte', 7, 0, 0, 0, 0, 0, 0),
+(390, 287, 12, 360, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(391, 204, 1, 274, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(392, 65, 4, 629, 0, 1, 'sportesd', 3, 0, 0, 0, 0, 0, 0),
+(393, 287, 1, 799, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(394, 291, 1, 0, 0, 1, 'nockenwelle', 2, 0, 0, 0, 0, 0, 0),
+(395, 70, 10, 129, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(396, 304, 4, 378, 0, 1, 'sportesd', 3, 0, 0, 0, 0, 0, 0),
+(397, 166, 8, 233, 0, 1, 'getriebe', 7, 0, 0, 0, 0, 0, 0),
+(398, 292, 1, 0, 0, 1, 'nockenwelle', 7, 0, 0, 0, 0, 0, 0),
+(399, 65, 10, 629, 0, 1, 'kruemmer', 3, 0, 0, 0, 0, 0, 0),
+(400, 204, 4, 274, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(401, 65, 16, 124, 0, 1, 'katalysator', 0, 0, 0, 0, 0, 0, 0),
+(405, 65, 1, 0, 0, 1, 'nockenwelle', 6, 0, 0, 0, 0, 0, 0),
+(406, 299, 4, 372, 0, 1, 'sportesd', 4, 0, 0, 0, 0, 0, 0),
+(407, 233, 1, 791, 0, 1, 'nockenwelle', 4, 0, 0, 0, 0, 0, 0),
+(408, 175, 8, 242, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(409, 204, 12, 274, 0, 1, 'kolben', 6, 0, 0, 0, 0, 0, 0),
+(410, 304, 6, 378, 0, 1, 'gelochte', 6, 0, 0, 0, 0, 0, 0),
+(411, 301, 1, 374, 0, 1, 'nockenwelle', 5, 0, 0, 0, 0, 0, 0),
+(412, 69, 1, 140, 0, 1, 'nockenwelle', 4, 0, 0, 0, 0, 0, 0),
+(413, 301, 1, 0, 0, 1, 'nockenwelle', 2, 0, 0, 0, 0, 0, 0),
+(414, 133, 8, 199, 0, 1, 'getriebe', 13, 0, 0, 0, 0, 0, 0),
+(415, 175, 18, 242, 0, 1, 'doppelkupplung', 5, 0, 0, 0, 0, 0, 0),
+(416, 133, 6, 199, 0, 1, 'gelochte', 7, 0, 0, 0, 0, 0, 0),
+(417, 301, 6, 374, 0, 1, 'gelochte', 5, 0, 0, 0, 0, 0, 0),
+(418, 69, 12, 140, 0, 1, 'kolben', 5, 0, 0, 0, 0, 0, 0),
+(419, 301, 4, 374, 0, 1, 'sportesd', 2, 0, 0, 0, 0, 0, 0),
+(420, 69, 4, 140, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(421, 69, 10, 140, 0, 1, 'kruemmer', 3, 0, 0, 0, 0, 0, 0),
+(422, 204, 16, 274, 0, 1, 'katalysator', 1, 0, 0, 0, 0, 0, 0),
+(423, 308, 1, 382, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(424, 221, 8, 291, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(425, 308, 4, 382, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(426, 308, 12, 382, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(427, 315, 1, 389, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(428, 321, 1, 395, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(429, 315, 4, 389, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(430, 315, 6, 389, 0, 1, 'gelochte', 5, 0, 0, 0, 0, 0, 0),
+(431, 318, 1, 0, 0, 1, 'nockenwelle', 6, 0, 0, 0, 0, 0, 0),
+(432, 323, 1, 0, 0, 1, 'nockenwelle', 4, 0, 0, 0, 0, 0, 0),
+(433, 315, 8, 389, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(434, 321, 12, 395, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(435, 332, 18, 407, 0, 1, 'doppelkupplung', 4, 0, 0, 0, 0, 0, 0),
+(436, 321, 4, 395, 0, 1, 'sportesd', 2, 0, 0, 0, 0, 0, 0),
+(437, 321, 10, 395, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(438, 321, 16, 395, 0, 1, 'katalysator', 0, 0, 0, 0, 0, 0, 0),
+(439, 329, 1, 404, 0, 1, 'nockenwelle', 2, 0, 0, 0, 0, 0, 0),
+(440, 319, 1, 393, 0, 1, 'nockenwelle', 2, 0, 0, 0, 0, 0, 0),
+(441, 336, 8, 0, 0, 1, 'getriebe', 6, 0, 0, 0, 0, 0, 0),
+(442, 329, 12, 404, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(443, 329, 4, 404, 0, 1, 'sportesd', 0, 0, 0, 0, 0, 0, 0),
+(444, 329, 10, 404, 0, 1, 'kruemmer', 3, 0, 0, 0, 0, 0, 0),
+(445, 329, 16, 404, 0, 1, 'katalysator', 0, 0, 0, 0, 0, 0, 0),
+(446, 321, 6, 395, 0, 1, 'gelochte', 6, 0, 0, 0, 0, 0, 0),
+(447, 336, 18, 0, 0, 1, 'doppelkupplung', 8, 0, 0, 0, 0, 0, 0),
+(448, 319, 12, 393, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(449, 336, 1, 0, 0, 1, 'nockenwelle', 9, 0, 0, 0, 0, 0, 0),
+(450, 315, 18, 389, 0, 1, 'doppelkupplung', 5, 0, 0, 0, 0, 0, 0),
+(451, 211, 1, 281, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(452, 22, 6, 75, 0, 1, 'gelochte', 7, 0, 0, 0, 0, 0, 0),
+(453, 315, 10, 389, 0, 1, 'kruemmer', 3, 0, 0, 0, 0, 0, 0),
+(454, 315, 16, 389, 0, 1, 'katalysator', 2, 0, 0, 0, 0, 0, 0),
+(455, 204, 10, 0, 0, 1, 'kruemmer', 0, 0, 0, 0, 0, 0, 0),
+(456, 204, 10, 274, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(457, 342, 8, 0, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(458, 347, 8, 422, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(459, 315, 12, 389, 0, 1, 'kolben', 4, 0, 0, 0, 0, 0, 0),
+(460, 367, 8, 442, 0, 1, 'getriebe', 11, 0, 0, 0, 0, 0, 0),
+(461, 211, 12, 281, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(462, 371, 8, 0, 0, 1, 'getriebe', 7, 0, 0, 0, 0, 0, 0),
+(463, 233, 4, 791, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(464, 179, 12, 246, 0, 1, 'kolben', 5, 0, 0, 0, 0, 0, 0),
+(465, 342, 1, 0, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(466, 211, 4, 281, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(467, 345, 8, 420, 0, 1, 'getriebe', 12, 0, 0, 0, 0, 0, 0),
+(468, 179, 4, 246, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(469, 340, 1, 415, 0, 1, 'nockenwelle', 4, 0, 0, 0, 0, 0, 0),
+(470, 179, 10, 246, 0, 1, 'kruemmer', 2, 0, 0, 0, 0, 0, 0),
+(471, 179, 16, 246, 0, 1, 'katalysator', 0, 0, 0, 0, 0, 0, 0),
+(472, 358, 8, 433, 0, 1, 'getriebe', 10, 0, 0, 0, 0, 0, 0),
+(473, 358, 6, 433, 0, 1, 'gelochte', 10, 0, 0, 0, 0, 0, 0),
+(474, 179, 6, 246, 0, 1, 'gelochte', 7, 0, 0, 0, 0, 0, 0),
+(475, 22, 18, 75, 0, 1, 'doppelkupplung', 5, 0, 0, 0, 0, 0, 0),
+(476, 378, 6, 456, 0, 1, 'gelochte', 6, 0, 0, 0, 0, 0, 0),
+(477, 386, 6, 0, 0, 1, 'gelochte', 7, 0, 0, 0, 0, 0, 0),
+(478, 349, 1, 424, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(479, 347, 1, 422, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(480, 349, 12, 424, 0, 1, 'kolben', 4, 0, 0, 0, 0, 0, 0),
+(481, 347, 12, 422, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(482, 233, 12, 791, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(483, 233, 16, 791, 0, 1, 'katalysator', 2, 0, 0, 0, 0, 0, 0),
+(484, 347, 4, 422, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(485, 332, 4, 407, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(486, 355, 1, 430, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(487, 355, 4, 0, 0, 1, 'sportesd', 3, 0, 0, 0, 0, 0, 0),
+(488, 349, 4, 424, 0, 1, 'sportesd', 0, 0, 0, 0, 0, 0, 0),
+(489, 349, 10, 424, 0, 1, 'kruemmer', 2, 0, 0, 0, 0, 0, 0),
+(490, 349, 16, 424, 0, 1, 'katalysator', 0, 0, 0, 0, 0, 0, 0),
+(491, 264, 8, 337, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(492, 357, 1, 432, 0, 1, 'nockenwelle', 4, 0, 0, 0, 0, 0, 0),
+(493, 357, 12, 432, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(494, 367, 1, 0, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(495, 377, 1, 455, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(496, 377, 12, 455, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(497, 264, 18, 337, 0, 1, 'doppelkupplung', 5, 0, 0, 0, 0, 0, 0),
+(498, 379, 4, 458, 0, 1, 'sportesd', 3, 0, 0, 0, 0, 0, 0),
+(499, 272, 6, 345, 0, 1, 'gelochte', 7, 0, 0, 0, 0, 0, 0),
+(500, 387, 12, 0, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(501, 393, 1, 473, 0, 1, 'nockenwelle', 9, 0, 0, 0, 0, 0, 0),
+(502, 389, 1, 660, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(503, 393, 12, 473, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(504, 254, 1, 654, 0, 1, 'nockenwelle', 9, 0, 0, 0, 0, 0, 0),
+(505, 233, 10, 791, 0, 1, 'kruemmer', 3, 0, 0, 0, 0, 0, 0),
+(506, 402, 1, 484, 0, 1, 'nockenwelle', 4, 0, 0, 0, 0, 0, 0),
+(507, 402, 4, 484, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(508, 402, 6, 484, 0, 1, 'gelochte', 6, 0, 0, 0, 0, 0, 0),
+(509, 345, 1, 420, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(510, 406, 1, 489, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(511, 345, 4, 0, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(512, 345, 16, 420, 0, 1, 'katalysator', 1, 0, 0, 0, 0, 0, 0),
+(513, 345, 4, 420, 0, 1, 'sportesd', 2, 0, 0, 0, 0, 0, 0),
+(514, 406, 12, 489, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(515, 406, 4, 489, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(516, 406, 16, 0, 0, 1, 'katalysator', 0, 0, 0, 0, 0, 0, 0),
+(517, 406, 8, 489, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(518, 406, 10, 489, 0, 1, 'kruemmer', 2, 0, 0, 0, 0, 0, 0),
+(519, 416, 1, 499, 0, 1, 'nockenwelle', 7, 0, 0, 0, 0, 0, 0),
+(520, 416, 12, 499, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(521, 211, 10, 281, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(522, 424, 1, 507, 0, 1, 'nockenwelle', 2, 0, 0, 0, 0, 0, 0),
+(523, 89, 10, 151, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(524, 211, 16, 281, 0, 1, 'katalysator', 2, 0, 0, 0, 0, 0, 0),
+(525, 211, 6, 281, 0, 1, 'gelochte', 7, 0, 0, 0, 0, 0, 0),
+(526, 211, 8, 281, 0, 1, 'getriebe', 7, 0, 0, 0, 0, 0, 0),
+(527, 429, 1, 619, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(528, 429, 12, 512, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(529, 429, 8, 619, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(530, 429, 16, 619, 0, 1, 'katalysator', 0, 0, 0, 0, 0, 0, 0),
+(531, 429, 4, 619, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(532, 436, 1, 519, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(533, 437, 1, 0, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(534, 429, 1, 512, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(535, 461, 12, 547, 0, 1, 'kolben', 2, 0, 0, 0, 0, 0, 0),
+(536, 438, 1, 821, 0, 1, 'nockenwelle', 4, 0, 0, 0, 0, 0, 0),
+(537, 438, 12, 821, 0, 1, 'kolben', 2, 0, 0, 0, 0, 0, 0),
+(538, 666, 16, 831, 0, 1, 'katalysator', 0, 0, 0, 0, 0, 0, 0),
+(539, 666, 10, 831, 0, 1, 'kruemmer', 0, 0, 0, 0, 0, 0, 0),
+(540, 211, 18, 281, 0, 1, 'doppelkupplung', 5, 0, 0, 0, 0, 0, 0),
+(541, 211, 6, 0, 0, 1, 'gelochte', 7, 0, 0, 0, 0, 0, 0),
+(542, 448, 1, 532, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(543, 446, 1, 530, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(544, 448, 12, 532, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(545, 448, 4, 532, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(546, 448, 10, 532, 0, 1, 'kruemmer', 0, 0, 0, 0, 0, 0, 0),
+(547, 448, 16, 532, 0, 1, 'katalysator', 1, 0, 0, 0, 0, 0, 0),
+(548, 461, 6, 547, 0, 1, 'gelochte', 7, 0, 0, 0, 0, 0, 0),
+(549, 448, 6, 532, 0, 1, 'gelochte', 7, 0, 0, 0, 0, 0, 0),
+(550, 446, 8, 0, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(551, 448, 8, 532, 0, 1, 'getriebe', 6, 0, 0, 0, 0, 0, 0),
+(552, 459, 1, 544, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(553, 459, 16, 544, 0, 1, 'katalysator', 1, 0, 0, 0, 0, 0, 0),
+(554, 459, 10, 544, 0, 1, 'kruemmer', 0, 0, 0, 0, 0, 0, 0),
+(555, 459, 4, 544, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(556, 464, 1, 0, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(557, 469, 8, 557, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(558, 474, 1, 0, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(559, 473, 8, 0, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(560, 473, 1, 0, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(561, 476, 1, 564, 0, 1, 'nockenwelle', 5, 0, 0, 0, 0, 0, 0),
+(562, 485, 1, 574, 0, 1, 'nockenwelle', 8, 0, 0, 0, 0, 0, 0),
+(563, 485, 16, 574, 0, 1, 'katalysator', 0, 0, 0, 0, 0, 0, 0),
+(564, 485, 10, 574, 0, 1, 'kruemmer', 0, 0, 0, 0, 0, 0, 0),
+(565, 485, 4, 574, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(566, 485, 12, 574, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(567, 485, 8, 574, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(568, 505, 12, 671, 0, 1, 'kolben', 5, 0, 0, 0, 0, 0, 0),
+(569, 485, 18, 574, 0, 1, 'doppelkupplung', 6, 0, 0, 0, 0, 0, 0),
+(570, 490, 12, 580, 0, 1, 'kolben', 4, 0, 0, 0, 0, 0, 0),
+(571, 94, 12, 0, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(572, 495, 1, 586, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(573, 495, 4, 586, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(574, 495, 8, 586, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(575, 495, 12, 586, 0, 1, 'kolben', 4, 0, 0, 0, 0, 0, 0),
+(576, 506, 1, 598, 0, 1, 'nockenwelle', 4, 0, 0, 0, 0, 0, 0),
+(577, 513, 1, 0, 0, 1, 'nockenwelle', 2, 0, 0, 0, 0, 0, 0),
+(578, 513, 1, 605, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(579, 502, 1, 594, 0, 1, 'nockenwelle', 2, 0, 0, 0, 0, 0, 0),
+(580, 502, 4, 594, 0, 1, 'sportesd', 0, 0, 0, 0, 0, 0, 0),
+(581, 504, 6, 596, 0, 1, 'gelochte', 7, 0, 0, 0, 0, 0, 0),
+(582, 504, 6, 0, 0, 1, 'gelochte', 6, 0, 0, 0, 0, 0, 0),
+(583, 522, 8, 620, 0, 1, 'getriebe', 7, 0, 0, 0, 0, 0, 0),
+(584, 505, 1, 612, 0, 1, 'nockenwelle', 5, 0, 0, 0, 0, 0, 0),
+(585, 505, 12, 612, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(586, 505, 16, 612, 0, 1, 'katalysator', 0, 0, 0, 0, 0, 0, 0),
+(587, 506, 1, 0, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(588, 505, 10, 612, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(589, 506, 12, 598, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(590, 505, 4, 612, 0, 1, 'sportesd', 4, 0, 0, 0, 0, 0, 0),
+(591, 505, 6, 612, 0, 1, 'gelochte', 7, 0, 0, 0, 0, 0, 0),
+(592, 506, 8, 0, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(593, 271, 16, 344, 0, 1, 'katalysator', 2, 0, 0, 0, 0, 0, 0),
+(594, 508, 1, 607, 0, 1, 'nockenwelle', 8, 0, 0, 0, 0, 0, 0),
+(595, 495, 10, 586, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(596, 495, 16, 586, 0, 1, 'katalysator', 1, 0, 0, 0, 0, 0, 0),
+(597, 508, 4, 607, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(598, 508, 6, 607, 0, 1, 'gelochte', 7, 0, 0, 0, 0, 0, 0),
+(599, 515, 12, 610, 0, 1, 'kolben', 5, 0, 0, 0, 0, 0, 0),
+(600, 505, 15, 597, 0, 1, 'turbocharger', 25, 0, 0, 0, 0, 0, 0),
+(601, 515, 4, 610, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(602, 505, 8, 612, 0, 1, 'getriebe', 9, 0, 0, 0, 0, 0, 0),
+(603, 516, 1, 611, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(604, 515, 10, 610, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(605, 495, 6, 586, 0, 1, 'gelochte', 6, 0, 0, 0, 0, 0, 0),
+(606, 515, 16, 610, 0, 1, 'katalysator', 1, 0, 0, 0, 0, 0, 0),
+(607, 515, 6, 610, 0, 1, 'gelochte', 8, 0, 0, 0, 0, 0, 0),
+(608, 515, 8, 610, 0, 1, 'getriebe', 11, 0, 0, 0, 0, 0, 0),
+(609, 517, 1, 613, 0, 1, 'nockenwelle', 1, 0, 0, 0, 0, 0, 0),
+(610, 508, 15, 607, 0, 1, 'turbocharger', 25, 0, 0, 0, 0, 0, 0),
+(611, 508, 8, 607, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(612, 505, 18, 612, 0, 1, 'doppelkupplung', 5, 0, 0, 0, 0, 0, 0),
+(613, 510, 12, 602, 0, 1, 'kolben', 4, 0, 0, 0, 0, 0, 0),
+(614, 429, 10, 619, 0, 1, 'kruemmer', 2, 0, 0, 0, 0, 0, 0),
+(615, 429, 6, 619, 0, 1, 'gelochte', 7, 0, 0, 0, 0, 0, 0),
+(616, 429, 12, 619, 0, 1, 'kolben', 4, 0, 0, 0, 0, 0, 0),
+(617, 522, 12, 0, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(618, 523, 1, 621, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(619, 521, 1, 618, 0, 1, 'nockenwelle', 4, 0, 0, 0, 0, 0, 0),
+(620, 155, 12, 221, 0, 1, 'kolben', 2, 0, 0, 0, 0, 0, 0),
+(621, 521, 4, 618, 0, 1, 'sportesd', 2, 0, 0, 0, 0, 0, 0),
+(622, 505, 1, 671, 0, 1, 'nockenwelle', 4, 0, 0, 0, 0, 0, 0),
+(623, 523, 12, 621, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(624, 523, 16, 621, 0, 1, 'katalysator', 1, 0, 0, 0, 0, 0, 0),
+(625, 523, 10, 621, 0, 1, 'kruemmer', 3, 0, 0, 0, 0, 0, 0),
+(626, 521, 12, 618, 0, 1, 'kolben', 4, 0, 0, 0, 0, 0, 0),
+(627, 523, 4, 621, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(628, 523, 6, 621, 0, 1, 'gelochte', 6, 0, 0, 0, 0, 0, 0),
+(629, 429, 15, 619, 0, 1, 'turbocharger', 28, 0, 0, 0, 0, 0, 0),
+(630, 524, 1, 623, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(631, 505, 12, 597, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(632, 526, 1, 626, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(633, 526, 12, 626, 0, 1, 'kolben', 5, 0, 0, 0, 0, 0, 0),
+(634, 429, 18, 619, 0, 1, 'doppelkupplung', 7, 0, 0, 0, 0, 0, 0),
+(635, 521, 10, 0, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(636, 526, 16, 626, 0, 1, 'katalysator', 1, 0, 0, 0, 0, 0, 0),
+(637, 526, 6, 626, 0, 1, 'gelochte', 9, 0, 0, 0, 0, 0, 0),
+(638, 532, 1, 633, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(639, 526, 4, 626, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(640, 526, 10, 626, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(641, 63, 10, 122, 0, 1, 'kruemmer', 2, 0, 0, 0, 0, 0, 0),
+(642, 527, 1, 627, 0, 1, 'nockenwelle', 4, 0, 0, 0, 0, 0, 0),
+(643, 527, 4, 627, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(644, 527, 12, 627, 0, 1, 'kolben', 6, 0, 0, 0, 0, 0, 0),
+(645, 527, 16, 627, 0, 1, 'katalysator', 1, 0, 0, 0, 0, 0, 0),
+(646, 529, 1, 0, 0, 1, 'nockenwelle', 4, 0, 0, 0, 0, 0, 0),
+(647, 505, 8, 671, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(648, 505, 6, 671, 0, 1, 'gelochte', 6, 0, 0, 0, 0, 0, 0),
+(649, 530, 1, 635, 0, 1, 'nockenwelle', 4, 0, 0, 0, 0, 0, 0),
+(650, 530, 12, 635, 0, 1, 'kolben', 2, 0, 0, 0, 0, 0, 0),
+(651, 535, 1, 637, 0, 1, 'nockenwelle', 2, 0, 0, 0, 0, 0, 0),
+(652, 530, 4, 635, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(653, 530, 10, 635, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(654, 535, 12, 637, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(655, 530, 16, 635, 0, 1, 'katalysator', 3, 0, 0, 0, 0, 0, 0),
+(656, 530, 6, 635, 0, 1, 'gelochte', 6, 0, 0, 0, 0, 0, 0),
+(657, 530, 8, 635, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(658, 527, 10, 627, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(659, 530, 18, 635, 0, 1, 'doppelkupplung', 7, 0, 0, 0, 0, 0, 0),
+(660, 542, 1, 645, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(661, 542, 4, 645, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(662, 543, 1, 646, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(663, 543, 4, 646, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(664, 542, 12, 645, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(665, 542, 16, 645, 0, 1, 'katalysator', 1, 0, 0, 0, 0, 0, 0),
+(666, 542, 10, 645, 0, 1, 'kruemmer', 3, 0, 0, 0, 0, 0, 0),
+(667, 542, 6, 645, 0, 1, 'gelochte', 9, 0, 0, 0, 0, 0, 0),
+(668, 542, 6, 0, 0, 1, 'gelochte', 10, 0, 0, 0, 0, 0, 0),
+(669, 533, 1, 634, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(670, 541, 1, 644, 0, 1, 'nockenwelle', 4, 0, 0, 0, 0, 0, 0),
+(671, 533, 12, 634, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(672, 477, 21, 649, 0, 2, 'nockenwelle', 12, 0, 0, 0, 0, 0, 0),
+(673, 541, 12, 644, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(674, 547, 1, 0, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(675, 254, 8, 654, 0, 1, 'getriebe', 13, 0, 0, 0, 0, 0, 0),
+(677, 533, 4, 634, 0, 1, 'sportesd', 2, 0, 0, 0, 0, 0, 0),
+(678, 254, 18, 654, 0, 1, 'doppelkupplung', 8, 0, 0, 0, 0, 0, 0),
+(679, 254, 6, 654, 0, 1, 'gelochte', 7, 0, 0, 0, 0, 0, 0),
+(680, 533, 10, 634, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(681, 533, 16, 634, 0, 1, 'katalysator', 1, 0, 0, 0, 0, 0, 0),
+(682, 477, 13, 649, 0, 2, 'kolben', 8, 0, 0, 0, 0, 0, 0),
+(683, 533, 6, 634, 0, 1, 'gelochte', 7, 0, 0, 0, 0, 0, 0),
+(684, 254, 65, 0, 0, 2, 'kruemmer', 2, 0, 0, 0, 0, 0, 0),
+(685, 254, 10, 654, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(686, 254, 16, 654, 0, 1, 'katalysator', 1, 0, 0, 0, 0, 0, 0),
+(687, 29, 15, 0, 0, 1, 'turbocharger', 47, 0, 0, 0, 0, 0, 0),
+(688, 551, 1, 662, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(689, 389, 12, 660, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(690, 551, 8, 662, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(691, 389, 4, 660, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(692, 389, 10, 660, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(693, 389, 16, 660, 0, 1, 'katalysator', 1, 0, 0, 0, 0, 0, 0),
+(694, 551, 12, 0, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(695, 524, 12, 0, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(696, 513, 1, 0, 0, 1, 'nockenwelle', 8, 0, 0, 0, 0, 0, 0),
+(697, 513, 12, 605, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(698, 513, 4, 605, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(699, 513, 10, 605, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(700, 513, 16, 605, 0, 1, 'katalysator', 1, 0, 0, 0, 0, 0, 0),
+(701, 489, 1, 579, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(702, 489, 4, 0, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(703, 519, 6, 616, 0, 1, 'gelochte', 13, 0, 0, 0, 0, 0, 0),
+(704, 476, 6, 564, 0, 1, 'gelochte', 5, 0, 0, 0, 0, 0, 0),
+(705, 566, 1, 689, 0, 1, 'nockenwelle', 1, 0, 0, 0, 0, 0, 0),
+(706, 564, 1, 693, 0, 1, 'nockenwelle', 9, 0, 0, 0, 0, 0, 0),
+(707, 568, 1, 688, 0, 1, 'nockenwelle', 5, 0, 0, 0, 0, 0, 0),
+(708, 564, 12, 693, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(709, 568, 4, 688, 0, 1, 'sportesd', 4, 0, 0, 0, 0, 0, 0),
+(710, 566, 12, 689, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(711, 568, 12, 690, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(712, 568, 8, 690, 0, 1, 'getriebe', 12, 0, 0, 0, 0, 0, 0),
+(713, 568, 1, 690, 0, 1, 'nockenwelle', 4, 0, 0, 0, 0, 0, 0),
+(714, 280, 1, 0, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(715, 33, 4, 87, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(716, 564, 15, 693, 0, 1, 'turbocharger', 26, 0, 0, 0, 0, 0, 0),
+(717, 302, 1, 678, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(718, 570, 1, 698, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(719, 564, 4, 693, 0, 1, 'sportesd', 4, 0, 0, 0, 0, 0, 0),
+(720, 564, 10, 693, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(721, 570, 12, 698, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(722, 33, 12, 0, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(723, 558, 1, 673, 0, 1, 'nockenwelle', 4, 0, 0, 0, 0, 0, 0),
+(724, 117, 4, 702, 0, 1, 'sportesd', 2, 0, 0, 0, 0, 0, 0),
+(725, 558, 12, 673, 0, 1, 'kolben', 4, 0, 0, 0, 0, 0, 0),
+(726, 576, 6, 708, 0, 1, 'gelochte', 6, 0, 0, 0, 0, 0, 0),
+(727, 558, 6, 673, 0, 1, 'gelochte', 8, 0, 0, 0, 0, 0, 0),
+(728, 564, 16, 693, 0, 1, 'katalysator', 1, 0, 0, 0, 0, 0, 0),
+(729, 117, 8, 702, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(730, 389, 15, 469, 0, 1, 'turbocharger', 27, 0, 0, 0, 0, 0, 0),
+(731, 519, 8, 616, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(732, 564, 8, 693, 0, 1, 'getriebe', 7, 0, 0, 0, 0, 0, 0),
+(733, 575, 12, 707, 0, 1, 'kolben', 6, 0, 0, 0, 0, 0, 0),
+(734, 564, 18, 693, 0, 1, 'doppelkupplung', 5, 0, 0, 0, 0, 0, 0),
+(735, 575, 1, 707, 0, 1, 'nockenwelle', 2, 0, 0, 0, 0, 0, 0),
+(736, 564, 6, 693, 0, 1, 'gelochte', 6, 0, 0, 0, 0, 0, 0),
+(737, 570, 15, 698, 0, 1, 'turbocharger', 28, 0, 0, 0, 0, 0, 0),
+(738, 575, 16, 707, 0, 1, 'katalysator', 1, 0, 0, 0, 0, 0, 0),
+(739, 572, 12, 0, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(740, 575, 6, 707, 0, 1, 'gelochte', 8, 0, 0, 0, 0, 0, 0),
+(741, 133, 56, 704, 0, 2, 'sportesd', 3, 0, 0, 0, 0, 0, 0),
+(742, 575, 8, 707, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(743, 199, 12, 0, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(744, 199, 4, 0, 0, 1, 'sportesd', 4, 0, 0, 0, 0, 0, 0),
+(745, 133, 65, 704, 0, 2, 'kruemmer', 2, 0, 0, 0, 0, 0, 0),
+(746, 519, 1, 616, 0, 1, 'nockenwelle', 2, 0, 0, 0, 0, 0, 0),
+(747, 133, 17, 704, 0, 2, 'katalysator', 2, 0, 0, 0, 0, 0, 0),
+(748, 133, 49, 704, 0, 2, 'getriebe', 11, 0, 0, 0, 0, 0, 0),
+(749, 137, 21, 712, 0, 2, 'nockenwelle', 7, 0, 0, 0, 0, 0, 0),
+(750, 137, 13, 712, 0, 2, 'kolben', 8, 0, 0, 0, 0, 0, 0),
+(751, 133, 34, 704, 0, 2, 'gelochte', 14, 0, 0, 0, 0, 0, 0),
+(752, 137, 56, 712, 0, 2, 'sportesd', 2, 0, 0, 0, 0, 0, 0),
+(753, 137, 65, 712, 0, 2, 'kruemmer', 3, 0, 0, 0, 0, 0, 0),
+(754, 473, 1, 727, 0, 1, 'nockenwelle', 5, 0, 0, 0, 0, 0, 0),
+(755, 473, 6, 727, 0, 1, 'gelochte', 7, 0, 0, 0, 0, 0, 0),
+(756, 233, 1, 700, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(757, 233, 12, 700, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(758, 592, 1, 731, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(759, 592, 6, 731, 0, 1, 'gelochte', 7, 0, 0, 0, 0, 0, 0),
+(760, 592, 16, 731, 0, 1, 'katalysator', 1, 0, 0, 0, 0, 0, 0),
+(761, 592, 8, 731, 0, 1, 'getriebe', 7, 0, 0, 0, 0, 0, 0),
+(762, 233, 16, 700, 0, 1, 'katalysator', 1, 0, 0, 0, 0, 0, 0),
+(763, 592, 10, 0, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(764, 233, 10, 700, 0, 1, 'kruemmer', 2, 0, 0, 0, 0, 0, 0),
+(765, 233, 4, 700, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(766, 596, 1, 736, 0, 1, 'nockenwelle', 7, 0, 0, 0, 0, 0, 0),
+(767, 585, 1, 737, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(768, 596, 12, 736, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(769, 596, 4, 736, 0, 1, 'sportesd', 3, 0, 0, 0, 0, 0, 0),
+(770, 596, 10, 736, 0, 1, 'kruemmer', 2, 0, 0, 0, 0, 0, 0),
+(771, 596, 16, 736, 0, 1, 'katalysator', 1, 0, 0, 0, 0, 0, 0),
+(772, 596, 6, 736, 0, 1, 'gelochte', 14, 0, 0, 0, 0, 0, 0),
+(773, 597, 1, 738, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(774, 233, 8, 791, 0, 1, 'getriebe', 12, 0, 0, 0, 0, 0, 0),
+(775, 597, 12, 738, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(776, 596, 8, 736, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(777, 597, 4, 738, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(778, 233, 18, 791, 0, 1, 'doppelkupplung', 5, 0, 0, 0, 0, 0, 0),
+(779, 597, 10, 738, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(780, 597, 16, 738, 0, 1, 'katalysator', 1, 0, 0, 0, 0, 0, 0),
+(781, 599, 12, 0, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(782, 233, 6, 791, 0, 1, 'gelochte', 14, 0, 0, 0, 0, 0, 0),
+(783, 597, 6, 738, 0, 1, 'gelochte', 7, 0, 0, 0, 0, 0, 0),
+(784, 599, 4, 0, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(785, 65, 21, 703, 0, 2, 'nockenwelle', 7, 0, 0, 0, 0, 0, 0),
+(786, 172, 12, 0, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(787, 585, 8, 0, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(788, 473, 8, 727, 0, 1, 'getriebe', 13, 0, 0, 0, 0, 0, 0),
+(789, 605, 1, 748, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(790, 605, 12, 0, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(791, 65, 12, 629, 0, 1, 'kolben', 4, 0, 0, 0, 0, 0, 0),
+(792, 605, 8, 0, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(793, 570, 18, 698, 0, 1, 'doppelkupplung', 6, 0, 0, 0, 0, 0, 0),
+(794, 65, 21, 0, 0, 2, 'nockenwelle', 7, 0, 0, 0, 0, 0, 0),
+(795, 606, 1, 750, 0, 1, 'nockenwelle', 6, 0, 0, 0, 0, 0, 0),
+(796, 570, 8, 698, 0, 1, 'getriebe', 10, 0, 0, 0, 0, 0, 0),
+(797, 570, 6, 698, 0, 1, 'gelochte', 5, 0, 0, 0, 0, 0, 0),
+(798, 193, 21, 0, 0, 2, 'nockenwelle', 9, 0, 0, 0, 0, 0, 0),
+(799, 570, 4, 698, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(800, 596, 18, 736, 0, 1, 'doppelkupplung', 5, 0, 0, 0, 0, 0, 0),
+(801, 570, 10, 698, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(802, 233, 15, 791, 0, 1, 'turbocharger', 28, 0, 0, 0, 0, 0, 0),
+(803, 570, 16, 698, 0, 1, 'katalysator', 1, 0, 0, 0, 0, 0, 0),
+(804, 609, 1, 0, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(805, 70, 1, 694, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(806, 626, 1, 777, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(807, 626, 12, 777, 0, 1, 'kolben', 5, 0, 0, 0, 0, 0, 0),
+(808, 626, 4, 777, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(809, 626, 10, 777, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(810, 275, 4, 348, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(811, 626, 16, 0, 0, 1, 'katalysator', 2, 0, 0, 0, 0, 0, 0),
+(812, 626, 6, 0, 0, 1, 'gelochte', 6, 0, 0, 0, 0, 0, 0),
+(813, 275, 18, 348, 0, 1, 'doppelkupplung', 5, 0, 0, 0, 0, 0, 0),
+(814, 275, 12, 0, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(815, 629, 1, 788, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(816, 629, 4, 788, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(817, 629, 6, 788, 0, 1, 'gelochte', 7, 0, 0, 0, 0, 0, 0),
+(818, 633, 1, 0, 0, 1, 'nockenwelle', 2, 0, 0, 0, 0, 0, 0),
+(819, 629, 15, 788, 0, 1, 'turbocharger', 26, 0, 0, 0, 0, 0, 0),
+(820, 629, 12, 788, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(821, 629, 16, 788, 0, 1, 'katalysator', 2, 0, 0, 0, 0, 0, 0),
+(822, 629, 10, 788, 0, 1, 'kruemmer', 2, 0, 0, 0, 0, 0, 0),
+(823, 629, 8, 788, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(824, 629, 18, 788, 0, 1, 'doppelkupplung', 5, 0, 0, 0, 0, 0, 0),
+(825, 637, 1, 806, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(826, 637, 10, 806, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(827, 637, 6, 806, 0, 1, 'gelochte', 5, 0, 0, 0, 0, 0, 0),
+(828, 133, 15, 199, 0, 1, 'turbocharger', 30, 0, 0, 0, 0, 0, 0),
+(829, 638, 12, 793, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(830, 638, 1, 793, 0, 1, 'nockenwelle', 5, 0, 0, 0, 0, 0, 0),
+(831, 271, 15, 344, 0, 1, 'turbocharger', 28, 0, 0, 0, 0, 0, 0),
+(832, 637, 4, 806, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(833, 638, 4, 793, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(834, 638, 10, 793, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(835, 638, 16, 793, 0, 1, 'katalysator', 1, 0, 0, 0, 0, 0, 0),
+(836, 638, 6, 793, 0, 1, 'gelochte', 13, 0, 0, 0, 0, 0, 0),
+(837, 637, 12, 806, 0, 1, 'kolben', 4, 0, 0, 0, 0, 0, 0),
+(838, 643, 49, 0, 0, 2, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(839, 287, 1, 360, 0, 1, 'nockenwelle', 4, 0, 0, 0, 0, 0, 0),
+(840, 287, 8, 799, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(841, 287, 6, 799, 0, 1, 'gelochte', 6, 0, 0, 0, 0, 0, 0),
+(842, 287, 4, 799, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(843, 643, 1, 0, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(844, 643, 16, 0, 0, 1, 'katalysator', 1, 0, 0, 0, 0, 0, 0),
+(845, 643, 6, 0, 0, 1, 'gelochte', 7, 0, 0, 0, 0, 0, 0),
+(846, 646, 1, 804, 0, 1, 'nockenwelle', 8, 0, 0, 0, 0, 0, 0),
+(847, 637, 15, 806, 0, 1, 'turbocharger', 27, 0, 0, 0, 0, 0, 0),
+(848, 643, 18, 0, 0, 1, 'doppelkupplung', 5, 0, 0, 0, 0, 0, 0),
+(849, 646, 12, 804, 0, 1, 'kolben', 5, 0, 0, 0, 0, 0, 0),
+(850, 287, 12, 799, 0, 1, 'kolben', 5, 0, 0, 0, 0, 0, 0),
+(851, 646, 8, 804, 0, 1, 'getriebe', 9, 0, 0, 0, 0, 0, 0),
+(852, 287, 10, 799, 0, 1, 'kruemmer', 2, 0, 0, 0, 0, 0, 0),
+(853, 287, 16, 799, 0, 1, 'katalysator', 1, 0, 0, 0, 0, 0, 0),
+(854, 637, 8, 806, 0, 1, 'getriebe', 13, 0, 0, 0, 0, 0, 0),
+(855, 389, 15, 756, 0, 1, 'turbocharger', 28, 0, 0, 0, 0, 0, 0),
+(856, 646, 15, 804, 0, 1, 'turbocharger', 28, 0, 0, 0, 0, 0, 0),
+(857, 637, 18, 806, 0, 1, 'doppelkupplung', 6, 0, 0, 0, 0, 0, 0),
+(858, 646, 6, 804, 0, 1, 'gelochte', 7, 0, 0, 0, 0, 0, 0),
+(859, 646, 4, 804, 0, 1, 'sportesd', 2, 0, 0, 0, 0, 0, 0),
+(860, 637, 16, 806, 0, 1, 'katalysator', 1, 0, 0, 0, 0, 0, 0),
+(861, 654, 1, 815, 0, 1, 'nockenwelle', 9, 0, 0, 0, 0, 0, 0),
+(862, 166, 18, 233, 0, 1, 'doppelkupplung', 9, 0, 0, 0, 0, 0, 0),
+(863, 166, 16, 233, 0, 1, 'katalysator', 1, 0, 0, 0, 0, 0, 0),
+(864, 389, 15, 757, 0, 1, 'turbocharger', 28, 0, 0, 0, 0, 0, 0),
+(865, 197, 34, 720, 0, 2, 'gelochte', 8, 0, 0, 0, 0, 0, 0),
+(866, 659, 15, 822, 0, 1, 'turbocharger', 43, 0, 0, 0, 0, 0, 0),
+(867, 438, 8, 821, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(868, 438, 18, 821, 0, 1, 'doppelkupplung', 5, 0, 0, 0, 0, 0, 0),
+(869, 438, 6, 821, 0, 1, 'gelochte', 8, 0, 0, 0, 0, 0, 0),
+(870, 438, 16, 821, 0, 1, 'katalysator', 1, 0, 0, 0, 0, 0, 0),
+(871, 438, 10, 821, 0, 1, 'kruemmer', 3, 0, 0, 0, 0, 0, 0),
+(872, 438, 4, 821, 0, 1, 'sportesd', 4, 0, 0, 0, 0, 0, 0),
+(874, 664, 1, 829, 0, 1, 'nockenwelle', 7, 0, 0, 0, 0, 0, 0),
+(875, 665, 1, 830, 0, 1, 'nockenwelle', 5, 0, 0, 0, 0, 0, 0),
+(876, 665, 12, 830, 0, 1, 'kolben', 6, 0, 0, 0, 0, 0, 0),
+(877, 667, 1, 833, 0, 1, 'nockenwelle', 6, 0, 0, 0, 0, 0, 0),
+(878, 667, 8, 833, 0, 1, 'getriebe', 7, 0, 0, 0, 0, 0, 0),
+(879, 667, 6, 833, 0, 1, 'gelochte', 7, 0, 0, 0, 0, 0, 0),
+(880, 666, 4, 831, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(881, 666, 6, 831, 0, 1, 'gelochte', 11, 0, 0, 0, 0, 0, 0),
+(882, 666, 15, 831, 0, 1, 'turbocharger', 28, 0, 0, 0, 0, 0, 0),
+(883, 369, 1, 687, 0, 1, 'nockenwelle', 4, 0, 0, 0, 0, 0, 0),
+(884, 666, 8, 831, 0, 1, 'getriebe', 7, 0, 0, 0, 0, 0, 0),
+(885, 665, 8, 830, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(886, 477, 15, 608, 0, 1, 'turbocharger', 32, 0, 0, 0, 0, 0, 0),
+(887, 477, 1, 608, 0, 1, 'nockenwelle', 2, 0, 0, 0, 0, 0, 0),
+(888, 477, 12, 608, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(889, 665, 18, 830, 0, 1, 'doppelkupplung', 9, 0, 0, 0, 0, 0, 0),
+(890, 659, 1, 822, 0, 1, 'nockenwelle', 2, 0, 0, 0, 0, 0, 0),
+(891, 659, 16, 0, 0, 1, 'katalysator', 1, 0, 0, 0, 0, 0, 0),
+(892, 432, 1, 515, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(893, 477, 8, 0, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(894, 673, 1, 840, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(895, 432, 12, 515, 0, 1, 'kolben', 5, 0, 0, 0, 0, 0, 0),
+(897, 432, 4, 0, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(898, 665, 4, 830, 0, 1, 'sportesd', 2, 0, 0, 0, 0, 0, 0),
+(899, 665, 10, 830, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(900, 665, 16, 830, 0, 1, 'katalysator', 1, 0, 0, 0, 0, 0, 0),
+(901, 665, 6, 830, 0, 1, 'gelochte', 7, 0, 0, 0, 0, 0, 0),
+(902, 674, 1, 841, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(903, 674, 4, 841, 0, 1, 'sportesd', 4, 0, 0, 0, 0, 0, 0),
+(904, 674, 8, 841, 0, 1, 'getriebe', 8, 0, 0, 0, 0, 0, 0),
+(905, 678, 1, 845, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(906, 197, 1, 0, 0, 1, 'nockenwelle', 7, 0, 0, 0, 0, 0, 0),
+(907, 679, 1, 0, 0, 1, 'nockenwelle', 7, 0, 0, 0, 0, 0, 0),
+(908, 679, 6, 847, 0, 1, 'gelochte', 9, 0, 0, 0, 0, 0, 0),
+(909, 679, 6, 0, 0, 1, 'gelochte', 7, 0, 0, 0, 0, 0, 0),
+(910, 678, 15, 845, 0, 1, 'turbocharger', 23, 0, 0, 0, 0, 0, 0),
+(911, 678, 12, 845, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(912, 678, 8, 845, 0, 1, 'getriebe', 9, 0, 0, 0, 0, 0, 0),
+(913, 677, 12, 844, 0, 1, 'kolben', 3, 0, 0, 0, 0, 0, 0),
+(914, 677, 1, 844, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(915, 677, 16, 844, 0, 1, 'katalysator', 1, 0, 0, 0, 0, 0, 0),
+(916, 677, 10, 844, 0, 1, 'kruemmer', 1, 0, 0, 0, 0, 0, 0),
+(917, 677, 4, 844, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(918, 683, 1, 0, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(919, 677, 4, 0, 0, 1, 'sportesd', 1, 0, 0, 0, 0, 0, 0),
+(920, 665, 15, 830, 0, 1, 'turbocharger', 42, 0, 0, 0, 0, 0, 0),
+(921, 505, 15, 671, 0, 1, 'turbocharger', 28, 0, 0, 0, 0, 0, 0),
+(922, 505, 15, 612, 0, 1, 'turbocharger', 26, 0, 0, 0, 0, 0, 0),
+(929, 709, 1, 0, 0, 1, 'nockenwelle', 7, 0, 0, 0, 0, 0, 0),
+(930, 709, 12, 0, 0, 1, 'kolben', 4, 0, 0, 0, 0, 0, 0),
+(931, 709, 1, 0, 0, 1, 'nockenwelle', 3, 0, 0, 0, 0, 0, 0),
+(936, 1, 33, 0, 0, 8, 'doppelkupplung', 0, 1000, 1538831024, 381, 359, 385, 382),
+(938, 1, 1, 0, 0, 1, 'nockenwelle', 0, 1434, 1554740055, 6, 6, 0, 37),
+(939, 1, 12, 866, 0, 1, 'kolben', 0, 0, 0, 22, 23, 0, 82),
+(940, 1, 27, 900, 0, 8, 'nockenwelle', 0, 0, 0, 230, 230, 0, 382),
+(941, 711, 1, 0, 0, 1, 'nockenwelle', 0, 0, 0, 6, 6, 0, 37),
+(942, 1, 1, 895, 0, 1, 'nockenwelle', 0, 0, 0, 7, 6, 0, 37),
+(943, 1, 6, 895, 0, 1, 'gelochte', 0, 0, 0, 0, 0, 44, 42),
+(944, 721, 24, 0, 0, 5, 'nockenwelle', 0, 0, 0, 139, 114, 0, 219),
+(945, 721, 12, 0, 0, 1, 'kolben', 0, 0, 0, 22, 23, 0, 80),
+(946, 1, 12, 0, 0, 1, 'kolben', 0, 145, 1539937336, 22, 22, 0, 77),
+(947, 721, 1, 0, 0, 1, 'nockenwelle', 0, 0, 0, 5, 5, 0, 37),
+(948, 711, 6, 0, 0, 1, 'gelochte', 0, 0, 0, 0, 0, 37, 38),
+(949, 711, 12, 0, 0, 1, 'kolben', 0, 0, 0, 22, 20, 0, 75),
+(950, 711, 1, 0, 0, 1, 'nockenwelle', 0, 0, 0, 6, 9, 0, 43);
+INSERT INTO `storage` (`id`, `user_id`, `part_id`, `garage_id`, `new`, `tier`, `part`, `value`, `sell`, `sell_date`, `acc`, `speed`, `hand`, `dura`) VALUES
+(951, 1, 6, 0, 0, 1, 'gelochte', 0, 0, 0, 0, 0, 37, 37),
+(952, 1, 1, 0, 0, 1, 'nockenwelle', 0, 0, 0, 5, 6, 0, 46),
+(953, 1, 1, 0, 0, 1, 'nockenwelle', 0, 0, 0, 6, 7, 0, 37),
+(954, 1, 1, 866, 0, 1, 'nockenwelle', 0, 0, 0, 7, 6, 0, 38),
+(955, 1, 1, 0, 0, 1, 'nockenwelle', 0, 0, 0, 6, 6, 0, 37),
+(956, 1, 1, 0, 0, 1, 'nockenwelle', 0, 0, 0, 6, 6, 0, 39),
+(957, 1, 1, 0, 0, 1, 'nockenwelle', 0, 0, 0, 6, 5, 0, 31),
+(958, 1, 26, 0, 0, 7, 'nockenwelle', 0, 0, 0, 142, 163, 0, 318),
+(959, 1, 21, 0, 0, 2, 'nockenwelle', 0, 0, 0, 31, 31, 0, 65),
+(960, 1, 62, 0, 0, 8, 'sportesd', 0, 100, 1540284226, 262, 249, 0, 324),
+(961, 1, 27, 0, 0, 8, 'nockenwelle', 0, 4432, 1554740149, 215, 282, 0, 384),
+(962, 1, 8, 0, 0, 1, 'getriebe', 0, 0, 0, 30, 31, 0, 64),
+(963, 1, 1, 0, 0, 1, 'nockenwelle', 0, 0, 0, 6, 5, 0, 35),
+(964, 1, 1, 0, 0, 1, 'nockenwelle', 0, 0, 0, 5, 5, 0, 31),
+(965, 1, 27, 0, 0, 8, 'nockenwelle', 0, 0, 0, 194, 181, 0, 375),
+(966, 1, 26, 0, 0, 7, 'nockenwelle', 0, 0, 0, 136, 192, 0, 245),
+(967, 724, 1, 0, 0, 1, 'nockenwelle', 0, 0, 0, 8, 5, 0, 41),
+(968, 724, 1, 0, 1, 1, 'nockenwelle', 0, 0, 0, 5, 5, 0, 32),
+(969, 1, 1, 0, 0, 1, 'nockenwelle', 0, 0, 0, 8, 6, 0, 31);
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `storage_run`
+--
 
 CREATE TABLE `storage_run` (
   `id` int(11) NOT NULL,
@@ -6784,23 +6867,83 @@ CREATE TABLE `storage_run` (
   `dur` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Daten für Tabelle `storage_run`
+--
+
+INSERT INTO `storage_run` (`id`, `user_id`, `part_id`, `time_end`, `dur`) VALUES
+(3, 1, 27, 1554742534, 2550);
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `sys_log`
+--
+
+CREATE TABLE `sys_log` (
+  `id` int(11) NOT NULL,
+  `to_id` int(11) NOT NULL,
+  `message_code` tinytext NOT NULL,
+  `properties` text NOT NULL,
+  `date` int(11) NOT NULL,
+  `open` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Daten für Tabelle `sys_log`
+--
+
+INSERT INTO `sys_log` (`id`, `to_id`, `message_code`, `properties`, `date`, `open`) VALUES
+(1, 723, 'welcome', '{\"type\":\"welcome\"}', 1540641530, 1),
+(2, 723, 'race_done', '{\"league\":\"beginner\",\"type\":\"race\",\"position\":4,\"reward\":59,\"exp\":41.3}', 1540641573, 1),
+(3, 1, 'welcome', '{\"type\":\"welcome\"}', 1540642372, 1),
+(4, 1, 'race_done', '{\"league\":\"beginner\",\"type\":\"race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1540642989, 1),
+(5, 1, 'new_level', '{\"liga\":11}', 1540888512, 1),
+(6, 724, 'welcome', '{\"type\":\"welcome\"}', 1554131370, 1),
+(7, 724, 'race_done', '{\"league\":\"beginner\",\"type\":\"race\",\"position\":4,\"reward\":59,\"exp\":41.3}', 1554540358, 1),
+(8, 724, 'race_done', '{\"league\":\"beginner\",\"type\":\"race\",\"position\":4,\"reward\":59,\"exp\":41.3}', 1554552754, 1),
+(9, 724, 'tut_done', '{\"type\":\"tut_done\"}', 1554553898, 1),
+(10, 724, 'race_done', '{\"league\":\"beginner\",\"type\":\"race\",\"position\":3,\"reward\":72,\"exp\":50.4}', 1554554004, 1),
+(11, 724, 'new_level', '{\"liga\":2}', 1554554015, 1),
+(12, 1, 'tut_done', '{\"type\":\"tut_done\"}', 1554557081, 1),
+(13, 1, 'race_done', '{\"league\":\"eli\",\"type\":\"drag\",\"position\":9,\"reward\":761.4,\"exp\":54}', 1554739952, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `upgrades`
+--
+
 CREATE TABLE `upgrades` (
   `id` int(11) NOT NULL,
   `name` tinytext NOT NULL,
-  `unit` tinytext NOT NULL,
   `effect` float NOT NULL,
   `max` int(11) NOT NULL,
   `points` int(11) NOT NULL,
   `chain` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `upgrades` (`id`, `name`, `unit`, `effect`, `max`, `points`, `chain`) VALUES
-(1, 'garage_space', 'cars', 1, 5, 1, 10),
-(2, 'garage_space_2', 'cars', 2, 5, 2, 10),
-(3, 'mechanics', 'per', 1, 5, 1, 20),
-(4, 'mechanics_2', 'per', 2, 5, 2, 20),
-(5, 'mechanics_3', 'per', 4, 5, 3, 20),
-(6, 'mechanics_4', 'per', 10, 5, 6, 20);
+--
+-- Daten für Tabelle `upgrades`
+--
+
+INSERT INTO `upgrades` (`id`, `name`, `effect`, `max`, `points`, `chain`) VALUES
+(1, 'garage_space', 1, 5, 1, 10),
+(2, 'garage_space_2', 2, 5, 2, 10),
+(3, 'mechanics', 1, 5, 1, 20),
+(4, 'mechanics_2', 2, 5, 2, 20),
+(5, 'mechanics_3', 4, 5, 3, 20),
+(6, 'mechanics_4', 10, 5, 6, 20),
+(7, 'sprit_max', 25, 5, 1, 30),
+(8, 'sprit_max_2', 50, 3, 1, 30),
+(9, 'sprit_max_3', 130, 3, 2, 30),
+(10, 'sprit_max_4', 250, 10, 3, 30);
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `upgrades_tree`
+--
 
 CREATE TABLE `upgrades_tree` (
   `id` int(11) NOT NULL,
@@ -6809,11 +6952,44 @@ CREATE TABLE `upgrades_tree` (
   `needed` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Daten für Tabelle `upgrades_tree`
+--
+
 INSERT INTO `upgrades_tree` (`id`, `up_id`, `pre_id`, `needed`) VALUES
 (1, 2, 1, 5),
 (2, 4, 3, 5),
 (3, 5, 4, 5),
-(4, 6, 5, 5);
+(4, 6, 5, 5),
+(5, 9, 8, 2),
+(6, 8, 7, 3),
+(7, 10, 9, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `upgrades_units`
+--
+
+CREATE TABLE `upgrades_units` (
+  `chain` smallint(6) NOT NULL,
+  `unit` tinytext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Daten für Tabelle `upgrades_units`
+--
+
+INSERT INTO `upgrades_units` (`chain`, `unit`) VALUES
+(10, 'cars'),
+(20, 'per'),
+(30, 'lit');
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `upgrades_user`
+--
 
 CREATE TABLE `upgrades_user` (
   `id` int(11) NOT NULL,
@@ -6821,6 +6997,10 @@ CREATE TABLE `upgrades_user` (
   `up_id` int(11) NOT NULL,
   `ups` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Daten für Tabelle `upgrades_user`
+--
 
 INSERT INTO `upgrades_user` (`id`, `user_id`, `up_id`, `ups`) VALUES
 (1, 1, 1, 5),
@@ -6833,7 +7013,21 @@ INSERT INTO `upgrades_user` (`id`, `user_id`, `up_id`, `ups`) VALUES
 (21, 699, 1, 5),
 (22, 1, 6, 5),
 (27, 709, 1, 4),
-(28, 709, 3, 5);
+(28, 709, 3, 5),
+(29, 1, 7, 3),
+(32, 1, 8, 2),
+(33, 1, 9, 1),
+(34, 724, 3, 5),
+(39, 724, 4, 2),
+(41, 724, 7, 5),
+(46, 724, 8, 3),
+(49, 724, 9, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `user`
+--
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
@@ -6848,8 +7042,12 @@ CREATE TABLE `user` (
   `token_date` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Daten für Tabelle `user`
+--
+
 INSERT INTO `user` (`id`, `username`, `pass`, `email`, `regdate`, `activeTime`, `ads`, `lang`, `token`, `token_date`) VALUES
-(1, 'admin', '3cbabe7cfb4f29bc2816a7f8103b6889', 'mwernersbach@web.de', 1441866181, 1488266385, 0, 'de', '', 0),
+(1, 'admin', '3cbabe7cfb4f29bc2816a7f8103b6889', 'mwernersbach@web.de', 1441866181, 1554741126, 0, 'de', '', 0),
 (6, 'Testuser', '3cbabe7cfb4f29bc2816a7f8103b6889', 'mwernersbach@hotmail.de', 1474289215, 1474465669, 0, 'de', '', 0),
 (7, 'zorny', '67a2cb77f1d829b0add64bca764a895b', '', 1474290284, 0, 0, 'en', '', 0),
 (8, 'RCJax', '1984fe2c85b13f331105a4e528142954', '', 1474290445, 0, 0, 'en', '', 0),
@@ -7555,120 +7753,341 @@ INSERT INTO `user` (`id`, `username`, `pass`, `email`, `regdate`, `activeTime`, 
 (707, 'markuss', '07e20aa16e4df302afe906c2f8be6015', '', 1481284872, 1481284885, 0, 'de', '', 0),
 (708, 'markusa', '07e20aa16e4df302afe906c2f8be6015', '', 1481284894, 1481286748, 0, 'de', '', 0),
 (709, 'testm', '07e20aa16e4df302afe906c2f8be6015', '', 1485246347, 1485254049, 0, 'de', '', 0),
-(710, 'guest:0kllz', '84fa48be694fe5e3831d7ed17911b7cc', '', 1485247095, 1485247197, 0, 'de', '', 0);
+(710, 'guest:0kllz', '84fa48be694fe5e3831d7ed17911b7cc', '', 1485247095, 1485247197, 0, 'de', '', 0),
+(711, 'schlingel', 'b92087d3ac55404c2cf91875f6d7cd65', '', 1539069150, 1539358475, 0, 'de', '', 0),
+(719, 'guest:o0so2', 'cbfd336b1c711e2579061b3c5d967c8d', '', 1539284989, 1539285077, 0, 'de', '', 0),
+(720, 'guest:ys52j', '57cfc735faf692af70cd3d0f63987516', '', 1539285080, 1539285082, 0, 'de', '', 0),
+(721, 'guest:vgh72', 'c8438edf0ac657650b6a4d57e08d8143', '', 1539800838, 1539802495, 0, 'de', '', 0),
+(722, 'guest:5777n', 'b601f678db3d078c0ac81b8a2ea1e77c', '', 1539803257, 1539803401, 0, 'de', '', 0),
+(723, 'guest:g1rao', 'c0594d0ca5d6a88c5ccfb6d98cfe56f5', '', 1540411911, 1540642367, 0, 'de', '', 0),
+(724, 'guest:q6xdj', '6f8eb915d3051fefdce4db09a68f3d74', '', 1554131370, 1554555668, 0, 'en', '', 0);
 
+-- --------------------------------------------------------
 
+--
+-- Tabellenstruktur für Tabelle `user_tut`
+--
+
+CREATE TABLE `user_tut` (
+  `user_id` int(11) NOT NULL,
+  `tut_state` tinytext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Daten für Tabelle `user_tut`
+--
+
+INSERT INTO `user_tut` (`user_id`, `tut_state`) VALUES
+(1, 'TUT_STATE_END'),
+(724, 'TUT_STATE_END');
+
+--
+-- Indizes der exportierten Tabellen
+--
+
+--
+-- Indizes für die Tabelle `bonus`
+--
 ALTER TABLE `bonus`
   ADD PRIMARY KEY (`user_id`);
 
+--
+-- Indizes für die Tabelle `bugs`
+--
 ALTER TABLE `bugs`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indizes für die Tabelle `chat_msg`
+--
 ALTER TABLE `chat_msg`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indizes für die Tabelle `fahrer`
+--
 ALTER TABLE `fahrer`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indizes für die Tabelle `faxes`
+--
 ALTER TABLE `faxes`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indizes für die Tabelle `garage`
+--
 ALTER TABLE `garage`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indizes für die Tabelle `items`
+--
+ALTER TABLE `items`
+  ADD UNIQUE KEY `unique_index` (`user_id`,`item_id`);
+
+--
+-- Indizes für die Tabelle `loggedin`
+--
 ALTER TABLE `loggedin`
   ADD PRIMARY KEY (`user_id`);
 
+--
+-- Indizes für die Tabelle `new_cars`
+--
 ALTER TABLE `new_cars`
   ADD UNIQUE KEY `id_2` (`id`),
   ADD KEY `id` (`id`);
 
+--
+-- Indizes für die Tabelle `parts`
+--
 ALTER TABLE `parts`
   ADD UNIQUE KEY `id` (`id`);
 
+--
+-- Indizes für die Tabelle `quests_user`
+--
 ALTER TABLE `quests_user`
   ADD UNIQUE KEY `unique_index` (`user_id`,`quest`);
 
+--
+-- Indizes für die Tabelle `races`
+--
 ALTER TABLE `races`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indizes für die Tabelle `races_lvls-old`
+--
+ALTER TABLE `races_lvls-old`
+  ADD PRIMARY KEY (`league`);
+
+--
+-- Indizes für die Tabelle `races_run`
+--
 ALTER TABLE `races_run`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indizes für die Tabelle `sprit`
+--
 ALTER TABLE `sprit`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indizes für die Tabelle `sprit_market`
+--
 ALTER TABLE `sprit_market`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `sprit_unique` (`user_id`,`price`);
 
+--
+-- Indizes für die Tabelle `sprit_upt`
+--
 ALTER TABLE `sprit_upt`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `user_id` (`user_id`);
 
+--
+-- Indizes für die Tabelle `sprit_usr`
+--
 ALTER TABLE `sprit_usr`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indizes für die Tabelle `stats`
+--
 ALTER TABLE `stats`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indizes für die Tabelle `stats_racing`
+--
+ALTER TABLE `stats_racing`
+  ADD PRIMARY KEY (`user_id`);
+
+--
+-- Indizes für die Tabelle `storage`
+--
 ALTER TABLE `storage`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indizes für die Tabelle `storage_run`
+--
 ALTER TABLE `storage_run`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indizes für die Tabelle `sys_log`
+--
+ALTER TABLE `sys_log`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indizes für die Tabelle `upgrades`
+--
 ALTER TABLE `upgrades`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indizes für die Tabelle `upgrades_tree`
+--
 ALTER TABLE `upgrades_tree`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indizes für die Tabelle `upgrades_units`
+--
+ALTER TABLE `upgrades_units`
+  ADD PRIMARY KEY (`chain`);
+
+--
+-- Indizes für die Tabelle `upgrades_user`
+--
 ALTER TABLE `upgrades_user`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `unique_index` (`user_id`,`up_id`);
 
+--
+-- Indizes für die Tabelle `user`
+--
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indizes für die Tabelle `user_tut`
+--
+ALTER TABLE `user_tut`
+  ADD PRIMARY KEY (`user_id`);
 
+--
+-- AUTO_INCREMENT für exportierte Tabellen
+--
+
+--
+-- AUTO_INCREMENT für Tabelle `bugs`
+--
 ALTER TABLE `bugs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT für Tabelle `chat_msg`
+--
 ALTER TABLE `chat_msg`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
+-- AUTO_INCREMENT für Tabelle `fahrer`
+--
 ALTER TABLE `fahrer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=531;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=550;
+
+--
+-- AUTO_INCREMENT für Tabelle `faxes`
+--
 ALTER TABLE `faxes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3133;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3162;
+
+--
+-- AUTO_INCREMENT für Tabelle `garage`
+--
 ALTER TABLE `garage`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=893;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=916;
+
+--
+-- AUTO_INCREMENT für Tabelle `new_cars`
+--
 ALTER TABLE `new_cars`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+
+--
+-- AUTO_INCREMENT für Tabelle `parts`
+--
 ALTER TABLE `parts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+
+--
+-- AUTO_INCREMENT für Tabelle `races`
+--
 ALTER TABLE `races`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
+--
+-- AUTO_INCREMENT für Tabelle `races_run`
+--
 ALTER TABLE `races_run`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2684;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT für Tabelle `sprit`
+--
 ALTER TABLE `sprit`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT für Tabelle `sprit_market`
+--
 ALTER TABLE `sprit_market`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT für Tabelle `sprit_upt`
+--
 ALTER TABLE `sprit_upt`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=711;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=725;
+
+--
+-- AUTO_INCREMENT für Tabelle `sprit_usr`
+--
 ALTER TABLE `sprit_usr`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=388;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=390;
+
+--
+-- AUTO_INCREMENT für Tabelle `storage`
+--
 ALTER TABLE `storage`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=934;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=970;
+
+--
+-- AUTO_INCREMENT für Tabelle `storage_run`
+--
 ALTER TABLE `storage_run`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT für Tabelle `sys_log`
+--
+ALTER TABLE `sys_log`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT für Tabelle `upgrades`
+--
 ALTER TABLE `upgrades`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT für Tabelle `upgrades_tree`
+--
 ALTER TABLE `upgrades_tree`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT für Tabelle `upgrades_user`
+--
 ALTER TABLE `upgrades_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+
+--
+-- AUTO_INCREMENT für Tabelle `user`
+--
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=711;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=725;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

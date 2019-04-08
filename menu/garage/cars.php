@@ -43,7 +43,7 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
     $output .= "
             <div id='cartuning'>
                 <div class='carTuningTitle'>" . $car["title"] . "
-                    ".levelImg($car["liga"], true)."
+                    ".levelImg($car["tier"], true)."
                          
                 </div>
                 <div class='carTuningInfo'>Nice car.</div>
@@ -79,7 +79,7 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
                 $speed = $mountedParts[$part]["speed"];
                 $hand = $mountedParts[$part]["hand"];
                 $dura = $mountedParts[$part]["dura"];
-                $selectGenerated .= "<option value='none'>" . outputDetails($acc, $speed, $hand, $dura) . " (" . $mountedParts[$part]["liga"] . ") **</option>";
+                $selectGenerated .= "<option value='none'>" . outputDetails($acc, $speed, $hand, $dura) . " (" . $mountedParts[$part]["tier"] . ") **</option>";
                 $partsAvail = true;
             }
             //Standardausrüstung
@@ -89,7 +89,7 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
             if ($storage) {
                 //var_dump($storage);
                 foreach ($storage as $item) {
-                    if ($item["part"] == $part && $item["liga"] == $car["liga"] && $item["garage_id"] == 0) {
+                    if ($item["part"] == $part && $item["tier"] == $car["tier"] && $item["garage_id"] == 0) {
                         $attr = outputItemAttributes($item);
                         $part_rarity = $attr["part_rarity"];
                         
@@ -98,7 +98,7 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
                         $speed = $item["speed"];
                         $hand = $item["hand"];
                         $dura = $item["dura"];
-                        $selectGenerated .= "<option style='color:" . $part_rarity["color"] . "' value='" . $item["id"] . "'>" . outputDetails($acc, $speed, $hand, $dura) . " (" . $item["liga"] . ")</option>";
+                        $selectGenerated .= "<option style='color:" . $part_rarity["color"] . "' value='" . $item["id"] . "'>" . outputDetails($acc, $speed, $hand, $dura) . " (" . $item["tier"] . ")</option>";
                     }
                 }
             }
@@ -158,7 +158,7 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
 
     if ($cars)
         foreach ($cars as $car) {//$car["title"]
-            $carLiga = $car["carLiga"];
+            $carTier = $car["carTier"];
             $acc = calcAcc($car["garage_id"]); // [car => 10, parts => 80]
             $speed = calcSpeed($car["garage_id"]);
             $hand = calcHand($car["garage_id"]);
@@ -176,7 +176,7 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
                     <div class='infoFlex'>
                         <div class='dealTitle'>
                             " . $car["title"] . "
-                                <div class='driverLiga'>".levelImg($carLiga)."
+                                <div class='driverLiga'>".levelImg($carTier)."
                                     </div>
                         </div>
 
@@ -189,7 +189,7 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
 
                     </div>
 
-                    <!--<div class='dealLiga'><img src='img/liga/" . $carLiga . ".png' alt='Level " . $carLiga . "' title='Level " . $carLiga . "' /></div>-->
+                    <!--<div class='dealLiga'><img src='img/liga/" . $carTier . ".png' alt='Tier " . $carTier . "' title='Tier " . $carTier . "' /></div>-->
 
                     <div class='dealBuy'>
                         

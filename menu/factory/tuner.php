@@ -4,10 +4,10 @@
 $output = outputTut("tn_info", $l);
 $output .= "<div id='tuner'>";
 
-function buildNewPart($part, $liga) {
+function buildNewPart($part, $tier) {
     $money = getPlayerMoney();
     $isStillRunning = isPartRunning()[0];
-    $data = queryPartData($part, $liga);
+    $data = queryPartData($part, $tier);
     $price = $data["preis"];
     $part_id = $data["id"];
     $dur = getTuningDur($data["duration"]);
@@ -50,9 +50,9 @@ function showTunerKats($activeKat) {
 //Tuningteil bauen
 if (isset($post['send'])) { //Abgeschicktes Formular
     $part = $post["part"];
-    $liga = $post["liga"];
+    $tier = $post["liga"];
 
-    $build = buildNewPart($part, $liga);
+    $build = buildNewPart($part, $tier);
 
     if($build == "part_built")
         $tutorial->tickOff("TUT_STATE_PARTS");
@@ -94,10 +94,11 @@ foreach ($partNames as $part) {
     $hide_flag = true;
     //Die Ligen des Teiles durchgehen
     foreach ($partsData as $key => $data) {
-        $liga = $data["liga"];
+        $tier = $data["tier"];
+        /*
         if ($liga > getPlayerLiga())
             continue;
-
+            */
         $hide_flag = false;
 
         if ($data["part"] === $part) {
@@ -123,8 +124,8 @@ foreach ($partNames as $part) {
             }
 
             $labels = "<label>
-                        <input onclick='setTuneData(\"$part\", \"$preis\", \"$dur\", \"$acc\", \"$speed\", \"$hand\", \"$dura\");' class='tuneLigas' type='radio' name='liga' value='" . $liga . "' $checked>
-                        " . levelImg($data["liga"]) . "
+                        <input onclick='setTuneData(\"$part\", \"$preis\", \"$dur\", \"$acc\", \"$speed\", \"$hand\", \"$dura\");' class='tuneLigas' type='radio' name='liga' value='" . $tier . "' $checked>
+                        " . levelImg($data["tier"]) . "
                     </label> " . $labels;
         }
     } //foreach ende

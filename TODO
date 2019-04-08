@@ -11,6 +11,23 @@
 * hinweise nur einschalten bei tut ende?
 * mobiles design anpassen
 
+* LEVEL/LIGA PROBLEM: *
+
+Tier System: 10 Tiers, (erstmal 8)
+* Fahrer haben Tier, races vorraussetzungen
+* Berechnung des SELECT OUTPUTS nicht in foreach sondern anders, da league ^= tier
+* Fahrer haben Tier und level! -> besser erfahrung natürlich wichtig
+* texte umschreiben
+
+* Tier Logo (römische zahlen?)
+
+
+Spieler hat Level, spiegelt aber nur manche sachen wieder
+Für Rennen braucht man nur entsprechendes Auto und Fahrer
+
+-> Je höher das level, desto hher ein bonus oder so.
+
+
 */
 
 

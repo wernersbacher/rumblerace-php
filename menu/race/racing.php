@@ -19,14 +19,14 @@ function showLigaList() {
     $ret = "<div class='ligaList'>";
     foreach ($leagues as $race_league) {
         $name = $race_league["league"];
-        $level = $race_league["level"];
+        $tier = $race_league["tier"];
         $href = "href='?page=race&sub=racing&league=$name'";
 
         if ($name == $leagueOpen)
             $active = "active";
         else
             $active = "";
-        if ($level > $maxLevel) {
+        if ($tier > $maxLevel) {
             $href = "";
             $locked = "race_locked";
         } else
@@ -38,7 +38,7 @@ function showLigaList() {
                 
                     
                         <span class='absTitle'>" . put($name, $l) . "</span>
-                            <span>" . formatLevelColor($level) . "</span>
+                            <span>" . formatLevelColor($tier) . "</span>
                 </div></a>";
     }
     $ret .= "</div>";
@@ -50,27 +50,24 @@ $cars = queryPlayerCars();
 $drivers = queryDrivers();
 
 //Autoliste generieren
-function returnCarSelect() {
+function returnCarSelect($tier) {
     global $cars;
-    $liga = getPlayerLiga();
+    //$liga = getPlayerLiga();
     //global $l;
     $carselect = "";
     if ($cars)
         foreach ($cars as $car) {
-            console($car);
-            $carLiga = $car["carLiga"];
+            $carTier = $car["carTier"];
+            //Nur geeignete Fahrzeuge ausgeben
+            if ($tier < $carTier)
+                continue;
             $car_id = $car["garage_id"];
-//        $acc = $car["acc"];
-//        $speed = $car["speed"] + calcCarAttribute("speed");
-//        $hand = $car["hand"];
-//        $dura = $car["dura"];
             $name = $car["title"];
 
             $carValueList = outputCarPartsSumList($car_id);
 
-            if ($carLiga <= $liga && queryCarIsNotRacing($car_id))
+            if (queryCarIsNotRacing($car_id))
                 $carselect .= "<option value='$car_id'>$name ($carValueList)</option>";
-            
         }
     return $carselect;
 }
@@ -114,7 +111,7 @@ if (isset($post['send'])) { //Abgeschicktes Formular
     $driver_id = $post["driver_id"];
 
     $race = raceNew($race_id, $car_id, $driver_id);
-    if($race == "race_started")
+    if ($race == "race_started")
         $tutorial->tickOff("TUT_STATE_SPRIT");
 
     $info_out .= "<span class='dealInfoText $race'>";
@@ -122,15 +119,12 @@ if (isset($post['send'])) { //Abgeschicktes Formular
     $info_out .= "</span>";
 }
 
-$carSelect = returnCarSelect();
+//$carSelect = returnCarSelect($leagueOpen);
 $driverSelect = returnDriverSelect();
 
 $disabled = "";
 
-if (strlen($carSelect) < 1) {
-    $disabled = "disabled";
-    $carSelect = "<option>------</option>";
-}
+
 if (strlen($driverSelect) < 1) {
     $disabled = "disabled";
     $driverSelect = "<option>------</option>";
@@ -143,19 +137,26 @@ if ($races)
     foreach ($races as $race) {
         //level needed
         $level = $race["level"];
+        $tier = $race["tier"];
         $league = $race["league"];
         $type = $race["type"];
 
+        $carSelect = returnCarSelect($tier);
+        if (strlen($carSelect) < 1) {
+            $disabled = "disabled";
+            $carSelect = "<option>------</option>";
+        }
 
         //Sperre berechnen
         $canRace = queryUserCanRace($race["id"], getPlayerExp(), getPlayerSprit());
         $locked = "flex";
         $whyBlock = "";
-
-        if ($canRace === "exp") {
-            $exp_needed = levelExp($liga) * $race["exp_needed"] * getLigaQuot();
-            $whyBlock = "only " . ep($exp_needed - getPlayerExp()) . " left";
-        } else if ($canRace === "sprit") {
+        /* //ONLY FOR EXP REQ
+          if ($canRace === "exp") {
+          $exp_needed = levelExp($liga) * $race["exp_needed"] * getLigaQuot();
+          $whyBlock = "only " . ep($exp_needed - getPlayerExp()) . " left";
+          } else */
+        if ($canRace === "sprit") {
             $whyBlock = "Not enough fuel. " . $race["sprit_needed"] . "L is needed";
         } else {
             $locked = "none";
