@@ -37,7 +37,7 @@ $fabrik = queryFabrikTeile();
 $money = getPlayerMoney();
 
 foreach ($fabrik as $teil) {
-    $liga = $teil["liga"];
+    $liga = $teil["tier"];
     $count = $teil["count"];
     $title = $teil["title"];
     $preis = calcCost($teil["cost"], $count);

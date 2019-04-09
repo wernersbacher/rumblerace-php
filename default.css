@@ -50,7 +50,7 @@ p.cool-text {
 }
 
 #whiteBGWrapper {
-    width:850px;
+    max-width:850px;
     margin:15px auto;
     background:white;
     padding: 15px 10px;
@@ -219,7 +219,7 @@ TABS FOR MAIN MENU
 }
 
 #tabsWrapperMain {
-    width:800px;
+    max-width:800px;
     margin:auto;
     margin-top: 10px;
 }
@@ -229,6 +229,7 @@ TABS FOR MAIN MENU
     display: flex;
     flex-direction: row;
     margin: auto;
+    flex-wrap: wrap;
 }
 
 #tabsMain span {
@@ -298,6 +299,7 @@ TABS FOR SUB MENU + some for main menu
     /* font-family: Kad; */
     font-family: Kodchasan;
     transition: 0.1s;
+    min-width:70px;
 }
 
 #tabs a:hover, #tabsMain a:hover {
@@ -369,7 +371,7 @@ TABS FOR SUB MENU + some for main menu
 }
 
 #mainFrame {
-     background-color: #fbfbfb;
+    background-color: #fbfbfb;
     /* border: 1px solid white; */
     padding: 10px;
     font-family: Kodchasan;
@@ -383,7 +385,7 @@ TABS FOR SUB MENU + some for main menu
     min-width: 573px;
     min-height: 100px;
     margin-top: 10px;
-   
+
 }
 
 #blackLeftInfo {
@@ -399,11 +401,22 @@ TABS FOR SUB MENU + some for main menu
     box-sizing: border-box;
 
     border: 3px solid #717171;
+    /*
     width: 100%;
+    
+    
+    */
+
+    display: flex;
+    flex-direction: column;
 
     background-image: url("img/pattern/dark2.png");
     background-repeat: repeat;
 
+}
+
+.playerAvatar {
+    height:48px;
 }
 
 #playerData {
@@ -464,6 +477,7 @@ TABS FOR SUB MENU + some for main menu
     margin: 5px;
     display:flex;
     flex-direction: column;
+    justify-content: space-around;
 }
 
 #blackStats img {

@@ -235,7 +235,7 @@ Love for Meri
                 <div id="leftMenu">
                     <div id="blackLeftInfo">
                         <div id="playerData">
-                            <img src="img/ava.png" /><br/>
+                            <img class="playerAvatar" src="img/ava.png" /><br/>
                             <span class="playername"><?php echo $_SESSION["username"] ?> <img id="mobile_liga" style="display:none; height:16px; " src="img/liga/<?php echo getPlayerLiga() ?>.png"></span><br/>
 
 

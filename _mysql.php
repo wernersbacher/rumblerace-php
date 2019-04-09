@@ -542,6 +542,19 @@ function queryRaceLeagues() {
     return $data;
 }
 
+function getTierFromLeague($league){
+    global $mysqli;
+    $sql = "SELECT DISTINCT tier FROM races WHERE league = '" . mysqli_real_escape_string($mysqli, $league) . "'";
+    $entry = querySQL($sql);
+    $row = mysqli_fetch_array($entry, MYSQLI_ASSOC);
+    
+    if (__count($row) < 1) {
+        return 0;
+    } else
+        return $row["tier"];
+    
+}
+
 function queryRaces($league) {
     global $mysqli;
     $sql = "SELECT * FROM races WHERE league = '" . mysqli_real_escape_string($mysqli, $league) . "' ORDER BY exp_needed asc";

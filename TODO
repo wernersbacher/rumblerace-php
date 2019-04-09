@@ -15,7 +15,7 @@
 
 Tier System: 10 Tiers, (erstmal 8)
 * Fahrer haben Tier, races vorraussetzungen
-* Berechnung des SELECT OUTPUTS nicht in foreach sondern anders, da league ^= tier
+
 * Fahrer haben Tier und level! -> besser erfahrung natürlich wichtig
 * texte umschreiben
 

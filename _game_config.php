@@ -11,7 +11,7 @@ $_config["vars"] = array();
 $_config["vars"]["startMaxSprit"] = 100;
 $_config["vars"]["startSprit"] = 50;
 $_config["vars"]["startMaxCars"] = 2;
-$_config["vars"]["startMoney"] = 10000;
+$_config["vars"]["startMoney"] = 15000;
 
 $_config["liga"]["ligaMulti"] = 2;
 $_config["liga"]["ligaStart"] = 150;

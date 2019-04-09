@@ -5,6 +5,10 @@
         width: 100%;
     }*/
     
+    #pageWrapper {
+        background:white !important;
+    }
+    
     .mainDropDown:hover .mainDropDown-content {
         display: none !important;
     }
@@ -75,6 +79,27 @@
     #leftMenu > div {
         margin:5px;
     }
+    
+    #blackLeftInfo {
+        width:100%;
+        flex-direction: row !important;
+        min-height:0 !important;
+        padding: 3px 11px !important;
+    }
+    
+    .playerAvatar {
+    height:32px !important;
+}
+
+    
+    #blackLeftInfo > div {
+        min-width:100px;
+    }
+    
+    #leftMenu {
+        min-width:100% !important;
+    }
+    
 
 
     .select_car {

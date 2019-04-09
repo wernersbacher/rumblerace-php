@@ -10,6 +10,8 @@ if (!isset($get["league"]))
 else
     $leagueOpen = $get["league"];
 
+$leagueTier = getTierFromLeague($leagueOpen);
+
 //Ligaliste generieren
 function showLigaList() {
     global $leagueOpen, $l, $maxLevel;
@@ -119,12 +121,16 @@ if (isset($post['send'])) { //Abgeschicktes Formular
     $info_out .= "</span>";
 }
 
-//$carSelect = returnCarSelect($leagueOpen);
+
+$carSelect = returnCarSelect($leagueTier);
 $driverSelect = returnDriverSelect();
 
 $disabled = "";
 
-
+if (strlen($carSelect) < 1) {
+            $disabled = "disabled";
+            $carSelect = "<option>------</option>";
+        }
 if (strlen($driverSelect) < 1) {
     $disabled = "disabled";
     $driverSelect = "<option>------</option>";
@@ -141,11 +147,6 @@ if ($races)
         $league = $race["league"];
         $type = $race["type"];
 
-        $carSelect = returnCarSelect($tier);
-        if (strlen($carSelect) < 1) {
-            $disabled = "disabled";
-            $carSelect = "<option>------</option>";
-        }
 
         //Sperre berechnen
         $canRace = queryUserCanRace($race["id"], getPlayerExp(), getPlayerSprit());
