@@ -19,14 +19,17 @@ Tier System: 10 Tiers, (erstmal 8)
 * Fahrer haben Tier und level! -> besser erfahrung natürlich wichtig
 * texte umschreiben
 
-* Tier Logo (römische zahlen?)
 
 
 Spieler hat Level, spiegelt aber nur manche sachen wieder
-Für Rennen braucht man nur entsprechendes Auto und Fahrer
+Für Rennen braucht man nur entsprechendes Auto und Fahrer <----------------
 
 -> Je höher das level, desto hher ein bonus oder so.
 
+NICHT SO WICHTIG:
+
+* driver maxliga berechnen
+*driver tier in db umbennen
 
 */
 

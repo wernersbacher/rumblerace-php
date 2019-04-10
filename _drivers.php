@@ -9,8 +9,7 @@ class Driver {
     public $nr;
     
     function __construct($i) {
-        $liga = getPlayerLiga();
-        if($liga < 3) $liga = 3;
+        $liga =8;
         $id = $_SESSION["user_id"];
         $maxLiga = getExpRand(1, $liga, $i+$id);
         if($maxLiga <1) $maxLiga = 1;
@@ -30,6 +29,6 @@ class Legend extends Driver {
 }*/
 
 //Erstellt 5 neue System Fahrer
-for($i = 1; $i <=5; $i++) {
+for($i = 1; $i <=$_config["driver"]["driverCnt"]; $i++) {
     $drivers[$i] = new Driver($i);
 }

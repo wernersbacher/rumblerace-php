@@ -20,6 +20,7 @@ $_config["liga"]["maxLiga"] = 20;
 $_config["bonus"]["wait"] = 3600;
 
 $_config["driver"]["maxSkill"] = 100; //% value
+$_config["driver"]["driverCnt"] = 10;
 
 $_config["racing"]["minGoodness"] = 0.1; //decimal procent
 $_config["racing"]["carWeight"] = 0.75; //decimal procent, driver_factor = 1-car_weight

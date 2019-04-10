@@ -177,6 +177,7 @@ function calcNewSprit() {
     return $sprit;
 }
 
+//gibt einen zufälligen Wert zurück, jedoch mit anderer wsk
 function getExpRand($min, $max, $seed = false) {
     if ($seed > 0)
         srand(mktime(0, 0, 0) + $seed);
