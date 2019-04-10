@@ -118,55 +118,9 @@ Love for Meri
 <html>
     <head>
         <title><?php echo put($page, $l) ?> | Racing Inc</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-        <link rel="stylesheet" href="src/font.css">
-        <link rel="stylesheet" href="lib/nice-select.css">
-        <link href="https://fonts.googleapis.com/css?family=Kodchasan:400,700" rel="stylesheet">
-        <link rel="stylesheet" href="mobile.css">
-        <link rel="stylesheet" href="default.css">
-        <link rel="stylesheet" href="pages.css">
-        <link rel="stylesheet" href="css/tutorial.css">
-        <link rel="stylesheet" href="pages.colors.css">
-        <link rel="stylesheet" href="lib/jquery-ui.css">
-        <link rel="stylesheet" href="lib/tooltipster.bundle.min.css" />
-        <link rel="stylesheet" href="lib/tooltipster-sideTip-borderless.min.css" />
-        <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-        <script type="text/javascript" src="backstretch.min.js"></script>
-        <script type="text/javascript" src="lib/store.modern.min.js"></script>
-        <!--<script type="text/javascript" src="lib/parallax.min.js"></script>-->
-        <script type="text/javascript" src="lib/jquery-ui.min.js"></script>
-        <script type="text/javascript" src="lib/jquery.connections.js"></script>
-        <script type="text/javascript" src="lib/jquery.nice-select.min.js"></script>
-        <script type="text/javascript" src="lib/form.min.js"></script>
-        <script type="text/javascript" src="lib/date.js"></script>
-        <script type="text/javascript" src="lib/tooltipster.bundle.min.js"></script>
-        <script type="text/javascript" src="cookie.js"></script>
-        <!--<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>-->
-        <script type="text/javascript" src="gui.js"></script>
-        <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300' rel='stylesheet' type='text/css'> 
-        <link rel="shortcut icon" type="image/x-icon" href="img/logo16.ico">
-        <!-- Piwik -->
-        <!--<script type="text/javascript">
-            var _paq = _paq || [];
-            _paq.push(["setCookieDomain", "*.facethepace.com"]);
-            _paq.push(["setDomains", ["*.facethepace.com", "*.www.facethepace.com"]]);
-            _paq.push(['trackPageView']);
-            _paq.push(['enableLinkTracking']);
-            (function () {
-                var u = "//wernersbacher.de/analyse/";
-                _paq.push(['setTrackerUrl', u + 'piwik.php']);
-                _paq.push(['setSiteId', '3']);
-                var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
-                g.type = 'text/javascript';
-                g.async = true;
-                g.defer = true;
-                g.src = u + 'piwik.js';
-                s.parentNode.insertBefore(g, s);
-            })();
-        </script>-->
-    <noscript><p><img src="//wernersbacher.de/analyse/piwik.php?idsite=3" style="border:0;" alt="" /></p></noscript>
-    <!-- End Piwik Code -->
+        
+        <?php include("html/meta.html") ?>
+
 </head>
 <body>
 

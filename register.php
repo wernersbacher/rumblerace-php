@@ -121,18 +121,8 @@ if (isset($_POST['register']) && isset($_GET['guest'])) { //umbennen des account
 <html>
     <head>
         <title>RACING INC. | Register</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="src/font.css">
-        <link rel="stylesheet" href="default.css">
-        <link rel="stylesheet" href="pages.css">
-        <link rel="stylesheet" href="pages.colors.css">
-        <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-        <script type="text/javascript" src="backstretch.min.js"></script>
-        <script type="text/javascript" src="gui.js"></script>
-        <script type="text/javascript" src="lib/store.js"></script>
-        <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300' rel='stylesheet' type='text/css'> 
-        <link rel="shortcut icon" type="image/x-icon" href="img/logo16.ico">
+
+        <?php include("html/meta.html") ?>
     </head>
     <body>
 
