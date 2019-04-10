@@ -61,7 +61,7 @@ function returnCarSelect($tier) {
         foreach ($cars as $car) {
             $carTier = $car["carTier"];
             //Nur geeignete Fahrzeuge ausgeben
-            if ($tier < $carTier)
+            if ($tier != $carTier)
                 continue;
             $car_id = $car["garage_id"];
             $name = $car["title"];
@@ -75,7 +75,7 @@ function returnCarSelect($tier) {
 }
 
 //Fahrerliste gen
-function returnDriverSelect() {
+function returnDriverSelect($tier) {
     global $drivers;
     global $liga;
     $carselect = "";
@@ -83,6 +83,8 @@ function returnDriverSelect() {
     if ($drivers)
         foreach ($drivers as $drv) {
             $driver_liga = $drv["liga"];
+            if($driver_liga != $tier)
+                continue;
             $name = $drv["name"];
             $skill = showSkill($drv["skill"]);
             $id = $drv["id"];
@@ -95,15 +97,19 @@ function returnDriverSelect() {
 
 function raceNew($race_id, $car_id, $driver_id) {
     $data = queryRaceData($race_id);
-
+    $db_err = "database_error";
+    
     //checkt ob das auto gerade verfügbar ist, und das rennen freigeschaltet ist
-    if (queryDriverIsNotRacing($driver_id) && queryCarIsNotRacing($car_id) && queryUserCanRace($race_id, getPlayerExp(), getPlayerSprit()) == true) {
-        return queryRacing($car_id, $data["id"], $data["dur"], $data["sprit_needed"], $driver_id);
-    } else if (!queryUserHasCarID($car_id)) {
+    if(!queryUserHasCarID($car_id))
         return "too_many_races";
-    } else {
-        return "database_error";
-    }
+    if(!queryDriverIsNotRacing($driver_id)) 
+        return $db_err;
+    if(!queryCarIsNotRacing($car_id))
+        return $db_err;
+    if(queryUserCanRace($race_id, getPlayerExp(), getPlayerSprit()) == false)
+        return $db_err;
+    
+    return queryRacing($car_id, $data["id"], $data["dur"], $data["sprit_needed"], $driver_id);
 }
 
 //Rennen starten
@@ -123,7 +129,7 @@ if (isset($post['send'])) { //Abgeschicktes Formular
 
 
 $carSelect = returnCarSelect($leagueTier);
-$driverSelect = returnDriverSelect();
+$driverSelect = returnDriverSelect($leagueTier);
 
 $disabled = "";
 
@@ -209,10 +215,10 @@ if ($races)
                     <div class='tuneFooter absolute'>
                     
                         <form method='POST' style='display:inline-block;' action='?page=race&sub=racing&liga=$liga'>   
-                        <select name='driver_id' class='select_car'>
+                        <select name='driver_id' class='select_car beautySelect nice-select-sm '>
                             " . $driverSelect . "
                         </select>
-                        <select name='car_id' class='select_car'>
+                        <select name='car_id' class='select_car beautySelect nice-select-sm '>
                             " . $carSelect . "
                         </select>
 

@@ -1,3 +1,8 @@
+.nice-select-sm {
+    padding: 4px !important;
+    line-height: initial !important;
+}
+
 .nice-select {
   -webkit-tap-highlight-color: transparent;
   background-color: #fff;
@@ -6,8 +11,8 @@
   box-sizing: border-box;
   clear: both;
   cursor: pointer;
-  display: block;
-  float: left;
+  display: inline-block;
+  float: none;
   font-family: inherit;
   font-size: 14px;
   font-weight: normal;

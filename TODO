@@ -15,7 +15,7 @@
 
 Tier System: 10 Tiers, (erstmal 8)
 * Fahrer haben Tier, races vorraussetzungen
-
+* driver tier und car tier php checken
 * Fahrer haben Tier und level! -> besser erfahrung natürlich wichtig
 * texte umschreiben
 
@@ -27,7 +27,7 @@ Für Rennen braucht man nur entsprechendes Auto und Fahrer <----------------
 -> Je höher das level, desto hher ein bonus oder so.
 
 NICHT SO WICHTIG:
-
+*  namen statt driver id
 * driver maxliga berechnen
 *driver tier in db umbennen
 
