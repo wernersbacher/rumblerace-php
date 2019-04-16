@@ -8,11 +8,14 @@ class Driver {
     public $maxLiga;
     public $nr;
     
+    private static $num_instances_created = 0;
+    
     function __construct($i) {
         $liga =8;
         $id = $_SESSION["user_id"];
         $maxLiga = getExpRand(1, $liga, $i+$id);
-        if($maxLiga <1) $maxLiga = 1;
+        if(self::$num_instances_created++ < 1)
+            $maxLiga =1;
         $this->maxLiga = $maxLiga;
         $this->kosten = getExpRand(3000, 10000, $i+$id)*pow($this->maxLiga, 2);
         $this->anteil = 20-getExpRand(5, 15, $i+$id);
