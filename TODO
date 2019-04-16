@@ -1,38 +1,44 @@
 /*
 2019:
-* check built parts -> beim ersten mal in 1 sekunde?
-* SIND FAHRER LEVEL ODER LIGA?
-* CAR LEVEL = PART LEVEL???
-* building parts ändert nicht mit javascript
-* tutorial 1/8 usw, also zähl funktion
+SPIEL:
+* check built parts -> beim ersten mal in 1 sekunde fertig bauen? (if state == bla)
+* geld bei tutorial abschluss bzw kostenlose fahrer erste mal (if state == bla)
 
-* tutorial
-* seiten über direktlink verbeieten
-* hinweise nur einschalten bei tut ende?
-* mobiles design anpassen
+--> tutorial testen und obiges anpassen
 
-* LEVEL/LIGA PROBLEM: *
+technisches:
+* seiten über direktlink verbieten
+* driver tier und car tier php checken (nicht  nur select generieren) <--------------------------------
 
-Tier System: 10 Tiers, (erstmal 8)
-* Fahrer haben Tier, races vorraussetzungen
-* driver tier und car tier php checken
-* Fahrer haben Tier und level! -> besser erfahrung natürlich wichtig
+DANACH:
+* upgradeproblem bei fahrern; kein level, sondern skill hinzufügen
 * texte umschreiben
 
-
-
 Spieler hat Level, spiegelt aber nur manche sachen wieder
-Für Rennen braucht man nur entsprechendes Auto und Fahrer <----------------
+Für Rennen braucht man nur entsprechendes Auto und Fahrer
 
 -> Je höher das level, desto hher ein bonus oder so.
 
 NICHT SO WICHTIG:
 *  namen statt driver id
 * driver maxliga berechnen
-*driver tier in db umbennen
+* driver tier in db umbennen
+
+NEUE IDEEN:
+Badge für Rennen fahrbar in submenü bei liga auswahl
+grüner hinweis als popup statt in seite integrieren?? bzw geht weg von selbst
+Autos beim Händler sortieren bzw Filter wie bei Rennen
 
 */
 
+
+CLEANUP:
+console() entfernen
+errors verstecken
+
+Liga als tier im code
+überflüssige variable entfernen
+kommentare entfernen
 
 USABILITY
 

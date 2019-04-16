@@ -102,6 +102,8 @@ function raceNew($race_id, $car_id, $driver_id) {
     //checkt ob das auto gerade verfügbar ist, und das rennen freigeschaltet ist
     if(!queryUserHasCarID($car_id))
         return "too_many_races";
+    //if(!queryCarTierReq($car_id))
+    //  return $db_error;
     if(!queryDriverIsNotRacing($driver_id)) 
         return $db_err;
     if(!queryCarIsNotRacing($car_id))
@@ -214,7 +216,7 @@ if ($races)
                     
                     <div class='tuneFooter absolute'>
                     
-                        <form method='POST' style='display:inline-block;' action='?page=race&sub=racing&liga=$liga'>   
+                        <form method='POST' style='display:inline-block;' action='?page=race&sub=racing&league=$league'>   
                         <select name='driver_id' class='select_car beautySelect nice-select-sm '>
                             " . $driverSelect . "
                         </select>

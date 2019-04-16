@@ -205,7 +205,8 @@ function queryAddBugreport($text, $id, $time) {
 
 function queryNewCars($liga) {
 
-    $sql = "SELECT * FROM new_cars WHERE liga <= $liga ORDER BY liga ASC, preis ASC, acc ASC";
+    //$sql = "SELECT * FROM new_cars WHERE liga <= $liga ORDER BY liga ASC, preis ASC, acc ASC";
+    $sql = "SELECT * FROM new_cars ORDER BY tier ASC, preis ASC, acc ASC";
 
     $entry = querySQL($sql);
     if ($entry) {
@@ -512,17 +513,21 @@ function markPartsAsRead() {
     querySQL($sql);
 }
 
-//checkt, ob user ein auto mit der $id besitrzt.
+//checkt, ob user ein auto mit der $id besitrzt, und gibt wenn ja das TIER zurück
 function queryUserHasCarID($id) {
     global $mysqli;
 
-    $sql = "SELECT id FROM garage WHERE user_id = '" . $_SESSION["user_id"] . "' AND id = '" . mysqli_real_escape_string($mysqli, $id) . "' AND sell = '0'";
+    $sql = "SELECT nc.tier FROM garage gr
+        LEFT JOIN new_cars nc
+            ON gr.car_id = nc.name
+        WHERE gr.user_id = '" . $_SESSION["user_id"] . "' AND gr.id = '" . mysqli_real_escape_string($mysqli, $id) . "' AND gr.sell = '0'";
     $entry = querySQL($sql);
 
     $row = mysqli_fetch_array($entry, MYSQLI_ASSOC);
 
     if (__count($row) >= 1) {
-        return true;
+        console($row["tier"]);
+        return $row["tier"];
     } else
         return false;
 }

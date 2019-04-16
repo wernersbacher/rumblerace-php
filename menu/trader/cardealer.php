@@ -51,7 +51,7 @@ $output .= "<div class='settings'>
 $output .= "<div id='cardealer'>";
 
 foreach ($cars as $car) {//$car["title"]
-    $liga = $car["liga"];
+    $tier = $car["tier"];
     $preis = $car["preis"];
     if ($preis > $money OR $left < 1)
         $dis = "disabled";
@@ -67,7 +67,7 @@ foreach ($cars as $car) {//$car["title"]
                         <div class='dealTitle'>
                             " . $car["title"] . "
                                 <div class='driverLiga'>
-                            ".levelImg($liga)."</div>
+                            ".levelImg($tier)."</div>
                         </div>
                         
                         <div class='dealInfo'>
@@ -79,7 +79,7 @@ foreach ($cars as $car) {//$car["title"]
 
                     </div>
 
-                    <!--<div class='dealLiga'><img src='img/liga/" . $liga . ".png' alt='Level " . $liga . "' title='Level " . $liga . "' /></div>-->
+                    <!--<div class='dealLiga'><img src='img/liga/" . $tier . ".png' alt='Level " . $tier . "' title='Level " . $tier . "' /></div>-->
 
                     <div class='dealBuy'>
                         <span class='dealPrice'>" . dollar($preis) . "</span>
