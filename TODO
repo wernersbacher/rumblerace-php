@@ -6,23 +6,24 @@ SPIEL:
 
 --> tutorial testen und obiges anpassen
 
-technisches:
-* seiten über direktlink verbieten
-* driver tier und car tier php checken (nicht  nur select generieren) <--------------------------------
-
 DANACH:
 * upgradeproblem bei fahrern; kein level, sondern skill hinzufügen
 * texte umschreiben
+* zufallsnamen fahrer
 
 Spieler hat Level, spiegelt aber nur manche sachen wieder
 Für Rennen braucht man nur entsprechendes Auto und Fahrer
 
--> Je höher das level, desto hher ein bonus oder so.
+-> Je höher das level, desto höher ein bonus oder so.
 
 NICHT SO WICHTIG:
 *  namen statt driver id
 * driver maxliga berechnen
 * driver tier in db umbennen
+
+technisches:
+* seiten über direktlink verbieten
+* badges für rennenleagues ausrechnen.
 
 NEUE IDEEN:
 Badge für Rennen fahrbar in submenü bei liga auswahl

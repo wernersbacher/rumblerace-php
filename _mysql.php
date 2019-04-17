@@ -513,7 +513,7 @@ function markPartsAsRead() {
     querySQL($sql);
 }
 
-//checkt, ob user ein auto mit der $id besitrzt, und gibt wenn ja das TIER zurück
+//checkt, ob user ein auto mit der $id besitrzt, und gibt wenn ja das car TIER zurück
 function queryUserHasCarID($id) {
     global $mysqli;
 
@@ -528,6 +528,21 @@ function queryUserHasCarID($id) {
     if (__count($row) >= 1) {
         console($row["tier"]);
         return $row["tier"];
+    } else
+        return false;
+}
+
+function queryUserHasDriverID($id) {
+        global $mysqli;
+
+    $sql = "SELECT * FROM fahrer
+        WHERE user_id = '" . $_SESSION["user_id"] . "' AND id = '" . mysqli_real_escape_string($mysqli, $id) . "'";
+    $entry = querySQL($sql);
+
+    $row = mysqli_fetch_array($entry, MYSQLI_ASSOC);
+
+    if (__count($row) >= 1) {
+        return $row["liga"];
     } else
         return false;
 }
@@ -602,12 +617,53 @@ function getDriversLeft() {
     return $c;
 }
 
+//Gibt Anzahl der freien Fahrzeuge und Fahrer zurück, die nicht fahren.
 function getMaxRacesLeft() {
-    $drivers = getDriversLeft();
-    $cars = getCarsLeft();
-
-    return min($drivers, $cars);
+    // Muss noch implementiert werden
+    return 0;
+    
+    
+//    $sql = "SELECT COUNT(DISTINCT dr.name) as drivers, COUNT(DISTINCT gr.id) as cars FROM fahrer dr
+//            INNER JOIN garage gr ON gr.user_id = dr.user_id
+//            LEFT JOIN races_run rr
+//                ON gr.id = rr.car_id AND dr.id = rr.driver_id
+//            LEFT JOIN new_cars nc
+//            	ON gr.car_id = nc.name
+//            WHERE gr.user_id = '" . $_SESSION["user_id"] . "' AND gr.sell = '0' AND rr.user_id IS NULL AND rr.driver_id IS NULL AND nc.tier = dr.liga";
+//       $entry = querySQL($sql);
+//
+//    $row = mysqli_fetch_array($entry, MYSQLI_ASSOC);
+//        
+//    return min($row["drivers"], $row["cars"]);
+    
 }
+
+function getMaxRacesLeftTier() {
+    $sql = "SELECT COUNT(DISTINCT dr.name) as drivers, COUNT(DISTINCT gr.id) as cars FROM fahrer dr 
+       
+	LEFT JOIN garage gr 
+    	ON gr.user_id = dr.user_id
+        
+    LEFT JOIN races_run rr
+                ON gr.id = rr.car_id AND dr.id = rr.driver_id
+    
+    LEFT JOIN new_cars nc
+            	ON gr.car_id = nc.name
+    
+    WHERE gr.user_id = '" . $_SESSION["user_id"] . "' AND gr.sell = '0' AND rr.user_id IS NULL AND rr.driver_id IS NULL AND nc.tier = 1 AND dr.liga = 1";
+           $entry = querySQL($sql);
+
+    $row = mysqli_fetch_array($entry, MYSQLI_ASSOC);
+        
+    return min($row["drivers"], $row["cars"]);
+}
+
+//function getMaxRacesLeft() {
+//    $drivers = getDriversLeft();
+//    $cars = getCarsLeft();
+//
+//    return min($drivers, $cars);
+//}
 
 //checkt, ob das auto $car_id dem user gehört und gerade KEIN rennen fährt
 function queryCarIsNotRacing($id) {
@@ -1516,10 +1572,10 @@ function changeDriverName($id, $name) {
 }
 
 function upgradeDriver($driver_id, $cost) {
-    global $mysqli;
+    global $mysqli, $_config;
     mysqli_autocommit($mysqli, FALSE);
 
-    $upgrade = mysqli_query($mysqli, "UPDATE fahrer SET liga = liga + 1, skill = skill *2, anteil = anteil + 1 WHERE id = $driver_id"
+    $upgrade = mysqli_query($mysqli, "UPDATE fahrer SET skill = skill + ".$_config["driver"]["upgradeMulti"]."* (liga+1) * ".$_config["driver"]["upgradeBonus"]." WHERE id = $driver_id"
     );
     $spend = mysqli_query($mysqli, "UPDATE stats
             SET money = money - $cost

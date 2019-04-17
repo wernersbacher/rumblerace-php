@@ -20,6 +20,8 @@ $_config["liga"]["maxLiga"] = 20;
 $_config["bonus"]["wait"] = 3600;
 
 $_config["driver"]["maxSkill"] = 100; //% value
+$_config["driver"]["upgradeBonus"] = 200;
+$_config["driver"]["upgradeMulti"] = 0.7;
 $_config["driver"]["driverCnt"] = 10;
 
 $_config["racing"]["minGoodness"] = 0.1; //decimal procent

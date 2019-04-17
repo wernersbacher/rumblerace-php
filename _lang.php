@@ -383,7 +383,7 @@ $lg["driver_fired"] = ["The driver stopped his career and is now an 'expert' on 
 $lg["no_driver"] = ["You did not hire any driver yet. <a href='?page=drivers&sub=sysDrivers'>Do it now</a>", "Bisher hast du noch keinen Fahrer eingestellt. <a href='?page=drivers&sub=sysDrivers'>Tu es jetzt</a>"];
 $lg["anteil"] = ["Stake", "Anteil"];
 $lg["kostenpunkt"] = ["Upgrade cost", "Upgradekosten"];
-$lg["upgrade_driver"] = ["Upgrade to next level", "Upgrade zur nächsten Level"];
+$lg["upgrade_driver"] = ["Train driver", "Fahrer trainieren"];
 $lg["driver_upgraded"] = ["The driver advanced to the next level!", "Der Fahrer wurde ein Level höher eingestuft!"];
 
 //Bonus Seite

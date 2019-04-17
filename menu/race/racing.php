@@ -96,12 +96,22 @@ function returnDriverSelect($tier) {
 }
 
 function raceNew($race_id, $car_id, $driver_id) {
-    $data = queryRaceData($race_id);
+    $race_data = queryRaceData($race_id);
     $db_err = "database_error";
     
+    //getDriverByID
+    
     //checkt ob das auto gerade verfügbar ist, und das rennen freigeschaltet ist
-    if(!queryUserHasCarID($car_id))
+    $carTier = queryUserHasCarID($car_id);
+    $driverTier = queryUserHasDriverID($driver_id);
+    if(!$carTier)
         return "too_many_races";
+    if($carTier != $race_data["tier"])
+        return "wrong_car_tier";
+    if(!$driverTier)
+        return "wrong_driver_selected";
+    if($driverTier != $race_data["tier"])
+        return "wrong_driver_tier";
     //if(!queryCarTierReq($car_id))
     //  return $db_error;
     if(!queryDriverIsNotRacing($driver_id)) 
@@ -111,7 +121,7 @@ function raceNew($race_id, $car_id, $driver_id) {
     if(queryUserCanRace($race_id, getPlayerExp(), getPlayerSprit()) == false)
         return $db_err;
     
-    return queryRacing($car_id, $data["id"], $data["dur"], $data["sprit_needed"], $driver_id);
+    return queryRacing($car_id, $race_data["id"], $race_data["dur"], $race_data["sprit_needed"], $driver_id);
 }
 
 //Rennen starten
