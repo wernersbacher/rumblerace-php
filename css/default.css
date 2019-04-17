@@ -72,7 +72,7 @@ p.cool-text {
 }
 
 .pageInfo:before {
-    content: url(img/info.png);
+    content: url(../img/info.png);
     width: 16px;
     height: 16px;
     display: inline-block;
@@ -140,7 +140,7 @@ p.cool-text {
     /* background-color: lightgrey; */
     /* background-color: #e0e0e0; */
     box-sizing: border-box;
-    background-image: url(img/pattern/bright1.png); 
+    background-image: url(../img/pattern/bright1.png); 
     background-repeat: repeat; 
     /* border-bottom: 1px solid #efefef; */
 
@@ -322,7 +322,7 @@ TABS FOR SUB MENU + some for main menu
     border-top: 2px solid orange;
     border-bottom: 1px solid whitesmoke;
 
-    background-image: url(img/pattern/bright1.png); 
+    background-image: url(../img/pattern/bright1.png); 
     background-repeat: repeat; 
 }
 
@@ -410,7 +410,7 @@ TABS FOR SUB MENU + some for main menu
     display: flex;
     flex-direction: column;
 
-    background-image: url("img/pattern/dark2.png");
+    background-image: url("../img/pattern/dark2.png");
     background-repeat: repeat;
 
 }
@@ -657,9 +657,9 @@ a:link, a:visited {
     padding-bottom: 100px;
     position:relative;
     /*
-    background-image: url("img/pattern/bright1.png");
+    background-image: url("../img/pattern/bright1.png");
     background-repeat: repeat;*/
-    background: url(img/pattern/bg2.jpg) no-repeat center center fixed; 
+    background: url(../img/pattern/bg2.jpg) no-repeat center center fixed; 
     background-size: cover;
 
 }

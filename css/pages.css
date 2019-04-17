@@ -179,7 +179,7 @@ select {
 }
 
 .dealInfoText:before {
-    content: url(img/info.png);
+    content: url(../img/info.png);
     width: 16px;
     height: 16px;
     display: inline-block;
@@ -453,7 +453,7 @@ tr:nth-child(even) {
 /* Car tuning */
 
 #car_sketch {
-    background: white url("img/car.jpg") no-repeat;
+    background: white url("../img/car.jpg") no-repeat;
     height:388px;
     margin:auto;
     position:relative;
@@ -1202,7 +1202,7 @@ tr:nth-child(even) {
     /* background-color: #ad142b; */
     margin: 7px 0;
     padding: 2px 5px;
-    background-image: url(img/pattern/paper.png);
+    background-image: url(../img/pattern/paper.png);
     background-repeat: repeat;
     border-top: 1px solid #e4e4e4;
     border-bottom: 1px solid #adadad;
