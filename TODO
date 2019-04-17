@@ -7,9 +7,8 @@ SPIEL:
 --> tutorial testen und obiges anpassen
 
 DANACH:
-* upgradeproblem bei fahrern; kein level, sondern skill hinzufügen
-* texte umschreiben
-* zufallsnamen fahrer
+* zufallsnamen fahrer <-----------------------------
+* nicht- umbenannte fahrer haben andere farbe
 
 Spieler hat Level, spiegelt aber nur manche sachen wieder
 Für Rennen braucht man nur entsprechendes Auto und Fahrer
@@ -32,8 +31,8 @@ Autos beim Händler sortieren bzw Filter wie bei Rennen
 
 */
 
-
 CLEANUP:
+texte auf sinnvoll checken
 console() entfernen
 errors verstecken
 

@@ -1,37 +1,112 @@
 <?php
 
+
+$config['sql_hostname'] = 'localhost';    //MySQL-Server
+$config['sql_username'] = 'werner';        //Benutzername
+$config['sql_password'] = 't4g23ww';        //Kennwort
+$config['sql_database'] = 'werner_names';        //Datenbank
+
+/**
+ *    Fehlerbehandlung
+ */
+error_reporting(E_ALL);
+ini_set('display_errors', true);
+
+
+/**
+ *    Verbindungsaufbau
+ */
+$mysqli_names = new MySQLi($config['sql_hostname'], $config['sql_username'], $config['sql_password'], $config['sql_database']);
+
+if (mysqli_connect_errno() != 0 || !$mysqli->set_charset('utf8')) {
+    die('<strong>ERROR:</strong> Es konnte keine Verbindung mit dem Datenbank-Server hergestellt werden!');
+}
+
+
+
+function getRandomLang($seed = false) {
+    $driver_name_langs = [
+        40 => "en",
+        20 => "de",
+        15 => "fr",
+        5 => "ru",
+        2 => "chn"
+    ];
+
+
+    if ($seed > 0)
+        srand(mktime(0, 0, 0) + $seed);
+    else
+        srand();
+
+    $max_dice = max(array_keys($driver_name_langs));
+
+    $magic_num = rand(1, $max_dice);
+
+    foreach ($driver_name_langs as $num => $value) {
+        if ($magic_num <= $num)
+            return $driver_name_langs[$num];
+    }
+}
+
+function getRandomName($seed) {
+    global $mysqli_names;
+
+    $otherName = getExpRand(0, 1, $seed);
+
+    $first_lang = getRandomLang($seed);
+    $last_lang = $first_lang;
+    if ($otherName > 0) {
+        $last_lang = getRandomLang($seed);
+    }
+
+    $sql = "SELECT f.name as first, l.name as last  FROM " . $first_lang . "_first f, " . $last_lang . "_last l   
+        ORDER BY RAND() LIMIT 1;
+        ";
+    $entry = mysqli_query($mysqli_names, $sql) or die($sql . "<br/>Error: " . mysqli_error($mysqli_names));
+
+    if ($entry) {
+        $row = mysqli_fetch_assoc($entry);
+        return $row["first"] . " " . ["last"];
+    } else {
+        return "NONAME";
+    }
+}
+
 class Driver {
+
     public $kosten;
     public $anteil;
     public $skill;
     public $name;
     public $maxLiga;
     public $nr;
-    
     private static $num_instances_created = 0;
-    
+
     function __construct($i) {
-        $liga =8;
+        $liga = 8;
         $id = $_SESSION["user_id"];
-        $maxLiga = getExpRand(1, $liga, $i+$id);
-        if(self::$num_instances_created++ < 1)
-            $maxLiga =1;
+        $maxLiga = getExpRand(1, $liga, $i + $id);
+        if (self::$num_instances_created++ < 1)
+            $maxLiga = 1;
         $this->maxLiga = $maxLiga;
-        $this->kosten = getExpRand(3000, 10000, $i+$id)*pow($this->maxLiga, 2);
-        $this->anteil = 20-getExpRand(5, 15, $i+$id);
-        $this->skill = getExpRand(20, 3000, $i+$id);
-        $this->id = date("dmY").$i;
+        $this->kosten = getExpRand(3000, 10000, $i + $id) * pow($this->maxLiga, 2);
+        $this->anteil = 20 - getExpRand(5, 15, $i + $id);
+        $this->skill = getExpRand(20, 3000, $i + $id);
+        $this->id = date("dmY") . $i;
         $this->nr = $i;
-        $this->name = 'Driver-ID#'.rand(999, 99999);
+        //$this->name = 'Driver-ID#' . rand(999, 99999);
+        $this->name = getRandomName($i + $id);
     }
+
 }
 
 /*
-class Legend extends Driver {
-    
-}*/
+  class Legend extends Driver {
+
+  } */
 
 //Erstellt 5 neue System Fahrer
-for($i = 1; $i <=$_config["driver"]["driverCnt"]; $i++) {
+for ($i = 1; $i <= $_config["driver"]["driverCnt"]; $i++) {
     $drivers[$i] = new Driver($i);
 }
