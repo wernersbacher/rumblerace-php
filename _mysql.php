@@ -883,6 +883,18 @@ function queryTuningTheCar($changeIDs, $garage_id) {
 
 //Selling and Buying
 
+function queryDriverSell($driver_id, $num) {
+    global $mysqli;
+    $sql = "UPDATE fahrer SET sell = '" . mysqli_real_escape_string($mysqli, $num) . "', sell_date = '" . time() . "' WHERE id = '" . mysqli_real_escape_string($mysqli, $driver_id) . "' AND user_id = '" . $_SESSION["user_id"] . "'";
+    $entry = querySQL($sql);
+
+    if ($entry) {
+        return "driver_on_market";
+    } else {
+        return "driver_not_found";
+    }
+}
+
 function queryPartSell($str_id, $num) {
     global $mysqli;
     $sql = "UPDATE storage SET sell = '" . mysqli_real_escape_string($mysqli, $num) . "', sell_date = '" . time() . "' WHERE id = '" . mysqli_real_escape_string($mysqli, $str_id) . "' AND user_id = '" . $_SESSION["user_id"] . "' AND garage_id = '0'";

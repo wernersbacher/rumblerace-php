@@ -1,6 +1,7 @@
 <?php
 
-$path = "?page=drivers&sub=paddock&mode=manage";
+$path_overview = "?page=drivers&sub=paddock";
+$path = "$path_overview&mode=manage";
 
 $output = "";
 $output .= outputTut("driver_sum", $l);
@@ -44,7 +45,7 @@ if ($mode == "manage" && $driver) {
         }
     }
 
-    if (isset($post["action"]) AND $post["action"] == "sell") {
+    if (isset($post["action"]) AND $post["action"] == "sell" AND queryDriverIsNotRacing($id)) {
         $driver = getDriverByID($id);
 
         $name = $driver["name"];
@@ -58,7 +59,7 @@ if ($mode == "manage" && $driver) {
         $output .= "<b>" . getFlag($country) . " " . getNameChanged($name, $nameChanged) . " " . levelImg($liga) . "</b><br/>";
         $output .= put("market_sell_driver", $l) . ":";
 
-        $output .= "<form method='POST' action='$path'>
+        $output .= "<form method='POST' action='$path_overview'>
                         <input type='hidden' name='action' value='confirm_sell'></input>
                         <input type='hidden' name='driver_id' value='$id'></input>
                         <input type='number' min='0.01' step='0.01' name='price' placeholder='100' class='tableTopInput'>
@@ -141,6 +142,22 @@ if ($mode == "manage" && $driver) {
 
     //Fahrer übersicht
 } else {
+
+    if (isset($post["action"]) AND $post["action"] == "confirm_sell" AND queryDriverIsNotRacing($id)) {
+        //Teil auf den Markt schmeißen
+
+        // # unnötig
+        $num = $post["price"];
+        $num = preg_replace('~[^0-9|^.|(?=2.)]~', '', $num);
+        if ($num >= 0.1 && $num < 100000000000)
+            $sell = queryDriverSell($id, $num);
+        else
+            $sell = "sell_check_input";
+
+        $output .= "<span class='dealInfoText $sell'>";
+        $output .= put($sell, $l);
+        $output .= "</span>";
+    }
 
 
 
