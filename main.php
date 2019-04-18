@@ -267,7 +267,7 @@ Love for Meri
 
                     <br/>
 
-                    <a href="http://markus.wernersbacher.de/pages/about-this-website/">&copy; wernersbacher 2016-2017</a><br/>
+                    <a href="http://markus.wernersbacher.de/index.php?/pages/about-this-website/">&copy; wernersbacher 2016-2019</a><br/>
                     <noscript> <?php echo put("noscript", $l) ?><br/> </noscript>
                     <?php echo getLangChange() ?> | ALPHA 0.1.3 <br/> 
                     <?php echo "Server: " . date("d M Y H:i:s"); ?>
@@ -287,7 +287,7 @@ Love for Meri
             <br/>
             <b>Sharing the game with friends</b> is still the best help we can get. Thank you!
             <br/><br/>
-            PS: Wir können natürlich auch <b>Deutsch</b>.
+            PS: Wir können auch <b>Deutsch</b>
         </p>
     </div>
     <div id="bugrep" title="Report a bug">

@@ -1,13 +1,10 @@
 /*
-2019:
+                  ..:: 2019 ::..
 SPIEL:
 * check built parts -> beim ersten mal in 1 sekunde fertig bauen? (if state == bla)
 * geld bei tutorial abschluss bzw kostenlose fahrer erste mal (if state == bla)
 
 --> tutorial testen und obiges anpassen
-
-DANACH:
-* fahrernamen änderung anzeigen <-----------------------------
 
 Spieler hat Level, spiegelt aber nur manche sachen wieder
 Für Rennen braucht man nur entsprechendes Auto und Fahrer

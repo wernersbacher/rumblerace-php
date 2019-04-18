@@ -13,7 +13,7 @@ if ($mode == "buy" && isset($get["id"])) {
     $output .= "<div class='textCenter'>";
     if ($str_data) {
         $part = $str_data["part"];
-        $liga = $str_data["liga"];
+        $tier = $str_data["tier"];
         $price = $str_data["sell"];
         $kat = $str_data["kat"];
         $user_id = $str_data["user_id"];
@@ -27,7 +27,7 @@ if ($mode == "buy" && isset($get["id"])) {
             if ($user_id == $_SESSION["user_id"]) {
                 //Löschen des eigenen Elements
 
-                $output .= "<br/><b>" . put($part, $l) . " (" . outputDetails($acc, $speed, $hand, $dura) . ") (" . put("liga", $l) . " $liga)</b><br/>";
+                $output .= "<br/><b>" . put($part, $l) . " (" . outputDetails($acc, $speed, $hand, $dura) . ") (" . put("liga", $l) . " $tier)</b><br/>";
                 $output .= put("part_back_ques", $l) . "<br/>";
                 $output .= put("part_back_cost", $l) . ": ";
                 $output .= "<b>(" . dollar($price / 10) . ")</b><br/>";
@@ -35,13 +35,13 @@ if ($mode == "buy" && isset($get["id"])) {
                 //Kaufen des Elements
 
                 $output .= put("you_wish", $l);
-                $output .= "<br/><b>" . put($part, $l) . "<br/>(" . outputAttributesList($acc, $speed, $hand, $dura) . ") <br/>(" . put("liga", $l) . " $liga)</b><br/>";
+                $output .= "<br/><b>" . put($part, $l) . "<br/>(" . outputAttributesList($acc, $speed, $hand, $dura) . ") <br/>(" . put("liga", $l) . " $tier)</b><br/>";
                 $output .= put("for_cost", $l);
                 $output .= "<br/><b>" . dollar($price) . "</b><br/>";
                 $output .= put("to_buy", $l);
             }
 
-            $output .= "<form method='post' action='?page=market&sub=partmarket'>";
+            $output .= "<form method='post' action='?page=trader&sub=partmarket'>";
             $output .= "<input type='hidden' name='id' value='$str_id'> ";
             $output .= "<input type='submit' class='tableTopButton redButton' name='canceled' value='" . put("no", $l) . "'> ";
             $output .= "<input type='submit' class='tableTopButton' name='confirmed' value='" . put("yes", $l) . "'>";
@@ -131,7 +131,7 @@ if ($mode == "buy" && isset($get["id"])) {
     else
         $s = 1;
 
-    $pages = getPages($menge, $s, "?page=market&sub=partmarket");
+    $pages = getPages($menge, $s, "?page=trader&sub=partmarket");
     $output .= $pages;
 
     //Markt ausgeben
@@ -155,14 +155,14 @@ if ($mode == "buy" && isset($get["id"])) {
             $hand = $item["hand"];
             $dura = $item["dura"];
 
-            $link = "?page=market&sub=partmarket&mode=buy&id=" . $item["id"];
+            $link = "?page=trader&sub=partmarket&mode=buy&id=" . $item["id"];
 
             $output .= "<tr>";
             $output .= "
                 <td class='partTitle'><div class='partTitleFormat'>" . put($item["part"], $l) . "</div>
                     <span class='tune_rarity' style='color:" . $part_rarity["color"] . "'>" . put($part_rarity["name"], $l) . "</span>
                     
-                    <div>" . formatLevelColor($item["liga"]) . "</div>
+                    <div>" . formatLevelColor($item["tier"]) . "</div>
                     </td>
                 <td class='partPerf'>$html</td>
                 <td>" . dollar($item["sell"]) . "<br/>" . $item["username"] . "</td>
