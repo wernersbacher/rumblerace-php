@@ -7,12 +7,9 @@ SPIEL:
 --> tutorial testen und obiges anpassen
 
 Spieler hat Level, spiegelt aber nur manche sachen wieder
-Für Rennen braucht man nur entsprechendes Auto und Fahrer
-
 -> Je höher das level, desto höher ein bonus oder so.
 
 NICHT SO WICHTIG:
-*  namen statt driver id
 * driver maxliga berechnen
 * driver tier in db umbennen
 
@@ -24,6 +21,7 @@ NEUE IDEEN:
 Badge für Rennen fahrbar in submenü bei liga auswahl
 grüner hinweis als popup statt in seite integrieren?? bzw geht weg von selbst
 Autos beim Händler sortieren bzw Filter wie bei Rennen
+drivermarkt
 
 */
 
