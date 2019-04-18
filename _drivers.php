@@ -39,7 +39,7 @@ function getRandomName($first_lang, $seed) {
      */
     if (randomBool($_config["driver"]["differentLastName"], $seed)) {
         $last_lang = getRandomLang($seed + 1000);
-        console("different $first_lang $last_lang");
+        //console("different $first_lang $last_lang");
     }
     
     $sql = "SELECT f.name as first, l.name as last  FROM " . $first_lang . "_first f, " . $last_lang . "_last l   

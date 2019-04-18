@@ -18,7 +18,7 @@ function newDriver($money, $kosten, $driver_id, $nr, $anteil) {
 
 $output = outputTut("driver_info", $l);
 
-if(isset($post["driver_nr"]) AND $post["driver_nr"] >=1 AND $post["driver_nr"]<=6) { //Anheuern eines Fahrers
+if(isset($post["driver_nr"]) AND $post["driver_nr"] >=1) { //Anheuern eines Fahrers
     $nr = $post["driver_nr"];
     $money = getPlayerMoney();
     $kosten = $drivers[$nr]->kosten;
