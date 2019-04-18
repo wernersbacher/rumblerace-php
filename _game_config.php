@@ -23,6 +23,7 @@ $_config["driver"]["maxSkill"] = 100; //% value
 $_config["driver"]["upgradeBonus"] = 200;
 $_config["driver"]["upgradeMulti"] = 0.7;
 $_config["driver"]["driverCnt"] = 10;
+$_config["driver"]["differentLastName"] = 30;
 
 $_config["racing"]["minGoodness"] = 0.1; //decimal procent
 $_config["racing"]["carWeight"] = 0.75; //decimal procent, driver_factor = 1-car_weight

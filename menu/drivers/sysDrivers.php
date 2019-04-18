@@ -43,6 +43,7 @@ foreach($drivers as $drv) {
         continue;
     
     $name = $drv->name;
+    $country = $drv->country;
     $skill = showSkill($drv->skill);
     $anteil = $drv->anteil;
     $kosten = $drv->kosten;
@@ -55,8 +56,8 @@ foreach($drivers as $drv) {
                 <div class='sysDriver'>
                 <h2>$name <div class='driverLiga'>
                             ".levelImg($liga)."</div></h2>
-                Skill: <b>$skill%</b> [$drive_id]
-                 
+                <img src='img/flags/$country.png' class='country_flag' title='$country'> Skill: <b>$skill%</b> [$drive_id]
+                 <!-- SRC:http://www.iconarchive.com/show/flag-icons-by-famfamfam.html -->
 
                 
                 <div class='tuneFooter absolute'>

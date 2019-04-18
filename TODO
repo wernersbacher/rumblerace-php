@@ -7,7 +7,7 @@ SPIEL:
 --> tutorial testen und obiges anpassen
 
 DANACH:
-* fahrer haben nationalität <-----------------------------
+* fahrer haben nationalität, speichern in db <-----------------------------
 * nicht- umbenannte fahrer haben andere farbe
 
 Spieler hat Level, spiegelt aber nur manche sachen wieder

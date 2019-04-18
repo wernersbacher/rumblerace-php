@@ -1,10 +1,11 @@
 <?php
 
 include("_mysql_names.php");
+include_once("_game_config.php");
 
 function getRandomLang($seed = false) {
     $driver_name_langs = [
-        40 => "en",
+        30 => "en",
         20 => "de",
         15 => "fr",
         5 => "ru",
@@ -20,24 +21,27 @@ function getRandomLang($seed = false) {
     $max_dice = max(array_keys($driver_name_langs));
 
     $magic_num = rand(1, $max_dice);
-
-    foreach ($driver_name_langs as $num => $value) {
+    foreach (array_reverse($driver_name_langs, true) as $num => $value) {
         if ($magic_num <= $num)
             return $driver_name_langs[$num];
     }
 }
+/*
+ * Zufälligen Namen generieren aus DB
+ */
 
-function getRandomName($seed) {
-    global $mysqli_names;
+function getRandomName($first_lang, $seed) {
+    global $mysqli_names, $_config;
 
-    $otherName = getExpRand(0, 1, $seed);
-
-    $first_lang = getRandomLang($seed);
     $last_lang = $first_lang;
-    if ($otherName > 0) {
-        $last_lang = getRandomLang($seed);
+    /*
+     * Mit bestimmter Wsk ist der Nachname anders als der Vorname 
+     */
+    if (randomBool($_config["driver"]["differentLastName"], $seed)) {
+        $last_lang = getRandomLang($seed + 1000);
+        console("different $first_lang $last_lang");
     }
-
+    
     $sql = "SELECT f.name as first, l.name as last  FROM " . $first_lang . "_first f, " . $last_lang . "_last l   
         ORDER BY RAND($seed) LIMIT 1;
         ";
@@ -57,6 +61,7 @@ class Driver {
     public $anteil;
     public $skill;
     public $name;
+    public $country;
     public $maxLiga;
     public $nr;
     private static $num_instances_created = 0;
@@ -73,8 +78,11 @@ class Driver {
         $this->skill = getExpRand(20, 3000, $i + $id);
         $this->id = date("dmY") . $i;
         $this->nr = $i;
-        //$this->name = 'Driver-ID#' . rand(999, 99999);
-        $this->name = getRandomName($i + $id);
+        /*
+         * Nationalität bestimmen, den Namen daraus ableiten
+         */
+        $this->country = getRandomLang($i + $id);
+        $this->name = getRandomName($this->country, $i + $id);
     }
 
 }

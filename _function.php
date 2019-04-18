@@ -750,6 +750,18 @@ function getContrastColor($hexColor) {
         }
 }
 
+//Weighted True
+function randomBool($percent,$seed=false) {
+    if ($seed > 0)
+        srand(mktime(0, 0, 0) + $seed);
+    else
+        srand();
+    
+    if(rand(1,100) <= $percent) 
+            return true;
+    return false;
+}
+
 function console($data) {
     $html = "";
     $coll;

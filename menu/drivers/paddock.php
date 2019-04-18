@@ -55,6 +55,7 @@ if ($mode == "manage" && $driver) {
     $skill = showSkill($driver["skill"]);
     $liga = $driver["liga"];
     $anteil = $driver["anteil"];
+    //$country = $driver["country"];
 
     $upgradeCost = driverUpgradeCost($liga);
 
