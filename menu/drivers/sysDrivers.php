@@ -9,7 +9,8 @@ function newDriver($money, $kosten, $driver_id, $nr, $anteil) {
         $name = $drivers[$nr]->name;
         $skill = $drivers[$nr]->skill;
         $liga = $drivers[$nr]->maxLiga;
-        return queryNewDriver($driver_id, $name, $skill, $liga, $kosten, $anteil);
+        $country = $drivers[$nr]->country;
+        return queryNewDriver($driver_id, $name, $skill,$country, $liga, $kosten, $anteil);
     } else {
         return "database_error";
     }
@@ -56,7 +57,7 @@ foreach($drivers as $drv) {
                 <div class='sysDriver'>
                 <h2>$name <div class='driverLiga'>
                             ".levelImg($liga)."</div></h2>
-                <img src='img/flags/$country.png' class='country_flag' title='$country'> Skill: <b>$skill%</b> [$drive_id]
+                ".getFlag($country)." Skill: <b>$skill%</b> [$drive_id]
                  <!-- SRC:http://www.iconarchive.com/show/flag-icons-by-famfamfam.html -->
 
                 

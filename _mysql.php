@@ -1475,12 +1475,12 @@ function queryUserHasNotDriverID($driver_id) {
         return true;
 }
 
-function queryNewDriver($driver_id, $name, $skill, $liga, $kosten, $anteil) {
+function queryNewDriver($driver_id, $name, $skill, $country, $liga, $kosten, $anteil) {
     global $mysqli;
     mysqli_autocommit($mysqli, FALSE);
 
-    $sql1 = "INSERT INTO fahrer (driver_id, user_id, name, skill, liga, anteil) 
-            values ('$driver_id', '" . $_SESSION["user_id"] . "', '$name', '$skill', '$liga', '$anteil')";
+    $sql1 = "INSERT INTO fahrer (driver_id, user_id, name, skill, country, liga, anteil) 
+            values ('$driver_id', '" . $_SESSION["user_id"] . "', '$name', '$skill', '$country', '$liga', '$anteil')";
     //echo $sql1;
 
     $addCar = mysqli_query($mysqli, $sql1);
@@ -1565,7 +1565,7 @@ function removeDriverByID($id) {
 
 function changeDriverName($id, $name) {
     $sql = "UPDATE fahrer
-            SET name = '$name'
+            SET name = '$name', nameChanged = 1
             WHERE id = '$id'"; #
 
     querySQL($sql);

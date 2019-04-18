@@ -7,8 +7,7 @@ SPIEL:
 --> tutorial testen und obiges anpassen
 
 DANACH:
-* fahrer haben nationalität, speichern in db <-----------------------------
-* nicht- umbenannte fahrer haben andere farbe
+* fahrernamen änderung anzeigen <-----------------------------
 
 Spieler hat Level, spiegelt aber nur manche sachen wieder
 Für Rennen braucht man nur entsprechendes Auto und Fahrer

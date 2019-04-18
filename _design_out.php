@@ -81,3 +81,7 @@ function levelImg($l, $big = false) {
 function racingDetail($type, $value) {
     return "<div class='stat_wrapper'><div class='stat_image_wrapper_tuner'><img src='img/stats/$type.png' alt='$type'/></div> <span class='tune_$type'>$value</span></div> ";
 }
+
+function getFlag($country) {
+    return "<img src='img/flags/$country.png' class='country_flag' title='$country'>";
+}

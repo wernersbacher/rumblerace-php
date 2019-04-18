@@ -55,7 +55,7 @@ if ($mode == "manage" && $driver) {
     $skill = showSkill($driver["skill"]);
     $liga = $driver["liga"];
     $anteil = $driver["anteil"];
-    //$country = $driver["country"];
+    $country = $driver["country"];
 
     $upgradeCost = driverUpgradeCost($liga);
 
@@ -68,7 +68,7 @@ if ($mode == "manage" && $driver) {
             
                 <div class='sysDriver'>
                 <h2> 
-                <div id='driverName'> $name <span id='driverNameChange'>&#9998;</span></div>
+                <div id='driverName'> ".getFlag($country)." $name <span id='driverNameChange'>&#9998;</span></div>
                 <form id='driverNameInput' name='input' action='$path' method='post' style='display: none;'>
                 <input type='hidden' name='action' value='changeName'></input>
                 <input type='hidden' name='driver_id' value='$id'></input>
@@ -122,6 +122,7 @@ if ($mode == "manage" && $driver) {
             $did = $drvr["id"];
             $driver_id = $drvr["driver_id"];
             $name = $drvr["name"];
+            $country = $drvr["country"];
             $skill = showSkill($drvr["skill"]);
             $liga = $drvr["liga"];
             $anteil = $drvr["anteil"];
@@ -130,7 +131,7 @@ if ($mode == "manage" && $driver) {
                 <div class='sysDriver'>
                 <h2>$name <div class='driverLiga'>
                             ".levelImg($liga)."</div></h2>
-                Skill: <b>$skill%</b> [$driver_id]
+                ".getFlag($country)." Skill: <b>$skill%</b> [$driver_id]
                  
 
                 
