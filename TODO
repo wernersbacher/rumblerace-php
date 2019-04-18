@@ -9,6 +9,9 @@ SPIEL:
 Spieler hat Level, spiegelt aber nur manche sachen wieder
 -> Je höher das level, desto höher ein bonus oder so.
 
+MENÜ:
+* tehmatischer zusammenschluss der submenus
+
 Fahrermarkt <---------------------------
 - in db: sell (wie bei part)
 - bei rennen: nur ausgeben (und php check) wenn sell = 0 (vgl auch part equip)

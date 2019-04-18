@@ -20,8 +20,8 @@ if ($mode == "sell" && isset($post['sell'])) { //Teil verkaufen
         $dura = $str_data["dura"];
 
 
-        $output .= "<div class='textCenter'>";
-        $output .= "<b>$part (" . outputDetails($acc, $speed, $hand, $dura) . ") ($tier)</b><br/>";
+        $output .= "<div class='textCenter textFancy'>";
+        $output .= "<b>".put($part,$l)." (" . outputDetails($acc, $speed, $hand, $dura) . ") ($tier)</b><br/>";
         $output .= put("market_sell", $l) . ":";
 
         $output .= "<form method='POST' action='?page=$page&sub=storage'>
@@ -35,60 +35,60 @@ if ($mode == "sell" && isset($post['sell'])) { //Teil verkaufen
     } else {
         $output .= put("part_sold", $l);
     }
-} else {
+}
 
-    if (isset($post['confirmed'])) {
-        //Teil auf den Markt schmeißen
+if (isset($post['confirmed'])) {
+    //Teil auf den Markt schmeißen
 
-        $str_id = $post["storage_id"];
-        $num = $post["price"];
-        $num = preg_replace('~[^0-9|^.|(?=2.)]~', '', $num);
-        if ($num >= 0.1 && $num < 100000000000)
-            $sell = queryPartSell($str_id, $num);
-        else
-            $sell = "sell_check_input";
+    $str_id = $post["storage_id"];
+    $num = $post["price"];
+    $num = preg_replace('~[^0-9|^.|(?=2.)]~', '', $num);
+    if ($num >= 0.1 && $num < 100000000000)
+        $sell = queryPartSell($str_id, $num);
+    else
+        $sell = "sell_check_input";
 
-        $output .= "<span class='dealInfoText $sell'>";
-        $output .= put($sell, $l);
+    $output .= "<span class='dealInfoText $sell'>";
+    $output .= put($sell, $l);
+    $output .= "</span>";
+} else if ($mode == "trash" && isset($post['storage_id'])) {
+    //remove item and get exp
+    $item_id = $post['storage_id'];
+    if (removeItem($item_id)) {
+        $output .= "<span class='dealInfoText green'>";
+        $output .= put("part_trashed", $l);
         $output .= "</span>";
-    } else if ($mode == "trash" && isset($post['storage_id'])) {
-        //remove item and get exp
-        $item_id = $post['storage_id'];
-        if (removeItem($item_id)) {
-            $output .= "<span class='dealInfoText green'>";
-            $output .= put("part_trashed", $l);
-            $output .= "</span>";
-        }
     }
+}
 
 
-    $katNames = queryTuningKats();
-    $storage = queryStorage();
+$katNames = queryTuningKats();
+$storage = queryStorage();
 
-    //Jede Teileklasse durchgehen
-    foreach ($katNames as $kat) {
-        $counter = 0;
-        $rows = "";
-        $output .= "<table id='$kat' class='tableRed tableClick'>
+//Jede Teileklasse durchgehen
+foreach ($katNames as $kat) {
+    $counter = 0;
+    $rows = "";
+    $output .= "<table id='$kat' class='tableRed tableClick'>
                 <tr>
                   <th colspan='3'>" . put($kat, $l) . "</th>
                 </tr>";
-        if ($storage)
-            foreach ($storage as $item) {
-                if ($item["kat"] == $kat && $item["garage_id"] == 0) {
+    if ($storage)
+        foreach ($storage as $item) {
+            if ($item["kat"] == $kat && $item["garage_id"] == 0) {
 
 
-                    $attr = outputItemAttributes($item);
-                    $html = $attr["html"];
-                    $part_rarity = $attr["part_rarity"];
-                    $new = $item["new"];
+                $attr = outputItemAttributes($item);
+                $html = $attr["html"];
+                $part_rarity = $attr["part_rarity"];
+                $new = $item["new"];
 
 
-                    $rows .= "<tr>
+                $rows .= "<tr>
                 <td class='partTitle'>
                 <div class='partTitleFormat'>" . put($item["part"], $l) . "
                     
-                        <span class='new_part_hint' ". boolToHide($new).">".put("new",$l)."</span>
+                        <span class='new_part_hint' " . boolToHide($new) . ">" . put("new", $l) . "</span>
                     </div>
                     
                     <span class='tune_rarity' style='color:" . $part_rarity["color"] . "'>
@@ -112,20 +112,20 @@ if ($mode == "sell" && isset($post['sell'])) { //Teil verkaufen
                     </form>
                 </td>
               </tr>";
-                }
             }
-        if ($rows == "") {
-            $rows = "<tr>
+        }
+    if ($rows == "") {
+        $rows = "<tr>
                   <td class='right-border-grey' colspan='4'>" . put("no_parts_storage", $l) . "</td>
                 </tr>";
-        }
-        $output .= $rows;
-
-
-
-        $output .= "</table>";
     }
+    $output .= $rows;
+
+
+
+    $output .= "</table>";
 }
+
 
 $output .= "</div>";
 

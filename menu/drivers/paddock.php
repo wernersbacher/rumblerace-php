@@ -12,7 +12,7 @@ else
 $driver = getDriverByID($id);
 
 
-if (isset($post["action"]) AND $post["action"] == "fire") {
+if (isset($post["action"]) AND $post["action"] == "fire" AND queryDriverIsNotRacing($id)) {
     //remove driver
     $remove = removeDriverByID($id);
     $output .= "<span class='dealInfoText $remove'>";
@@ -42,6 +42,31 @@ if ($mode == "manage" && $driver) {
             $output .= put($up, $l);
             $output .= "</span>";
         }
+    }
+
+    if (isset($post["action"]) AND $post["action"] == "sell") {
+        $driver = getDriverByID($id);
+
+        $name = $driver["name"];
+        $skill = showSkill($driver["skill"]);
+        $liga = $driver["liga"];
+        $anteil = $driver["anteil"];
+        $country = $driver["country"];
+        $nameChanged = $driver["nameChanged"];
+
+        $output .= "<div class='textCenter'>";
+        $output .= "<b>" . getFlag($country) . " " . getNameChanged($name, $nameChanged) . " " . levelImg($liga) . "</b><br/>";
+        $output .= put("market_sell_driver", $l) . ":";
+
+        $output .= "<form method='POST' action='$path'>
+                        <input type='hidden' name='action' value='confirm_sell'></input>
+                        <input type='hidden' name='driver_id' value='$id'></input>
+                        <input type='number' min='0.01' step='0.01' name='price' placeholder='100' class='tableTopInput'>
+                        <input class='sellButton tableTopButton' name='confirmed' type='submit' value='verkaufen'>
+                    </form>";
+
+        $output .= "<br/>" . put("market_with", $l);
+        $output .= "</div>";
     }
 
     $driver = getDriverByID($id);
@@ -99,12 +124,17 @@ if ($mode == "manage" && $driver) {
                 <span> " . put("kostenpunkt", $l) . ": " . dollar($upgradeCost) . " </span>
 
                 <br/>
+                <form method='POST' style='display:inline-block;' action='$path'>
+                    <input type='hidden' name='action' value='sell'></input>
+                    <input type='hidden' name='driver_id' value='$id'></input>
+                    <input class='tableTopButton dialog' name='send' type='submit' value='" . put("sell_driver", $l) . "'>
+                </form>
+                
                 <form data-dialog='Do you want to fire your driver?' method='POST' style='display:inline-block;' action='$path'>
                     <input type='hidden' name='action' value='fire'></input>
                     <input type='hidden' name='driver_id' value='$id'></input>
                     <input class='tableTopButton redButton dialog' name='send' type='submit' value='" . put("fire_driver", $l) . "'>
                 </form>
-                    
 
 
             ";

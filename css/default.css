@@ -642,6 +642,11 @@ TABS FOR SUB MENU + some for main menu
     text-align: center;
 }
 
+.textFancy {
+    font-size:16px;
+    font-family: Kodchasan;
+}
+
 a:link, a:visited {
     text-decoration:none;
 }

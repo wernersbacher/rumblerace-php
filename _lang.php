@@ -379,13 +379,14 @@ $lg["driver_added"] = ["You hired the driver!", "Du hast den Fahrer erfolgreich 
 $lg["driver_sum"] = ["Check all your drivers here.", "Verwalte hier Deine Fahrer."];
 $lg["open_driver"] = ["Manage Driver", "Fahrer verwalten"];
 $lg["fire_driver"] = ["Dismiss Driver", "Fahrer entlassen"];
+$lg["sell_driver"] = ["Sell Driver", "Fahrer verkaufen"];
 $lg["driver_fired"] = ["The driver stopped his career and is now an 'expert' on TV.", "Der Fahrer wurde entlassen. Und es ward nie wieder etwas von ihm gehört"];
 $lg["no_driver"] = ["You did not hire any driver yet. <a href='?page=drivers&sub=sysDrivers'>Do it now</a>", "Bisher hast du noch keinen Fahrer eingestellt. <a href='?page=drivers&sub=sysDrivers'>Tu es jetzt</a>"];
 $lg["anteil"] = ["Stake", "Anteil"];
 $lg["kostenpunkt"] = ["Upgrade cost", "Upgradekosten"];
 $lg["upgrade_driver"] = ["Train driver", "Fahrer trainieren"];
 $lg["driver_upgraded"] = ["The driver advanced to the next level!", "Der Fahrer wurde ein Level höher eingestuft!"];
-
+$lg["market_sell_driver"] = ["Type in your selling price", "Gib an, für wie viel du den Fahrer verkaufen willst:"];
 $lg["driverm_info"] = ["Buy and sell drivers on the player market. Look out for high-skilled driver", "Kaufe und verkaufe deine Fahrer."];
 
 //Bonus Seite
