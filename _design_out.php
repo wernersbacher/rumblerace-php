@@ -85,3 +85,13 @@ function racingDetail($type, $value) {
 function getFlag($country) {
     return "<img src='img/flags/$country.png' class='country_flag' title='$country'>";
 }
+
+function getNameChanged($name,$changed) {
+    console($changed);
+    if($changed == 1) {
+        return $name;
+    }
+    
+    return "<span class='driver_orig_name'>$name</span>";
+    
+}

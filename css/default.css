@@ -773,6 +773,11 @@ hr {
     color:#E42A94;
 }
 
+.driver_orig_name {
+    font-style: italic;
+    color: #a55500;
+}
+
 #driverNameInput input {
     /* background-color: black; */
     font-family: Roboto;

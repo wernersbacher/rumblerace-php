@@ -34,15 +34,14 @@ if ($mode == "manage" && $driver) {
     } else if (isset($post["action"]) AND $post["action"] == "upgrade") {
         $driver = getDriverByID(intval($post["driver_id"]));
         $cost = driverUpgradeCost($driver["liga"]);
-        
-        if (/*$driver["liga"] < 8 &&*/ $driver AND getPlayerMoney() >= $cost) {
+
+        if (/* $driver["liga"] < 8 && */ $driver AND getPlayerMoney() >= $cost) {
             $up = upgradeDriver($post["driver_id"], $cost);
 
             $output .= "<span class='dealInfoText $up'>";
             $output .= put($up, $l);
             $output .= "</span>";
         }
-        
     }
 
     $driver = getDriverByID($id);
@@ -56,11 +55,12 @@ if ($mode == "manage" && $driver) {
     $liga = $driver["liga"];
     $anteil = $driver["anteil"];
     $country = $driver["country"];
+    $nameChanged = $driver["nameChanged"];
 
     $upgradeCost = driverUpgradeCost($liga);
 
     $disabled = boolToDis($upgradeCost < getPlayerMoney());
-   
+
 
 
     $output .= "
@@ -68,7 +68,7 @@ if ($mode == "manage" && $driver) {
             
                 <div class='sysDriver'>
                 <h2> 
-                <div id='driverName'> ".getFlag($country)." $name <span id='driverNameChange'>&#9998;</span></div>
+                <div id='driverName'> " . getFlag($country) . " " . getNameChanged($name, $nameChanged) . " <span id='driverNameChange'>&#9998;</span></div>
                 <form id='driverNameInput' name='input' action='$path' method='post' style='display: none;'>
                 <input type='hidden' name='action' value='changeName'></input>
                 <input type='hidden' name='driver_id' value='$id'></input>
@@ -78,7 +78,7 @@ if ($mode == "manage" && $driver) {
                 </h2>
                     
                 <div class='driverLiga absLiga'>
-                            ".levelImg($liga)."</div>
+                            " . levelImg($liga) . "</div>
                 
                  <hr/>
                  <div class='driver_quick'>
@@ -126,12 +126,13 @@ if ($mode == "manage" && $driver) {
             $skill = showSkill($drvr["skill"]);
             $liga = $drvr["liga"];
             $anteil = $drvr["anteil"];
+            $nameChanged = $drvr["nameChanged"];
 
             $output .= " 
                 <div class='sysDriver'>
-                <h2>$name <div class='driverLiga'>
-                            ".levelImg($liga)."</div></h2>
-                ".getFlag($country)." Skill: <b>$skill%</b> [$driver_id]
+                <h2>" . getNameChanged($name, $nameChanged) . "  <div class='driverLiga'>
+                            " . levelImg($liga) . "</div></h2>
+                " . getFlag($country) . " Skill: <b>$skill%</b> [$driver_id]
                  
 
                 
