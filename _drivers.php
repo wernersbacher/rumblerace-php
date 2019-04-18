@@ -39,13 +39,13 @@ function getRandomName($seed) {
     }
 
     $sql = "SELECT f.name as first, l.name as last  FROM " . $first_lang . "_first f, " . $last_lang . "_last l   
-        ORDER BY RAND() LIMIT 1;
+        ORDER BY RAND($seed) LIMIT 1;
         ";
     $entry = mysqli_query($mysqli_names, $sql) or die($sql . "<br/>Error: " . mysqli_error($mysqli_names));
 
     if ($entry) {
         $row = mysqli_fetch_assoc($entry);
-        return $row["first"] . " " . ["last"];
+        return $row["first"] . " " . $row["last"];
     } else {
         return "NONAME";
     }
