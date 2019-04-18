@@ -388,6 +388,7 @@ $lg["upgrade_driver"] = ["Train driver", "Fahrer trainieren"];
 $lg["driver_upgraded"] = ["The driver advanced to the next level!", "Der Fahrer wurde ein Level höher eingestuft!"];
 $lg["market_sell_driver"] = ["Type in your selling price", "Gib an, für wie viel du den Fahrer verkaufen willst:"];
 $lg["driverm_info"] = ["Buy and sell drivers on the player market. Look out for high-skilled driver", "Kaufe und verkaufe deine Fahrer."];
+$lg["driver_on_market"] = ["Driver is now on the market.", "Fahrer wird jetzt auf dem Markt angeboten."];
 
 //Bonus Seite
 $lg["bonus_info"] = ["Get some extra money or gas.", "Hol dir immer etwas Geld oder Sprit zusätzlich."];
