@@ -386,6 +386,8 @@ $lg["kostenpunkt"] = ["Upgrade cost", "Upgradekosten"];
 $lg["upgrade_driver"] = ["Train driver", "Fahrer trainieren"];
 $lg["driver_upgraded"] = ["The driver advanced to the next level!", "Der Fahrer wurde ein Level höher eingestuft!"];
 
+$lg["driverm_info"] = ["Buy and sell drivers on the player market. Look out for high-skilled driver", "Kaufe und verkaufe deine Fahrer."];
+
 //Bonus Seite
 $lg["bonus_info"] = ["Get some extra money or gas.", "Hol dir immer etwas Geld oder Sprit zusätzlich."];
 $lg["bonus_accepted"] = ["The bonus was credited to your account.", "Der Bonus wurde dir gutgeschrieben."];

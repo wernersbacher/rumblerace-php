@@ -10,9 +10,21 @@ Spieler hat Level, spiegelt aber nur manche sachen wieder
 -> Je höher das level, desto höher ein bonus oder so.
 
 Fahrermarkt <---------------------------
+- in db: sell (wie bei part)
+- bei rennen: nur ausgeben (und php check) wenn sell = 0 (vgl auch part equip)
+- blätter funktion
+- sortieren nach datum, skill, level (filter auch) (vgl partmarket)
+-- Fahrer noch Eigenschaft, die nicht kaufbar ist (legend->)
+
+Playerlevel:
+- Übersicht der Unlocks
+- Unlocks: 
+    mehr Platz
+    mehr Bonus
+    zusätzlicher Platz
+    10% mehr Geld
 
 technisches:
-* seiten über direktlink verbieten (php includes)
 * badges für rennenleagues ausrechnen.
 
 NICHT SO WICHTIG:
