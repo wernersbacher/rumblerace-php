@@ -9,19 +9,23 @@ SPIEL:
 Spieler hat Level, spiegelt aber nur manche sachen wieder
 -> Je höher das level, desto höher ein bonus oder so.
 
+Fahrermarkt <---------------------------
+
+technisches:
+* seiten über direktlink verbieten (php includes)
+* badges für rennenleagues ausrechnen.
+
 NICHT SO WICHTIG:
 * driver maxliga berechnen
 * driver tier in db umbennen
-
-technisches:
-* seiten über direktlink verbieten
-* badges für rennenleagues ausrechnen.
 
 NEUE IDEEN:
 Badge für Rennen fahrbar in submenü bei liga auswahl
 grüner hinweis als popup statt in seite integrieren?? bzw geht weg von selbst
 Autos beim Händler sortieren bzw Filter wie bei Rennen
 drivermarkt
+
+
 
 */
 

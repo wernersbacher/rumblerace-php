@@ -1,0 +1,15 @@
+<Files .htaccess>
+order allow,deny
+deny from all
+</Files>
+ 
+<Files "_*.php">  
+  Require all denied
+</Files>
+
+RewriteEngine on
+
+#if the request is for existent dirs, forbid the request
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [R=403,L]
+RedirectMatch 403 /rumblerace/.+/.*$ 
