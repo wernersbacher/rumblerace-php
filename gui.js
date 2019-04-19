@@ -405,9 +405,16 @@ $(document).ready(function () {
             disconnectNodes();
             connectNodes();
         };
-
-
     }
+
+    //Scrollbar change
+    /*
+    $( document ).bind( "mousemove", function( event ) {
+        if( (window.innerWidth - event.pageX ) < 20 )
+        {
+            $('html').addClass('show-scrollbar');
+        }
+    });*/
 
     //Tooltips
     var clicked = false;

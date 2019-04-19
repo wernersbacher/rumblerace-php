@@ -19,7 +19,6 @@ function calcRarity($p) {
     return $name;
 }
 
-
 function colorRarity($p) {
     if ($p < 30)
         $obj = ["color" => "#696969", "name" => "bad"];
@@ -86,12 +85,16 @@ function getFlag($country) {
     return "<img src='img/flags/$country.png' class='country_flag' title='$country'>";
 }
 
-function getNameChanged($name,$changed) {
+function getNameChanged($name, $changed) {
     console($changed);
-    if($changed == 1) {
+    if ($changed == 1) {
         return $name;
     }
-    
+
     return "<span class='driver_orig_name'>$name</span>";
-    
+}
+
+function outputDriverInfo($country, $skill, $anteil) {
+    global $l;
+    return getFlag($country) . " Skill: <b>$skill%</b> | " . put("anteil", $l) . ":  <b>$anteil%</b>";
 }

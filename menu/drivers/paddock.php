@@ -179,7 +179,7 @@ if ($mode == "manage" && $driver) {
                 <div class='sysDriver'>
                 <h2>" . getNameChanged($name, $nameChanged) . "  <div class='driverLiga'>
                             " . levelImg($liga) . "</div></h2>
-                " . getFlag($country) . " Skill: <b>$skill%</b> [$driver_id]
+                ".outputDriverInfo($country, $skill, $anteil)."  <!--[$driver_id]-->
                  
 
                 
@@ -189,8 +189,7 @@ if ($mode == "manage" && $driver) {
 
             $output .= "<form method='POST' action='$path'>";
             $output .= "<input type='hidden' name='driver_id' value='$did'></input>";
-            $output .= "<span class='dealPrice'>$anteil% " . put("anteil", $l) . " </span> "
-                    . "<input class='tableTopButton' name='manage' type='submit' value='" . put("open_driver", $l) . "'>";
+            $output .= "<input class='tableTopButton' name='manage' type='submit' value='" . put("open_driver", $l) . "'>";
             $output .= "</form>";
 
 

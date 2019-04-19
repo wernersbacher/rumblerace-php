@@ -4,13 +4,17 @@
     font-family: Roboto;
 }
 
-::-webkit-scrollbar {
+html ::-webkit-scrollbar {
     width:1px;
     color:black;
     background: white;
 }
-::-webkit-scrollbar-thumb {
+html ::-webkit-scrollbar-thumb {
     background:#800C4E !important;
+}
+
+.show-scrollbar ::-webkit-scrollbar {
+    width:10px;
 }
 
 input[type="submit"]:disabled{
@@ -162,6 +166,7 @@ select {
 }
 
 .dealPrice {
+    display:block;
     font-size: 16px;
     font-weight: 300;
 }
@@ -256,7 +261,7 @@ select {
 .tuneFooter.absolute{
     position:absolute;
     margin:0;
-    bottom: 10px;
+    bottom: 1px;
     right:10px;
 }
 
