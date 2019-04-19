@@ -41,6 +41,10 @@ foreach ($logs as $key => $log) {
             $html = put($props["part"], $l) . " " . put("log_sold_for", $l) . " " . dollar($props["price"]) . ".";
             $css = "sold";
             break;
+        case "driver_sold":
+            $html = sprintf(put("log_driver_sold", $l), $props["name"], dollar($props["price"]));
+            $css = "sold";
+            break;
         case "sprit_sold":
             $html = sprintf(put("log_sprit_sold_sprintf", $l), gas($props["amount"]), dollar($props["price"]), dollar($props["cost"]));
             $css = "sold";

@@ -34,6 +34,14 @@ function logPartSold($liga, $part, $seller_id) {
     return queryNewLog("part_sold", $obj, $seller_id);
 }
 
+function logDriverSold($liga, $driver, $seller_id) {
+    $obj = [
+        "name" => $driver,
+        "price" => $liga,
+    ];
+    return queryNewLog("driver_sold", $obj, $seller_id);
+}
+
 function logNewLevel($liga) {
     $obj = [
         "liga" => $liga,

@@ -1,6 +1,6 @@
 .message_sent, .part_back, .race_started, .race_canc, .sms_del, .teil_bought, .driver_added, .sprit_back, .sprit_bought, 
 .sprit_selling,*.green, .car_bought, .part_built, .car_updated, .part_on_market, .part_bought, .driver_fired, .driver_upgraded, 
-.car_sold, .point_bought, .up_bought, .item_activated, .driver_on_market {
+.car_sold, .point_bought, .up_bought, .item_activated, .driver_on_market, .driver_back, .driver_sold, .driver_bought {
     background-color: green;
     color:white;
     border:0;

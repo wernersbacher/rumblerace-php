@@ -86,7 +86,7 @@ if ($mode == "buy" && isset($get["id"])) {
     $output .= $pages;
 
     //Markt ausgeben
-    $output .= "<table style='font-size:13px;' class='tableRed selling noclick'>
+    $output .= "<table style='font-size:13px;' class='tableRed table100 selling noclick'>
                 <tr>
                   <th>" . put("seller", $l) . "</th>
                   <th>" . put("count", $l) . "</th>
@@ -102,9 +102,9 @@ if ($mode == "buy" && isset($get["id"])) {
             $link = "?page=$page&sub=$sub&mode=buy&id=" . $item["sm_id"];
 
             $output .= "<tr>";
-            $output .= "<td class='partSeller'><a href='$link'>" . $item["username"] . "</a></td>
-                <td class='partTitle'><a href='$link'>" . gas($item["amount"]) . "</a></td>
-                <td><a href='$link'>" . dollar($item["price"]) . "</a></td>";
+            $output .= "<td class='partSeller'><a class='maxSize centerChildVertical2' href='$link'>" . $item["username"] . "</a></td>
+                <td class='partTitle'><a class='maxSize centerChildVertical2' href='$link'>" . gas($item["amount"]) . "</a></td>
+                <td><a class='maxSize centerChildVertical2' href='$link'>" . dollar($item["price"]) . "</a></td>";
             $output .= "</tr>";
         } else {
         $output .= "<tr><td colspan='4'>" . put("market_empty", $l) . "</td></tr>";

@@ -390,6 +390,8 @@ $lg["driver_upgraded"] = ["The driver advanced to the next level!", "Der Fahrer 
 $lg["market_sell_driver"] = ["Type in your selling price", "Gib an, für wie viel du den Fahrer verkaufen willst:"];
 $lg["driverm_info"] = ["Buy and sell drivers on the player market. Look out for high-skilled driver", "Kaufe und verkaufe deine Fahrer."];
 $lg["driver_on_market"] = ["Driver is now on the market.", "Fahrer wird jetzt auf dem Markt angeboten."];
+$lg["driver_back"] = ["You got your driver back.", "Dein Fahrer hast du wieder!"];
+$lg["driver_bought"] = ["You bought a new driver!", "Du hast einen neuen Fahrer eingekauft!"];
 
 //Bonus Seite
 $lg["bonus_info"] = ["Get some extra money or gas.", "Hol dir immer etwas Geld oder Sprit zusätzlich."];
@@ -514,6 +516,9 @@ $lg["log_welcome_msg"] = ['Welcome to Racing Inc! Have fun playing!', 'Willkomme
 $lg["log_tut_done"] = ["TUTORIAL DONE!", "TUTORIAL ABGESCHLOSSEN"];
 $lg["log_tut_done_msg"] = ["Congratulations, you completed the Tutorial. Some more game options have been unlocked. Explore them and have fun!",
     "Herzlichen Glückwunsch, du hast das Tutorial beendet! Neue Spielfunktion wurden freigeschaltet. Erforsche ein bisschen die neuen Funktionen (z.B. den Markt). Viel Spaß!"];
+
+$lg["driver_sold"] = ["DRIVER SOLD!", "Fahrer verkauft!"];
+$lg["log_driver_sold"] = ['Your driver %1$s was sold on the market for %2$s!', 'Du hast deiner Fahrer %1$s für %2$s verkauft!'];
 
 
 

@@ -1138,6 +1138,20 @@ function queryMarketPartCost($model) {
         return false;
     }
 }
+function queryMarketDriverCost($id) {
+    global $mysqli;
+
+    $sql = "SELECT sell FROM fahrer WHERE id = '" . mysqli_real_escape_string($mysqli, $id) . "' LIMIT 1";
+
+    $entry = querySQL($sql);
+
+    if ($entry) {
+        $row = mysqli_fetch_assoc($entry);
+        return $row["sell"];
+    } else {
+        return false;
+    }
+}
 
 function queryMarketSpritBuy($id, $amount) {
     global $mysqli;
@@ -1222,6 +1236,29 @@ function keepSprit($id, $amount) {
     mysqli_autocommit($mysqli, TRUE);
 }
 
+function keepDriver($price, $drv_id) {
+    global $mysqli;
+    mysqli_autocommit($mysqli, FALSE);
+
+    $remove = "UPDATE stats 
+                SET money = money - '" . ($price / 10) . "'
+                WHERE id = '" . $_SESSION["user_id"] . "'";
+    $setMoney = querySQL($remove);
+
+    $sql = "UPDATE fahrer SET sell = '0', sell_date = 0 WHERE id = '$drv_id'";
+    $setSell = querySQL($sql);
+
+    if ($setMoney && $setSell) {
+        mysqli_commit($mysqli);
+        return "driver_back";
+    } else {
+        mysqli_rollback($mysqli);
+        return "database_error";
+    }
+
+    mysqli_autocommit($mysqli, TRUE);
+}
+
 function keepPart($price, $str_id) {
     global $mysqli;
     mysqli_autocommit($mysqli, FALSE);
@@ -1245,6 +1282,33 @@ function keepPart($price, $str_id) {
     mysqli_autocommit($mysqli, TRUE);
 }
 
+function updateDriver($price, $old_id, $drv_id, $name) {
+    global $mysqli;
+    mysqli_autocommit($mysqli, FALSE);
+
+    $buyer = "UPDATE stats 
+                SET money = money - '$price'
+                WHERE id = '" . $_SESSION["user_id"] . "'";
+    $seller = "UPDATE stats 
+                SET money = money + '$price'
+                WHERE id = '" . $old_id . "'";
+    $setBuyer = querySQL($buyer);
+    $setSeller = querySQL($seller);
+
+    $sql = "UPDATE fahrer SET sell = '0', sell_date = 0, user_id = '" . $_SESSION["user_id"] . "' WHERE id = '$drv_id'";
+    $setSell = querySQL($sql);
+
+    if ($setSell && $setBuyer && $setSeller) {
+        logDriverSold($price, $name, $old_id);
+        mysqli_commit($mysqli);
+        return "driver_bought";
+    } else {
+        mysqli_rollback($mysqli);
+        return "database_error";
+    }
+
+    mysqli_autocommit($mysqli, TRUE);
+}
 function updatePart($price, $old_id, $str_id, $part) {
     global $mysqli;
     mysqli_autocommit($mysqli, FALSE);
@@ -1271,6 +1335,24 @@ function updatePart($price, $old_id, $str_id, $part) {
     }
 
     mysqli_autocommit($mysqli, TRUE);
+}
+
+function queryMarketDriverBuy($id) {
+    global $mysqli;
+
+    $check = "SELECT sell, user_id, name FROM fahrer WHERE id = '" . mysqli_real_escape_string($mysqli, $id) . "' AND sell > 0";
+    $entry = querySQL($check);
+    $row = mysqli_fetch_array($entry, MYSQLI_ASSOC);
+
+    if ($row["user_id"] == $_SESSION["user_id"]) {
+
+        return keepDriver($row["sell"], $id);
+        
+    } else if (__count($row) >= 1) {
+
+        return updateDriver($row["sell"], $row["user_id"], $id, $row["name"]);
+    } else
+        return "driver_sold";
 }
 
 function queryMarketPartBuy($id) {

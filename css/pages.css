@@ -567,7 +567,7 @@ tr:nth-child(even) {
 }
 
 .selling tr {
-    transition:0.1s;
+    transition:0.2s;
 }
 
 .selling td {
@@ -575,8 +575,8 @@ tr:nth-child(even) {
 }
 
 .selling tr:hover {
-    background:#800C4E;
-    color:white;
+    background:#f3dfc6;
+    color:black;
 }
 
 .selling td a {
@@ -588,7 +588,7 @@ tr:nth-child(even) {
     color:black;
 }
 .selling tr:hover a:link, .selling tr:hover a:visited {
-    color:white;
+    color:black;
 }
 
 /* messages */
