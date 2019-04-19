@@ -14,7 +14,7 @@ $leagueTier = getTierFromLeague($leagueOpen);
 
 //Ligaliste generieren
 function showLigaList() {
-    global $leagueOpen, $l, $maxLevel;
+    global $leagueOpen, $l, $maxLevel, $page, $sub;
     $leagues = queryRaceLeagues();
 
     //Liga Auswahl ausgeben

@@ -9,8 +9,11 @@ SPIEL:
 Spieler hat Level, spiegelt aber nur manche sachen wieder
 -> Je höher das level, desto höher ein bonus oder so.
 
+FOOTER:
+mobile
+
 MENÜ:
-* tehmatischer zusammenschluss der submenus
+* thematischer zusammenschluss der submenus
 
 Fahrermarkt <---------------------------
 - driver buy proggen

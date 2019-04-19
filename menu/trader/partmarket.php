@@ -135,9 +135,9 @@ if ($mode == "buy" && isset($get["id"])) {
     $output .= $pages;
 
     //Markt ausgeben
-    $output .= "<table style='font-size:13px;' class='tableRed noclick'>
+    $output .= "<table style='font-size:13px;' class='tableRed table100 noclick'>
                 <tr>
-                  <th colspan='4'>" . put("market", $l) . "</th>
+                  <th colspan='3'>" . put("market", $l) . "</th>
                 </tr>";
 
     //Aktuelle Seite auslesen
@@ -159,16 +159,16 @@ if ($mode == "buy" && isset($get["id"])) {
 
             $output .= "<tr>";
             $output .= "
-                <td class='partTitle'><div class='partTitleFormat'>" . put($item["part"], $l) . "</div>
+                <td class='partTitle'><a class='maxSize' href='$link'><div class='partTitleFormat'>" . put($item["part"], $l) . "</div>
                     <span class='tune_rarity' style='color:" . $part_rarity["color"] . "'>" . put($part_rarity["name"], $l) . "</span>
                     
-                    <div>" . formatLevelColor($item["tier"]) . "</div>
+                    <div>" . formatLevelColor($item["tier"]) . "</div></a>
                     </td>
-                <td class='partPerf'>$html</td>
-                <td>" . dollar($item["sell"]) . "<br/>" . $item["username"] . "</td>
-                    <td>
+                <td class='partPerf'><a class='maxSize' href='$link'>$html</a></td>
+                <td class='partBuy'><a class='maxSize' href='$link'>" . dollar($item["sell"]) . "<br/>" . $item["username"] . "</a></td>
+                <!--<td>
                     <a href='$link'><button class='tableTopButton'>" . put("buy", $l) . "</button></a>
-                </td>
+                </td>-->
                     ";
             $output .= "</tr>";
         } else {

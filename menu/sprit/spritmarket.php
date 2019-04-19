@@ -20,7 +20,7 @@ if ($mode == "buy" && isset($get["id"])) {
 
             $output .= put("sprit_back", $l) . "<br/><br/>";
 
-            $output .= "<form method='post' action='?page=market&sub=spritmarket'>";
+            $output .= "<form method='post' action='?page=$page&sub=$sub'>";
             $output .= "<input type='hidden' name='id' value='$str_id'> ";
             $output .= "<input type='submit' class='tableTopButton redButton' name='canceled' value='" . put("no", $l) . "'> ";
             $output .= "<input type='submit' class='tableTopButton' name='confirmed' value='" . put("yes", $l) . "'>";
@@ -31,7 +31,7 @@ if ($mode == "buy" && isset($get["id"])) {
             $output .= put("type_in_sprit", $l) . " Max " . gas($amount) . "<br/>";
             $output .= "1 litre costs <b>" . dollar($price) . "</b>";
 
-            $output .= "<form id='calcSprit' method='post' action='?page=market&sub=spritmarket'>";
+            $output .= "<form id='calcSprit' method='post' action='?page=$page&sub=$sub'>";
             $output .= "<input type='hidden' name='id' value='$str_id'> ";
             $output .= "<input type='hidden' value='$price' class='sp_price sp'>";
             $output .= "<input type='number' min='0.01' max='$amount' step='0.01' name='amount' id='buy_amount' placeholder='100' class='sp_amount sp tableTopInput'> ";
@@ -82,7 +82,7 @@ if ($mode == "buy" && isset($get["id"])) {
         $s = 1;
 
     //Seiten berechnen und ausgeben
-    $pages = getPages($menge, $s, "?page=market&sub=partmarket");
+    $pages = getPages($menge, $s, "?page=$page&sub=$sub");
     $output .= $pages;
 
     //Markt ausgeben
@@ -99,7 +99,7 @@ if ($mode == "buy" && isset($get["id"])) {
     if ($spritMarket)
         foreach ($spritMarket as $item) {
 
-            $link = "?page=market&sub=spritmarket&mode=buy&id=" . $item["sm_id"];
+            $link = "?page=$page&sub=$sub&mode=buy&id=" . $item["sm_id"];
 
             $output .= "<tr>";
             $output .= "<td class='partSeller'><a href='$link'>" . $item["username"] . "</a></td>

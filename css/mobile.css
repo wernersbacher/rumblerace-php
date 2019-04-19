@@ -4,18 +4,18 @@
     /*[class*="col-"] {
         width: 100%;
     }*/
-    
+
     #pageWrapper {
         background:white !important;
     }
-    
+
     .mainDropDown:hover .mainDropDown-content {
         display: none !important;
     }
 
     #loginWindow {
         width: inherit !important;
-        
+
         padding: 8px !important;
     }
 
@@ -33,7 +33,7 @@
 
     #topContent {
         width: inherit !important;
-        
+
     }
     #blackMenu {
         display: none !important;
@@ -52,20 +52,23 @@
     #mainmenu > ul > a > li > img{
         /*display:none;*/
     }
-    
+
     .mainDropDown {
         margin: 5px;
     }
 
-
-
-/*    #mobile_liga {
-        display:inline !important;
+    #tabs span {
+        padding: 5px 9px !important;
+        font-size: 14px;
     }
 
-    #desktop_liga {
-        display:none;
-    }*/
+    /*    #mobile_liga {
+            display:inline !important;
+        }
+    
+        #desktop_liga {
+            display:none;
+        }*/
 
     #contentWindow {
         min-width: 320px !important;
@@ -79,27 +82,27 @@
     #leftMenu > div {
         margin:5px;
     }
-    
+
     #blackLeftInfo {
         width:100%;
         flex-direction: row !important;
         min-height:0 !important;
         padding: 3px 11px !important;
     }
-    
-    .playerAvatar {
-    height:32px !important;
-}
 
-    
+    .playerAvatar {
+        height:32px !important;
+    }
+
+
     #blackLeftInfo > div {
         min-width:100px;
     }
-    
+
     #leftMenu {
         min-width:100% !important;
     }
-    
+
 
 
     .select_car {
@@ -117,5 +120,5 @@
     #always {
         display:none;
     }
-    
+
 }

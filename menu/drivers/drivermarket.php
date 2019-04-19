@@ -16,9 +16,9 @@ else
 $pages = getPages($menge, $s, $path);
 $output .= $pages;
 
-$output .= "<table style='font-size:13px;' class='tableRed noclick'>
+$output .= "<table style='font-size:13px;' class='tableRed table100 noclick'>
                 <tr>
-                  <th colspan='4'>" . put("market", $l) . "</th>
+                  <th colspan='3'>" . put("market", $l) . "</th>
                 </tr>";
 
 //Aktuelle Seite auslesen
@@ -38,15 +38,18 @@ if ($driverMarket)
 
         $output .= "<tr>";
         $output .= "
-                <td class='partTitle'><div class='partTitleFormat'>" . getNameChanged($name, $nameChanged) . "  <div class='driverLiga'>
+                <td class='partTitle'>
+                    <a class='maxSize centerChildVertical2' href='$link'>
+                        <div class='partTitleFormat'>" . getNameChanged($name, $nameChanged) . "  <div class='driverLiga'>
                             " . levelImg($liga) . "</div></div>
-                    
+                    </a>
                     </td>
-                <td class='partPerf'>" . getFlag($country) . " Skill: <b>$skill%</b> [$driver_id]</td>
-                <td>" . dollar($item["sell"]) . "<br/>" . $item["username"] . "</td>
-                    <td>
+                <td class='partPerf'><a class='maxSize centerChildVertical2' href='$link'><div>" . getFlag($country) . " Skill: <b>$skill%</b></div></a></td>
+                <td><a class='maxSize' href='$link'>" . dollar($item["sell"]) . "<br/>" . $item["username"] . "</a></td>
+                
+                <!--<td>
                     <a href='$link'><button class='tableTopButton'>" . put("buy", $l) . "</button></a>
-                </td>
+                </td>-->
                     ";
         $output .= "</tr>";
     } else {
