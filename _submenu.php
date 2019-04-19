@@ -126,7 +126,7 @@ $m["trader"] = ["subs" =>
     "icon" => "tools40", "main" => true, "minTutorial" => ""];
 
 $m["drivers"] = ["subs" =>
-    ["sysDrivers", "paddock"],
+    ["paddock", "sysDrivers", "drivermarket"],
     "icon" => "man40", "main" => true, "minTutorial" => "TUT_STATE_BUYDRIVER"];
 
 $m["race"] = ["subs" =>

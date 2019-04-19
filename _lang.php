@@ -76,6 +76,7 @@ $lg["s_logout"] = ["Confirm", "Bestätigen"];
 $lg["s_upgrades"] = ["Upgrades", "Upgrades"];
 $lg["s_achievements"] = ["Achievements", "Erfolge"];
 $lg["s_sysDrivers"] = ["Hire Drivers", "Fahrer einstellen"];
+$lg["s_drivermarket"] = ["Driver Market", "Fahrermarkt"];
 $lg["s_paddock"] = ["Paddock", "Fahrerlager"];
 $lg["s_profiles"] = ["Profiles", "Profile"];
 $lg["s_secretary"] = ["Secretary", "Sekräterin"];
