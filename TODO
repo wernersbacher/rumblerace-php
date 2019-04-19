@@ -16,7 +16,7 @@ MENÜ:
 * thematischer zusammenschluss der submenus
 
 Fahrermarkt <---------------------------
-- driver buy proggen
+- driver buy testen
 - bei rennen: nur ausgeben (und php check) wenn sell = 0 (vgl auch part equip)
 - sortieren nach datum, skill, level (filter auch) (vgl partmarket)
 -- Fahrer noch Eigenschaft, die nicht kaufbar ist (legend->)
