@@ -13,9 +13,8 @@ MENÜ:
 * tehmatischer zusammenschluss der submenus
 
 Fahrermarkt <---------------------------
-- in db: sell (wie bei part)
+- driver buy proggen
 - bei rennen: nur ausgeben (und php check) wenn sell = 0 (vgl auch part equip)
-- blätter funktion
 - sortieren nach datum, skill, level (filter auch) (vgl partmarket)
 -- Fahrer noch Eigenschaft, die nicht kaufbar ist (legend->)
 
@@ -29,6 +28,7 @@ Playerlevel:
 
 technisches:
 * badges für rennenleagues ausrechnen.
+* spritmarket links checken (alt?)
 
 NICHT SO WICHTIG:
 * driver maxliga berechnen
@@ -48,6 +48,7 @@ CLEANUP:
 texte auf sinnvoll checken
 console() entfernen
 errors verstecken
+unnütze files löschen
 
 Liga als tier im code
 überflüssige variable entfernen
@@ -285,3 +286,12 @@ https://www.iconfinder.com/icons/1326119/check_email_envelope_letter_opened_icon
 https://www.iconfinder.com/icons/1326116/card_email_envelope_letter_icon#size=32
 https://www.iconfinder.com/icons/1007448/currency_euro_finance_financial_money_notes_price_icon#size=128
 https://www.iconfinder.com/icons/1054957/screwdriver_tools_wrench_icon#size=64
+
+
+
+
+
+
+
+
+\?page=[a-zA-Z]+&sub=[a-zA-Z]+
