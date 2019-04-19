@@ -1531,7 +1531,7 @@ function queryDriversIDs() {
 function queryDrivers() {
     $sql = "SELECT *
             FROM fahrer
-            WHERE user_id = '" . $_SESSION["user_id"] . "' ORDER BY liga DESC, skill DESC";
+            WHERE user_id = '" . $_SESSION["user_id"] . "' AND sell = 0 ORDER BY liga DESC, skill DESC";
 
     return getArray($sql);
 }
@@ -1543,7 +1543,7 @@ function queryDriverIsNotRacing($id) {
     $sql = "SELECT fr.id FROM fahrer fr
             LEFT JOIN races_run rr
             ON fr.id = rr.driver_id
-            WHERE fr.user_id = '" . $_SESSION["user_id"] . "' AND fr.id = '" . mysqli_real_escape_string($mysqli, $id) . "' AND rr.user_id IS NULL";
+            WHERE fr.user_id = '" . $_SESSION["user_id"] . "' AND fr.id = '" . mysqli_real_escape_string($mysqli, $id) . "' AND rr.user_id IS NULL AND fr.sell = 0";
     $entry = querySQL($sql);
 
     $row = mysqli_fetch_array($entry, MYSQLI_ASSOC);
