@@ -22,7 +22,7 @@ function showLigaList() {
     foreach ($leagues as $race_league) {
         $name = $race_league["league"];
         $tier = $race_league["tier"];
-        $href = "href='?page=race&sub=racing&league=$name'";
+        $href = "href='?page=$page&sub=$sub&league=$name'";
 
         if ($name == $leagueOpen)
             $active = "active";
@@ -33,7 +33,7 @@ function showLigaList() {
             $locked = "race_locked";
         } else
             $locked = "";
-        //$ret .= "<li $active><a href='?page=race&sub=racing&league=$race_league'>
+        //$ret .= "<li $active><a href='?page=$page&sub=$sub&league=$race_league'>
         //                    ".levelImg($race_league, true)."</a></li>";
 
         $ret .= "<a class='flex-item-list $locked' $href><div class='$active'>
@@ -226,7 +226,7 @@ if ($races)
                     
                     <div class='tuneFooter absolute'>
                     
-                        <form method='POST' style='display:inline-block;' action='?page=race&sub=racing&league=$league'>   
+                        <form method='POST' style='display:inline-block;' action='?page=$page&sub=$sub&league=$league'>   
                         <select name='driver_id' class='select_car beautySelect nice-select-sm '>
                             " . $driverSelect . "
                         </select>

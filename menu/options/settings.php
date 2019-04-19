@@ -33,7 +33,7 @@ $ads = ttc(getSwitches()["ads"]);
 
 $output .= "    <div class='settings'>
                 
-                <form class='switches' action='?page=options&sub=settings' method='post'>
+                <form class='switches' action='?page=$page&sub=$sub' method='post'>
                    
                     <div class='switchUnit'>
 
@@ -57,7 +57,7 @@ $output .= "    <div class='settings'>
 
                 <div class='settingPoint'>Email:</div>
                 <span id='driverName'>  " . put($email, $l) . " <span id='driverNameChange'>&#9998;</span></span>
-                <form id='driverNameInput' name='input' action='?page=options&sub=settings' method='post' style='display: none;'>
+                <form id='driverNameInput' name='input' action='?page=$page&sub=$sub' method='post' style='display: none;'>
                 <input type='hidden' name='action' value='changeMail'></input>
                     <input class='focusThis' id='comment' type='text' name='newMail' placeholder='$valMail' value=''/>
                 <input type='submit' value='Save' />

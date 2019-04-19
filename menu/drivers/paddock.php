@@ -1,6 +1,6 @@
 <?php
 
-$path_overview = "?page=drivers&sub=paddock";
+$path_overview = "?page=$page&sub=$sub";
 $path = "$path_overview&mode=manage";
 
 $output = "";
@@ -74,7 +74,7 @@ if ($mode == "manage" && $driver) {
 
 
 
-    $output .= backLink("?page=drivers&sub=paddock");
+    $output .= backLink("?page=$page&sub=$sub");
 
     $name = $driver["name"];
     $skill = showSkill($driver["skill"]);

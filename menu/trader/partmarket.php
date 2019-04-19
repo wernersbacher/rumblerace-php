@@ -41,7 +41,7 @@ if ($mode == "buy" && isset($get["id"])) {
                 $output .= put("to_buy", $l);
             }
 
-            $output .= "<form method='post' action='?page=trader&sub=partmarket'>";
+            $output .= "<form method='post' action='?page=$page&sub=$sub'>";
             $output .= "<input type='hidden' name='id' value='$str_id'> ";
             $output .= "<input type='submit' class='tableTopButton redButton' name='canceled' value='" . put("no", $l) . "'> ";
             $output .= "<input type='submit' class='tableTopButton' name='confirmed' value='" . put("yes", $l) . "'>";
@@ -131,7 +131,7 @@ if ($mode == "buy" && isset($get["id"])) {
     else
         $s = 1;
 
-    $pages = getPages($menge, $s, "?page=trader&sub=partmarket");
+    $pages = getPages($menge, $s, "?page=$page&sub=$sub");
     $output .= $pages;
 
     //Markt ausgeben
@@ -155,7 +155,7 @@ if ($mode == "buy" && isset($get["id"])) {
             $hand = $item["hand"];
             $dura = $item["dura"];
 
-            $link = "?page=trader&sub=partmarket&mode=buy&id=" . $item["id"];
+            $link = "?page=$page&sub=$sub&mode=buy&id=" . $item["id"];
 
             $output .= "<tr>";
             $output .= "

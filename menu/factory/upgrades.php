@@ -32,7 +32,7 @@ if (isset($post["action"]) && $post["action"] == "buyUpgradePoint") { //Kaufen e
         //kaufen
         $status = upgradeById($node["this_id"], $node["thisCost"]);
 
-        header("Location: main.php?page=factory&sub=upgrades&status=" . $status);
+        header("Location: main.php?page=$page&sub=$sub&status=" . $status);
         $free -= $node["thisCost"];
         $used += $node["thisCost"];
         $tree = getUpgradeTree();
@@ -76,7 +76,7 @@ $output .= "<div class='settings upgrades_points'> <div>
     </div>
         <div>
             " . put("buy_another_point", $l) . " <b>" . dollar($up_cost) . "</b>
-            <form method='POST' style='display:inline-block;' action='?page=factory&sub=upgrades'>
+            <form method='POST' style='display:inline-block;' action='?page=$page&sub=$sub'>
                 <input type='hidden' name='action' value='buyUpgradePoint'>
                 <input class='tableTopButton' name='send' type='submit' value='" . put("buy", $l) . "' $dis>
             </form>
@@ -133,7 +133,7 @@ function generateNode($node) {
         $out = "$br<div data-chain='$chain' class='node chain_$chain'>
             $userUps
             $hover
-            <form method='post' action='?page=factory&sub=upgrades'>";
+            <form method='post' action='?page=$page&sub=$sub'>";
         $out .= "<input type='hidden' name='up' value='$name'>";
         $out .= "<input type='image' name='image' src='img/techtree/$name.png' width='40' height='40'>";
         $out .= "</form></div>";

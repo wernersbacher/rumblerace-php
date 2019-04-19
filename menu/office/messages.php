@@ -51,11 +51,11 @@ if ($mode == "new") {
     }
 
     $output .= "<div id='messageBox'>";
-    $output .= backLink("?page=office&sub=messages");
+    $output .= backLink("?page=$page&sub=$sub");
     $output .= "<div id='messageOutput'><h2>Write a new message</h2>";
     $output .= "<div class='messageSub'>";
 
-    $output .= "<form method='post' action='?page=office&sub=messages&mode=new'>
+    $output .= "<form method='post' action='?page=$page&sub=$sub&mode=new'>
                     <input type='text' maxlength='13' name='to_user' placeholder='Receiver' value='$to_user' required><br/>
                     <input type='text' maxlength='13' name='subject' placeholder='Subject' value='$subject' /><br/>
                     <textarea name='message' placeholder='Your message' required>$message</textarea><br/>
@@ -67,7 +67,7 @@ if ($mode == "new") {
     $output .= "</div>";
 } else if ($mode == "read" && isset($post["m_id"])) {
     $output .= outputTut("messages_write_back", $l);
-    $output .= backLink("?page=office&sub=messages");
+    $output .= backLink("?page=$page&sub=$sub");
     $m_id = $post["m_id"];
 
     $fxData = queryMessageData($m_id);
@@ -86,7 +86,7 @@ if ($mode == "new") {
                         <div class='messageSub'>
                         " . htmlentities($fxData["message"]) . "
                         </div>
-                        <a href='?page=office&sub=messages&mode=new&to=$username' class='tableTopButton'>+ " . put("answer", $l) . "</a>
+                        <a href='?page=$page&sub=$sub&mode=new&to=$username' class='tableTopButton'>+ " . put("answer", $l) . "</a>
                     </div>";
 
         $output .= "</div>";
@@ -114,13 +114,13 @@ if ($mode == "new") {
     $output .= "<div class='messageButtons'>";
 
     //Neue Nachricht Button
-    $output .= "<div class='centerChildVertical'><a href='?page=office&sub=messages&mode=new' class='tableTopButton'>+ " . put("new_mes", $l) . "</a></div>";
+    $output .= "<div class='centerChildVertical'><a href='?page=$page&sub=$sub&mode=new' class='tableTopButton'>+ " . put("new_mes", $l) . "</a></div>";
     
     //Lösche alle Nachrichten, älter als 30 tage
-    $output .= "<form class='centerChildVertical' method='POST' data-dialog='Really delete old messages?' style='display:inline-block;' action='?page=office&sub=messages'><input type='hidden' name='delOld' value='delOld'><input class='tableTopButton dialog' name='delSys' type='submit' value='" . put("delOld", $l) . "'></form>";
+    $output .= "<form class='centerChildVertical' method='POST' data-dialog='Really delete old messages?' style='display:inline-block;' action='?page=$page&sub=$sub'><input type='hidden' name='delOld' value='delOld'><input class='tableTopButton dialog' name='delSys' type='submit' value='" . put("delOld", $l) . "'></form>";
     
     //Alle Nachrichten als gelesen markieren
-    $output .= "<form class='centerChildVertical' method='POST' style='display:inline-block;' action='?page=office&sub=messages'><input type='hidden' name='readAll' value='read'><input class='tableTopButton' name='readAll' type='submit' value='" . put("readAll", $l) . "'></form>";
+    $output .= "<form class='centerChildVertical' method='POST' style='display:inline-block;' action='?page=$page&sub=$sub'><input type='hidden' name='readAll' value='read'><input class='tableTopButton' name='readAll' type='submit' value='" . put("readAll", $l) . "'></form>";
 
     //Toggle System nachrichten
     $output .= "<div class='centerChildVertical'><a href='#' id='toggle_sys' class='tableTopButton'>" . put("toggle_sys", $l) . "</a></div>";
@@ -141,7 +141,7 @@ if ($mode == "new") {
     if ($messages)
         foreach ($messages as $item) {
 
-            $link = "?page=office&sub=messages&mode=read";
+            $link = "?page=$page&sub=$sub&mode=read";
             if ($item["open"] == 0)
                 $status = "<span class='unread'>" . put("unread", $l) . "</span>";
             else

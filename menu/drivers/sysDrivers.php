@@ -64,7 +64,7 @@ foreach($drivers as $drv) {
                 <div class='tuneFooter absolute'>
                     
                     <span class='dealPrice'>" . dollar($kosten) . " / $anteil% ".put("anteil", $l)." </span>
-                    <form method='POST' style='display:inline-block;' action='?page=drivers&sub=sysDrivers'>
+                    <form method='POST' style='display:inline-block;' action='?page=$page&sub=$sub'>
                         <input type='hidden' name='driver_nr' value='$nr'>
                         <input class='tableTopButton dialog' name='send' type='submit' value='" . put("get_driver", $l) . " '$disabled>
                     </form>

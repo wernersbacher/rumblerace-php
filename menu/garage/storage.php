@@ -106,7 +106,7 @@ foreach ($katNames as $kat) {
                         <input type='hidden' name='liga' value='" . put("liga", $l) . " " . $item["tier"] . "'>
                         <input class='sellButton tableTopButton' name='sell' type='submit' value='" . put("sell_it", $l) . "'>
                     </form>
-                    <form class='inline-form' method='POST' data-dialog='Do you want to delete this part?' action='?page=tuner&sub=storage&mode=trash'>
+                    <form class='inline-form' method='POST' data-dialog='Do you want to delete this part?' action='?page=$page&sub=$sub&mode=trash'>
                         <input type='hidden' name='storage_id' value='" . $item["id"] . "'>
                         <input class='sellButton tableTopButton redButton dialog' name='trash' type='submit' value='X'>
                     </form>

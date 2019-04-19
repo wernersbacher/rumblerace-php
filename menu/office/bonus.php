@@ -62,19 +62,19 @@ $output .= "
         
         <div class='flexBonus' id='bonus_btn_container'>
             <div>
-                <form action='?page=office&sub=bonus&action=get' method='post'>
+                <form action='?page=$page&sub=$sub&action=get' method='post'>
                 <input type='hidden' name='reward' value='1' />
                 <input class='bonus_button' $disabled type='submit' name='send' value='" . dollar(calcBonus($boni[1])) . "' />
                 </form>
             </div>
             <div>
-                <form action='?page=office&sub=bonus&action=get' method='post'>
+                <form action='?page=$page&sub=$sub&action=get' method='post'>
                 <input type='hidden' name='reward' value='2' />
                 <input class='bonus_button' $disabled type='submit' name='send' value='" . gas(calcBonus($boni[2])) . "' />
                 </form>
             </div>
             <div>
-                <form action='?page=office&sub=bonus&action=get' method='post'>
+                <form action='?page=$page&sub=$sub&action=get' method='post'>
                 <input type='hidden' name='reward' value='3' />
                 <input class='bonus_button' $disabled type='submit' name='send' value='" . ep(calcBonus($boni[3])) . "' />
                 </form>

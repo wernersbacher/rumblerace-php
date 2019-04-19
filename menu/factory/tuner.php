@@ -26,7 +26,7 @@ function buildNewPart($part, $tier) {
  */
 
 function showTunerKats($activeKat) {
-    global $l;
+    global $l, $page, $sub;
     $kats = queryTuningKats();
     //Tuning Kategorien ausgeben
     $ret = "<div class='ligaList'>";
@@ -36,7 +36,7 @@ function showTunerKats($activeKat) {
         else
             $active = "";
 
-        $ret .= "<a class='flex-item-list' href='?page=factory&sub=tuner&mode=parts&kat=$kat'><div $active>
+        $ret .= "<a class='flex-item-list' href='?page=$page&sub=$sub&mode=parts&kat=$kat'><div $active>
                 
                     <img src='img/parts/$kat.png' />
                         <span class='absTitle'>" . put($kat, $l) . "</span>
@@ -186,7 +186,7 @@ foreach ($partNames as $part) {
                             
                         <div class='tuneFooter'>
                             <p class='cool-text'>CHOOSE LEVEL</p>
-                            <form method='POST' action='?page=factory&sub=tuner&mode=parts&kat=$kat'>
+                            <form method='POST' action='?page=$page&sub=$sub&mode=parts&kat=$kat'>
                             $labels
                                 <input type='hidden' name='part' value='$part'>
                                 <input style='vertical-align: bottom;' class='tableTopButton saveScroll' name='send' type='submit' value='" . put("build", $l) . "' $disabled>

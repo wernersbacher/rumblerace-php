@@ -6,7 +6,7 @@ else
     $id = $get["garage_id"];
 
 $output = outputTut("car_tuning", $l);
-$output .= backLink("?page=garage&sub=cars");
+$output .= backLink("?page=$page&sub=$sub");
 
 if ($mode == "tune" && queryCarIsNotRacing($id)) {
 
@@ -119,7 +119,7 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
     $output .= "</div>"; //Schließen des sketches
     //Tuning ausgeben
 
-    $output .= "<form method='POST' action='?page=garage&sub=cars&mode=tune&garage_id=$id'>";
+    $output .= "<form method='POST' action='?page=$page&sub=$sub&mode=tune&garage_id=$id'>";
     $output .= $select;
     $output .= "<input type='hidden' name='garage_id' value='$id'></input>";
     $output .= "<input class='tableTopButton' name='tune' type='submit' value='" . put("save_car", $l) . "'>";
@@ -193,13 +193,13 @@ if ($mode == "tune" && queryCarIsNotRacing($id)) {
 
                     <div class='dealBuy'>
                         
-                        <form method='POST' data-dialog='Sell the car for " . dollar(carSellPrice($car["preis"])) . "? The tuning parts are transferred into the storage.' style='display:inline-block;' action='?page=garage&sub=cars&garage_id=" . $car["garage_id"] . "'>
+                        <form method='POST' data-dialog='Sell the car for " . dollar(carSellPrice($car["preis"])) . "? The tuning parts are transferred into the storage.' style='display:inline-block;' action='?page=$page&sub=$sub&garage_id=" . $car["garage_id"] . "'>
                             <input type='hidden' name='garage_id' value='" . $car["garage_id"] . "'>
                             <input type='hidden' name='action' value='sell'>
                             <input class='tableTopButton redButton dialog' name='send' type='submit' value='" . put("sell", $l) . "' $disabled>
                         </form>
                         
-                        <form method='POST' style='display:inline-block;' action='?page=garage&sub=cars&mode=tune&garage_id=" . $car["garage_id"] . "'>
+                        <form method='POST' style='display:inline-block;' action='?page=$page&sub=$sub&mode=tune&garage_id=" . $car["garage_id"] . "'>
                             <input type='hidden' name='garage_id' value='" . $car["garage_id"] . "'>
                             <input class='tableTopButton' name='send' type='submit' value='" . put("tune_now", $l) . "' $disabled>
                         </form>

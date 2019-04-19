@@ -83,7 +83,7 @@ foreach ($cars as $car) {//$car["title"]
 
                     <div class='dealBuy'>
                         <span class='dealPrice'>" . dollar($preis) . "</span>
-                        <form method='POST' style='display:inline-block;' action='?page=trader&sub=cardealer'>
+                        <form method='POST' style='display:inline-block;' action='?page=$page&sub=$sub'>
                             <input type='hidden' name='model' value='" . $car["name"] . "'>
                             <input class='tableTopButton' name='send' type='submit' value='" . put("buy_now", $l) . "'$dis>
                         </form>

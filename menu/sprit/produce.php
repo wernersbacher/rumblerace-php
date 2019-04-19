@@ -74,7 +74,7 @@ foreach ($fabrik as $teil) {
 
                     <div class='dealBuy'>
                         <span class='dealPrice'>" . dollar($preis) . "</span>
-                        <form method='POST' style='display:inline-block;' action='?page=sprit&sub=produce'>
+                        <form method='POST' style='display:inline-block;' action='?page=$page&sub=$sub'>
                             <input type='hidden' name='teil_id' value='" . $teil["id"] . "'>
                             <input class='tableTopButton saveScroll' name='send' type='submit' value='" . put("buy_now", $l) . "' $dis>
                         </form>
