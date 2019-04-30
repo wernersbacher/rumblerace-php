@@ -126,6 +126,7 @@ Love for Meri
 
     <div id="pageWrapper" >
 
+        
         <!-- Top Segment Anfang -->
         <div id="topBar">
             <div id="topContent">
@@ -251,8 +252,11 @@ Love for Meri
 
 
         </div>
-
-        <footer>
+        
+                
+    
+    <div id="footer">
+        
             <div id="always">
                 <div>
 
@@ -274,9 +278,12 @@ Love for Meri
 
                 </div>
             </div>
-        </footer>
-
+        
+        </div>
+        
+        
     </div>
+    
     <!-- Middle Segment Ende -->
 
 

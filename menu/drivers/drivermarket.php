@@ -127,9 +127,6 @@ if ($mode == "buy" && isset($get["id"])) {
     $output .= "</table>";
     $output .= $pages;
 
-
-
-    $output .= "</div>";
 }
 
 $output .= "</div>";
